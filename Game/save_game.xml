@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<game_state>
+	<input />
+	<window />
+	<textures />
+	<audio />
+	<map />
+	<scene>
+		<level level="1" />
+	</scene>
+	<player>
+		<pos x="372" y="194" />
+	</player>
+	<collision />
+	<fadetoblack />
+	<renderer>
+		<camera x="-4" y="0" />
+	</renderer>
+</game_state>
