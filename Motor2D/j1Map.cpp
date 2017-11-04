@@ -77,10 +77,10 @@ void j1Map::SetMapLogic() {
 					if (gid == 4) {
 						App->collision->AddCollider(col, COLLIDER_KILL);
 					}				
-					if (gid == 9) {
+					/*if (gid == 9) {
 						App->player->spawn.x = pos.x;
 						App->player->spawn.y = pos.y;
-					}
+					}*/
 				
 				}
 				

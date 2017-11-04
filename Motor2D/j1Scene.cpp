@@ -45,11 +45,13 @@ bool j1Scene::Start()
 	}
 	App->map->SetMapLogic();
 	App->player->Start();
+	/*
 	if (justloaded == true) {
 		App->player->position.x = App->player->loadposition.x;
 		App->player->position.y = App->player->loadposition.y;
 		justloaded = false;
 	}
+	*/
 	
 	return true;
 }
@@ -140,10 +142,12 @@ bool j1Scene::Load(pugi::xml_node& data) {
 			App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1);
 			justloaded = true;
 		}
+		/*
 		else {
 			App->player->position.x = App->player->loadposition.x;
 			App->player->position.y = App->player->loadposition.y;
 		}
+		*/
 	}
 
 	return true;
