@@ -34,6 +34,7 @@ public:
 public: 
 	pugi::xml_document	animation_file;
 	pugi::xml_node animations;
+	pugi::xml_node attributes;
 	pugi::xml_node rect;
 	p2SString current;
 

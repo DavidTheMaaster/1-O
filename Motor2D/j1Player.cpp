@@ -32,8 +32,8 @@ bool j1Player::Awake(pugi::xml_node& config)
 	}
 
 	while(animations != NULL){
-
-	current = animations.child("attributes").attribute("name").as_string();
+	attributes = animations.child("attributes");
+	current = attributes.attribute("name").as_string();
 	rect = animations.first_child();
 
 	if (current == "idle")
@@ -48,7 +48,7 @@ bool j1Player::Awake(pugi::xml_node& config)
 
 
 	int i = rect.attribute("id").as_int();
-	int j = animations.child("attributes").attribute("size").as_int();
+	int j = attributes.attribute("size").as_int();
 
 	while (i < j)
 	{
@@ -64,6 +64,8 @@ bool j1Player::Awake(pugi::xml_node& config)
 		i = rect.attribute("id").as_int();
 
 	}
+	load_anim->loop = attributes.attribute("loop").as_bool(true);
+	load_anim->speed = attributes.attribute("speed").as_float();
 
 	animations = animations.next_sibling();
 
@@ -121,7 +123,6 @@ bool j1Player::Update(float dt)
 
 void j1Player::Draw()
 {
-	idle.speed = 0.5f;
 	App->render->DrawQuad(p, 0, 255, 0, 255);
 
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
