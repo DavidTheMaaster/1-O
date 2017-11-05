@@ -25,6 +25,10 @@
   <map>
     <folder>maps/</folder>
   </map>
+  
+  <player>
+    <file direction ="animations.xml"/>    
+  </player>
       
 
 </config>

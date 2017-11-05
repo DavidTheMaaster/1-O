@@ -17,6 +17,8 @@ public:
 	j1Player();
 	~j1Player();
 
+	bool Awake(pugi::xml_node&);
+
 	bool Start();
 	bool CleanUp();
 	bool Update(float dt);
@@ -30,8 +32,19 @@ public:
 
 
 public: 
+	pugi::xml_document	animation_file;
+	pugi::xml_node animations;
+	pugi::xml_node rect;
+
+	SDL_Texture* test = nullptr;
+
 	iPoint speed;
-	SDL_Rect r;
+	SDL_Rect p;
+
+	//Animations
+	Animation* load_anim = nullptr;
+	Animation idle;
+	
 };
 
 

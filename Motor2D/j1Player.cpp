@@ -1,5 +1,6 @@
 #include "j1Player.h"
 #include "p2Log.h"
+#include "j1Textures.h"
 #include "j1Render.h"
 #include "j1Input.h"
 #include "j1App.h"
@@ -7,20 +8,65 @@
 
 j1Player::j1Player()
 {
+	name.create("player");
 }
 
 j1Player::~j1Player()
 {
 }
 
+bool j1Player::Awake(pugi::xml_node& config)
+{
+
+	LOG("Loading animations");
+
+	bool ret = true;
+
+	animation_file.load_file(config.child("file").attribute("direction").as_string());
+	animations = animation_file.child("animations").first_child();
+
+	if (animations == NULL)
+	{
+		LOG("Could not load animations");
+		ret = false;
+	}
+
+	p2SString current = animations.child("attributes").attribute("name").as_string();
+	rect = animations.first_child();
+	if( current == "idle")
+	{
+		load_anim = &idle;
+	}
+
+	
+
+	for (int i = 0; i<15;i++)
+	{
+		SDL_Rect r;
+		r.x = rect.attribute("x").as_int();
+		r.y = rect.attribute("y").as_int();
+		r.w = rect.attribute("w").as_int();
+		r.h = rect.attribute("h").as_int();
+
+		idle.PushBack({r.x,r.y,r.w,r.h});
+
+		rect = rect.next_sibling();
+		
+	}
+
+
+	return ret;
+}
+
+
 bool j1Player::Start()
 {
 	bool ret = true;
 	LOG("Loading player");
 	speed.x = 5; speed.y = 5;
-	r.x = r.y = 100;
-	r.w = 25; r.h = 50;
-
+	p.x = p.y = 100;
+	p.w = 25; p.h = 50;
+	test = App->tex->Load("textures/animations.png");
 	return ret;
 }
 
@@ -46,11 +92,11 @@ bool j1Player::Update(float dt)
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
-		r.y -= speed.y;
+		p.y -= speed.y;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
-		r.y += speed.y;
+		p.y += speed.y;
 	}
 
 	Draw();
@@ -61,19 +107,22 @@ bool j1Player::Update(float dt)
 
 void j1Player::Draw()
 {
-	App->render->DrawQuad(r, 0, 255, 0, 255);
+	idle.speed = 0.5f;
+	App->render->DrawQuad(p, 0, 255, 0, 255);
+	App->render->Blit(test, p.x,p.y,&(idle.GetCurrentFrame()));
+
 }
 
 
 void j1Player::Right()
 {
-	r.x += speed.x;
+	p.x += speed.x;
 }
 
 
 void j1Player::Left()
 {
-	r.x -= speed.x;
+	p.x -= speed.x;
 }
 
 
