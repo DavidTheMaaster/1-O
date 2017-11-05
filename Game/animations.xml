@@ -15,6 +15,40 @@
     <frame id = "12" x = "840" y = "0" w = "70" h = "80"/>
     <frame id = "13" x = "910" y = "0" w = "70" h = "80"/>
     <frame id = "14" x = "0" y = "80" w = "70" h = "80"/>
-    <attributes name = "idle" speed = "0.5" loop = "true" size = "15"/>
+    <attributes name = "idle" speed = "0.5" loop = "true" size = "14"/>
   </idle>
+  <walk>
+    <frame id = "0" x = "350" y = "80" w = "70" h = "80"/>
+    <frame id = "1" x = "420" y = "80" w = "70" h = "80"/>
+    <frame id = "2" x = "490" y = "80" w = "70" h = "80"/>
+    <frame id = "3" x = "560" y = "80" w = "70" h = "80"/>
+    <frame id = "4" x = "630" y = "80" w = "70" h = "80"/>
+    <frame id = "5" x = "700" y = "80" w = "70" h = "80"/>
+    <frame id = "6" x = "770" y = "80" w = "70" h = "80"/>
+    <frame id = "7" x = "840" y = "80" w = "70" h = "80"/>
+    <frame id = "8" x = "910" y = "80" w = "70" h = "80"/>
+    <frame id = "9" x = "0" y = "160" w = "70" h = "80"/>
+    <frame id = "10" x = "70" y = "160" w = "70" h = "80"/>
+    <frame id = "11" x = "140" y = "160" w = "70" h = "80"/>
+    <frame id = "12" x = "210" y = "160" w = "70" h = "80"/>
+    <frame id = "13" x = "280" y = "160" w = "70" h = "80"/>
+    <frame id = "14" x = "350" y = "160" w = "70" h = "80"/>
+    <frame id = "15" x = "420" y = "160" w = "70" h = "80"/>
+    <frame id = "16" x = "490" y = "160" w = "70" h = "80"/>
+    <frame id = "17" x = "560" y = "160" w = "70" h = "80"/>
+    <frame id = "18" x = "630" y = "160" w = "70" h = "80"/>
+    <frame id = "19" x = "700" y = "160" w = "70" h = "80"/>
+    <frame id = "20" x = "770" y = "160" w = "70" h = "80"/>
+    <frame id = "21" x = "840" y = "160" w = "70" h = "80"/>
+    <frame id = "22" x = "910" y = "160" w = "70" h = "80"/>
+    <frame id = "23" x = "0" y = "240" w = "70" h = "80"/>
+    <frame id = "24" x = "70" y = "240" w = "70" h = "80"/>
+    <frame id = "25" x = "140" y = "240" w = "70" h = "80"/>
+    <frame id = "26" x = "210" y = "240" w = "70" h = "80"/>
+    <frame id = "27" x = "280" y = "240" w = "70" h = "80"/>
+    <frame id = "28" x = "350" y = "240" w = "70" h = "80"/>
+    <frame id = "29" x = "420" y = "240" w = "70" h = "80"/>
+    <frame id = "30" x = "490" y = "240" w = "70" h = "80"/>
+    <attributes name = "walk" speed = "0.5" loop = "true" size = "30"/>
+  </walk>
 </animations>

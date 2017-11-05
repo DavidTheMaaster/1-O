@@ -31,16 +31,26 @@ bool j1Player::Awake(pugi::xml_node& config)
 		ret = false;
 	}
 
-	p2SString current = animations.child("attributes").attribute("name").as_string();
+	while(animations != NULL){
+
+	current = animations.child("attributes").attribute("name").as_string();
 	rect = animations.first_child();
-	if( current == "idle")
+
+	if (current == "idle")
 	{
 		load_anim = &idle;
 	}
+	else if (current == "walk")
+	{
+		load_anim = &walk;
+	}
 
-	
 
-	for (int i = 0; i<15;i++)
+
+	int i = rect.attribute("id").as_int();
+	int j = animations.child("attributes").attribute("size").as_int();
+
+	while (i < j)
 	{
 		SDL_Rect r;
 		r.x = rect.attribute("x").as_int();
@@ -48,12 +58,16 @@ bool j1Player::Awake(pugi::xml_node& config)
 		r.w = rect.attribute("w").as_int();
 		r.h = rect.attribute("h").as_int();
 
-		idle.PushBack({r.x,r.y,r.w,r.h});
+		load_anim->PushBack({ r.x,r.y,r.w,r.h });
 
 		rect = rect.next_sibling();
-		
+		i = rect.attribute("id").as_int();
+
 	}
 
+	animations = animations.next_sibling();
+
+}
 
 	return ret;
 }
@@ -109,8 +123,13 @@ void j1Player::Draw()
 {
 	idle.speed = 0.5f;
 	App->render->DrawQuad(p, 0, 255, 0, 255);
-	App->render->Blit(test, p.x,p.y,&(idle.GetCurrentFrame()));
 
+	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+		App->render->Blit(test, p.x, p.y, &(walk.GetCurrentFrame()));
+	}
+	else {
+		App->render->Blit(test, p.x, p.y, &(idle.GetCurrentFrame()));
+	}
 }
 
 

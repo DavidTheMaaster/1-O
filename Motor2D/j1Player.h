@@ -35,6 +35,7 @@ public:
 	pugi::xml_document	animation_file;
 	pugi::xml_node animations;
 	pugi::xml_node rect;
+	p2SString current;
 
 	SDL_Texture* test = nullptr;
 
@@ -44,6 +45,8 @@ public:
 	//Animations
 	Animation* load_anim = nullptr;
 	Animation idle;
+	Animation walk;
+
 	
 };
 
