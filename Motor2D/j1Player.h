@@ -32,6 +32,9 @@ public:
 	void Gravity();
 
 	void Jump();
+	bool CanJump();
+
+	void Hover();
 
 
 
@@ -48,18 +51,17 @@ public:
 	SDL_Rect p;
 
 	bool flip;
-	bool can_jump;
 	bool jump;
 
 	int jump_counter;
 
-	
 
 	//Animations
+	Animation* current_animation = nullptr;
 	Animation* load_anim = nullptr;
 	Animation idle;
 	Animation walk;
-	Animation* current_animation = nullptr;
+	Animation hover;
 
 };
 

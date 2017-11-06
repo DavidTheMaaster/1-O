@@ -46,6 +46,10 @@ bool j1Player::Awake(pugi::xml_node& config)
 	{
 		load_anim = &walk;
 	}
+	else if (current == "hover")
+	{
+		load_anim = &hover;
+	}
 
 
 
@@ -110,6 +114,7 @@ bool j1Player::Update(float dt)
 	bool ret = true;
 	
 	current_animation = &idle;
+	speed.y = 8;
 
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 		Right();
@@ -119,8 +124,12 @@ bool j1Player::Update(float dt)
 		Left();
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && can_jump == true) {
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && CanJump()) {
 		jump = true;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) {
+		Hover();
 	}
 
 	if (jump == true)
@@ -130,6 +139,17 @@ bool j1Player::Update(float dt)
 
 	Gravity();
 	Draw();
+
+	
+
+	//DEBUG
+
+
+	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_REPEAT) 
+	{
+		p.x = p.y = 100;
+	}
+
 
 	return ret;
 }
@@ -142,6 +162,7 @@ void j1Player::Draw()
 
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
+	App->render->DrawQuad(p, 0, 255, 0, 255);
 	App->render->Blit(texture, p.x - offset.x, p.y - offset.y, &r, flip);
 
 }
@@ -174,18 +195,13 @@ void j1Player::Gravity()
 	if (App->collision->CheckCollisionDown(p) && jump == false)
 	{
 		p.y += speed.y;
-		can_jump = false;
-	}
-	else
-	{
-		can_jump = true;
 	}
 }
 
 void j1Player::Jump()
 {
 	if (App->collision->CheckCollisionUp(p)) {
-		can_jump = false;
+		speed.x = 6;
 		if (jump_counter < 13)
 		{
 			p.y -= speed.y;
@@ -199,12 +215,34 @@ void j1Player::Jump()
 		{
 			jump_counter = 0;
 			jump = false;
+			speed.x = 4;
 		}
 	}
 	else 
 	{
 		jump = false;
 	}
+}
+
+bool j1Player::CanJump()
+{
+	bool ret = true; 
+	if (jump == true)
+	{
+		ret  = false;
+	}
+	
+	if (App->collision->CheckCollisionDown(p) && jump == false)
+	{
+		ret = false;
+	}
+	return ret;
+}
+
+void j1Player::Hover()
+{
+	current_animation = &hover;
+   	speed.y = 4;
 }
 
 iPoint j1Player::GetOffset(int x, int y)
