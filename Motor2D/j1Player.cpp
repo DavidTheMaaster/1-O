@@ -87,6 +87,7 @@ bool j1Player::Start()
 	bool ret = true;
 	LOG("Loading player");
 	speed.x = 4; speed.y = 8;
+	jumplimit = 20;
 	p.x = p.y = 100;
 	p.w = 16; p.h = 56;
 	current_animation = &idle;
@@ -119,9 +120,19 @@ bool j1Player::Update(float dt)
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
-		if (App->collision->CheckCollisionUp(p))
+		Jump();
+		jumping = true;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_UP) {
+
+		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && jumping == true) {
+			Jump();
+			jumping = false;
+		}
+		else
 		{
-			p.y -= speed.y * 2;
+			jumping = false;
 		}
 	}
 
@@ -161,6 +172,22 @@ void j1Player::Left()
 		p.x -= speed.x;
 		flip = true;
 		current_animation = &walk;
+	}
+}
+
+void j1Player::Jump()
+{
+	if (App->collision->CheckCollisionUp(p))
+	{	
+		if (jumplimit >= 0) {
+			p.y -= speed.y + jumplimit;
+			//current_animation = &jump;
+			jumplimit--;
+		}
+		else {
+			jumplimit = 20;
+			jumping == false;
+		}
 	}
 }
 
