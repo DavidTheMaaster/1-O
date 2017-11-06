@@ -202,12 +202,12 @@ void j1Player::Jump()
 {
 	if (App->collision->CheckCollisionUp(p)) {
 		speed.x = 6;
-		if (jump_counter < 13)
+		if (jump_counter < 10)
 		{
 			p.y -= speed.y;
 			jump_counter++;
 		}
-		else if (jump_counter < 16 )
+		else if (jump_counter < 13 )
 		{
 			jump_counter++;
 		}
@@ -241,8 +241,16 @@ bool j1Player::CanJump()
 
 void j1Player::Hover()
 {
-	current_animation = &hover;
-   	speed.y = 4;
+	speed.y = 4;
+
+	if (App->collision->CheckCollisionDown(p)==false)
+	{
+		speed.y = 8;
+	}
+	else
+	{
+		current_animation = &hover;
+	}
 }
 
 iPoint j1Player::GetOffset(int x, int y)
@@ -258,6 +266,12 @@ iPoint j1Player::GetOffset(int x, int y)
 		x = animations.child("walk").child("attributes").attribute("offset_x").as_int(0);
 		y = animations.child("walk").child("attributes").attribute("offset_y").as_int(0);
 	}
+
+	if (current_animation == &hover) {
+		x = animations.child("hover").child("attributes").attribute("offset_x").as_int(0);
+		y = animations.child("hover").child("attributes").attribute("offset_y").as_int(0);
+	}
+
 
 
 	offset.x = x;
