@@ -33,8 +33,6 @@ struct Collider
 		rect.x = x;
 		rect.y = y;
 	}
-
-	bool CheckCollision(const SDL_Rect& r) const;
 };
 
 class j1Collision : public j1Module
@@ -54,12 +52,24 @@ public:
 	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type, j1Module* callback = nullptr);
 	bool EraseCollider(Collider* collider);
 	void DebugDraw();
+
+	bool CheckCollisionRight(SDL_Rect p);
+	bool CheckCollisionLeft(SDL_Rect p);
+	bool CheckCollisionUp(SDL_Rect p);
+	bool CheckCollisionDown(SDL_Rect p);
 	
 private:
 
 	Collider* colliders[MAX_COLLIDERS];
 	bool matrix[COLLIDER_MAX][COLLIDER_MAX];
 	bool debug = false;
+
+	enum Logics
+	{
+		WALL = 19
+	};
+
+
 };
 
 #endif // __ModuleCollision_H__

@@ -3,6 +3,8 @@
 #include "j1Render.h"
 #include "p2Log.h"
 #include "j1Collision.h"
+#include "j1Player.h"
+#include "j1Map.h"
 
 j1Collision::j1Collision()
 {
@@ -62,39 +64,7 @@ bool j1Collision::PreUpdate()
 // Called before render is available
 bool j1Collision::Update(float dt)
 {
-	Collider* c1;
-	Collider* c2;
-
-	for (uint i = 0; i < MAX_COLLIDERS; ++i)
-	{
-		// skip empty colliders
-		if (colliders[i] == nullptr)
-			continue;
-
-		c1 = colliders[i];
-
-		// avoid checking collisions already checked
-		for (uint k = i + 1; k < MAX_COLLIDERS; ++k)
-		{
-			// skip empty colliders
-			if (colliders[k] == nullptr)
-				continue;
-
-			c2 = colliders[k];
-
-			if (c1->CheckCollision(c2->rect) == true)
-			{
-				if (matrix[c1->type][c2->type] && c1->callback)
-					c1->callback->OnCollision(c1, c2);
-
-				if (matrix[c2->type][c1->type] && c2->callback)
-					c2->callback->OnCollision(c2, c1);
-			}
-		}
-	}
-
 	DebugDraw();
-
 	return true;
 }
 
@@ -183,10 +153,147 @@ bool j1Collision::EraseCollider(Collider* collider)
 }
 // -----------------------------------------------------
 
-bool Collider::CheckCollision(const SDL_Rect& r) const
+
+bool j1Collision::CheckCollisionRight(SDL_Rect p)
 {
-	return (rect.x < r.x + r.w &&
-		rect.x + rect.w > r.x &&
-		rect.y < r.y + r.h &&
-		rect.h + rect.y > r.y);
+	bool ret = true;
+
+	iPoint vec1;
+	iPoint vec2;
+	iPoint vec3;
+
+	vec1.x = (p.x + p.w) + App->player->speed.x;
+	vec1.y = p.y;
+
+	vec2.x = (p.x + p.w) + App->player->speed.x;
+	vec2.y = p.y + p.h / 2;
+
+	vec3.x = (p.x + p.w) + App->player->speed.x;
+	vec3.y = p.y + p.h;
+
+	vec1 = App->map->WorldToMap(vec1.x, vec1.y);
+	vec2 = App->map->WorldToMap(vec2.x, vec2.y);
+	vec3 = App->map->WorldToMap(vec3.x, vec3.y);
+
+
+	if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == WALL)
+	{
+		ret = false;
+	}
+
+	if (App->map->logic_layer->data->Get(vec2.x, vec2.y) == WALL)
+	{
+		ret = false;
+	}
+
+	if (App->map->logic_layer->data->Get(vec3.x, vec3.y) == WALL)
+	{
+		ret = false;
+	}
+
+
+	return ret;
+}
+
+bool j1Collision::CheckCollisionLeft(SDL_Rect p)
+{
+	bool ret = true;
+
+	iPoint vec1;
+	iPoint vec2;
+	iPoint vec3;
+
+	vec1.x = p.x - App->player->speed.x;
+	vec1.y = p.y;
+
+	vec2.x = p.x - App->player->speed.x;
+	vec2.y = p.y + p.h / 2;
+
+	vec3.x = p.x - App->player->speed.x;
+	vec3.y = p.y + p.h;
+
+	vec1 = App->map->WorldToMap(vec1.x, vec1.y);
+	vec2 = App->map->WorldToMap(vec2.x, vec2.y);
+	vec3 = App->map->WorldToMap(vec3.x, vec3.y);
+
+
+	if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == WALL)
+	{
+		ret = false;
+	}
+
+	if (App->map->logic_layer->data->Get(vec2.x, vec2.y) == WALL)
+	{
+		ret = false;
+	}
+
+	if (App->map->logic_layer->data->Get(vec3.x, vec3.y) == WALL)
+	{
+		ret = false;
+	}
+
+
+	return ret;
+}
+
+bool j1Collision::CheckCollisionUp(SDL_Rect p)
+{
+	bool ret = true;
+
+	iPoint vec1;
+	iPoint vec2;
+
+	vec1.x = p.x;
+	vec1.y = p.y - App->player->speed.y;
+
+	vec2.x = p.x + p.w;
+	vec2.y = p.y - App->player->speed.y;
+
+	vec1 = App->map->WorldToMap(vec1.x, vec1.y);
+	vec2 = App->map->WorldToMap(vec2.x, vec2.y);
+
+
+
+	if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == WALL)
+	{
+		ret = false;
+	}
+
+	if (App->map->logic_layer->data->Get(vec2.x, vec2.y) == WALL)
+	{
+		ret = false;
+	}
+
+	return ret;
+}
+
+bool j1Collision::CheckCollisionDown(SDL_Rect p)
+{
+	bool ret = true;
+
+	iPoint vec1;
+	iPoint vec2;
+
+	vec1.x = p.x;
+	vec1.y = p.y + p.h + App->player->speed.y;
+
+	vec2.x = p.x + p.w;
+	vec2.y = p.y + p.h + App->player->speed.y;
+
+	vec1 = App->map->WorldToMap(vec1.x, vec1.y);
+	vec2 = App->map->WorldToMap(vec2.x, vec2.y);
+
+
+
+	if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == WALL)
+	{
+		ret = false;
+	}
+
+	if (App->map->logic_layer->data->Get(vec2.x, vec2.y) == WALL)
+	{
+		ret = false;
+	}
+
+	return ret;
 }

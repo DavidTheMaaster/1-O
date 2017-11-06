@@ -29,7 +29,7 @@ public:
 	void Right();
 	void Left();
 
-	bool CheckCollision();
+
 
 
 public: 
@@ -50,7 +50,6 @@ public:
 	Animation walk;
 	Animation* current_animation = nullptr;
 
-	
 };
 
 

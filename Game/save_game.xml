@@ -6,14 +6,12 @@
 	<audio />
 	<map />
 	<scene>
-		<level level="1" />
+		<level level="0" />
 	</scene>
-	<player>
-		<pos x="372" y="194" />
-	</player>
+	<player />
 	<collision />
 	<fadetoblack />
 	<renderer>
-		<camera x="-4" y="0" />
+		<camera x="0" y="0" />
 	</renderer>
 </game_state>

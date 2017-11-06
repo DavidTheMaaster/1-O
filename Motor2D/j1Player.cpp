@@ -2,6 +2,7 @@
 #include "p2Log.h"
 #include "j1Textures.h"
 #include "j1Render.h"
+#include "j1Collision.h"
 #include "j1Input.h"
 #include "j1App.h"
 #include "j1Map.h"
@@ -85,9 +86,9 @@ bool j1Player::Start()
 {
 	bool ret = true;
 	LOG("Loading player");
-	speed.x = 5; speed.y = 5;
+	speed.x = 4; speed.y = 4;
 	p.x = p.y = 100;
-	p.w = 16; p.h = 60;
+	p.w = 16; p.h = 56;
 	test = App->tex->Load(animations.child("texture").child("folder").attribute("file").as_string());
 	return ret;
 }
@@ -114,11 +115,17 @@ bool j1Player::Update(float dt)
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
-		p.y -= speed.y;
+		if (App->collision->CheckCollisionUp(p))
+		{
+			p.y -= speed.y;
+		}
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
-		p.y += speed.y;
+		if (App->collision->CheckCollisionDown(p))
+		{
+			p.y += speed.y;
+		}
 	}
 
 	Draw();
@@ -138,7 +145,6 @@ void j1Player::Draw()
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
 	App->render->Blit(test, p.x - offset.x, p.y - offset.y, &r);
-
 
 }
 
@@ -166,21 +172,20 @@ iPoint j1Player::GetOffset(int x, int y)
 
 void j1Player::Right()
 {
-	p.x += speed.x;
+	if (App->collision->CheckCollisionRight(p))
+	{
+		p.x += speed.x;
+	}
 }
 
 
 void j1Player::Left()
 {
-	p.x -= speed.x;
+	if(App->collision->CheckCollisionLeft(p))
+	{
+		p.x -= speed.x;
+	}
 }
 
 
-bool j1Player::CheckCollision()
-{
-	bool ret = true;
 
-
-
-	return ret;
-}
