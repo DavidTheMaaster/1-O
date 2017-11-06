@@ -29,6 +29,8 @@ public:
 	void Right();
 	void Left();
 
+	void Gravity();
+
 
 
 
@@ -39,10 +41,12 @@ public:
 	pugi::xml_node rect;
 	p2SString current;
 
-	SDL_Texture* test = nullptr;
+	SDL_Texture* texture = nullptr;
 
 	iPoint speed;
 	SDL_Rect p;
+
+	bool flip;
 
 	//Animations
 	Animation* load_anim = nullptr;

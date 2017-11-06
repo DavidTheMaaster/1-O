@@ -64,10 +64,10 @@ bool j1Player::Awake(pugi::xml_node& config)
 
 		rect = rect.next_sibling();
 		i = rect.attribute("id").as_int();
+		load_anim->loop = attributes.attribute("loop").as_bool();
+		load_anim->speed = attributes.attribute("speed").as_float();
 
 	}
-	load_anim->loop = attributes.attribute("loop").as_bool(true);
-	load_anim->speed = attributes.attribute("speed").as_float();
 
 	animations = animations.next_sibling();
 
@@ -86,10 +86,12 @@ bool j1Player::Start()
 {
 	bool ret = true;
 	LOG("Loading player");
-	speed.x = 4; speed.y = 4;
+	speed.x = 4; speed.y = 8;
 	p.x = p.y = 100;
 	p.w = 16; p.h = 56;
-	test = App->tex->Load(animations.child("texture").child("folder").attribute("file").as_string());
+	current_animation = &idle;
+	flip = false;
+	texture = App->tex->Load(animations.child("texture").child("folder").attribute("file").as_string());
 	return ret;
 }
 
@@ -98,13 +100,15 @@ bool j1Player::CleanUp()
 	bool ret = true;
 	LOG("Unloading player");
 
-
+	App->tex->UnLoad(texture);
 	return ret;
 }
 
 bool j1Player::Update(float dt)
 {
 	bool ret = true;
+	
+	current_animation = &idle;
 
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 		Right();
@@ -117,17 +121,11 @@ bool j1Player::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
 		if (App->collision->CheckCollisionUp(p))
 		{
-			p.y -= speed.y;
+			p.y -= speed.y * 2;
 		}
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
-		if (App->collision->CheckCollisionDown(p))
-		{
-			p.y += speed.y;
-		}
-	}
-
+	Gravity();
 	Draw();
 
 	return ret;
@@ -136,16 +134,42 @@ bool j1Player::Update(float dt)
 
 void j1Player::Draw()
 {
-	App->render->DrawQuad(p, 0, 255, 0, 255);
-
 	iPoint offset;
 	offset = GetOffset(offset.x, offset.y);
 
-	current_animation = &idle;
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
-	App->render->Blit(test, p.x - offset.x, p.y - offset.y, &r);
+	App->render->Blit(texture, p.x - offset.x, p.y - offset.y, &r, flip);
 
+}
+
+void j1Player::Right()
+{
+	if (App->collision->CheckCollisionRight(p))
+	{
+		p.x += speed.x;
+		flip = false;
+		current_animation = &walk;
+	}
+}
+
+
+void j1Player::Left()
+{
+	if(App->collision->CheckCollisionLeft(p))
+	{
+		p.x -= speed.x;
+		flip = true;
+		current_animation = &walk;
+	}
+}
+
+void j1Player::Gravity()
+{
+	if (App->collision->CheckCollisionDown(p))
+	{
+		p.y += speed.y;
+	}
 }
 
 iPoint j1Player::GetOffset(int x, int y)
@@ -161,30 +185,12 @@ iPoint j1Player::GetOffset(int x, int y)
 		x = animations.child("walk").child("attributes").attribute("offset_x").as_int(0);
 		y = animations.child("walk").child("attributes").attribute("offset_y").as_int(0);
 	}
-	
+
 
 	offset.x = x;
 	offset.y = y;
 
 	return iPoint(offset);
-}
-
-
-void j1Player::Right()
-{
-	if (App->collision->CheckCollisionRight(p))
-	{
-		p.x += speed.x;
-	}
-}
-
-
-void j1Player::Left()
-{
-	if(App->collision->CheckCollisionLeft(p))
-	{
-		p.x -= speed.x;
-	}
 }
 
 

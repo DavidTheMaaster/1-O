@@ -162,10 +162,10 @@ bool j1Collision::CheckCollisionRight(SDL_Rect p)
 	iPoint vec2;
 	iPoint vec3;
 
-	vec1.x = (p.x + p.w) + App->player->speed.x;
+	vec1.x = p.x + p.w + App->player->speed.x;
 	vec1.y = p.y;
 
-	vec2.x = (p.x + p.w) + App->player->speed.x;
+	vec2.x = p.x + p.w + App->player->speed.x;
 	vec2.y = p.y + p.h / 2;
 
 	vec3.x = (p.x + p.w) + App->player->speed.x;
