@@ -28,11 +28,10 @@ public:
 
 	void Right();
 	void Left();
-	void Jump();
-	void Jump2();
 
 	void Gravity();
 
+	void Jump();
 
 
 
@@ -49,9 +48,11 @@ public:
 	SDL_Rect p;
 
 	bool flip;
-	bool jumping = false;
-	bool canjump2 = false;
-	int jumplimit;
+	bool can_jump;
+	bool jump;
+
+	int jump_counter;
+
 	
 
 	//Animations

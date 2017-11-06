@@ -87,10 +87,10 @@ bool j1Player::Start()
 	bool ret = true;
 	LOG("Loading player");
 	speed.x = 4; speed.y = 8;
-	jumplimit = 20;
 	p.x = p.y = 100;
 	p.w = 16; p.h = 56;
 	current_animation = &idle;
+	jump_counter = 0;
 	flip = false;
 	texture = App->tex->Load(animations.child("texture").child("folder").attribute("file").as_string());
 	return ret;
@@ -119,26 +119,16 @@ bool j1Player::Update(float dt)
 		Left();
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && jumping == false) {
-		Jump();
-		canjump2 = true;
-		//jumping = false;
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && can_jump == true) {
+		jump = true;
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_UP) {
-
-		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && canjump2 == true) {
-			Jump2();
-			canjump2 = false;
-			jumping = false;
-		}
-
+	if (jump == true)
+	{
+		Jump();
 	}
 
 	Gravity();
-	if (App->collision->CheckCollisionDown(p) == false) {
-		jumping = false;
-	}
 	Draw();
 
 	return ret;
@@ -177,44 +167,43 @@ void j1Player::Left()
 	}
 }
 
-void j1Player::Jump()
-{
-	if (App->collision->CheckCollisionUp(p))
-	{	
-		if (jumplimit >= 0) {
-			p.y -= speed.y + jumplimit;
-			//current_animation = &jump;
-			jumplimit--;
-		}
-		else if (jumping){
-			jumplimit = 20;
-			canjump2 = true;
-		}
-	}
-}
 
-
-void j1Player::Jump2()
-{
-	if (App->collision->CheckCollisionUp(p))
-	{
-		if (jumplimit >= 0 && canjump2 == true) {
-			p.y -= speed.y + jumplimit;
-			//current_animation = &jump;
-			jumplimit--;
-		}
-		else {
-			jumplimit = 20;
-			canjump2 = false;
-		}
-	}
-}
 
 void j1Player::Gravity()
 {
-	if (App->collision->CheckCollisionDown(p))
+	if (App->collision->CheckCollisionDown(p) && jump == false)
 	{
 		p.y += speed.y;
+		can_jump = false;
+	}
+	else
+	{
+		can_jump = true;
+	}
+}
+
+void j1Player::Jump()
+{
+	if (App->collision->CheckCollisionUp(p)) {
+		can_jump = false;
+		if (jump_counter < 13)
+		{
+			p.y -= speed.y;
+			jump_counter++;
+		}
+		else if (jump_counter < 16 )
+		{
+			jump_counter++;
+		}
+		else
+		{
+			jump_counter = 0;
+			jump = false;
+		}
+	}
+	else 
+	{
+		jump = false;
 	}
 }
 
