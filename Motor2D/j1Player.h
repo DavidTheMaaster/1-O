@@ -24,6 +24,7 @@ public:
 	bool Update(float dt);
 
 	void Draw();
+	iPoint GetOffset(int x, int y);
 
 	void Right();
 	void Left();
@@ -47,6 +48,7 @@ public:
 	Animation* load_anim = nullptr;
 	Animation idle;
 	Animation walk;
+	Animation* current_animation = nullptr;
 
 	
 };

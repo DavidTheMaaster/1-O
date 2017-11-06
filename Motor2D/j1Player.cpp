@@ -33,8 +33,9 @@ bool j1Player::Awake(pugi::xml_node& config)
 
 	while(animations != NULL){
 	attributes = animations.child("attributes");
-	current = attributes.attribute("name").as_string();
 	rect = animations.first_child();
+
+	current = attributes.attribute("name").as_string();
 
 	if (current == "idle")
 	{
@@ -71,6 +72,11 @@ bool j1Player::Awake(pugi::xml_node& config)
 
 }
 
+	if (animations == NULL) 
+	{
+		animations = animation_file.child("animations");
+	}
+
 	return ret;
 }
 
@@ -81,8 +87,8 @@ bool j1Player::Start()
 	LOG("Loading player");
 	speed.x = 5; speed.y = 5;
 	p.x = p.y = 100;
-	p.w = 25; p.h = 50;
-	test = App->tex->Load("textures/animations.png");
+	p.w = 16; p.h = 60;
+	test = App->tex->Load(animations.child("texture").child("folder").attribute("file").as_string());
 	return ret;
 }
 
@@ -125,12 +131,36 @@ void j1Player::Draw()
 {
 	App->render->DrawQuad(p, 0, 255, 0, 255);
 
-	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-		App->render->Blit(test, p.x, p.y, &(walk.GetCurrentFrame()));
+	iPoint offset;
+	offset = GetOffset(offset.x, offset.y);
+
+	current_animation = &idle;
+	SDL_Rect r = current_animation->GetCurrentFrame();
+
+	App->render->Blit(test, p.x - offset.x, p.y - offset.y, &r);
+
+
+}
+
+iPoint j1Player::GetOffset(int x, int y)
+{
+	iPoint offset;
+
+	if (current_animation == &idle) {
+		x = animations.child("idle").child("attributes").attribute("offset_x").as_int(0);
+		y = animations.child("idle").child("attributes").attribute("offset_y").as_int(0);
 	}
-	else {
-		App->render->Blit(test, p.x, p.y, &(idle.GetCurrentFrame()));
+
+	if (current_animation == &walk) {
+		x = animations.child("walk").child("attributes").attribute("offset_x").as_int(0);
+		y = animations.child("walk").child("attributes").attribute("offset_y").as_int(0);
 	}
+	
+
+	offset.x = x;
+	offset.y = y;
+
+	return iPoint(offset);
 }
 
 
