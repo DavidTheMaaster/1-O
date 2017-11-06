@@ -119,24 +119,26 @@ bool j1Player::Update(float dt)
 		Left();
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && jumping == false) {
 		Jump();
-		jumping = true;
+		canjump2 = true;
+		//jumping = false;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_UP) {
 
-		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && jumping == true) {
-			Jump();
+		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && canjump2 == true) {
+			Jump2();
+			canjump2 = false;
 			jumping = false;
 		}
-		else
-		{
-			jumping = false;
-		}
+
 	}
 
 	Gravity();
+	if (App->collision->CheckCollisionDown(p) == false) {
+		jumping = false;
+	}
 	Draw();
 
 	return ret;
@@ -184,9 +186,26 @@ void j1Player::Jump()
 			//current_animation = &jump;
 			jumplimit--;
 		}
+		else if (jumping){
+			jumplimit = 20;
+			canjump2 = true;
+		}
+	}
+}
+
+
+void j1Player::Jump2()
+{
+	if (App->collision->CheckCollisionUp(p))
+	{
+		if (jumplimit >= 0 && canjump2 == true) {
+			p.y -= speed.y + jumplimit;
+			//current_animation = &jump;
+			jumplimit--;
+		}
 		else {
 			jumplimit = 20;
-			jumping == false;
+			canjump2 = false;
 		}
 	}
 }

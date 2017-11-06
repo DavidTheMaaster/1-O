@@ -29,7 +29,7 @@ public:
 	void Right();
 	void Left();
 	void Jump();
-
+	void Jump2();
 
 	void Gravity();
 
@@ -50,7 +50,9 @@ public:
 
 	bool flip;
 	bool jumping = false;
+	bool canjump2 = false;
 	int jumplimit;
+	
 
 	//Animations
 	Animation* load_anim = nullptr;

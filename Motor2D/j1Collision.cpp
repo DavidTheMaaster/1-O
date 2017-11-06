@@ -288,11 +288,13 @@ bool j1Collision::CheckCollisionDown(SDL_Rect p)
 	if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == WALL)
 	{
 		ret = false;
+	
 	}
 
 	if (App->map->logic_layer->data->Get(vec2.x, vec2.y) == WALL)
 	{
 		ret = false;
+	
 	}
 
 	return ret;
