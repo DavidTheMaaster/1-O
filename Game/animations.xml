@@ -15,7 +15,7 @@
     <frame id = "12" x = "840" y = "0" w = "70" h = "80"/>
     <frame id = "13" x = "910" y = "0" w = "70" h = "80"/>
     <frame id = "14" x = "0" y = "80" w = "70" h = "80"/>
-    <attributes name = "idle" speed = "0.5" loop = "true" offset_x = "25" offset_y = "20" size = "14"/>
+    <attributes id = "0" speed = "0.5" loop = "true" offset_x = "25" offset_y = "20" size = "14"/>
   </idle>
   <walk>
     <frame id = "0" x = "350" y = "80" w = "70" h = "80"/>
@@ -49,14 +49,14 @@
     <frame id = "28" x = "350" y = "240" w = "70" h = "80"/>
     <frame id = "29" x = "420" y = "240" w = "70" h = "80"/>
     <frame id = "30" x = "490" y = "240" w = "70" h = "80"/>
-    <attributes name = "walk" speed = "0.5" loop = "true" offset_x = "25" offset_y = "20" size = "30"/>
+    <attributes id = "1" speed = "0.5" loop = "true" offset_x = "25" offset_y = "20" size = "30"/>
   </walk>
   <hover>
     <frame id = "0" x = "70" y = "80" w = "70" h = "80"/>
     <frame id = "1" x = "140" y = "80" w = "70" h = "80"/>
     <frame id = "2" x = "210" y = "80" w = "70" h = "80"/>
     <frame id = "3" x = "280" y = "80" w = "70" h = "80"/>
-    <attributes name = "hover" speed = "0.1" loop = "true" offset_x = "25" offset_y = "20" size = "3"/>
+    <attributes id = "2" speed = "0.1" loop = "true" offset_x = "25" offset_y = "20" size = "3"/>
   </hover>
   <texture>
     <folder file = "textures/animations.png" />

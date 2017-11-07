@@ -36,17 +36,17 @@ bool j1Player::Awake(pugi::xml_node& config)
 	attributes = animations.child("attributes");
 	rect = animations.first_child();
 
-	current = attributes.attribute("name").as_string();
+	current = attributes.attribute("id").as_int();
 
-	if (current == "idle")
+	if (current == IDLE)
 	{
 		load_anim = &idle;
 	}
-	else if (current == "walk")
+	else if (current == WALK)
 	{
 		load_anim = &walk;
 	}
-	else if (current == "hover")
+	else if (current == HOVER)
 	{
 		load_anim = &hover;
 	}
@@ -124,7 +124,7 @@ bool j1Player::Update(float dt)
 		Left();
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && CanJump()) {
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && CanJump()) {
 		jump = true;
 	}
 

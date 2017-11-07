@@ -43,7 +43,8 @@ public:
 	pugi::xml_node animations;
 	pugi::xml_node attributes;
 	pugi::xml_node rect;
-	p2SString current;
+
+	int current;
 
 	SDL_Texture* texture = nullptr;
 
@@ -62,6 +63,13 @@ public:
 	Animation idle;
 	Animation walk;
 	Animation hover;
+
+	enum Animations
+	{
+		IDLE,
+		WALK,
+		HOVER
+	};
 
 };
 
