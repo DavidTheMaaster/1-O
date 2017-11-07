@@ -34,16 +34,15 @@ public:
 	void Jump();
 	bool CanJump();
 
+	void DoubleJump();
+	bool CanDoubleJump();
+
 	void Hover();
 
+	void CameraMovement();
 
 
 public: 
-	pugi::xml_document	animation_file;
-	pugi::xml_node animations;
-	pugi::xml_node attributes;
-	pugi::xml_node rect;
-
 	int current;
 
 	SDL_Texture* texture = nullptr;
@@ -53,6 +52,10 @@ public:
 
 	bool flip;
 	bool jump;
+	bool jump2;
+
+	int jumps;
+
 
 	int jump_counter;
 
@@ -71,6 +74,11 @@ public:
 		HOVER
 	};
 
+private:
+	pugi::xml_document	animation_file;
+	pugi::xml_node animations;
+	pugi::xml_node attributes;
+	pugi::xml_node rect;
 };
 
 
