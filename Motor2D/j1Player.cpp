@@ -116,7 +116,6 @@ bool j1Player::Update(float dt)
 	bool ret = true;
 	
 	current_animation = &idle;
-	speed.y = 8;
 
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 		Right();
@@ -220,6 +219,7 @@ void j1Player::Jump()
 {
 	if (App->collision->CheckCollisionUp(p) && jump2 == false) {
 		speed.x = 6;
+		speed.y = 4;
 		jumps = 1;
 		if (jump_counter < 15)
 		{

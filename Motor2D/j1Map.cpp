@@ -121,17 +121,17 @@ void j1Map::Draw()
 
 						if (item_layer->data->name == "map") {
 							speed = 1.0f;
-							App->render->Blit(item_tileset->data->texture, pos.x, pos.y, &rect, speed);
+							App->render->Blit(item_tileset->data->texture, pos.x, pos.y, &rect, false, speed);
 						}
 
 						if (item_layer->data->name == "parallax1") {
 							speed = 0.6f;
-							App->render->Blit(item_tileset->data->texture, pos.x, pos.y, &rect, speed);
+							App->render->Blit(item_tileset->data->texture, pos.x, pos.y, &rect, false, speed);
 						}
 
 						if (item_layer->data->name == "parallax2") {
 							speed = 0.4f;
-							App->render->Blit(item_tileset->data->texture, pos.x, pos.y, &rect, speed);
+							App->render->Blit(item_tileset->data->texture, pos.x, pos.y, &rect, false, speed);
 						}
 
 					}

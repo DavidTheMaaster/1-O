@@ -102,6 +102,11 @@ void j1Window::SetTitle(const char* new_title)
 	SDL_SetWindowTitle(window, new_title);
 }
 
+bool j1Window::Update(float dt)
+{
+	return true;
+}
+
 void j1Window::GetWindowSize(uint& width, uint& height) const
 {
 	width = this->width;
