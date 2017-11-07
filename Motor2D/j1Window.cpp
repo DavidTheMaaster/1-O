@@ -2,6 +2,8 @@
 #include "p2Log.h"
 #include "j1App.h"
 #include "j1Window.h"
+#include "j1Input.h"
+#include "j1Render.h"
 
 #include "SDL/include/SDL.h"
 
@@ -104,6 +106,15 @@ void j1Window::SetTitle(const char* new_title)
 
 bool j1Window::Update(float dt)
 {
+
+	if (App->input->GetKey(SDL_SCANCODE_O) == KEY_DOWN)
+	{
+		SDL_RenderSetLogicalSize(App->render->renderer,1920,1080);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
+	{
+		SDL_SetWindowSize(window, 1280,720);
+	}
 	return true;
 }
 

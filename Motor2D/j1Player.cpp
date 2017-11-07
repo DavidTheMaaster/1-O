@@ -25,7 +25,7 @@ bool j1Player::Awake(pugi::xml_node& config)
 	bool ret = true;
 
 	animation_file.load_file(config.child("file").attribute("direction").as_string());
-	animations = animation_file.child("animations").first_child();
+	animations = animation_file.child("animations").child("player").first_child();
 
 	if (animations == NULL)
 	{
@@ -80,7 +80,7 @@ bool j1Player::Awake(pugi::xml_node& config)
 
 	if (animations == NULL) 
 	{
-		animations = animation_file.child("animations");
+		animations = animation_file.child("animations").child("player");
 	}
 
 	return ret;
@@ -117,37 +117,10 @@ bool j1Player::Update(float dt)
 	
 	current_animation = &idle;
 
-	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-		Right();
-	}
-
-	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-		Left();
-	}
-
-	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && CanJump()) {
-		jump = true;
-	}
-
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) {
-		Hover();
-	}
-
-	if (jump == true)
-	{
-		Jump();
-	}
-
-	if (jump2 == true)
-	{
-		DoubleJump();
-	}
-
+	Movement();
 	CameraMovement();
 	Gravity();
 	Draw();
-
-	
 
 	//DEBUG
 
@@ -173,6 +146,37 @@ void j1Player::Draw()
 	App->render->DrawQuad(p, 0, 255, 0, 255);
 	App->render->Blit(texture, p.x - offset.x, p.y - offset.y, &r, flip);
 
+}
+
+void j1Player::Movement()
+{
+	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+		Right();
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+		Left();
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && CanJump()) {
+		jump = true;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) {
+		Hover();
+	}
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP) {
+		speed.y = 8;
+	}
+	if (jump == true)
+	{
+		Jump();
+	}
+
+	if (jump2 == true)
+	{
+		DoubleJump();
+	}
 }
 
 void j1Player::Right()
@@ -219,11 +223,15 @@ void j1Player::Jump()
 {
 	if (App->collision->CheckCollisionUp(p) && jump2 == false) {
 		speed.x = 6;
-		speed.y = 4;
+		speed.y = 8;
 		jumps = 1;
-		if (jump_counter < 15)
+		if (jump_counter < 12)
 		{
 			p.y -= speed.y;
+			jump_counter++;
+		}
+		else if (jump_counter < 15)
+		{
 			jump_counter++;
 		}
 		else
@@ -266,12 +274,12 @@ void j1Player::DoubleJump()
 	if (App->collision->CheckCollisionUp(p))
 	{
 		jumps = 0;
-		if (jump_counter < 10)
+		if (jump_counter < 7)
 		{
 			p.y -= speed.y;
 			jump_counter++;
 		}
-		else if (jump_counter < 13)
+		else if (jump_counter < 10)
 		{
 			jump_counter++;
 		}
@@ -356,6 +364,7 @@ iPoint j1Player::GetOffset(int x, int y)
 
 	return iPoint(offset);
 }
+
 
 
 
