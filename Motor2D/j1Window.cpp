@@ -64,7 +64,7 @@ bool j1Window::Awake(pugi::xml_node& config)
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 		}
 
-		window = SDL_CreateWindow(App->GetTitle(), 0, 25, width, height, flags);
+		window = SDL_CreateWindow(App->GetTitle(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
 
 		if (window == NULL)
 		{
@@ -106,7 +106,6 @@ void j1Window::SetTitle(const char* new_title)
 
 bool j1Window::Update(float dt)
 {
-	SDL_RenderSetLogicalSize(App->render->renderer, 1920, 1080);
 	return true;
 }
 
@@ -123,7 +122,7 @@ uint j1Window::GetScale() const
 
 void j1Window::SetWindowSize(uint w, uint h)
 {
-	width = w;
-	height = h;
+	SDL_RenderSetLogicalSize(App->render->renderer, 1920, 1080);
 	SDL_SetWindowSize(window, w, h);
+	
 }

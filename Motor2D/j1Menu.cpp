@@ -123,7 +123,7 @@ bool j1Menu::ActionMenu()
 		}
 		else if (App->map->logic_layer->data->Get(mouse.x, mouse.y) == OPTIONS) {
 			App->scene->level = options;
-			App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1);
+			App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 0.5f);
 		}
 		else if (App->map->logic_layer->data->Get(mouse.x, mouse.y) == EXIT)
 		{
@@ -205,10 +205,7 @@ void j1Menu::Resolution()
 
 void j1Menu::Draw()
 {
-	if (App->fadetoblack->IsFading()== false)
-	{
-		App->render->Blit(resolution_textures, 540, 197, &(current_animation->GetCurrentFrame()));
-	}
+	App->render->Blit(resolution_textures, 540, 197, &(current_animation->GetCurrentFrame()));
 }
 
 void j1Menu::SetResolution(uint x, uint y)
