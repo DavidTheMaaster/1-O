@@ -1,4 +1,5 @@
 #include <iostream> 
+#include <sstream> 
 
 #include "p2Defs.h"
 #include "p2Log.h"
@@ -167,6 +168,9 @@ pugi::xml_node j1App::LoadConfig(pugi::xml_document& config_file) const
 // ---------------------------------------------
 void j1App::PrepareUpdate()
 {
+	timer.Start();
+	countN++;
+	countP++;
 }
 
 // ---------------------------------------------
@@ -177,6 +181,31 @@ void j1App::FinishUpdate()
 
 	if(want_to_load == true)
 		LoadGameNow();
+
+
+	// Uncoment to timer title
+	/*
+	float avg_fps = countN / timerNormal.ReadSec();
+	float seconds_since_startup = timerNormal.ReadSec();
+	float dt = timerNormal.ReadSec() / 1000;
+	uint32 last_frame_ms = timer.ReadMs();
+
+	uint64 frame_count = countN;
+
+
+	if (timerPerf.ReadMs() > 1000)
+	{
+		timerPerf.Start();
+		framesf = countP;
+		countP = 0;
+	}
+	uint32 frames_on_last_update = framesf;
+	static char title[256];
+	sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %02u Last sec frames: %i Last dt: %.3f Time since startup: %.3f Frame Count: %lu ",
+		avg_fps, last_frame_ms, frames_on_last_update, dt, seconds_since_startup, frame_count);
+
+	App->win->SetTitle(title);
+	*/
 }
 
 // Call modules before each loop iteration
