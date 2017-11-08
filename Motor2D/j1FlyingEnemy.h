@@ -38,7 +38,12 @@ public:
 	SDL_Rect r;
 
 	bool flip;
+	bool found;
 
+	iPoint player_position;
+	iPoint enemy_position;
+
+	int path_index = 0;
 
 	//Animations
 	Animation* current_animation = nullptr;

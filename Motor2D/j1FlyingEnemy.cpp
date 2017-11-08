@@ -5,8 +5,10 @@
 #include "j1Collision.h"
 #include "j1Input.h"
 #include "j1App.h"
+#include "j1Player.h"
 #include "j1Map.h"
 #include "j1Window.h"
+#include "j1PathFinding.h"
 #include "j1Scene.h"
 #include "j1FadetoBlack.h"
 
@@ -90,6 +92,7 @@ bool j1FlyingEnemy::Start()
 	r.w = 20; r.h = 20;
 	current_animation = &fly;
 	flip = false;
+	found = false;
 	texture = App->tex->Load(animations.child("texture").child("folder").attribute("file").as_string());
 	return ret;
 }
@@ -108,6 +111,13 @@ bool j1FlyingEnemy::Update(float dt)
 	bool ret = true;
 
 	current_animation = &fly;
+
+	if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) {
+		enemy_position = App->map->WorldToMap(r.x, r.y);
+		player_position = App->map->WorldToMap(App->player->p.x, App->player->p.y);
+		App->pathfinding->CreatePath(enemy_position, player_position);
+		found = true;
+	}
 
 	Movement();
 	
@@ -137,10 +147,59 @@ void j1FlyingEnemy::Draw()
 
 void j1FlyingEnemy::Movement()
 {
+	
 	if ((App->scene->level == 2 || App->scene->level == 3) && App->fadetoblack->IsFading() == false)
 	{
-		
+		if (found) {
+			if (App->pathfinding->last_path[path_index].x == enemy_position.x && App->pathfinding->last_path[path_index].y == enemy_position.y)
+			{
+
+				if (path_index + 1 != App->pathfinding->last_path.Count())
+				{
+					path_index++;
+					if (App->pathfinding->last_path[path_index].x - enemy_position.x == -1)
+					{
+						iPoint movement = App->map->MapToWorld(App->pathfinding->last_path[path_index].x, App->pathfinding->last_path[path_index].y);
+						if (r.x > movement.x) {
+							r.x -= 1;
+						}
+					
+					}
+					else if (App->pathfinding->last_path[path_index].x - enemy_position.x == 1)
+					{
+						iPoint movement = App->map->MapToWorld(App->pathfinding->last_path[path_index].x, App->pathfinding->last_path[path_index].y);
+						if (r.x < movement.x) {
+							r.x += 1;
+						}
+					}
+					else if (App->pathfinding->last_path[path_index].y - enemy_position.y == 1)
+					{
+						iPoint movement = App->map->MapToWorld(App->pathfinding->last_path[path_index].x, App->pathfinding->last_path[path_index].y);
+						if (r.y < movement.y) {
+							r.y += 1;
+						}
+					}
+					else if (App->pathfinding->last_path[path_index].y - enemy_position.y == -1)
+					{
+						iPoint movement = App->map->MapToWorld(App->pathfinding->last_path[path_index].x, App->pathfinding->last_path[path_index].y);
+						if (r.y > movement.y) {
+							r.y -= 1;
+						}
+					}
+					else
+					{
+						path_index = 0;
+						found = false;
+					}
+
+
+
+				}
+			}
+		}
+	
 	}
+	
 }
 
 iPoint j1FlyingEnemy::GetOffset(int x, int y)
