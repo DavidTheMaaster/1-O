@@ -13,6 +13,7 @@
 #include "j1Map.h"
 #include "j1Menu.h"
 #include "j1Collision.h"
+#include "j1Pathfinding.h"
 #include "j1Player.h"
 #include "j1FadeToBlack.h"
 #include "j1App.h"
@@ -35,6 +36,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	player = new j1Player();
 	map = new j1Map();
 	collision = new j1Collision();
+	pathfinding = new j1PathFinding();
 	fadetoblack = new j1FadeToBlack();
 
 	// Ordered for awake / Start / Update
@@ -48,6 +50,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(menu);
 	AddModule(player);
 	AddModule(collision);
+	AddModule(pathfinding);
 	AddModule(fadetoblack);
 
 

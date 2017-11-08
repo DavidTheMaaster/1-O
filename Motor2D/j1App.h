@@ -18,6 +18,7 @@ class j1Player;
 class j1Scene;
 class j1Map;
 class j1Collision;
+class j1PathFinding;
 class j1FadeToBlack;
 class j1App
 {
@@ -91,6 +92,7 @@ public:
 	j1Map*				map;
 	j1Menu*				menu;
 	j1Collision*		collision;
+	j1PathFinding*		pathfinding;
 	j1FadeToBlack*		fadetoblack;
 
 private:
