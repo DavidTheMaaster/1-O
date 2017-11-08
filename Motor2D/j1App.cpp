@@ -15,6 +15,7 @@
 #include "j1Collision.h"
 #include "j1Pathfinding.h"
 #include "j1Player.h"
+#include "j1FlyingEnemy.h"
 #include "j1FadeToBlack.h"
 #include "j1App.h"
 
@@ -34,6 +35,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	scene = new j1Scene();
 	menu = new j1Menu();
 	player = new j1Player();
+	flyingenemy = new j1FlyingEnemy();
 	map = new j1Map();
 	collision = new j1Collision();
 	pathfinding = new j1PathFinding();
@@ -49,6 +51,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(menu);
 	AddModule(player);
+	AddModule(flyingenemy);
 	AddModule(collision);
 	AddModule(pathfinding);
 	AddModule(fadetoblack);
