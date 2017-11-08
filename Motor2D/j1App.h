@@ -11,6 +11,7 @@ class j1Input;
 class j1Render;
 class j1Textures;
 class j1Audio;
+class j1Menu;
 class j1Player;
 class j1Scene;
 class j1Map;
@@ -86,6 +87,7 @@ public:
 	j1Player*			player;
 	j1Scene*			scene;
 	j1Map*				map;
+	j1Menu*				menu;
 	j1Collision*		collision;
 	j1FadeToBlack*		fadetoblack;
 

@@ -106,15 +106,6 @@ void j1Window::SetTitle(const char* new_title)
 
 bool j1Window::Update(float dt)
 {
-
-	if (App->input->GetKey(SDL_SCANCODE_O) == KEY_DOWN)
-	{
-		SDL_RenderSetLogicalSize(App->render->renderer,1920,1080);
-	}
-	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
-	{
-		SDL_SetWindowSize(window, 1280,720);
-	}
 	return true;
 }
 
@@ -127,4 +118,11 @@ void j1Window::GetWindowSize(uint& width, uint& height) const
 uint j1Window::GetScale() const
 {
 	return scale;
+}
+
+void j1Window::SetWindowSize(uint w, uint h)
+{
+	SDL_RenderSetLogicalSize(App->render->renderer, 1920, 1080);
+	SDL_SetWindowSize(window, w, h);
+	
 }

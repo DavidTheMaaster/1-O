@@ -6,8 +6,9 @@
 	<audio />
 	<map />
 	<scene>
-		<level level="0" />
+		<level level="2" />
 	</scene>
+	<menu />
 	<player />
 	<collision />
 	<fadetoblack />

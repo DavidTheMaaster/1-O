@@ -33,25 +33,25 @@ bool j1Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool j1Scene::Start()
 {
-	if (level == 0) {
+	if (level == menu) {
+		App->map->Load("menu.tmx");
+	}
+	if (level == options) {
+		App->map->Load("options.tmx");
+	}
+	if (level == level_1) {
 		App->map->Load("level1.tmx");
 		App->audio->PlayMusic("audio/music/all_of_us.ogg");
 	}
-	if (level == 1) {
+	if (level == level_2) {
 		App->map->Load("level2.tmx");
 	}
-	if (level == 2) {
+	if (level == gameover) {
 		App->map->Load("levelwin.tmx");
 	}
 	App->map->SetMapLogic();
 	App->player->Start();
-	/*
-	if (justloaded == true) {
-		App->player->position.x = App->player->loadposition.x;
-		App->player->position.y = App->player->loadposition.y;
-		justloaded = false;
-	}
-	*/
+
 	
 	return true;
 }
@@ -65,6 +65,7 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
+	bool ret = true;
 	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		App->LoadGame();
 
@@ -72,11 +73,11 @@ bool j1Scene::Update(float dt)
 		App->SaveGame();
 
 	if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN) {
-		level = 1;
+		level = level_2;
 		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 3);
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
-		level = 0;
+		level = level_1;
 		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 3);
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
@@ -87,15 +88,7 @@ bool j1Scene::Update(float dt)
 	//App->render->Blit(img, 0, 0);
 	App->map->Draw();
 
-	App->input->GetMousePosition(mouse.x, mouse.y);
-	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d TILES: %d, %d",
-		App->map->data.width, App->map->data.height,
-		App->map->data.tile_width, App->map->data.tile_height,
-		App->map->data.tilesets.count(),
-		mouse.x, mouse.y);
-
-	App->win->SetTitle(title.GetString());
-	return true;
+	return ret;
 }
 
 // Called each loop iteration

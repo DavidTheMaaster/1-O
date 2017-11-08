@@ -32,7 +32,6 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-
 	// Save & Load
 	bool Save(pugi::xml_node&) const;
 	bool Load(pugi::xml_node&);
@@ -43,6 +42,15 @@ public:
 
 private:
 	iPoint mouse;
+	enum Levels
+	{
+		menu,
+		options,
+		level_1,
+		level_2,
+		gameover
+
+	};
 };
 
 #endif // __j1SCENE_H__

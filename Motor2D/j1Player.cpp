@@ -7,6 +7,8 @@
 #include "j1App.h"
 #include "j1Map.h"
 #include "j1Window.h"
+#include "j1Scene.h"
+#include "j1FadetoBlack.h"
 
 j1Player::j1Player()
 {
@@ -24,7 +26,7 @@ bool j1Player::Awake(pugi::xml_node& config)
 
 	bool ret = true;
 
-	animation_file.load_file(config.child("file").attribute("direction").as_string());
+	animation_file.load_file(config.child("file").attribute("folder").as_string());
 	animations = animation_file.child("animations").child("player").first_child();
 
 	if (animations == NULL)
@@ -138,44 +140,50 @@ bool j1Player::Update(float dt)
 
 void j1Player::Draw()
 {
-	iPoint offset;
-	offset = GetOffset(offset.x, offset.y);
+	if ((App->scene->level == 2 || App->scene->level == 3) && App->fadetoblack->IsFading()==false)
+	{
+		iPoint offset;
+		offset = GetOffset(offset.x, offset.y);
 
-	SDL_Rect r = current_animation->GetCurrentFrame();
+		SDL_Rect r = current_animation->GetCurrentFrame();
 
-	App->render->DrawQuad(p, 0, 255, 0, 255);
-	App->render->Blit(texture, p.x - offset.x, p.y - offset.y, &r, flip);
+		App->render->DrawQuad(p, 0, 255, 0, 255);
+		App->render->Blit(texture, p.x - offset.x, p.y - offset.y, &r, flip);
+	}
 
 }
 
 void j1Player::Movement()
 {
-	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-		Right();
-	}
-
-	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-		Left();
-	}
-
-	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && CanJump()) {
-		jump = true;
-	}
-
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) {
-		Hover();
-	}
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP) {
-		speed.y = 8;
-	}
-	if (jump == true)
+	if ((App->scene->level == 2 || App->scene->level == 3) && App->fadetoblack->IsFading() == false)
 	{
-		Jump();
-	}
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+			Right();
+		}
 
-	if (jump2 == true)
-	{
-		DoubleJump();
+		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+			Left();
+		}
+
+		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && CanJump()) {
+			jump = true;
+		}
+
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) {
+			Hover();
+		}
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP) {
+			speed.y = 8;
+		}
+		if (jump == true)
+		{
+			Jump();
+		}
+
+		if (jump2 == true)
+		{
+			DoubleJump();
+		}
 	}
 }
 
