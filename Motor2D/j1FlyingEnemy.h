@@ -43,7 +43,7 @@ public:
 	iPoint player_position;
 	iPoint enemy_position;
 
-	int path_index = 0;
+	int path_index;
 
 	//Animations
 	Animation* current_animation = nullptr;

@@ -113,10 +113,11 @@ bool j1FlyingEnemy::Update(float dt)
 	current_animation = &fly;
 
 	if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) {
+		path_index = 0;
 		enemy_position = App->map->WorldToMap(r.x, r.y);
 		player_position = App->map->WorldToMap(App->player->p.x, App->player->p.y);
 		App->pathfinding->CreatePath(enemy_position, player_position);
-		found = true;
+	//	found = true;
 	}
 
 	Movement();
@@ -151,9 +152,8 @@ void j1FlyingEnemy::Movement()
 	if ((App->scene->level == 2 || App->scene->level == 3) && App->fadetoblack->IsFading() == false)
 	{
 		if (found) {
-			if (App->pathfinding->last_path[path_index].x == enemy_position.x && App->pathfinding->last_path[path_index].y == enemy_position.y)
+			if (App->pathfinding->last_path[path_index + 1].x == enemy_position.x && App->pathfinding->last_path[path_index].y == enemy_position.y)
 			{
-
 				if (path_index + 1 != App->pathfinding->last_path.Count())
 				{
 					path_index++;
@@ -163,7 +163,7 @@ void j1FlyingEnemy::Movement()
 						if (r.x > movement.x) {
 							r.x -= 1;
 						}
-					
+
 					}
 					else if (App->pathfinding->last_path[path_index].x - enemy_position.x == 1)
 					{
