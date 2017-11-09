@@ -64,6 +64,8 @@ bool j1FlyingEnemy::Awake(pugi::xml_node& config)
 			i = rect.attribute("id").as_int();
 			load_anim->loop = attributes.attribute("loop").as_bool();
 			load_anim->speed = attributes.attribute("speed").as_float();
+			radius = attributes.attribute("radius").as_int();
+			big_radius = attributes.attribute("big_radius").as_int();
 
 		}
 		animations = animation_file.child("animations").child("enemies");
@@ -237,13 +239,12 @@ bool j1FlyingEnemy::CanStartMovement()
 	enemy_position = App->map->WorldToMap(r.x, r.y);
 	player_position = App->map->WorldToMap(App->player->p.x, App->player->p.y);
 
-	int i = player_position.x - enemy_position.x;
 
-	if ((player_position.x - enemy_position.x >= -8 || player_position.x - enemy_position.x <= 8 ) && found == false)
+	if ((player_position.x - enemy_position.x >= -radius || player_position.x - enemy_position.x <= radius ) && found == false)
 	{
 		ret = true;
 	}
-	if ((player_position.x - enemy_position.x <= -10 || player_position.x - enemy_position.x >= 10) && found == true)
+	if ((player_position.x - enemy_position.x <= -big_radius || player_position.x - enemy_position.x >= big_radius) && found == true)
 	{
 		found = false;
 		path_index = 0;

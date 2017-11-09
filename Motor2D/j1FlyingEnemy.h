@@ -44,6 +44,9 @@ public:
 	bool canmove;
 	bool back;
 
+	int radius;
+	int big_radius;
+
 	p2DynArray<iPoint> fly_path;
 	p2DynArray<iPoint> fly_back_path;
 	iPoint player_position;
