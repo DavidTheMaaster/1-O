@@ -25,6 +25,7 @@ public:
 
 	void Draw();
 	iPoint GetOffset(int x, int y);
+	bool GetFlip();
 
 	void Movement();
 

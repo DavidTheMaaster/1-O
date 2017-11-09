@@ -27,9 +27,11 @@
   </map>
   
   <player>
-    <file folder ="animations.xml"/>    
+    <file folder = "animations.xml"/>    
   </player>
-
+  <enemies>
+    <file folder = "animations.xml"/>
+  </enemies>
   <menu>
     <resolutions folder = "resolutions.xml"/>
   </menu>

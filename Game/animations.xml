@@ -63,4 +63,18 @@
       <folder file = "textures/animations.png" />
     </texture>
   </player>
+  <enemies>
+    <flying_enemy>
+      <frame id = "0" x = "442" y = "253" w = "23" h = "40"/>
+      <frame id = "1" x = "1" y = "337" w = "23" h = "40"/>
+      <frame id = "2" x = "64" y = "337" w = "23" h = "40"/>
+      <frame id = "3" x = "127" y = "337" w = "23" h = "40"/>
+      <frame id = "4" x = "190" y = "337" w = "23" h = "40"/>
+      <frame id = "5" x = "253" y = "337" w = "23" h = "40"/>
+      <attributes id = "0" speed = "0.15" loop = "true" offset_x = "2" offset_y = "3" size = "5"/>
+    </flying_enemy>
+    <texture>
+      <folder file = "textures/enemies.png" />
+    </texture>
+  </enemies>
 </animations>

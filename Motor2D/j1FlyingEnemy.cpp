@@ -14,7 +14,7 @@
 
 j1FlyingEnemy::j1FlyingEnemy()
 {
-	name.create("flyingenemy");
+	name.create("enemies");
 }
 
 j1FlyingEnemy::~j1FlyingEnemy()
@@ -28,9 +28,8 @@ bool j1FlyingEnemy::Awake(pugi::xml_node& config)
 
 	bool ret = true;
 
-	/*
 	animation_file.load_file(config.child("file").attribute("folder").as_string());
-	animations = animation_file.child("animations").child("player").first_child();
+	animations = animation_file.child("animations").child("enemies").child("flying_enemy");
 
 	if (animations == NULL)
 	{
@@ -38,7 +37,6 @@ bool j1FlyingEnemy::Awake(pugi::xml_node& config)
 		ret = false;
 	}
 
-	while (animations != NULL) {
 		attributes = animations.child("attributes");
 		rect = animations.first_child();
 
@@ -68,17 +66,8 @@ bool j1FlyingEnemy::Awake(pugi::xml_node& config)
 			load_anim->speed = attributes.attribute("speed").as_float();
 
 		}
-
-		animations = animations.next_sibling();
-
-	}
-
-	if (animations == NULL)
-	{
-		animations = animation_file.child("animations").child("player");
-	}
-	*/
-
+		animations = animation_file.child("animations").child("enemies");
+	
 	return ret;
 }
 
@@ -140,7 +129,7 @@ void j1FlyingEnemy::Draw()
 		offset = GetOffset(offset.x, offset.y);
 
 		SDL_Rect rect = current_animation->GetCurrentFrame();
-
+		flip = GetFlip();
 		App->render->DrawQuad(r, 255, 0, 0, 255);
 		App->render->Blit(texture, r.x - offset.x, r.y - offset.y, &rect, flip);
 	}
@@ -205,12 +194,26 @@ iPoint j1FlyingEnemy::GetOffset(int x, int y)
 	iPoint offset;
 
 	if (current_animation == &fly) {
-		x = animations.child("idle").child("attributes").attribute("offset_x").as_int(0);
-		y = animations.child("idle").child("attributes").attribute("offset_y").as_int(0);
+		x = animations.child("flying_enemy").child("attributes").attribute("offset_x").as_int(0);
+		y = animations.child("flying_enemy").child("attributes").attribute("offset_y").as_int(0);
 	}
 
 	offset.x = x;
 	offset.y = y;
 
 	return iPoint(offset);
+}
+
+bool j1FlyingEnemy::GetFlip()
+{
+	bool ret = true;
+	if (App->player->p.x - r.x > 0) 
+	{
+		ret = true;
+	}
+	else
+	{
+		ret = false;
+	}
+	return ret;
 }
