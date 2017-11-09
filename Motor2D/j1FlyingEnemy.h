@@ -45,7 +45,7 @@ public:
 	iPoint enemy_position;
 	int path_index;
 	bool omw = false;
-	bool alive = true;
+	bool dead = false;
 
 	//Animations
 	Animation* current_animation = nullptr;

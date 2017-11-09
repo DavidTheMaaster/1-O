@@ -155,7 +155,7 @@ void j1FlyingEnemy::Movement()
 
 	if ((App->scene->level == 0 || App->scene->level == 1) && App->fadetoblack->IsFading() == false)
 	{
-		if (found) {
+		if (found && !dead) {
 			if (path_index < fly_path.Count())
 			{
 				iPoint nextTile = App->map->MapToWorld(fly_path[path_index].x, fly_path[path_index].y);
@@ -184,13 +184,15 @@ void j1FlyingEnemy::Movement()
 				{
 					omw = false;
 				}
-				
+
 				if (!omw) {
 					path_index += 1;
 				}
 
-				if (fly_path[path_index].x == player_position.x && fly_path[path_index].y == player_position.y)
+				if (fly_path[path_index].x == player_position.x && fly_path[path_index].y == player_position.y) {
 					path_index = 0;
+					dead = true;
+				}
 			}
 		}
 	
