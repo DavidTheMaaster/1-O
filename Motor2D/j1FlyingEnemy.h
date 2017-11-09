@@ -3,7 +3,7 @@
 
 #include "j1Module.h"
 #include "Animation.h"
-#include "p2List.h"
+#include "p2DynArray.h"
 #include "p2Point.h"
 
 
@@ -40,10 +40,12 @@ public:
 	bool flip;
 	bool found;
 
+	p2DynArray<iPoint> fly_path;
 	iPoint player_position;
 	iPoint enemy_position;
-
 	int path_index;
+	bool omw = false;
+	bool alive = true;
 
 	//Animations
 	Animation* current_animation = nullptr;

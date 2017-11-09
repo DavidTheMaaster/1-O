@@ -165,7 +165,7 @@ int PathNode::CalculateF(const iPoint& destination)
 // ----------------------------------------------------------------------------------
 // Actual A* algorithm: return number of steps in the creation of the path or -1 ----
 // ----------------------------------------------------------------------------------
-int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
+int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination, p2DynArray<iPoint> &path)
 {
 
 	// TODO 1: if origin or destination are not walkable, return -1
@@ -183,22 +183,22 @@ int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 	{
 		current = open.GetNodeLowestScore();
 		// TODO 3: Move the lowest score cell from open list to the closed list
-		current = close.list.add(current->data);
+		close.list.add(current->data);
 		open.list.del(open.GetNodeLowestScore());
 		// TODO 4: If we just added the destination, we are done!
 		// Backtrack to create the final path
 		// Use the Pathnode::parent and Flip() the path when you are finish
 		if (close.list.end->data.pos == destination)
 		{
-			last_path.Clear();
+			path.Clear();
 			PathNode iterator = current->data;
 			while (iterator.parent != nullptr)
 			{
-				last_path.PushBack(iterator.pos);
+				path.PushBack(iterator.pos);
 				iterator = *iterator.parent;
 			}
-			last_path.PushBack(origin);
-			last_path.Flip();
+			path.PushBack(origin);
+			path.Flip();
 			break;
 		}
 		// TODO 5: Fill a list of all adjancent nodes
@@ -214,6 +214,7 @@ int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 			if (close.Find(iterator->data.pos) == NULL)
 			{
 				iterator->data.CalculateF(destination);
+
 				if (open.Find(iterator->data.pos))
 				{
 					p2List_item<PathNode>* it2 = open.Find(iterator->data.pos);

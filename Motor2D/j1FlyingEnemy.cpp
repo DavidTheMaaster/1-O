@@ -87,8 +87,8 @@ bool j1FlyingEnemy::Start()
 {
 	bool ret = true;
 	LOG("Loading flying enemy");
-	speed.x = 4; speed.y = 8;
-	r.x = 350; r.y = 100;
+	speed.x = 2; speed.y = 2;
+	r.x = 450; r.y = 70;
 	r.w = 20; r.h = 20;
 	current_animation = &fly;
 	flip = false;
@@ -112,13 +112,14 @@ bool j1FlyingEnemy::Update(float dt)
 
 	current_animation = &fly;
 
-	if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) {
+	if (App->input->GetKey(SDL_SCANCODE_E) == KEY_REPEAT) {
 		path_index = 0;
 		enemy_position = App->map->WorldToMap(r.x, r.y);
 		player_position = App->map->WorldToMap(App->player->p.x, App->player->p.y);
-		App->pathfinding->CreatePath(enemy_position, player_position);
-	//	found = true;
+		found = true;
 	}
+
+	
 
 	Movement();
 	
@@ -148,53 +149,48 @@ void j1FlyingEnemy::Draw()
 
 void j1FlyingEnemy::Movement()
 {
-	
+	enemy_position = App->map->WorldToMap(r.x, r.y);
+	player_position = App->map->WorldToMap(App->player->p.x, App->player->p.y);
+	App->pathfinding->CreatePath(enemy_position, player_position, fly_path);
+
 	if ((App->scene->level == 0 || App->scene->level == 1) && App->fadetoblack->IsFading() == false)
 	{
 		if (found) {
-			if (App->pathfinding->last_path[path_index + 1].x == enemy_position.x && App->pathfinding->last_path[path_index].y == enemy_position.y)
+			if (path_index < fly_path.Count())
 			{
-				if (path_index + 1 != App->pathfinding->last_path.Count())
+				iPoint nextTile = App->map->MapToWorld(fly_path[path_index].x, fly_path[path_index].y);
+
+				if (enemy_position.x <= fly_path[path_index].x && r.x < nextTile.x)
 				{
-					path_index++;
-					if (App->pathfinding->last_path[path_index].x - enemy_position.x == -1)
-					{
-						iPoint movement = App->map->MapToWorld(App->pathfinding->last_path[path_index].x, App->pathfinding->last_path[path_index].y);
-						if (r.x > movement.x) {
-							r.x -= 1;
-						}
-
-					}
-					else if (App->pathfinding->last_path[path_index].x - enemy_position.x == 1)
-					{
-						iPoint movement = App->map->MapToWorld(App->pathfinding->last_path[path_index].x, App->pathfinding->last_path[path_index].y);
-						if (r.x < movement.x) {
-							r.x += 1;
-						}
-					}
-					else if (App->pathfinding->last_path[path_index].y - enemy_position.y == 1)
-					{
-						iPoint movement = App->map->MapToWorld(App->pathfinding->last_path[path_index].x, App->pathfinding->last_path[path_index].y);
-						if (r.y < movement.y) {
-							r.y += 1;
-						}
-					}
-					else if (App->pathfinding->last_path[path_index].y - enemy_position.y == -1)
-					{
-						iPoint movement = App->map->MapToWorld(App->pathfinding->last_path[path_index].x, App->pathfinding->last_path[path_index].y);
-						if (r.y > movement.y) {
-							r.y -= 1;
-						}
-					}
-					else
-					{
-						path_index = 0;
-						found = false;
-					}
-
-
-
+					r.x += speed.x;
+					omw = true;
 				}
+				else if (enemy_position.x >= fly_path[path_index].x && r.x > nextTile.x)
+				{
+					r.x -= speed.x;
+					omw = true;
+				}
+				else if (enemy_position.y >= fly_path[path_index].y && r.y > nextTile.y)
+				{
+					r.y -= speed.y;
+					omw = true;
+				}
+				else if (enemy_position.y <= fly_path[path_index].y && r.y < nextTile.y)
+				{
+					r.y += speed.y;
+					omw = true;
+				}
+				else
+				{
+					omw = false;
+				}
+				
+				if (!omw) {
+					path_index += 1;
+				}
+
+				if (fly_path[path_index].x == player_position.x && fly_path[path_index].y == player_position.y)
+					path_index = 0;
 			}
 		}
 	
