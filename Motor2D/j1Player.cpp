@@ -140,7 +140,7 @@ bool j1Player::Update(float dt)
 
 void j1Player::Draw()
 {
-	if ((App->scene->level == 2 || App->scene->level == 3) && App->fadetoblack->IsFading()==false)
+	if ((App->scene->level == 0 || App->scene->level == 1) && App->fadetoblack->IsFading()==false)
 	{
 		iPoint offset;
 		offset = GetOffset(offset.x, offset.y);
@@ -155,7 +155,7 @@ void j1Player::Draw()
 
 void j1Player::Movement()
 {
-	if ((App->scene->level == 2 || App->scene->level == 3) && App->fadetoblack->IsFading() == false)
+	if ((App->scene->level == 0 || App->scene->level == 1) && App->fadetoblack->IsFading() == false)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 			Right();

@@ -133,7 +133,7 @@ bool j1FlyingEnemy::Update(float dt)
 
 void j1FlyingEnemy::Draw()
 {
-	if ((App->scene->level == 2 || App->scene->level == 3) && App->fadetoblack->IsFading() == false)
+	if ((App->scene->level == 0 || App->scene->level == 1) && App->fadetoblack->IsFading() == false)
 	{
 		iPoint offset;
 		offset = GetOffset(offset.x, offset.y);
@@ -149,7 +149,7 @@ void j1FlyingEnemy::Draw()
 void j1FlyingEnemy::Movement()
 {
 	
-	if ((App->scene->level == 2 || App->scene->level == 3) && App->fadetoblack->IsFading() == false)
+	if ((App->scene->level == 0 || App->scene->level == 1) && App->fadetoblack->IsFading() == false)
 	{
 		if (found) {
 			if (App->pathfinding->last_path[path_index + 1].x == enemy_position.x && App->pathfinding->last_path[path_index].y == enemy_position.y)

@@ -44,12 +44,8 @@ private:
 	iPoint mouse;
 	enum Levels
 	{
-		menu,
-		options,
 		level_1,
 		level_2,
-		gameover
-
 	};
 };
 

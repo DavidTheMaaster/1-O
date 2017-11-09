@@ -7,6 +7,7 @@
 #include "j1Render.h"
 #include "j1Player.h"
 #include "j1Collision.h"
+#include "j1PathFinding.h"
 #include "j1FadeToBlack.h"
 #include "j1Window.h"
 #include "j1Map.h"
@@ -33,12 +34,14 @@ bool j1Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool j1Scene::Start()
 {
+	/*
 	if (level == menu) {
 		App->map->Load("menu.tmx");
 	}
 	if (level == options) {
 		App->map->Load("options.tmx");
 	}
+	*/
 	if (level == level_1) {
 		App->map->Load("level1.tmx");
 		App->audio->PlayMusic("audio/music/all_of_us.ogg");
@@ -46,11 +49,23 @@ bool j1Scene::Start()
 	if (level == level_2) {
 		App->map->Load("level2.tmx");
 	}
+	/*
 	if (level == gameover) {
 		App->map->Load("levelwin.tmx");
 	}
+	*/
 	App->map->SetMapLogic();
 	App->player->Start();
+	
+	if (App->map->Load("level1.tmx") == true || App->map->Load("level2.tmx") == true)
+	{
+		int w, h;
+		uchar* data = NULL;
+		if (App->map->CreateWalkabilityMap(w, h, &data))
+			App->pathfinding->SetMap(w, h, data);
+
+		RELEASE_ARRAY(data);
+	}
 
 	
 	return true;
