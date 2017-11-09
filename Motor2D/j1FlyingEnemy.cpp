@@ -79,10 +79,13 @@ bool j1FlyingEnemy::Start()
 	speed.x = 2; speed.y = 2;
 	r.x = 450; r.y = 70;
 	r.w = 20; r.h = 20;
-	current_animation = &fly;
 	flip = false;
 	found = false;
+	back = false;
 	texture = App->tex->Load(animations.child("texture").child("folder").attribute("file").as_string());
+	start_enemy_position.x = r.x;
+	start_enemy_position.y = r.y;
+	start_enemy_position = App->map->WorldToMap(start_enemy_position.x, start_enemy_position.y);
 	return ret;
 }
 
@@ -99,22 +102,22 @@ bool j1FlyingEnemy::Update(float dt)
 {
 	bool ret = true;
 
-	current_animation = &fly;
+	canmove = CanStartMovement();
 
-	if (App->input->GetKey(SDL_SCANCODE_E) == KEY_REPEAT) {
-		path_index = 0;
+	if (canmove == true)
+	{
 		enemy_position = App->map->WorldToMap(r.x, r.y);
 		player_position = App->map->WorldToMap(App->player->p.x, App->player->p.y);
+		path_index = 0;
 		found = true;
+		canmove = false;
 	}
-
 	
 
 	Movement();
 	
 	Draw();
 
-	//DEBUG
 
 
 	return ret;
@@ -128,10 +131,9 @@ void j1FlyingEnemy::Draw()
 		iPoint offset;
 		offset = GetOffset(offset.x, offset.y);
 
-		SDL_Rect rect = current_animation->GetCurrentFrame();
 		flip = GetFlip();
 		App->render->DrawQuad(r, 255, 0, 0, 255);
-		App->render->Blit(texture, r.x - offset.x, r.y - offset.y, &rect, flip);
+		App->render->Blit(texture, r.x - offset.x, r.y - offset.y, &(fly.GetCurrentFrame()), flip);
 	}
 
 }
@@ -140,11 +142,12 @@ void j1FlyingEnemy::Movement()
 {
 	enemy_position = App->map->WorldToMap(r.x, r.y);
 	player_position = App->map->WorldToMap(App->player->p.x, App->player->p.y);
+	App->pathfinding->CreatePath(start_enemy_position ,enemy_position, fly_back_path);
 	App->pathfinding->CreatePath(enemy_position, player_position, fly_path);
 
 	if ((App->scene->level == 0 || App->scene->level == 1) && App->fadetoblack->IsFading() == false)
 	{
-		if (found && !dead) {
+		if (found == true && dead == false && back == false) {
 			if (path_index < fly_path.Count())
 			{
 				iPoint nextTile = App->map->MapToWorld(fly_path[path_index].x, fly_path[path_index].y);
@@ -184,19 +187,78 @@ void j1FlyingEnemy::Movement()
 				}
 			}
 		}
-	
+		if (back == true && dead == false && found == false)
+		{
+			if (path_index < fly_back_path.Count())
+			{
+				iPoint nextTile = App->map->MapToWorld(fly_back_path[path_index].x, fly_back_path[path_index].y);
+
+				if (enemy_position.x <= fly_back_path[path_index].x && r.x < nextTile.x)
+				{
+					r.x += speed.x;
+					omw = true;
+				}
+				else if (enemy_position.x >= fly_back_path[path_index].x && r.x > nextTile.x)
+				{
+					r.x -= speed.x;
+					omw = true;
+				}
+				else if (enemy_position.y >= fly_back_path[path_index].y && r.y > nextTile.y)
+				{
+					r.y -= speed.y;
+					omw = true;
+				}
+				else if (enemy_position.y <= fly_back_path[path_index].y && r.y < nextTile.y)
+				{
+					r.y += speed.y;
+					omw = true;
+				}
+				else
+				{
+					omw = false;
+				}
+
+				if (!omw) {
+					path_index += 1;
+				}
+
+				if (enemy_position.x == start_enemy_position.x && enemy_position.y == start_enemy_position.y) {
+					back = false;
+				}
+			}
+		}
 	}
 	
+}
+
+bool j1FlyingEnemy::CanStartMovement()
+{
+	bool ret = false;
+	enemy_position = App->map->WorldToMap(r.x, r.y);
+	player_position = App->map->WorldToMap(App->player->p.x, App->player->p.y);
+
+	int i = player_position.x - enemy_position.x;
+
+	if ((player_position.x - enemy_position.x >= -8 || player_position.x - enemy_position.x <= 8 ) && found == false)
+	{
+		ret = true;
+	}
+	if ((player_position.x - enemy_position.x <= -10 || player_position.x - enemy_position.x >= 10) && found == true)
+	{
+		found = false;
+		path_index = 0;
+		back = true;
+	}
+	return ret;
 }
 
 iPoint j1FlyingEnemy::GetOffset(int x, int y)
 {
 	iPoint offset;
 
-	if (current_animation == &fly) {
-		x = animations.child("flying_enemy").child("attributes").attribute("offset_x").as_int(0);
-		y = animations.child("flying_enemy").child("attributes").attribute("offset_y").as_int(0);
-	}
+	
+	x = animations.child("flying_enemy").child("attributes").attribute("offset_x").as_int(0);
+	y = animations.child("flying_enemy").child("attributes").attribute("offset_y").as_int(0);
 
 	offset.x = x;
 	offset.y = y;

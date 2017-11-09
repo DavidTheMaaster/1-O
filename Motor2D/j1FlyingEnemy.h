@@ -28,6 +28,7 @@ public:
 	bool GetFlip();
 
 	void Movement();
+	bool CanStartMovement();
 
 
 public:
@@ -40,16 +41,20 @@ public:
 
 	bool flip;
 	bool found;
+	bool canmove;
+	bool back;
 
 	p2DynArray<iPoint> fly_path;
+	p2DynArray<iPoint> fly_back_path;
 	iPoint player_position;
 	iPoint enemy_position;
+	iPoint start_enemy_position;
+
 	int path_index;
 	bool omw = false;
 	bool dead = false;
 
 	//Animations
-	Animation* current_animation = nullptr;
 	Animation* load_anim = nullptr;
 	Animation fly;
 
