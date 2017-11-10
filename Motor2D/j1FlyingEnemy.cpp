@@ -115,10 +115,6 @@ bool j1FlyingEnemy::Update(float dt)
 		canmove = false;
 	}
 	
-	if (App->player->p.x > 800) {
-		dead = true;
-		this->CleanUp();
-	}
 
 	if (!dead) {
 		Movement();
@@ -140,7 +136,6 @@ void j1FlyingEnemy::Draw()
 		offset = GetOffset(offset.x, offset.y);
 
 		flip = GetFlip();
-		App->render->DrawQuad(r, 255, 0, 0, 255);
 		App->render->Blit(texture, r.x - offset.x, r.y - offset.y, &(fly.GetCurrentFrame()), flip);
 	}
 
