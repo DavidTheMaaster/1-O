@@ -8,6 +8,8 @@
 #include "j1Player.h"
 #include <math.h>
 
+#include "Brofiler/Brofiler.h"
+
 j1Map::j1Map() : j1Module(), map_loaded(false)
 {
 	name.create("map");
@@ -91,6 +93,8 @@ void j1Map::SetMapLogic() {
 
 void j1Map::Draw()
 {
+	BROFILER_CATEGORY("DrawMap", Profiler::Color::MediumPurple);
+
 	if (map_loaded == false)
 		return;
 	float speed = 0;
