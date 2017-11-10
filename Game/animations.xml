@@ -90,6 +90,15 @@
     </texture>
   </player>
   <enemies>
+    <flying_enemy>
+      <frame id = "0" x = "442" y = "253" w = "23" h = "40"/>
+      <frame id = "1" x = "1" y = "337" w = "23" h = "40"/>
+      <frame id = "2" x = "64" y = "337" w = "23" h = "40"/>
+      <frame id = "3" x = "127" y = "337" w = "23" h = "40"/>
+      <frame id = "4" x = "190" y = "337" w = "23" h = "40"/>
+      <frame id = "5" x = "253" y = "337" w = "23" h = "40"/>
+      <attributes id = "0" speed = "0.15" loop = "true" offset_x = "2" offset_y = "3" size = "5" radius = "8" big_radius = "10"/>
+    </flying_enemy>
     <walking_enemy>
       <frame id = "0" x = "1" y = "1" w = "63" h = "84"/>
       <frame id = "1" x = "64" y = "1" w = "63" h = "84"/>
@@ -107,33 +116,24 @@
       <frame id = "14" x = "316" y = "85" w = "63" h = "84"/>
       <frame id = "15" x = "379" y = "85" w = "63" h = "84"/>
       <frame id = "16" x = "442" y = "85" w = "63" h = "84"/>
-      <frame id = "17" x = "1" y = "253" w = "63" h = "84"/>
-      <frame id = "18" x = "64" y = "253" w = "63" h = "84"/>
-      <frame id = "19" x = "127" y = "253" w = "63" h = "84"/>
-      <frame id = "20" x = "190" y = "253" w = "63" h = "84"/>
-      <frame id = "21" x = "253" y = "253" w = "63" h = "84"/>
-      <frame id = "22" x = "316" y = "253" w = "63" h = "84"/>
-      <frame id = "23" x = "379" y = "253" w = "63" h = "84"/>
-      <frame id = "24" x = "442" y = "253" w = "63" h = "84"/>
-      <frame id = "0" x = "1" y = "169" w = "63" h = "84"/>
-      <frame id = "0" x = "64" y = "169" w = "63" h = "84"/>
-      <frame id = "0" x = "127" y = "169" w = "63" h = "84"/>
-      <frame id = "0" x = "190" y = "169" w = "63" h = "84"/>
-      <frame id = "0" x = "253" y = "169" w = "63" h = "84"/>
-      <frame id = "0" x = "316" y = "169" w = "63" h = "84"/>
-      <frame id = "0" x = "379" y = "169" w = "63" h = "84"/>
-      <frame id = "0" x = "442" y = "169" w = "63" h = "84"/>
-      <attributes id = "0" speed = "0.5" loop = "true" offset_x = "2" offset_y = "3" size = "5" radius = "8" big_radius = "10"/>
+      <frame id = "17" x = "1" y = "169" w = "63" h = "84"/>
+      <frame id = "18" x = "64" y = "169" w = "63" h = "84"/>
+      <frame id = "19" x = "127" y = "169" w = "63" h = "84"/>
+      <frame id = "20" x = "190" y = "169" w = "63" h = "84"/>
+      <frame id = "21" x = "253" y = "169" w = "63" h = "84"/>
+      <frame id = "22" x = "316" y = "169" w = "63" h = "84"/>
+      <frame id = "23" x = "379" y = "169" w = "63" h = "84"/>
+      <frame id = "24" x = "442" y = "169" w = "63" h = "84"/>
+      <frame id = "25" x = "1" y = "253" w = "63" h = "84"/>
+      <frame id = "26" x = "64" y = "253" w = "63" h = "84"/>
+      <frame id = "27" x = "127" y = "253" w = "63" h = "84"/>
+      <frame id = "28" x = "190" y = "253" w = "63" h = "84"/>
+      <frame id = "29" x = "253" y = "253" w = "63" h = "84"/>
+      <frame id = "30" x = "316" y = "253" w = "63" h = "84"/>
+      <frame id = "31" x = "379" y = "253" w = "63" h = "84"/>
+      <frame id = "32" x = "442" y = "253" w = "63" h = "84"/>
+      <attributes id = "1" speed = "0.5" loop = "true" offset_x = "2" offset_y = "3" size = "32" radius = "8" big_radius = "10"/>
     </walking_enemy>
-    <flying_enemy>
-      <frame id = "0" x = "442" y = "253" w = "23" h = "40"/>
-      <frame id = "1" x = "1" y = "337" w = "23" h = "40"/>
-      <frame id = "2" x = "64" y = "337" w = "23" h = "40"/>
-      <frame id = "3" x = "127" y = "337" w = "23" h = "40"/>
-      <frame id = "4" x = "190" y = "337" w = "23" h = "40"/>
-      <frame id = "5" x = "253" y = "337" w = "23" h = "40"/>
-      <attributes id = "1" speed = "0.15" loop = "true" offset_x = "2" offset_y = "3" size = "5" radius = "8" big_radius = "10"/>
-    </flying_enemy>
     <texture>
       <folder file = "textures/enemies.png" />
     </texture>
