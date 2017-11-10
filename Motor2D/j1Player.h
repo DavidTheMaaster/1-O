@@ -68,12 +68,14 @@ public:
 	Animation idle;
 	Animation walk;
 	Animation hover;
+	Animation dead;
 
 	enum Animations
 	{
 		IDLE,
 		WALK,
-		HOVER
+		HOVER,
+		DEAD
 	};
 
 private:

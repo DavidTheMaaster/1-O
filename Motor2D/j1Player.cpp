@@ -53,6 +53,10 @@ bool j1Player::Awake(pugi::xml_node& config)
 	{
 		load_anim = &hover;
 	}
+	else if (current == DEAD)
+	{
+		load_anim = &dead;
+	}
 
 
 
@@ -147,7 +151,6 @@ void j1Player::Draw()
 
 		SDL_Rect r = current_animation->GetCurrentFrame();
 
-		App->render->DrawQuad(p, 0, 255, 0, 255);
 		App->render->Blit(texture, p.x - offset.x, p.y - offset.y, &r, flip);
 	}
 
@@ -363,6 +366,10 @@ iPoint j1Player::GetOffset(int x, int y)
 	if (current_animation == &hover) {
 		x = animations.child("hover").child("attributes").attribute("offset_x").as_int(0);
 		y = animations.child("hover").child("attributes").attribute("offset_y").as_int(0);
+	}
+	if (current_animation == &dead) {
+		x = animations.child("dead").child("attributes").attribute("offset_x").as_int(0);
+		y = animations.child("dead").child("attributes").attribute("offset_y").as_int(0);
 	}
 
 
