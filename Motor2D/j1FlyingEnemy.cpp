@@ -94,7 +94,7 @@ bool j1FlyingEnemy::Start()
 bool j1FlyingEnemy::CleanUp()
 {
 	bool ret = true;
-	LOG("Unloading player");
+	LOG("Unloading enemy");
 
 	App->tex->UnLoad(texture);
 	return ret;
@@ -116,7 +116,9 @@ bool j1FlyingEnemy::Update(float dt)
 	}
 	
 
-	Movement();
+	if (!dead) {
+		Movement();
+	}
 	
 	Draw();
 
@@ -134,7 +136,6 @@ void j1FlyingEnemy::Draw()
 		offset = GetOffset(offset.x, offset.y);
 
 		flip = GetFlip();
-		App->render->DrawQuad(r, 255, 0, 0, 255);
 		App->render->Blit(texture, r.x - offset.x, r.y - offset.y, &(fly.GetCurrentFrame()), flip);
 	}
 
@@ -144,12 +145,13 @@ void j1FlyingEnemy::Movement()
 {
 	enemy_position = App->map->WorldToMap(r.x, r.y);
 	player_position = App->map->WorldToMap(App->player->p.x, App->player->p.y);
-	App->pathfinding->CreatePath(start_enemy_position ,enemy_position, fly_back_path);
-	App->pathfinding->CreatePath(enemy_position, player_position, fly_path);
 
 	if ((App->scene->level == 0 || App->scene->level == 1) && App->fadetoblack->IsFading() == false)
 	{
-		if (found == true && dead == false && back == false) {
+		if (found == true && dead == false) {
+
+			App->pathfinding->CreatePath(enemy_position, player_position, fly_path);
+
 			if (path_index < fly_path.Count())
 			{
 				iPoint nextTile = App->map->MapToWorld(fly_path[path_index].x, fly_path[path_index].y);
@@ -193,6 +195,8 @@ void j1FlyingEnemy::Movement()
 		{
 			if (path_index < fly_back_path.Count())
 			{
+				App->pathfinding->CreatePath(start_enemy_position, enemy_position, fly_back_path);
+
 				iPoint nextTile = App->map->MapToWorld(fly_back_path[path_index].x, fly_back_path[path_index].y);
 
 				if (enemy_position.x <= fly_back_path[path_index].x && r.x < nextTile.x)

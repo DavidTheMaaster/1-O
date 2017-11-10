@@ -190,7 +190,7 @@ void j1App::FinishUpdate()
 
 
 	// Uncoment to timer title
-	/*
+	
 	float avg_fps = countN / timerNormal.ReadSec();
 	float seconds_since_startup = timerNormal.ReadSec();
 	float dt = timerNormal.ReadSec() / 1000;
@@ -211,7 +211,7 @@ void j1App::FinishUpdate()
 		avg_fps, last_frame_ms, frames_on_last_update, dt, seconds_since_startup, frame_count);
 
 	App->win->SetTitle(title);
-	*/
+	
 }
 
 // Call modules before each loop iteration
