@@ -98,7 +98,7 @@ bool j1Player::Start()
 	bool ret = true;
 	LOG("Loading player");
 	speed.x = 4; speed.y = 8;
-	p.x = 130; p.y = 100;
+	p.x = 175; p.y = 100;
 	p.w = 16; p.h = 56;
 	current_animation = &idle;
 	jump_counter = 0;
