@@ -40,12 +40,7 @@ bool j1FlyingEnemy::Awake(pugi::xml_node& config)
 		attributes = animations.child("attributes");
 		rect = animations.first_child();
 
-		current = attributes.attribute("id").as_int();
-
-		if (current == FLY)
-		{
-			load_anim = &fly;
-		}
+		load_anim = &fly;
 
 		int i = rect.attribute("id").as_int();
 		int j = attributes.attribute("size").as_int();
@@ -188,48 +183,6 @@ void j1FlyingEnemy::Movement()
 				if (fly_path[path_index].x == player_position.x && fly_path[path_index].y == player_position.y) {
 					path_index = 0;
 					dead = true;
-				}
-			}
-		}
-		if (back == true && dead == false && found == false)
-		{
-			if (path_index < fly_back_path.Count())
-			{
-				App->pathfinding->CreatePath(start_enemy_position, enemy_position, fly_back_path);
-
-				iPoint nextTile = App->map->MapToWorld(fly_back_path[path_index].x, fly_back_path[path_index].y);
-
-				if (enemy_position.x <= fly_back_path[path_index].x && r.x < nextTile.x)
-				{
-					r.x += speed.x;
-					omw = true;
-				}
-				else if (enemy_position.x >= fly_back_path[path_index].x && r.x > nextTile.x)
-				{
-					r.x -= speed.x;
-					omw = true;
-				}
-				else if (enemy_position.y >= fly_back_path[path_index].y && r.y > nextTile.y)
-				{
-					r.y -= speed.y;
-					omw = true;
-				}
-				else if (enemy_position.y <= fly_back_path[path_index].y && r.y < nextTile.y)
-				{
-					r.y += speed.y;
-					omw = true;
-				}
-				else
-				{
-					omw = false;
-				}
-
-				if (!omw) {
-					path_index += 1;
-				}
-
-				if (enemy_position.x == start_enemy_position.x && enemy_position.y == start_enemy_position.y) {
-					back = false;
 				}
 			}
 		}

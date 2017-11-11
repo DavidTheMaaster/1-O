@@ -32,7 +32,6 @@ public:
 
 
 public:
-	int current;
 
 	SDL_Texture* texture = nullptr;
 
