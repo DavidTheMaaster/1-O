@@ -80,9 +80,6 @@ bool j1FlyingEnemy::Start()
 	found = false;
 	back = false;
 	texture = App->tex->Load(animations.child("texture").child("folder").attribute("file").as_string());
-	start_enemy_position.x = r.x;
-	start_enemy_position.y = r.y;
-	start_enemy_position = App->map->WorldToMap(start_enemy_position.x, start_enemy_position.y);
 	return ret;
 }
 
@@ -101,7 +98,7 @@ bool j1FlyingEnemy::Update(float dt)
 
 	canmove = CanStartMovement();
 
-	if (canmove == true)
+	if (canmove)
 	{
 		enemy_position = App->map->WorldToMap(r.x, r.y);
 		player_position = App->map->WorldToMap(App->player->p.x, App->player->p.y);
@@ -131,6 +128,8 @@ void j1FlyingEnemy::Draw()
 		offset = GetOffset(offset.x, offset.y);
 
 		flip = GetFlip();
+		App->render->DrawQuad({r.x -256,r.y -256,512,512},255,72,0,155);
+		App->render->DrawQuad({ r.x - 320,r.y - 320,640,640 }, 255, 150, 108, 155);
 		App->render->Blit(texture, r.x - offset.x, r.y - offset.y, &(fly.GetCurrentFrame()), flip);
 	}
 
@@ -138,14 +137,14 @@ void j1FlyingEnemy::Draw()
 
 void j1FlyingEnemy::Movement()
 {
-	enemy_position = App->map->WorldToMap(r.x, r.y);
-	player_position = App->map->WorldToMap(App->player->p.x, App->player->p.y);
 
 	if ((App->scene->level == 0 || App->scene->level == 1) && App->fadetoblack->IsFading() == false)
 	{
 		if (found == true && dead == false) {
-
+			enemy_position = App->map->WorldToMap(r.x, r.y);
+			player_position = App->map->WorldToMap(App->player->p.x, App->player->p.y);
 			App->pathfinding->CreatePath(enemy_position, player_position, fly_path);
+		
 
 			if (path_index < fly_path.Count())
 			{
@@ -187,7 +186,6 @@ void j1FlyingEnemy::Movement()
 			}
 		}
 	}
-	
 }
 
 bool j1FlyingEnemy::CanStartMovement()
@@ -196,16 +194,22 @@ bool j1FlyingEnemy::CanStartMovement()
 	enemy_position = App->map->WorldToMap(r.x, r.y);
 	player_position = App->map->WorldToMap(App->player->p.x, App->player->p.y);
 
+	int i = player_position.x - enemy_position.x;
 
-	if ((player_position.x - enemy_position.x >= -radius || player_position.x - enemy_position.x <= radius ) && found == false)
+
+	if (player_position.x - enemy_position.x >= -radius && player_position.x - enemy_position.x <= radius )
 	{
-		ret = true;
+		if (!found)
+		{
+			ret = true;
+		}
 	}
 	if ((player_position.x - enemy_position.x <= -big_radius || player_position.x - enemy_position.x >= big_radius) && found == true)
 	{
-		found = false;
-		path_index = 0;
-		back = true;
+			found = false;
+			path_index = 0;
+			ret = false;
+			back = true;
 	}
 	return ret;
 }
