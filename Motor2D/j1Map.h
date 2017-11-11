@@ -169,7 +169,13 @@ private:
 	MapLayer*			parallax1Layer = nullptr;
 	MapLayer*			parallax2Layer = nullptr;
 
-
+	enum Logic
+	{
+		DEAD = 4,
+		SPAWN_P = 14,
+		WALL = 19,
+		
+	};
 
 };
 

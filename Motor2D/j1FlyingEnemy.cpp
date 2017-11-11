@@ -145,7 +145,6 @@ void j1FlyingEnemy::Movement()
 			player_position = App->map->WorldToMap(App->player->p.x, App->player->p.y);
 			App->pathfinding->CreatePath(enemy_position, player_position, fly_path);
 		
-
 			if (path_index < fly_path.Count())
 			{
 				iPoint nextTile = App->map->MapToWorld(fly_path[path_index].x, fly_path[path_index].y);

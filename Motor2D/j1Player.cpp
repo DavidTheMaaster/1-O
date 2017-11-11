@@ -98,7 +98,7 @@ bool j1Player::Start()
 	bool ret = true;
 	LOG("Loading player");
 	speed.x = 4; speed.y = 8;
-	p.x = 175; p.y = 100;
+	p.x = spawn.x; p.y = spawn.y + 4;
 	p.w = 16; p.h = 56;
 	current_animation = &idle;
 	jump_counter = 0;
@@ -133,7 +133,8 @@ bool j1Player::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_REPEAT) 
 	{
-		p.x = p.y = 100;
+		p.x = spawn.x;
+		p.y = spawn.y;
 		App->render->camera.x = 0;
 	}
 

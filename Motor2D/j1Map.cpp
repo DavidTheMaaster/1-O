@@ -33,12 +33,12 @@ bool j1Map::Awake(pugi::xml_node& config)
 void j1Map::SetMapLogic() {
 	if (map_loaded == false)
 		return;
-	
+
 	p2List_item<TileSet*>* item_tileset = data.tilesets.start;
 	logic_layer = data.layers.start;
 
 	bool ret = false;
-	
+
 	while (ret == false)
 	{
 		if (logic_layer != nullptr) {
@@ -51,7 +51,7 @@ void j1Map::SetMapLogic() {
 				ret = true;
 				LOG("Error loading logic layer");
 			}
-			else  {
+			else {
 				logic_layer = logic_layer->next;
 			}
 		}
@@ -73,19 +73,20 @@ void j1Map::SetMapLogic() {
 					col.x = pos.x;
 					col.y = pos.y;
 
-					if (gid == 19) {
+					if (gid == WALL) {
 						App->collision->AddCollider(col, COLLIDER_WALL);
 					}
-					if (gid == 4) {
+					if (gid == DEAD) {
 						App->collision->AddCollider(col, COLLIDER_KILL);
-					}				
-					/*if (gid == 9) {
+					}
+					if (gid == SPAWN_P) {
+						App->collision->AddCollider(col, COLLIDER_SPAWN);
 						App->player->spawn.x = pos.x;
 						App->player->spawn.y = pos.y;
-					}*/
-				
+					}
+
 				}
-				
+
 			}
 		}
 	}
@@ -529,6 +530,7 @@ bool j1Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 	layer->name = node.attribute("name").as_string();
 	layer->width = node.attribute("width").as_int();
 	layer->height = node.attribute("height").as_int();
+	layer->logic = node.child("properties").child("property").attribute("value").as_bool();
 	LoadProperties(node, layer->properties);
 	pugi::xml_node layer_data = node.child("data");
 

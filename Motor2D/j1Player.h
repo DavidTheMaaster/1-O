@@ -50,6 +50,8 @@ public:
 	SDL_Texture* texture = nullptr;
 
 	iPoint speed;
+	iPoint spawn;
+
 	SDL_Rect p;
 
 	bool flip;
@@ -57,8 +59,6 @@ public:
 	bool jump2;
 
 	int jumps;
-
-
 	int jump_counter;
 
 

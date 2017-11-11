@@ -70,12 +70,13 @@ bool j1Collision::Update(float dt)
 
 void j1Collision::DebugDraw()
 {
-	if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_DOWN)
+	
+	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
 		debug = !debug;
 
 	if (debug == false)
 		return;
-
+	
 	Uint8 alpha = 80;
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 	{
@@ -95,6 +96,10 @@ void j1Collision::DebugDraw()
 			break;
 		case COLLIDER_KILL: // red
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+			break;
+
+		case COLLIDER_SPAWN:
+			App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha);
 			break;
 		}
 	}
