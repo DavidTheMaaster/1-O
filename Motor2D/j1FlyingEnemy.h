@@ -35,6 +35,7 @@ public:
 
 	SDL_Texture* texture = nullptr;
 
+	iPoint spawn;
 	iPoint speed;
 	SDL_Rect r;
 

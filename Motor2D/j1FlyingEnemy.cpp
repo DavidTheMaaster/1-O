@@ -74,7 +74,7 @@ bool j1FlyingEnemy::Start()
 	bool ret = true;
 	LOG("Loading flying enemy");
 	speed.x = 2; speed.y = 2;
-	r.x = 450; r.y = 70;
+	r.x = spawn.x; r.y = spawn.y+32;
 	r.w = 20; r.h = 20;
 	flip = false;
 	found = false;

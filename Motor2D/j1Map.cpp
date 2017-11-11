@@ -6,6 +6,8 @@
 #include "j1Map.h"
 #include "j1Collision.h"
 #include "j1Player.h"
+#include "j1FlyingEnemy.h"
+
 #include <math.h>
 
 #include "Brofiler/Brofiler.h"
@@ -83,6 +85,11 @@ void j1Map::SetMapLogic() {
 						App->collision->AddCollider(col, COLLIDER_SPAWN);
 						App->player->spawn.x = pos.x;
 						App->player->spawn.y = pos.y;
+					}
+					if (gid == SPAWN_FE) {
+						App->collision->AddCollider(col, COLLIDER_SPAWN);
+ 						App->flyingenemy->spawn.x = pos.x;
+						App->flyingenemy->spawn.y = pos.y;
 					}
 
 				}
