@@ -34,14 +34,7 @@ bool j1Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool j1Scene::Start()
 {
-	/*
-	if (level == menu) {
-		App->map->Load("menu.tmx");
-	}
-	if (level == options) {
-		App->map->Load("options.tmx");
-	}
-	*/
+
 	if (level == level_1) {
 		App->map->Load("level1.tmx");
 		App->audio->PlayMusic("audio/music/all_of_us.ogg");
@@ -49,11 +42,6 @@ bool j1Scene::Start()
 	if (level == level_2) {
 		App->map->Load("level2.tmx");
 	}
-	/*
-	if (level == gameover) {
-		App->map->Load("levelwin.tmx");
-	}
-	*/
 	App->map->SetMapLogic();
 	App->player->Start();
 	

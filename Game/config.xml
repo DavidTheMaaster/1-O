@@ -32,9 +32,6 @@
   <enemies>
     <file folder = "animations.xml"/>
   </enemies>
-  <menu>
-    <resolutions folder = "resolutions.xml"/>
-  </menu>
       
 
 </config>

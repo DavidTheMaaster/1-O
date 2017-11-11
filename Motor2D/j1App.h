@@ -13,7 +13,6 @@ class j1Input;
 class j1Render;
 class j1Textures;
 class j1Audio;
-class j1Menu;
 class j1Player;
 class j1FlyingEnemy;
 class j1Scene;
@@ -92,7 +91,6 @@ public:
 	j1FlyingEnemy*		flyingenemy;
 	j1Scene*			scene;
 	j1Map*				map;
-	j1Menu*				menu;
 	j1Collision*		collision;
 	j1PathFinding*		pathfinding;
 	j1FadeToBlack*		fadetoblack;
