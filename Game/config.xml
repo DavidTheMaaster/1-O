@@ -25,7 +25,11 @@
   <map>
     <folder>maps/</folder>
   </map>
-  
+
+  <scene>
+    <levels level_1 = "level1.tmx" level_2 = "level2.tmx"/>
+  </scene> 
+    
   <player>
     <file folder = "animations.xml"/>    
   </player>

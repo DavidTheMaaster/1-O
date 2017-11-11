@@ -47,6 +47,8 @@ private:
 		level_1,
 		level_2,
 	};
+	pugi::xml_node level_name;
+
 };
 
 #endif // __j1SCENE_H__
