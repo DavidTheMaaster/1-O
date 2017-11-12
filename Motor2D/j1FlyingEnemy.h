@@ -1,4 +1,4 @@
-#ifndef __j1FLYINGENEMY_H__
+ #ifndef __j1FLYINGENEMY_H__
 #define __j1FLYINGENEMY_H__
 
 #include "j1Module.h"
@@ -43,6 +43,7 @@ public:
 	bool found;
 	bool canmove;
 	bool back;
+	bool agro;
 
 	int radius;
 	int big_radius;

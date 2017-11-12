@@ -79,6 +79,7 @@ bool j1FlyingEnemy::Start()
 	flip = false;
 	found = false;
 	back = false;
+	agro = false;
 	texture = App->tex->Load(animations.child("texture").child("folder").attribute("file").as_string());
 	return ret;
 }
@@ -124,12 +125,21 @@ void j1FlyingEnemy::Draw()
 {
 	if ((App->scene->level == 0 || App->scene->level == 1) && App->fadetoblack->IsFading() == false)
 	{
+		if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN)
+		{
+			agro = !agro;
+		}
+
+		if (agro)
+		{
+			App->render->DrawQuad({ r.x - 256,r.y - 256,512,512 }, 255, 72, 0, 155);
+			App->render->DrawQuad({ r.x - 320,r.y - 320,640,640 }, 255, 150, 108, 155);
+		}
+
 		iPoint offset;
 		offset = GetOffset(offset.x, offset.y);
 
 		flip = GetFlip();
-		App->render->DrawQuad({r.x -256,r.y -256,512,512},255,72,0,155);
-		App->render->DrawQuad({ r.x - 320,r.y - 320,640,640 }, 255, 150, 108, 155);
 		App->render->Blit(texture, r.x - offset.x, r.y - offset.y, &(fly.GetCurrentFrame()), flip);
 	}
 

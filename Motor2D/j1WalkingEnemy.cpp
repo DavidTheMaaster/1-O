@@ -73,12 +73,13 @@ bool j1WalkingEnemy::Start()
 {
 	bool ret = true;
 	LOG("Loading flying enemy");
-	speed.x = 2; speed.y = 4;
+	speed.x = 2; speed.y = 8;
 	r.x = spawn.x; r.y = spawn.y - 36;
-	r.w = 63; r.h = 84;
+	r.w = 63; r.h = 64;
 	flip = false;
 	found = false;
 	back = false;
+	agro = false;
 	texture = App->tex->Load(animations.child("texture").child("folder").attribute("file").as_string());
 	return ret;
 }
@@ -122,17 +123,27 @@ bool j1WalkingEnemy::Update(float dt)
 
 void j1WalkingEnemy::Draw()
 {
+
 	if ((App->scene->level == 0 || App->scene->level == 1) && App->fadetoblack->IsFading() == false)
 	{
-		iPoint offset;
-		offset = GetOffset(offset.x, offset.y);
+		if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN)
+		{
+			agro = !agro;
+		}
+		if (agro)
+		{
+			App->render->DrawQuad({ r.x - 256,r.y - 256,512,512 }, 255, 72, 0, 155);
+			App->render->DrawQuad({ r.x - 320,r.y - 320,640,640 }, 255, 150, 108, 155);
+		}
+		if ((App->scene->level == 0 || App->scene->level == 1) && App->fadetoblack->IsFading() == false)
+		{
+			iPoint offset;
+			offset = GetOffset(offset.x, offset.y);
 
-		flip = GetFlip();
-		App->render->DrawQuad({ r.x - 256,r.y - 256,512,512 }, 255, 72, 0, 155);
-		App->render->DrawQuad({ r.x - 320,r.y - 320,640,640 }, 255, 150, 108, 155);
-		App->render->Blit(texture, r.x - offset.x, r.y - offset.y, &(fly.GetCurrentFrame()), flip);
+			flip = GetFlip();
+			App->render->Blit(texture, r.x - offset.x, r.y - offset.y, &(fly.GetCurrentFrame()), flip);
+		}
 	}
-
 }
 
 void j1WalkingEnemy::Movement()

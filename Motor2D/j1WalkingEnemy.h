@@ -43,6 +43,7 @@ public:
 	bool found;
 	bool canmove;
 	bool back;
+	bool agro;
 
 	int radius;
 	int big_radius;
