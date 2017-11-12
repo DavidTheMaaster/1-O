@@ -174,7 +174,8 @@ private:
 		DEAD = 4,
 		SPAWN_P = 14,
 		WALL = 19,
-		SPAWN_FE= 9
+		SPAWN_FE = 26,
+		SPAWN_WE = 27
 		
 	};
 

@@ -15,6 +15,7 @@ class j1Textures;
 class j1Audio;
 class j1Player;
 class j1FlyingEnemy;
+class j1WalkingEnemy;
 class j1Scene;
 class j1Map;
 class j1Collision;
@@ -89,6 +90,7 @@ public:
 	j1Audio*			audio;
 	j1Player*			player;
 	j1FlyingEnemy*		flyingenemy;
+	j1WalkingEnemy*		walkingenemy;
 	j1Scene*			scene;
 	j1Map*				map;
 	j1Collision*		collision;
