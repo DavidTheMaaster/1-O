@@ -6,11 +6,13 @@
 	<audio />
 	<map />
 	<scene>
-		<level level="2" />
+		<level level="0" />
 	</scene>
-	<menu />
 	<player />
+	<enemies />
+	<enemies />
 	<collision />
+	<pathfinding />
 	<fadetoblack />
 	<renderer>
 		<camera x="0" y="0" />

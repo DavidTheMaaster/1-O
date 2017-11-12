@@ -29,7 +29,7 @@ bool j1WalkingEnemy::Awake(pugi::xml_node& config)
 	bool ret = true;
 
 	animation_file.load_file(config.child("file").attribute("folder").as_string());
-	animations = animation_file.child("animations").child("enemies").child("flying_enemy");
+	animations = animation_file.child("animations").child("enemies").child("walking_enemy");
 
 	if (animations == NULL)
 	{
@@ -73,9 +73,9 @@ bool j1WalkingEnemy::Start()
 {
 	bool ret = true;
 	LOG("Loading flying enemy");
-	speed.x = 2; speed.y = 2;
-	r.x = spawn.x; r.y = spawn.y + 32;
-	r.w = 20; r.h = 20;
+	speed.x = 2; speed.y = 4;
+	r.x = spawn.x; r.y = spawn.y - 36;
+	r.w = 63; r.h = 84;
 	flip = false;
 	found = false;
 	back = false;
@@ -142,7 +142,7 @@ void j1WalkingEnemy::Movement()
 	{
 		if (found == true && dead == false) {
 			enemy_position = App->map->WorldToMap(r.x, r.y);
-			player_position = App->map->WorldToMap(App->player->p.x, App->player->p.y);
+			player_position = App->map->WorldToMap(App->player->p.x, r.y);
 			App->pathfinding->CreatePath(enemy_position, player_position, fly_path);
 
 			if (path_index < fly_path.Count())
@@ -157,16 +157,6 @@ void j1WalkingEnemy::Movement()
 				else if (enemy_position.x >= fly_path[path_index].x && r.x > nextTile.x)
 				{
 					r.x -= speed.x;
-					omw = true;
-				}
-				else if (enemy_position.y >= fly_path[path_index].y && r.y > nextTile.y)
-				{
-					r.y -= speed.y;
-					omw = true;
-				}
-				else if (enemy_position.y <= fly_path[path_index].y && r.y < nextTile.y)
-				{
-					r.y += speed.y;
 					omw = true;
 				}
 				else
@@ -184,6 +174,10 @@ void j1WalkingEnemy::Movement()
 				}
 			}
 		}
+	}
+	if (App->collision->CheckCollisionDown(r,speed))
+	{
+		r.y += speed.y;
 	}
 }
 
@@ -232,11 +226,11 @@ bool j1WalkingEnemy::GetFlip()
 	bool ret = true;
 	if (App->player->p.x - r.x > 0)
 	{
-		ret = true;
+		ret = false;
 	}
 	else
 	{
-		ret = false;
+		ret = true;
 	}
 	return ret;
 }

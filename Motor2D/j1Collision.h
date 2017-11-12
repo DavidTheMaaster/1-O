@@ -54,10 +54,10 @@ public:
 	bool EraseCollider(Collider* collider);
 	void DebugDraw();
 
-	bool CheckCollisionRight(SDL_Rect p);
-	bool CheckCollisionLeft(SDL_Rect p);
-	bool CheckCollisionUp(SDL_Rect p);
-	bool CheckCollisionDown(SDL_Rect p);
+	bool CheckCollisionRight(SDL_Rect p, iPoint speed);
+	bool CheckCollisionLeft(SDL_Rect p, iPoint speed);
+	bool CheckCollisionUp(SDL_Rect p, iPoint speed);
+	bool CheckCollisionDown(SDL_Rect p, iPoint speed);
 	
 private:
 

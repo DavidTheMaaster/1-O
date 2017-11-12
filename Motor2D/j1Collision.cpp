@@ -159,7 +159,7 @@ bool j1Collision::EraseCollider(Collider* collider)
 // -----------------------------------------------------
 
 
-bool j1Collision::CheckCollisionRight(SDL_Rect p)
+bool j1Collision::CheckCollisionRight(SDL_Rect p, iPoint speed)
 {
 	bool ret = true;
 
@@ -167,13 +167,13 @@ bool j1Collision::CheckCollisionRight(SDL_Rect p)
 	iPoint vec2;
 	iPoint vec3;
 
-	vec1.x = p.x + p.w + App->player->speed.x;
+	vec1.x = p.x + p.w + speed.x;
 	vec1.y = p.y;
 
-	vec2.x = p.x + p.w + App->player->speed.x;
+	vec2.x = p.x + p.w + speed.x;
 	vec2.y = p.y + p.h / 2;
 
-	vec3.x = (p.x + p.w) + App->player->speed.x;
+	vec3.x = (p.x + p.w) + speed.x;
 	vec3.y = p.y + p.h;
 
 	vec1 = App->map->WorldToMap(vec1.x, vec1.y);
@@ -200,7 +200,7 @@ bool j1Collision::CheckCollisionRight(SDL_Rect p)
 	return ret;
 }
 
-bool j1Collision::CheckCollisionLeft(SDL_Rect p)
+bool j1Collision::CheckCollisionLeft(SDL_Rect p, iPoint speed)
 {
 	bool ret = true;
 
@@ -208,13 +208,13 @@ bool j1Collision::CheckCollisionLeft(SDL_Rect p)
 	iPoint vec2;
 	iPoint vec3;
 
-	vec1.x = p.x - App->player->speed.x;
+	vec1.x = p.x - speed.x;
 	vec1.y = p.y;
 
-	vec2.x = p.x - App->player->speed.x;
+	vec2.x = p.x - speed.x;
 	vec2.y = p.y + p.h / 2;
 
-	vec3.x = p.x - App->player->speed.x;
+	vec3.x = p.x - speed.x;
 	vec3.y = p.y + p.h;
 
 	vec1 = App->map->WorldToMap(vec1.x, vec1.y);
@@ -241,7 +241,7 @@ bool j1Collision::CheckCollisionLeft(SDL_Rect p)
 	return ret;
 }
 
-bool j1Collision::CheckCollisionUp(SDL_Rect p)
+bool j1Collision::CheckCollisionUp(SDL_Rect p, iPoint speed)
 {
 	bool ret = true;
 
@@ -249,10 +249,10 @@ bool j1Collision::CheckCollisionUp(SDL_Rect p)
 	iPoint vec2;
 
 	vec1.x = p.x;
-	vec1.y = p.y - App->player->speed.y;
+	vec1.y = p.y - speed.y;
 
 	vec2.x = p.x + p.w;
-	vec2.y = p.y - App->player->speed.y;
+	vec2.y = p.y - speed.y;
 
 	vec1 = App->map->WorldToMap(vec1.x, vec1.y);
 	vec2 = App->map->WorldToMap(vec2.x, vec2.y);
@@ -272,7 +272,7 @@ bool j1Collision::CheckCollisionUp(SDL_Rect p)
 	return ret;
 }
 
-bool j1Collision::CheckCollisionDown(SDL_Rect p)
+bool j1Collision::CheckCollisionDown(SDL_Rect p, iPoint speed)
 {
 	bool ret = true;
 
@@ -280,10 +280,10 @@ bool j1Collision::CheckCollisionDown(SDL_Rect p)
 	iPoint vec2;
 
 	vec1.x = p.x;
-	vec1.y = p.y + p.h + App->player->speed.y;
+	vec1.y = p.y + p.h + speed.y;
 
 	vec2.x = p.x + p.w;
-	vec2.y = p.y + p.h + App->player->speed.y;
+	vec2.y = p.y + p.h + speed.y;
 
 	vec1 = App->map->WorldToMap(vec1.x, vec1.y);
 	vec2 = App->map->WorldToMap(vec2.x, vec2.y);

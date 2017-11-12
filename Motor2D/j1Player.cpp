@@ -193,7 +193,7 @@ void j1Player::Movement()
 
 void j1Player::Right()
 {
-	if (App->collision->CheckCollisionRight(p))
+	if (App->collision->CheckCollisionRight(p,speed))
 	{
 		p.x += speed.x;
 		flip = false;
@@ -204,7 +204,7 @@ void j1Player::Right()
 
 void j1Player::Left()
 {
-	if(App->collision->CheckCollisionLeft(p))
+	if(App->collision->CheckCollisionLeft(p, speed))
 	{
 		p.x -= speed.x;
 		flip = true;
@@ -216,7 +216,7 @@ void j1Player::Left()
 
 void j1Player::Gravity()
 {
-	if (App->collision->CheckCollisionDown(p) && jump == false && jump2 == false)
+	if (App->collision->CheckCollisionDown(p, speed) && jump == false && jump2 == false)
 	{
 		p.y += speed.y;
 	}
@@ -225,7 +225,7 @@ void j1Player::Gravity()
 			jump_counter = 0;
 			jump = false;
 	}
-	if (App->collision->CheckCollisionDown(p) == false)
+	if (App->collision->CheckCollisionDown(p, speed) == false)
 	{
 		jumps = 2;
 	}
@@ -233,7 +233,7 @@ void j1Player::Gravity()
 
 void j1Player::Jump()
 {
-	if (App->collision->CheckCollisionUp(p) && jump2 == false) {
+	if (App->collision->CheckCollisionUp(p, speed) && jump2 == false) {
 		speed.x = 6;
 		speed.y = 8;
 		jumps = 1;
@@ -270,7 +270,7 @@ bool j1Player::CanJump()
 		ret  = false;
 	}
 	
-	if (App->collision->CheckCollisionDown(p) && jump == false)
+	if (App->collision->CheckCollisionDown(p, speed) && jump == false)
 	{
 		ret = false;
 	}
@@ -283,7 +283,7 @@ bool j1Player::CanJump()
 
 void j1Player::DoubleJump()
 {
-	if (App->collision->CheckCollisionUp(p))
+	if (App->collision->CheckCollisionUp(p, speed))
 	{
 		jumps = 0;
 		if (jump_counter < 7)
@@ -315,7 +315,7 @@ void j1Player::DoubleJump()
 bool j1Player::CanDoubleJump()
 {
 	bool ret = false;
-	if(App->collision->CheckCollisionDown(p))
+	if(App->collision->CheckCollisionDown(p, speed))
 	{
 		ret = true;
 	}
@@ -330,7 +330,7 @@ void j1Player::Hover()
 {
 	speed.y = 4;
 
-	if (App->collision->CheckCollisionDown(p)==false)
+	if (App->collision->CheckCollisionDown(p, speed)==false)
 	{
 		speed.y = 8;
 	}
