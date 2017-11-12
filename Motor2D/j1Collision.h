@@ -58,6 +58,7 @@ public:
 	bool CheckCollisionLeft(SDL_Rect p, iPoint speed);
 	bool CheckCollisionUp(SDL_Rect p, iPoint speed);
 	bool CheckCollisionDown(SDL_Rect p, iPoint speed);
+	int ActualTile(SDL_Rect p);
 	
 private:
 
@@ -67,7 +68,9 @@ private:
 
 	enum Logics
 	{
-		WALL = 19
+		NONE = 0,
+		WALL = 19,
+		DEAD = 4
 	};
 
 

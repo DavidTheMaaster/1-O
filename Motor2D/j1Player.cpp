@@ -55,7 +55,7 @@ bool j1Player::Awake(pugi::xml_node& config)
 	}
 	else if (current == DEAD)
 	{
-		load_anim = &dead;
+		load_anim = &die;
 	}
 
 
@@ -98,7 +98,7 @@ bool j1Player::Start()
 	bool ret = true;
 	LOG("Loading player");
 	speed.x = 4; speed.y = 8;
-	p.x = spawn.x; p.y = spawn.y + 4;
+	p.x = spawn.x; p.y = spawn.y;
 	p.w = 16; p.h = 56;
 	current_animation = &idle;
 	jump_counter = 0;
@@ -126,7 +126,13 @@ bool j1Player::Update(float dt)
 	Movement();
 	CameraMovement();
 	Gravity();
+	Dead();
 	Draw();
+
+	if (dead == true) 
+	{
+		Respawn();
+	}
 
 	//DEBUG
 
@@ -136,6 +142,7 @@ bool j1Player::Update(float dt)
 		p.x = spawn.x;
 		p.y = spawn.y;
 		App->render->camera.x = 0;
+		dead = false;
 	}
 
 
@@ -159,7 +166,7 @@ void j1Player::Draw()
 
 void j1Player::Movement()
 {
-	if ((App->scene->level == 0 || App->scene->level == 1) && App->fadetoblack->IsFading() == false)
+	if (App->fadetoblack->IsFading() == false && dead == false)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 			Right();
@@ -216,7 +223,7 @@ void j1Player::Left()
 
 void j1Player::Gravity()
 {
-	if (App->collision->CheckCollisionDown(p, speed) && jump == false && jump2 == false)
+	if (App->collision->CheckCollisionDown(p, speed) && jump == false && jump2 == false && dead == false)
 	{
 		p.y += speed.y;
 	}
@@ -350,6 +357,31 @@ void j1Player::CameraMovement()
 	}
 }
 
+void j1Player::Dead()
+{
+	if (App->collision->ActualTile(p) == DIE)
+	{
+		dead = true;
+	}
+	if (dead == true)
+	{
+		current_animation = &die;
+	}
+}
+
+void j1Player::Respawn()
+{
+	if (current_animation->current_frame == 21)
+	{
+		current_animation->Reset();
+		current_animation = &idle;
+		p.x = spawn.x;
+		p.y = spawn.y;
+		dead = false;
+		App->render->camera.x = 0;
+	}
+}
+
 iPoint j1Player::GetOffset(int x, int y)
 {
 	iPoint offset;
@@ -368,7 +400,7 @@ iPoint j1Player::GetOffset(int x, int y)
 		x = animations.child("hover").child("attributes").attribute("offset_x").as_int(0);
 		y = animations.child("hover").child("attributes").attribute("offset_y").as_int(0);
 	}
-	if (current_animation == &dead) {
+	if (current_animation == &die) {
 		x = animations.child("dead").child("attributes").attribute("offset_x").as_int(0);
 		y = animations.child("dead").child("attributes").attribute("offset_y").as_int(0);
 	}

@@ -126,7 +126,7 @@ void j1WalkingEnemy::Draw()
 
 	if ((App->scene->level == 0 || App->scene->level == 1) && App->fadetoblack->IsFading() == false)
 	{
-		if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN)
+		if (App->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN)
 		{
 			agro = !agro;
 		}

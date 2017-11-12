@@ -43,6 +43,9 @@ public:
 
 	void CameraMovement();
 
+	void Dead();
+	void Respawn();
+
 
 public: 
 	int current;
@@ -57,6 +60,7 @@ public:
 	bool flip;
 	bool jump;
 	bool jump2;
+	bool dead;
 
 	int jumps;
 	int jump_counter;
@@ -68,7 +72,7 @@ public:
 	Animation idle;
 	Animation walk;
 	Animation hover;
-	Animation dead;
+	Animation die;
 
 	enum Animations
 	{
@@ -77,6 +81,13 @@ public:
 		HOVER,
 		DEAD
 	};
+
+	enum Logic
+	{
+		DIE = 4,
+	};
+
+
 
 private:
 	pugi::xml_document	animation_file;
