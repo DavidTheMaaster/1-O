@@ -72,6 +72,7 @@ bool j1FlyingEnemy::Awake(pugi::xml_node& config)
 bool j1FlyingEnemy::Start()
 {
 	bool ret = true;
+	
 	LOG("Loading flying enemy");
 	speed.x = 2; speed.y = 2;
 	r.x = spawn.x; r.y = spawn.y+32;
@@ -95,6 +96,7 @@ bool j1FlyingEnemy::CleanUp()
 
 bool j1FlyingEnemy::Update(float dt)
 {
+	
 	bool ret = true;
 
 	canmove = CanStartMovement();
@@ -114,7 +116,6 @@ bool j1FlyingEnemy::Update(float dt)
 	}
 	
 	Draw();
-
 
 
 	return ret;

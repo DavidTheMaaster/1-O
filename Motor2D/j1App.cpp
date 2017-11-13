@@ -106,6 +106,7 @@ bool j1App::Awake()
 		app_config = config.child("app");
 		title.create(app_config.child("title").child_value());
 		organization.create(app_config.child("organization").child_value());
+		frame_rate = app_config.attribute("framerate_cap").as_uint();
 	}
 
 	if(ret == true)
@@ -144,7 +145,7 @@ bool j1App::Start()
 }
 
 // Called each loop iteration
-bool j1App::Update()
+bool j1App::Update(float dt)
 {
 	BROFILER_CATEGORY("Update", Profiler::Color::Lime);
 
@@ -223,7 +224,17 @@ void j1App::FinishUpdate()
 		avg_fps, last_frame_ms, frames_on_last_update, seconds_since_startup, frame_count);
 	App->win->SetTitle(title);
 
-	
+	int frame_rate_ms = 1000 / frame_rate;
+	ptimer.Start();
+
+	if (last_frame_ms < frame_rate_ms)
+	{
+		SDL_Delay(frame_rate_ms - last_frame_ms);
+	}
+
+	double real_ms = ptimer.ReadMs();
+	LOG("We waited for %i miliseconds and got back in %f", frame_rate_ms, real_ms);
+
 }
 
 // Call modules before each loop iteration
@@ -246,6 +257,8 @@ bool j1App::PreUpdate()
 
 		ret = item->data->PreUpdate();
 	}
+
+	PERF_PEEK(ptimer);
 
 	return ret;
 }
@@ -300,6 +313,8 @@ bool j1App::PostUpdate()
 // Called before quitting
 bool j1App::CleanUp()
 {
+	PERF_START(ptimer);
+
 	bool ret = true;
 	p2List_item<j1Module*>* item;
 	item = modules.end;

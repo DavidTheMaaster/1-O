@@ -46,20 +46,16 @@ bool j1Scene::Start()
 	if (level == level_2) {
 		App->map->Load(level_name.attribute("level_2").as_string());
 	}
+
 	App->map->SetMapLogic();
-	App->player->Start();
-	
-	if (App->map->Load("level1.tmx") == true || App->map->Load("level2.tmx") == true)
-	{
-		int w, h;
-		uchar* data = NULL;
-		if (App->map->CreateWalkabilityMap(w, h, &data))
-			App->pathfinding->SetMap(w, h, data);
 
-		RELEASE_ARRAY(data);
-	}
+	int w, h;
+	uchar* data = NULL;
+	if (App->map->CreateWalkabilityMap(w, h, &data))
+		App->pathfinding->SetMap(w, h, data);
 
-	
+	RELEASE_ARRAY(data);
+
 	return true;
 }
 
