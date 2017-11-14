@@ -78,14 +78,14 @@ bool j1Scene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN) {
 		level = level_2;
-		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 3);
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1);
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 		level = level_1;
-		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 3);
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1);
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
-		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 3);
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1);
 	}
 
 
