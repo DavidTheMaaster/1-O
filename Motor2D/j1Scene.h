@@ -46,6 +46,7 @@ private:
 	{
 		level_1,
 		level_2,
+		hidden_level,
 	};
 	pugi::xml_node level_name;
 

@@ -46,6 +46,9 @@ bool j1Scene::Start()
 	if (level == level_2) {
 		App->map->Load("level2.tmx");
 	}
+	if (level == hidden_level) {
+		App->map->Load("hidden_level.tmx");
+	}
 
 	App->map->SetMapLogic();
 	App->player->Start();
