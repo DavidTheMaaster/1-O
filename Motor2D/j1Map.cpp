@@ -98,7 +98,7 @@ void j1Map::SetMapLogic() {
 						App->walkingenemy->spawn.x = pos.x;
 						App->walkingenemy->spawn.y = pos.y;
 					}
-
+				
 
 				}
 

@@ -45,6 +45,7 @@ public:
 
 	void Dead();
 	void Respawn();
+	void CheckIfChange();
 
 
 public: 
@@ -53,7 +54,10 @@ public:
 	SDL_Texture* texture = nullptr;
 
 	iPoint speed;
+
 	iPoint spawn;
+	bool lvl2;
+	bool hidden_level;
 
 	SDL_Rect p;
 
@@ -64,7 +68,6 @@ public:
 
 	int jumps;
 	int jump_counter;
-
 
 	//Animations
 	Animation* current_animation = nullptr;

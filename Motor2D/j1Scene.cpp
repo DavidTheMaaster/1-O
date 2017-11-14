@@ -50,6 +50,8 @@ bool j1Scene::Start()
 		App->map->Load("hidden_level.tmx");
 	}
 
+	changeMap = false;
+
 	App->map->SetMapLogic();
 	App->player->Start();
 
@@ -94,6 +96,7 @@ bool j1Scene::Update(float dt)
 
 	//App->render->Blit(img, 0, 0);
 	App->map->Draw();
+	CheckChange();
 
 	return ret;
 }
@@ -117,6 +120,13 @@ bool j1Scene::CleanUp()
 	App->player->CleanUp();
 	App->collision->CleanUp();
 	return true;
+}
+
+void j1Scene::CheckChange()
+{
+	if (changeMap) {
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1);
+	}
 }
 
 bool j1Scene::Save(pugi::xml_node& data) const {
@@ -152,3 +162,5 @@ bool j1Scene::Load(pugi::xml_node& data) {
 
 	return true;
 }
+
+

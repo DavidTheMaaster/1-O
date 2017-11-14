@@ -17,10 +17,10 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_WALL][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_WALL][COLLIDER_KILL] = false;
 
-
 	matrix[COLLIDER_PLAYER][COLLIDER_WALL] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_PLAYER] = false;
 	matrix[COLLIDER_PLAYER][COLLIDER_KILL] = true;
+
 
 	matrix[COLLIDER_KILL][COLLIDER_WALL] = false;
 	matrix[COLLIDER_KILL][COLLIDER_PLAYER] = true;
@@ -97,7 +97,6 @@ void j1Collision::DebugDraw()
 		case COLLIDER_KILL: // red
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;
-
 		case COLLIDER_SPAWN:
 			App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha);
 			break;
@@ -196,6 +195,22 @@ bool j1Collision::CheckCollisionRight(SDL_Rect p, iPoint speed)
 		ret = false;
 	}
 
+	// Check dispawn and change to level 2
+	if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == LVL2)
+	{
+		App->player->lvl2 = true;
+		ret = false;
+	}
+	if (App->map->logic_layer->data->Get(vec2.x, vec2.y) == LVL2)
+	{
+		App->player->lvl2 = true;
+		ret = false;
+	}
+	if (App->map->logic_layer->data->Get(vec3.x, vec3.y) == LVL2)
+	{
+		App->player->lvl2 = true;
+		ret = false;
+	}
 
 	return ret;
 }
@@ -287,20 +302,31 @@ bool j1Collision::CheckCollisionDown(SDL_Rect p, iPoint speed)
 
 	vec1 = App->map->WorldToMap(vec1.x, vec1.y);
 	vec2 = App->map->WorldToMap(vec2.x, vec2.y);
-
-
+	
 
 	if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == WALL)
 	{
-		ret = false;
-	
+		ret = false;	
 	}
-
 	if (App->map->logic_layer->data->Get(vec2.x, vec2.y) == WALL)
 	{
 		ret = false;
-	
 	}
+
+
+	// Check dispawn and change to hidden level
+	if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == HIDDEN_LEVEL)
+	{
+		App->player->hidden_level = true;
+		ret = false;
+	}
+	if (App->map->logic_layer->data->Get(vec2.x, vec2.y) == HIDDEN_LEVEL)
+	{
+		App->player->hidden_level = true;
+		ret = false;
+	}
+
+
 
 	return ret;
 }

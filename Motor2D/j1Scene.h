@@ -36,18 +36,21 @@ public:
 	bool Save(pugi::xml_node&) const;
 	bool Load(pugi::xml_node&);
 
+	void CheckChange();
+
 public:
 	int level;
 	bool justloaded = false;
+	bool changeMap;
 
-private:
-	iPoint mouse;
 	enum Levels
 	{
 		level_1,
 		level_2,
 		hidden_level,
 	};
+private:
+	iPoint mouse;
 	pugi::xml_node level_name;
 
 };

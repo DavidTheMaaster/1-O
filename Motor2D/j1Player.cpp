@@ -103,6 +103,8 @@ bool j1Player::Start()
 	current_animation = &idle;
 	jump_counter = 0;
 	flip = false;
+	lvl2 = false;
+	hidden_level = false;
 	jumps = 2;
 	texture = App->tex->Load(animations.child("texture").child("folder").attribute("file").as_string());
 	return ret;
@@ -129,6 +131,7 @@ bool j1Player::Update(float dt)
 	Gravity();
 	Dead();
 	Draw();
+	CheckIfChange();
 
 	if (dead == true) 
 	{
@@ -382,6 +385,20 @@ void j1Player::Respawn()
 		App->render->camera.x = 0;
 	}
 }
+
+void j1Player::CheckIfChange() {
+	
+	if (lvl2) {
+		App->scene->level = App->scene->level_2;
+		App->scene->changeMap = true;
+	}
+
+	if (hidden_level) {
+		App->scene->level = App->scene->hidden_level;
+		App->scene->changeMap = true;
+	}
+}
+
 
 iPoint j1Player::GetOffset(int x, int y)
 {

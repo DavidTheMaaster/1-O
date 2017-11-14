@@ -175,7 +175,9 @@ private:
 		SPAWN_P = 14,
 		WALL = 19,
 		SPAWN_FE = 26,
-		SPAWN_WE = 27
+		SPAWN_WE = 27,
+		LEVEL_2 = 9,
+		HIDDEN_LEVEL = 24,
 		
 	};
 

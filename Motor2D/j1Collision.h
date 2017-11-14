@@ -70,7 +70,9 @@ private:
 	{
 		NONE = 0,
 		WALL = 19,
-		DEAD = 4
+		DEAD = 4,
+		LVL2 = 9,
+		HIDDEN_LEVEL = 24,
 	};
 
 
