@@ -112,7 +112,8 @@ bool j1Player::CleanUp()
 {
 	bool ret = true;
 	LOG("Unloading player");
-
+	load_anim = nullptr;
+	current_animation = nullptr;
 	App->tex->UnLoad(texture);
 	return ret;
 }

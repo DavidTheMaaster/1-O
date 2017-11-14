@@ -108,6 +108,11 @@ bool j1WalkingEnemy::Update(float dt)
 		canmove = false;
 	}
 
+	if (r.y > App->win->height) {
+		dead = true;
+		this->CleanUp();
+	}
+
 
 	if (!dead) {
 		Movement();
