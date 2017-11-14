@@ -27,7 +27,10 @@
   </map>
 
   <scene>
-    <levels level_1 = "level1.tmx" level_2 = "level2.tmx"/>
+    <levels>
+      <level_1  id = "level1.tmx" />
+      <level_2  id = "level2.tmx"/>
+    </levels>
   </scene> 
     
   <player>

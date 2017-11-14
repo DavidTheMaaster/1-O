@@ -40,14 +40,15 @@ bool j1Scene::Start()
 {
 
 	if (level == level_1) {
-		App->map->Load(level_name.attribute("level_1").as_string());
+		App->map->Load("level1.tmx");
 		App->audio->PlayMusic("audio/music/all_of_us.ogg");
 	}
 	if (level == level_2) {
-		App->map->Load(level_name.attribute("level_2").as_string());
+		App->map->Load("level2.tmx");
 	}
 
 	App->map->SetMapLogic();
+	App->player->Start();
 
 	int w, h;
 	uchar* data = NULL;

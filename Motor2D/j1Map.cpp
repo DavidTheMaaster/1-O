@@ -340,10 +340,10 @@ for (layer = map_file.child("map").child("layer"); layer && ret; layer = layer.n
 {
 	MapLayer* lay = new MapLayer();
 
-	ret = LoadLayer(layer, lay);
-
 	if (ret == true)
-		data.layers.add(lay);
+		ret = LoadLayer(layer, lay);
+
+	data.layers.add(lay);
 }
 
 if (ret == true)
