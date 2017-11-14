@@ -105,6 +105,8 @@ bool j1Player::Start()
 	flip = false;
 	lvl2 = false;
 	hidden_level = false;
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
 	jumps = 2;
 	texture = App->tex->Load(animations.child("texture").child("folder").attribute("file").as_string());
 	return ret;
