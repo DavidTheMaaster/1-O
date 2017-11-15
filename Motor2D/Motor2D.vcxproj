@@ -78,6 +78,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="j1Entities.cpp" />
     <ClCompile Include="j1FlyingEnemy.cpp" />
     <ClCompile Include="j1Collision.cpp" />
     <ClCompile Include="j1FadeToBlack.cpp" />
@@ -97,9 +99,14 @@
     <ClCompile Include="j1Textures.cpp" />
     <ClCompile Include="j1Window.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
+    <ClCompile Include="Flying_Enemy.cpp" />
+    <ClCompile Include="Walking_Enemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="Flying_Enemy.h" />
+    <ClInclude Include="j1Entities.h" />
     <ClInclude Include="j1FlyingEnemy.h" />
     <ClInclude Include="j1Collision.h" />
     <ClInclude Include="j1FadeToBlack.h" />
@@ -125,6 +132,7 @@
     <ClInclude Include="p2SString.h" />
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
+    <ClInclude Include="Walking_Enemy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

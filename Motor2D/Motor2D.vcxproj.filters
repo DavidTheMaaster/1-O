@@ -58,6 +58,18 @@
     <ClCompile Include="j1WalkingEnemy.cpp">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="j1Entities.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Desenvolupament  ========\Modules\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Flying_Enemy.cpp">
+      <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Walking_Enemy.cpp">
+      <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -138,6 +150,18 @@
     <ClInclude Include="j1WalkingEnemy.h">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="j1Entities.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Desenvolupament  ========\Modules\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Flying_Enemy.h">
+      <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Walking_Enemy.h">
+      <Filter>Desenvolupament  ========\Modules\Entities\Enemies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">
@@ -157,6 +181,12 @@
     </Filter>
     <Filter Include="Desenvolupament  ========\Tools\PuguiXML">
       <UniqueIdentifier>{7cb78d67-17cc-45eb-af97-e2106becce7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\Modules\Entities">
+      <UniqueIdentifier>{2daa2c2b-a63b-4458-9b37-84dad7fcdfbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\Modules\Entities\Enemies">
+      <UniqueIdentifier>{508bdec5-92b5-49da-953b-83aae7fe6380}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

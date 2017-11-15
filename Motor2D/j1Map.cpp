@@ -8,6 +8,7 @@
 #include "j1Player.h"
 #include "j1FlyingEnemy.h"
 #include "j1WalkingEnemy.h"
+#include "j1Entities.h"
 
 
 #include <math.h>
@@ -89,14 +90,10 @@ void j1Map::SetMapLogic() {
 						App->player->spawn.y = pos.y+4;
 					}
 					if (gid == SPAWN_FE) {
-						App->collision->AddCollider(col, COLLIDER_SPAWN);
- 						App->flyingenemy->spawn.x = pos.x;
-						App->flyingenemy->spawn.y = pos.y;
+						App->entities->AddEntity(ENEMY_FLY, pos.x, pos.y);
 					}
 					if (gid == SPAWN_WE) {
-						App->collision->AddCollider(col, COLLIDER_SPAWN);
-						App->walkingenemy->spawn.x = pos.x;
-						App->walkingenemy->spawn.y = pos.y;
+						App->entities->AddEntity(ENEMY_WALK, pos.x, pos.y);
 					}
 				
 

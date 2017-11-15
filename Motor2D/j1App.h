@@ -14,6 +14,7 @@ class j1Render;
 class j1Textures;
 class j1Audio;
 class j1Player;
+class j1Entities;
 class j1FlyingEnemy;
 class j1WalkingEnemy;
 class j1Scene;
@@ -89,6 +90,7 @@ public:
 	j1Textures*			tex;
 	j1Audio*			audio;
 	j1Player*			player;
+	j1Entities*			entities;
 	j1FlyingEnemy*		flyingenemy;
 	j1WalkingEnemy*		walkingenemy;
 	j1Scene*			scene;
