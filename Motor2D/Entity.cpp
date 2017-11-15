@@ -27,11 +27,11 @@ void Entity::Draw(SDL_Texture* sprites)
 
 
 	if (flying_enemy_animation != nullptr) {
-		App->render->Blit(sprites, position.x, position.y, &(flying_enemy_animation->GetCurrentFrame()));
+		App->render->Blit(sprites, r.x, r.y, &(flying_enemy_animation->GetCurrentFrame()));
 	}
 
 	if (walking_enemy_animation != nullptr) {
-		App->render->Blit(sprites, position.x, position.y, &(walking_enemy_animation->GetCurrentFrame()));
+		App->render->Blit(sprites, r.x, r.y, &(walking_enemy_animation->GetCurrentFrame()));
 	}
 
 
