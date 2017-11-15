@@ -180,19 +180,10 @@ bool j1Collision::CheckCollisionRight(SDL_Rect p, iPoint speed)
 	vec3 = App->map->WorldToMap(vec3.x, vec3.y);
 
 
-	if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == WALL)
+	if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == WALL || App->map->logic_layer->data->Get(vec2.x, vec2.y) == WALL || App->map->logic_layer->data->Get(vec3.x, vec3.y) == WALL)
 	{
 		ret = false;
-	}
-
-	if (App->map->logic_layer->data->Get(vec2.x, vec2.y) == WALL)
-	{
-		ret = false;
-	}
-
-	if (App->map->logic_layer->data->Get(vec3.x, vec3.y) == WALL)
-	{
-		ret = false;
+		GetPixels(p, right);
 	}
 
 	// Check dispawn and change to level 2
@@ -237,21 +228,11 @@ bool j1Collision::CheckCollisionLeft(SDL_Rect p, iPoint speed)
 	vec3 = App->map->WorldToMap(vec3.x, vec3.y);
 
 
-	if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == WALL)
+	if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == WALL || App->map->logic_layer->data->Get(vec2.x, vec2.y) == WALL || App->map->logic_layer->data->Get(vec3.x, vec3.y) == WALL)
 	{
 		ret = false;
+		GetPixels(p, left);
 	}
-
-	if (App->map->logic_layer->data->Get(vec2.x, vec2.y) == WALL)
-	{
-		ret = false;
-	}
-
-	if (App->map->logic_layer->data->Get(vec3.x, vec3.y) == WALL)
-	{
-		ret = false;
-	}
-
 
 	return ret;
 }
@@ -304,14 +285,12 @@ bool j1Collision::CheckCollisionDown(SDL_Rect p, iPoint speed)
 	vec2 = App->map->WorldToMap(vec2.x, vec2.y);
 	
 
-	if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == WALL)
+	if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == WALL || App->map->logic_layer->data->Get(vec2.x, vec2.y) == WALL)
 	{
 		ret = false;	
+		GetPixels(p,down);
 	}
-	if (App->map->logic_layer->data->Get(vec2.x, vec2.y) == WALL)
-	{
-		ret = false;
-	}
+
 
 
 	// Check dispawn and change to hidden level
@@ -360,4 +339,86 @@ int j1Collision::ActualTile(SDL_Rect p)
 	}
 
 	return ret;
+}
+
+void j1Collision::GetPixels(SDL_Rect p, int state)
+{
+	iPoint vec1;
+	iPoint vec2;
+	iPoint vec3;
+
+	int i = 0;
+	int j = 1;
+
+	if (state == right) {
+		while (j == 1)
+		{
+			vec1.x = p.x + p.w + i;
+			vec1.y = p.y;
+
+			vec2.x = p.x + p.w + i;
+			vec2.y = p.y + p.h / 2;
+
+			vec3.x = p.x + p.w + i;
+			vec3.y = p.y + p.h;
+
+			vec1 = App->map->WorldToMap(vec1.x, vec1.y);
+			vec2 = App->map->WorldToMap(vec2.x, vec2.y);
+			vec3 = App->map->WorldToMap(vec3.x, vec3.y);
+			
+			if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == WALL || App->map->logic_layer->data->Get(vec2.x, vec2.y) == WALL || App->map->logic_layer->data->Get(vec3.x, vec3.y) == WALL)
+			{
+				j = 0;
+				App->player->pixels = i - 1;
+			}
+			i++;
+		}
+	}
+	if (state == left) {
+		while (j == 1)
+		{
+			vec1.x = p.x - i;
+			vec1.y = p.y;
+
+			vec2.x = p.x - i;
+			vec2.y = p.y + p.h / 2;
+
+			vec3.x = p.x - i;
+			vec3.y = p.y + p.h;
+
+			vec1 = App->map->WorldToMap(vec1.x, vec1.y);
+			vec2 = App->map->WorldToMap(vec2.x, vec2.y);
+			vec3 = App->map->WorldToMap(vec3.x, vec3.y);
+
+			if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == WALL)
+			{
+				j = 0;
+				App->player->pixels = i - 1;
+			}
+			i++;
+		}
+	}
+	if (state == down)
+	{
+		while (j == 1)
+		{
+			vec1.x = p.x;
+			vec1.y = p.y + p.h + i;
+
+			vec2.x = p.x + p.w;
+			vec2.y = p.y + p.h + i;
+
+			vec1 = App->map->WorldToMap(vec1.x, vec1.y);
+			vec2 = App->map->WorldToMap(vec2.x, vec2.y);
+
+
+			if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == WALL || App->map->logic_layer->data->Get(vec2.x, vec2.y) == WALL)
+			{
+				j = 0;
+				App->player->pixels = i - 1;
+			}
+			i++;
+		}
+	}
+	
 }

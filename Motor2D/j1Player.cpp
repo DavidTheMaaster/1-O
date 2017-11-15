@@ -97,9 +97,8 @@ bool j1Player::Start()
 {
 	bool ret = true;
 	LOG("Loading player");
-	speed.x = 4; speed.y = 8;
 	p.x = spawn.x; p.y = spawn.y;
-	p.w = 16; p.h = 56;
+	p.w = 16; p.h = 59;
 	current_animation = &idle;
 	jump_counter = 0;
 	flip = false;
@@ -109,6 +108,7 @@ bool j1Player::Start()
 	App->render->camera.y = 0;
 	jumps = 2;
 	texture = App->tex->Load(animations.child("texture").child("folder").attribute("file").as_string());
+	player_hitbox = App->collision->AddCollider(p, COLLIDER_PLAYER, this);
 	return ret;
 }
 
@@ -119,6 +119,7 @@ bool j1Player::CleanUp()
 	load_anim = nullptr;
 	current_animation = nullptr;
 	App->tex->UnLoad(texture);
+	App->collision->EraseCollider(player_hitbox);
 	return ret;
 }
 
@@ -126,6 +127,12 @@ bool j1Player::Update(float dt)
 {
 	bool ret = true;
 	
+	this->dt = dt;
+
+	speed.x = floor(250 * dt);
+	speed.y = 7;
+
+
 	current_animation = &idle;
 
 	Movement();
@@ -151,6 +158,7 @@ bool j1Player::Update(float dt)
 		dead = false;
 	}
 
+	player_hitbox->SetPos(p.x, p.y);
 
 	return ret;
 }
@@ -190,7 +198,7 @@ void j1Player::Movement()
 			Hover();
 		}
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP) {
-			speed.y = 8;
+			speed.y = 7;
 		}
 		if (jump == true)
 		{
@@ -212,6 +220,11 @@ void j1Player::Right()
 		flip = false;
 		current_animation = &walk;
 	}
+	else 
+	{
+		MovePixels(right);
+		pixels = 0;
+	}
 }
 
 
@@ -222,6 +235,11 @@ void j1Player::Left()
 		p.x -= speed.x;
 		flip = true;
 		current_animation = &walk;
+	}
+	else
+	{
+		MovePixels(left);
+		pixels = 0;
 	}
 }
 
@@ -241,14 +259,15 @@ void j1Player::Gravity()
 	if (App->collision->CheckCollisionDown(p, speed) == false)
 	{
 		jumps = 2;
+		MovePixels(down);
+		pixels = 0;
 	}
 }
 
 void j1Player::Jump()
 {
 	if (App->collision->CheckCollisionUp(p, speed) && jump2 == false) {
-		speed.x = 6;
-		speed.y = 8;
+		speed.y = 7;
 		jumps = 1;
 		if (jump_counter < 12)
 		{
@@ -263,14 +282,12 @@ void j1Player::Jump()
 		{
 			jump_counter = 0;
 			jump = false;
-			speed.x = 4;
 		}
 	}
 	else 
 	{
 		jump_counter = 0;
 		jump = false;
-		speed.x = 4;
 		jump = false;
 	}
 }
@@ -312,7 +329,6 @@ void j1Player::DoubleJump()
 		{
 			jump_counter = 0;
 			jump2 = false;
-			speed.x = 4;
 		}
 	}
 	else 
@@ -320,7 +336,6 @@ void j1Player::DoubleJump()
 		jump2 = false;
 		jump_counter = 0;
 		jump2 = false;
-		speed.x = 4;
 	}
 	
 }
@@ -341,11 +356,11 @@ bool j1Player::CanDoubleJump()
 
 void j1Player::Hover()
 {
-	speed.y = 4;
+	speed.y = floor(225*dt);
 
 	if (App->collision->CheckCollisionDown(p, speed)==false)
 	{
-		speed.y = 8;
+		speed.y = floor(450 * dt);
 	}
 	else
 	{
@@ -398,6 +413,22 @@ void j1Player::CheckIfChange() {
 	if (hidden_level) {
 		App->scene->level = App->scene->hidden_level;
 		App->scene->changeMap = true;
+	}
+}
+
+void j1Player::MovePixels(uint state)
+{
+	if (state == right)
+	{
+		p.x += pixels;
+	}
+	if (state == left)
+	{
+		p.x -= pixels;
+	}
+	if (state == down)
+	{
+		p.y += pixels;
 	}
 }
 

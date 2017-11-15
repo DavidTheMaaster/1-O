@@ -59,12 +59,15 @@ public:
 	bool CheckCollisionUp(SDL_Rect p, iPoint speed);
 	bool CheckCollisionDown(SDL_Rect p, iPoint speed);
 	int ActualTile(SDL_Rect p);
+	void GetPixels(SDL_Rect p, int state);
 	
 private:
 
 	Collider* colliders[MAX_COLLIDERS];
 	bool matrix[COLLIDER_MAX][COLLIDER_MAX];
 	bool debug = false;
+
+	SDL_Rect aux;
 
 	enum Logics
 	{
@@ -73,6 +76,14 @@ private:
 		DEAD = 4,
 		LVL2 = 9,
 		HIDDEN_LEVEL = 24,
+	};
+
+	enum State
+	{
+		right,
+		left,
+		down,
+		up
 	};
 
 

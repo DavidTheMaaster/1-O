@@ -47,6 +47,8 @@ public:
 	void Respawn();
 	void CheckIfChange();
 
+	void MovePixels(uint state);
+
 
 public: 
 	int current;
@@ -54,6 +56,11 @@ public:
 	SDL_Texture* texture = nullptr;
 
 	iPoint speed;
+	float dt = 0;
+
+	Collider* player_hitbox;
+
+	int pixels = 0;
 
 	iPoint spawn;
 	bool lvl2;
@@ -83,6 +90,14 @@ public:
 		WALK,
 		HOVER,
 		DEAD
+	};
+
+	enum State
+	{
+		right,
+		left,
+		down,
+		up
 	};
 
 	enum Logic
