@@ -20,7 +20,6 @@ public:
 	void Movement();
 	bool CanStartMovement();
 	iPoint GetOffset(int x, int y);
-	bool GetFlip();
 
 	iPoint spawn;
 

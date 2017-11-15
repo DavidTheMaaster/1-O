@@ -110,16 +110,19 @@ void Flying_Enemy::Movement()
 				{
 					r.x += speed.x;
 					omw = true;
+					flip = true;
 				}
 				else if (enemy_position.x >= fly_path[path_index].x && r.x > nextTile.x)
 				{
 					r.x -= speed.x;
 					omw = true;
+					flip = false;
 				}
 				else if (enemy_position.y >= fly_path[path_index].y && r.y > nextTile.y)
 				{
 					r.y -= speed.y;
 					omw = true;
+
 				}
 				else if (enemy_position.y <= fly_path[path_index].y && r.y < nextTile.y)
 				{
@@ -181,18 +184,4 @@ iPoint Flying_Enemy::GetOffset(int x, int y)
 	offset.y = y;
 
 	return iPoint(offset);
-}
-
-bool Flying_Enemy::GetFlip()
-{
-	bool ret = true;
-	if (App->player->p.x - r.x > 0)
-	{
-		ret = true;
-	}
-	else
-	{
-		ret = false;
-	}
-	return ret;
 }
