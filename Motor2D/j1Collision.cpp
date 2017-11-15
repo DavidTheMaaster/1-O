@@ -390,7 +390,7 @@ void j1Collision::GetPixels(SDL_Rect p, int state)
 			vec2 = App->map->WorldToMap(vec2.x, vec2.y);
 			vec3 = App->map->WorldToMap(vec3.x, vec3.y);
 
-			if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == WALL)
+			if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == WALL|| App->map->logic_layer->data->Get(vec2.x, vec2.y) == WALL|| App->map->logic_layer->data->Get(vec3.x, vec3.y) == WALL)
 			{
 				j = 0;
 				App->player->pixels = i - 1;
