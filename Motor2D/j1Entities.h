@@ -2,6 +2,7 @@
 #define __j1Entities_H__
 
 #include "j1Module.h"
+#include "PugiXml\src\pugixml.hpp"
 #include "p2DynArray.h"
 #include "p2Point.h"
 #define MAX_ENTITIES 100
