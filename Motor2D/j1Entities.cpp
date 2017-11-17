@@ -5,6 +5,7 @@
 #include "j1Textures.h"
 #include "j1Audio.h"
 #include "j1Map.h"
+#include "Player.h"
 #include "Flying_Enemy.h"
 #include "Walking_Enemy.h"
 
@@ -166,6 +167,9 @@ void j1Entities::SpawnEntity(const EntityInfo& info)
 		{
 
 		case ENTITY_TYPES::NO_TYPE:
+			break;
+		case ENTITY_TYPES::PLAYER:
+			entities[i] = new Player(info.x, info.y);
 			break;
 		case ENTITY_TYPES::ENEMY_FLY:
 			entities[i] = new Flying_Enemy(info.x, info.y);

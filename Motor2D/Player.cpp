@@ -136,7 +136,7 @@ void Player::Update(float dt)
 		dead = false;
 	}
 
-	player_hitbox->SetPos(r.x, r.y);
+	collider->SetPos(r.x, r.y);
 
 	player_pos.x = r.x; player_pos.y = r.y;
 

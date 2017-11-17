@@ -5,9 +5,6 @@
 #include "j1Textures.h"
 #include "j1Map.h"
 #include "j1Collision.h"
-#include "j1Player.h"
-#include "j1FlyingEnemy.h"
-#include "j1WalkingEnemy.h"
 #include "j1Entities.h"
 
 
@@ -86,8 +83,9 @@ void j1Map::SetMapLogic() {
 					}
 					if (gid == SPAWN_P) {
 						App->collision->AddCollider(col, COLLIDER_SPAWN);
-						App->player->spawn.x = pos.x;
-						App->player->spawn.y = pos.y+4;
+					//	App->player->spawn.x = pos.x;
+					//	App->player->spawn.y = pos.y+4;
+						App->entities->AddEntity(PLAYER, pos.x, pos.y);
 					}
 					if (gid == SPAWN_FE) {
 						App->entities->AddEntity(ENEMY_FLY, pos.x, pos.y);
