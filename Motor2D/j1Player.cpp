@@ -130,7 +130,7 @@ bool j1Player::Update(float dt)
 	this->dt = dt;
 
 	speed.x = floor(250 * dt);
-	speed.y = 7;
+	speed.y = floor(450 * dt);
 
 
 	current_animation = &idle;
@@ -196,9 +196,6 @@ void j1Player::Movement()
 
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) {
 			Hover();
-		}
-		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP) {
-			speed.y = 7;
 		}
 		if (jump == true)
 		{
@@ -267,7 +264,7 @@ void j1Player::Gravity()
 void j1Player::Jump()
 {
 	if (App->collision->CheckCollisionUp(p, speed) && jump2 == false) {
-		speed.y = 7;
+		floor(450 * dt);
 		jumps = 1;
 		if (jump_counter < 12)
 		{
@@ -356,13 +353,9 @@ bool j1Player::CanDoubleJump()
 
 void j1Player::Hover()
 {
-	speed.y = floor(225*dt);
+	speed.y = floor(275*dt);
 
-	if (App->collision->CheckCollisionDown(p, speed)==false)
-	{
-		speed.y = floor(450 * dt);
-	}
-	else
+	if (App->collision->CheckCollisionDown(p, speed))
 	{
 		current_animation = &hover;
 	}
