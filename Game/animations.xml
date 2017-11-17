@@ -16,7 +16,7 @@
       <frame id = "12" x = "840" y = "0" w = "70" h = "80"/>
       <frame id = "13" x = "910" y = "0" w = "70" h = "80"/>
       <frame id = "14" x = "0" y = "80" w = "70" h = "80"/>
-      <attributes id = "0" speed = "0.5" loop = "true" offset_x = "25" offset_y = "20" size = "14"/>
+      <attributes id = "0" speed = "26" loop = "true" offset_x = "25" offset_y = "20" size = "14"/>
     </idle>
     <walk>
       <frame id = "0" x = "350" y = "80" w = "70" h = "80"/>
@@ -50,14 +50,14 @@
       <frame id = "28" x = "350" y = "240" w = "70" h = "80"/>
       <frame id = "29" x = "420" y = "240" w = "70" h = "80"/>
       <frame id = "30" x = "490" y = "240" w = "70" h = "80"/>
-      <attributes id = "1" speed = "0.5" loop = "true" offset_x = "25" offset_y = "20" size = "30"/>
+      <attributes id = "1" speed = "26" loop = "true" offset_x = "25" offset_y = "20" size = "30"/>
     </walk>
     <hover>
       <frame id = "0" x = "70" y = "80" w = "70" h = "80"/>
       <frame id = "1" x = "140" y = "80" w = "70" h = "80"/>
       <frame id = "2" x = "210" y = "80" w = "70" h = "80"/>
       <frame id = "3" x = "280" y = "80" w = "70" h = "80"/>
-      <attributes id = "2" speed = "0.1" loop = "true" offset_x = "25" offset_y = "20" size = "3"/>
+      <attributes id = "2" speed = "26" loop = "true" offset_x = "25" offset_y = "20" size = "3"/>
     </hover>
     <dead>
       <frame id = "0" x = "140" y = "400" w = "70" h = "80"/>
@@ -83,7 +83,7 @@
       <frame id = "20" x = "560" y = "480" w = "70" h = "80"/>
       <frame id = "21" x = "560" y = "480" w = "0" h = "0"/>
       <frame id = "22" x = "560" y = "480" w = "0" h = "0"/>
-      <attributes id = "3" speed = "0.25" loop = "false" offset_x = "25" offset_y = "20" size = "22"/>
+      <attributes id = "3" speed = "13" loop = "false" offset_x = "25" offset_y = "20" size = "22"/>
     </dead>
     <texture>
       <folder file = "textures/animations.png" />
@@ -97,7 +97,7 @@
       <frame id = "3" x = "127" y = "337" w = "23" h = "40"/>
       <frame id = "4" x = "190" y = "337" w = "23" h = "40"/>
       <frame id = "5" x = "253" y = "337" w = "23" h = "40"/>
-      <attributes id = "0" speed = "0.15" loop = "true" offset_x = "2" offset_y = "3" size = "5" radius = "8" big_radius = "10"/>
+      <attributes id = "0" speed = "8" loop = "true" offset_x = "2" offset_y = "3" size = "5" radius = "8" big_radius = "10"/>
     </flying_enemy>
     <walking_enemy>
       <frame id = "0" x = "1" y = "1" w = "63" h = "84"/>
@@ -132,7 +132,7 @@
       <frame id = "29" x = "316" y = "253" w = "63" h = "84"/>
       <frame id = "30" x = "379" y = "253" w = "63" h = "84"/>
       <frame id = "31" x = "442" y = "253" w = "63" h = "84"/>
-      <attributes id = "1" speed = "0.5" loop = "true" offset_x = "2" offset_y = "3" size = "30" radius = "8" big_radius = "10"/>
+      <attributes id = "1" speed = "27" loop = "true" offset_x = "2" offset_y = "3" size = "30" radius = "8" big_radius = "10"/>
     </walking_enemy>
     <texture>
       <folder file = "textures/enemies.png" />

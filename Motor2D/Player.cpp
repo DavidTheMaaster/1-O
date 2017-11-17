@@ -71,6 +71,7 @@ Player::Player(int x, int y) : Entity (x, y)
 			i = rect.attribute("id").as_int();
 			load_anim->loop = attributes.attribute("loop").as_bool();
 			load_anim->speed = attributes.attribute("speed").as_float();
+			anim_speed[i] = load_anim->speed;
 
 		}
 
@@ -108,6 +109,7 @@ void Player::Update(float dt)
 {
 	this->dt = dt;
 	GetOffset();
+	UpdateSpeed();
 
 	speed.x = floor(250 * dt);
 	speed.y = floor(450 * dt);
@@ -411,5 +413,14 @@ void Player::GetOffset()
 		offset.x = animations.child("dead").child("attributes").attribute("offset_x").as_int(0);
 		offset.y = animations.child("dead").child("attributes").attribute("offset_y").as_int(0);
 	}
+
+}
+
+void Player::UpdateSpeed()
+{
+	idle.speed = anim_speed[0] * dt;
+	walk.speed = anim_speed[1] * dt;
+	hover.speed = anim_speed[2] * dt;
+	die.speed = anim_speed[3] * dt;
 
 }
