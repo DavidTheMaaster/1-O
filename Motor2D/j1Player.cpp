@@ -220,7 +220,7 @@ void j1Player::Right()
 	else 
 	{
 		MovePixels(right);
-		pixels = 0;
+		App->collision->pixels = 0;
 	}
 }
 
@@ -236,7 +236,7 @@ void j1Player::Left()
 	else
 	{
 		MovePixels(left);
-		pixels = 0;
+		App->collision->pixels = 0;
 	}
 }
 
@@ -257,7 +257,7 @@ void j1Player::Gravity()
 	{
 		jumps = 2;
 		MovePixels(down);
-		pixels = 0;
+		App->collision->pixels = 0;
 	}
 }
 
@@ -413,15 +413,15 @@ void j1Player::MovePixels(uint state)
 {
 	if (state == right)
 	{
-		p.x += pixels;
+		p.x += App->collision->pixels;
 	}
 	if (state == left)
 	{
-		p.x -= pixels;
+		p.x -= App->collision->pixels;
 	}
 	if (state == down)
 	{
-		p.y += pixels;
+		p.y += App->collision->pixels;
 	}
 }
 

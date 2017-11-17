@@ -17,7 +17,7 @@ public:
 	Player(int x, int y);
 
 	void Update(float dt);
-	iPoint GetOffset(int x, int y);
+	void GetOffset();
 
 	void Movement();
 	void Right();

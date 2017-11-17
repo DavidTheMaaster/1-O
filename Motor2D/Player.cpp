@@ -107,6 +107,7 @@ Player::Player(int x, int y) : Entity (x, y)
 void Player::Update(float dt)
 {
 	this->dt = dt;
+	GetOffset();
 
 	speed.x = floor(250 * dt);
 	speed.y = floor(450 * dt);
@@ -387,4 +388,28 @@ void Player::MovePixels(uint state)
 	{
 		r.y += App->collision->pixels;
 	}
+}
+
+
+void Player::GetOffset()
+{
+	if (current_animation == &idle) {
+		offset.x = animations.child("idle").child("attributes").attribute("offset_x").as_int(0);
+		offset.y = animations.child("idle").child("attributes").attribute("offset_y").as_int(0);
+	}
+
+	if (current_animation == &walk) {
+		offset.x = animations.child("walk").child("attributes").attribute("offset_x").as_int(0);
+		offset.y = animations.child("walk").child("attributes").attribute("offset_y").as_int(0);
+	}
+
+	if (current_animation == &hover) {
+		offset.x = animations.child("hover").child("attributes").attribute("offset_x").as_int(0);
+		offset.y = animations.child("hover").child("attributes").attribute("offset_y").as_int(0);
+	}
+	if (current_animation == &die) {
+		offset.x = animations.child("dead").child("attributes").attribute("offset_x").as_int(0);
+		offset.y = animations.child("dead").child("attributes").attribute("offset_y").as_int(0);
+	}
+
 }

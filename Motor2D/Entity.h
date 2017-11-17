@@ -26,6 +26,8 @@ public:
 	bool death = false;
 	int life;
 	iPoint speed;
+	iPoint offset;
+
 	SDL_Rect r;
 	bool flip;
 

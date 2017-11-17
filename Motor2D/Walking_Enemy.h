@@ -19,7 +19,7 @@ public:
 	void Update(float dt);
 	void Movement();
 	bool CanStartMovement();
-	iPoint GetOffset(int x, int y);
+	void GetOffset();
 
 	iPoint spawn;
 

@@ -75,6 +75,7 @@ Flying_Enemy::Flying_Enemy(int x, int y) : Entity(x, y)
 void Flying_Enemy::Update(float dt)
 {
 	canmove = CanStartMovement();
+	GetOffset();
 
 	speed.x = floor(125 * dt);
 	speed.y = floor(125 * dt);
@@ -176,16 +177,8 @@ bool Flying_Enemy::CanStartMovement()
 	return ret;
 }
 
-iPoint Flying_Enemy::GetOffset(int x, int y)
+void Flying_Enemy::GetOffset()
 {
-	iPoint offset;
-
-
-	x = animations.child("flying_enemy").child("attributes").attribute("offset_x").as_int(0);
-	y = animations.child("flying_enemy").child("attributes").attribute("offset_y").as_int(0);
-
-	offset.x = x;
-	offset.y = y;
-
-	return iPoint(offset);
+	offset.x = animations.child("flying_enemy").child("attributes").attribute("offset_x").as_int(0);
+	offset.y = animations.child("flying_enemy").child("attributes").attribute("offset_y").as_int(0);
 }
