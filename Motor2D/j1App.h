@@ -22,6 +22,7 @@ class j1Map;
 class j1Collision;
 class j1PathFinding;
 class j1FadeToBlack;
+class j1Particles;
 class j1App
 {
 public:
@@ -93,6 +94,7 @@ public:
 	j1Entities*			entities;
 	j1FlyingEnemy*		flyingenemy;
 	j1WalkingEnemy*		walkingenemy;
+	j1Particles*		particles;
 	j1Scene*			scene;
 	j1Map*				map;
 	j1Collision*		collision;
