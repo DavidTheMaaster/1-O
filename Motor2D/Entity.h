@@ -15,9 +15,12 @@ class Entity
 protected:
 	Animation* flying_enemy_animation = nullptr;
 	Animation* walking_enemy_animation = nullptr;
+	Animation* player_animation = nullptr;
 
 public:
 	fPoint position;
+
+	iPoint player_pos;
 
 	float hitpoints;
 	bool death = false;
@@ -45,6 +48,7 @@ protected:
 	pugi::xml_document	animation_file;
 	pugi::xml_node animations;
 	pugi::xml_node attributes;
+
 	pugi::xml_node rect;
 };
 

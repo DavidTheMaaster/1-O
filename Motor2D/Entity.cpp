@@ -34,6 +34,10 @@ void Entity::Draw(SDL_Texture* sprites)
 		App->render->Blit(sprites, r.x, r.y, &(walking_enemy_animation->GetCurrentFrame()), flip);
 	}
 
+	if (player_animation != nullptr) {
+		App->render->Blit(sprites, r.x, r.y, &(player_animation->GetCurrentFrame()), flip);
+	}
+
 
 }
 

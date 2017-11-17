@@ -5,6 +5,7 @@
 #include "j1Textures.h"
 #include "j1Audio.h"
 #include "j1Render.h"
+#include "j1Entities.h"
 #include "j1Player.h"
 #include "j1Collision.h"
 #include "j1PathFinding.h"
@@ -54,6 +55,7 @@ bool j1Scene::Start()
 
 	App->map->SetMapLogic();
 	App->player->Start();
+	App->entities->Start();
 
 	int w, h;
 	uchar* data = NULL;
@@ -120,6 +122,7 @@ bool j1Scene::CleanUp()
 	App->map->DeleteMap();
 	App->player->CleanUp();
 	App->collision->CleanUp();
+	App->entities->CleanUp();
 	return true;
 }
 
