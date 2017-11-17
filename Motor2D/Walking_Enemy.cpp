@@ -82,7 +82,7 @@ void Walking_Enemy::Update(float dt)
 	if (canmove)
 	{
 		enemy_position = App->map->WorldToMap(r.x, r.y);
-		player_position = App->map->WorldToMap(App->player->p.x, App->player->p.y);
+		player_position = App->map->WorldToMap(player_pos.x, player_pos.y);
 		path_index = 0;
 		found = true;
 		canmove = false;
@@ -102,7 +102,7 @@ void Walking_Enemy::Movement()
 	{
 		if (found == true && dead == false) {
 			enemy_position = App->map->WorldToMap(r.x, r.y);
-			player_position = App->map->WorldToMap(App->player->p.x, r.y);
+			player_position = App->map->WorldToMap(player_pos.x, r.y);
 			App->pathfinding->CreatePath(enemy_position, player_position, fly_path);
 
 			if (path_index < fly_path.Count())
@@ -147,7 +147,7 @@ bool Walking_Enemy::CanStartMovement()
 {
 	bool ret = false;
 	enemy_position = App->map->WorldToMap(r.x, r.y);
-	player_position = App->map->WorldToMap(App->player->p.x, App->player->p.y);
+	player_position = App->map->WorldToMap(player_pos.x, player_pos.y);
 
 	int i = player_position.x - enemy_position.x;
 
