@@ -184,7 +184,7 @@ void Player::Right()
 	else
 	{
 		MovePixels(right);
-		pixels = 0;
+		App->collision->pixels = 0;
 	}
 }
 
@@ -200,7 +200,7 @@ void Player::Left()
 	else
 	{
 		MovePixels(left);
-		pixels = 0;
+		App->collision->pixels = 0;
 	}
 }
 
@@ -221,7 +221,7 @@ void Player::Gravity()
 	{
 		jumps = 2;
 		MovePixels(down);
-		pixels = 0;
+		App->collision->pixels = 0;
 	}
 }
 
@@ -377,14 +377,14 @@ void Player::MovePixels(uint state)
 {
 	if (state == right)
 	{
-		r.x += pixels;
+		r.x += App->collision->pixels;
 	}
 	if (state == left)
 	{
-		r.x -= pixels;
+		r.x -= App->collision->pixels;
 	}
 	if (state == down)
 	{
-		r.y += pixels;
+		r.y += App->collision->pixels;
 	}
 }

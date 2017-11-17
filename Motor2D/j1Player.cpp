@@ -426,6 +426,7 @@ void j1Player::MovePixels(uint state)
 }
 
 
+
 iPoint j1Player::GetOffset(int x, int y)
 {
 	iPoint offset;

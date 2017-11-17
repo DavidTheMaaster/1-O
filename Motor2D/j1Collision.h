@@ -35,6 +35,7 @@ struct Collider
 		rect.x = x;
 		rect.y = y;
 	}
+	bool CheckCollision(const SDL_Rect& r) const;
 };
 
 class j1Collision : public j1Module
@@ -61,6 +62,8 @@ public:
 	bool CheckCollisionDown(SDL_Rect p, iPoint speed);
 	int ActualTile(SDL_Rect p);
 	void GetPixels(SDL_Rect p, int state);
+
+	uint pixels = 0;
 	
 private:
 

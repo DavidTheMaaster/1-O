@@ -50,6 +50,8 @@ public:
 	void MovePixels(uint state);
 
 
+
+
 public: 
 	int current;
 
@@ -59,8 +61,6 @@ public:
 	float dt = 0;
 
 	Collider* player_hitbox;
-
-	int pixels = 0;
 
 	iPoint spawn;
 	bool lvl2;
