@@ -76,6 +76,9 @@ void Walking_Enemy::Update(float dt)
 {
 	canmove = CanStartMovement();
 
+	speed.x = floor(125 * dt);
+	speed.y = floor(125 * dt);
+
 	if (canmove)
 	{
 		enemy_position = App->map->WorldToMap(r.x, r.y);
