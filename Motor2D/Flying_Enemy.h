@@ -19,7 +19,8 @@ public:
 	void Update(float dt);
 	void Movement();
 	bool CanStartMovement();
-	iPoint GetOffset(int x, int y);
+	void GetOffset();
+	void UpdateSpeed();
 
 	iPoint spawn;
 
@@ -29,6 +30,8 @@ public:
 
 	int radius;
 	int big_radius;
+	uint anim_speed; 
+
 
 	p2DynArray<iPoint> fly_path;
 	iPoint player_position;
@@ -37,6 +40,8 @@ public:
 	int path_index;
 	bool omw = false;
 	bool dead = false;
+	float dt;
+
 
 	//Animations
 	Animation* load_anim = nullptr;

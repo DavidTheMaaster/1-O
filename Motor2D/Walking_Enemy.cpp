@@ -68,12 +68,16 @@ Walking_Enemy::Walking_Enemy(int x, int y) : Entity(x, y)
 	flip = false;
 	found = false;
 	agro = false;
+	anim_speed = walk.speed;
 
 }
 
 void Walking_Enemy::Update(float dt)
 {
+	this->dt = dt;
 	canmove = CanStartMovement();
+	GetOffset();
+	UpdateSpeed();
 
 	speed.x = floor(125 * dt);
 	speed.y = floor(125 * dt);
@@ -167,16 +171,13 @@ bool Walking_Enemy::CanStartMovement()
 	return ret;
 }
 
-iPoint Walking_Enemy::GetOffset(int x, int y)
+void Walking_Enemy::GetOffset()
 {
-	iPoint offset;
+	offset.x = animations.child("walking_enemy").child("attributes").attribute("offset_x").as_int(0);
+	offset.y = animations.child("walking_enemy").child("attributes").attribute("offset_y").as_int(0);
+}
 
-
-	x = animations.child("flying_enemy").child("attributes").attribute("offset_x").as_int(0);
-	y = animations.child("flying_enemy").child("attributes").attribute("offset_y").as_int(0);
-
-	offset.x = x;
-	offset.y = y;
-
-	return iPoint(offset);
+void Walking_Enemy::UpdateSpeed() 
+{
+	walk.speed = anim_speed * dt;
 }

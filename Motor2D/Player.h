@@ -17,7 +17,7 @@ public:
 	Player(int x, int y);
 
 	void Update(float dt);
-	iPoint GetOffset(int x, int y);
+	void GetOffset();
 
 	void Movement();
 	void Right();
@@ -33,6 +33,7 @@ public:
 	void Respawn();
 	void CheckIfChange();
 	void MovePixels(uint state);
+	void UpdateSpeed();
 
 
 public:
@@ -53,6 +54,7 @@ public:
 
 	int jumps;
 	int jump_counter;
+	uint anim_speed[4];
 
 	//Animations
 	Animation* current_animation = nullptr;
