@@ -29,6 +29,8 @@ Player::Player(int x, int y) : Entity (x, y)
 		ret = false;
 	}
 
+	int k = 0;
+
 	while (animations != NULL) {
 		attributes = animations.child("attributes");
 		rect = animations.first_child();
@@ -70,10 +72,12 @@ Player::Player(int x, int y) : Entity (x, y)
 			rect = rect.next_sibling();
 			i = rect.attribute("id").as_int();
 			load_anim->loop = attributes.attribute("loop").as_bool();
-			load_anim->speed = attributes.attribute("speed").as_float();
-			anim_speed[i] = load_anim->speed;
+			load_anim->speed = attributes.attribute("speed").as_float();			
 
 		}
+
+		anim_speed[k] = load_anim->speed;
+		k++;
 
 		animations = animations.next_sibling();
 
@@ -421,6 +425,6 @@ void Player::UpdateSpeed()
 	idle.speed = anim_speed[0] * dt;
 	walk.speed = anim_speed[1] * dt;
 	hover.speed = anim_speed[2] * dt;
-	die.speed = anim_speed[3] * dt;
+	die.speed = anim_speed[3] *dt;
 
 }
