@@ -27,6 +27,8 @@ bool j1Entities::Start()
 {
 
 	enemies_textures = App->tex->Load("textures/enemies.png");
+	player_textures = App->tex->Load("textures/player.png");
+
 
 
 	for (int i = 0; i < flyPositions.Count(); i++)
@@ -87,7 +89,14 @@ bool j1Entities::Update(float dt)
 	{
 		if (entities[i] != nullptr)
 		{
-			entities[i]->Draw(enemies_textures);
+			if (entities[i]->type == PLAYER)
+			{
+				entities[i]->Draw(player_textures);
+			}
+			else
+			{
+				entities[i]->Draw(enemies_textures);
+			}
 		}
 	}
 

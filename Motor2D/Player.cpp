@@ -89,7 +89,7 @@ Player::Player(int x, int y) : Entity (x, y)
 	}
 	
 	player_animation = &idle;
-
+	type = PLAYER;
 	speed.x = 2; speed.y = 2;
 	spawn.x = x; spawn.y = y;
 	r.x = spawn.x; r.y = spawn.y;
@@ -141,8 +141,9 @@ void Player::Update(float dt)
 		r.y = spawn.y;
 		App->render->camera.x = 0;
 		dead = false;
+		
 	}
-
+App->render->DrawQuad(r,255,255,0,255);
 	collider->SetPos(r.x, r.y);
 
 	App->entities->player_pos.x = r.x; App->entities->player_pos.y = r.y;

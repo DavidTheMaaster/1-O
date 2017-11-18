@@ -49,6 +49,8 @@ private:
 	EntityInfo queue[MAX_ENTITIES];
 	Entity* entities[MAX_ENTITIES];
 	SDL_Texture* enemies_textures;
+	SDL_Texture* player_textures;
+
 
 	p2DynArray<iPoint> flyPositions;
 	p2DynArray<iPoint> walkPositions;

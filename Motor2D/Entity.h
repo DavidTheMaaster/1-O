@@ -29,10 +29,9 @@ public:
 	SDL_Rect r;
 	bool flip;
 
-	uint entity;
-
-
 	Collider* collider = nullptr;
+
+	uint type;
 
 public:
 	Entity(int x, int y);
