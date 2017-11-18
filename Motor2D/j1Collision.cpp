@@ -3,6 +3,7 @@
 #include "j1Render.h"
 #include "p2Log.h"
 #include "j1Collision.h"
+#include "j1Entities.h"
 #include "j1Map.h"
 
 j1Collision::j1Collision()
@@ -221,17 +222,17 @@ bool j1Collision::CheckCollisionRight(SDL_Rect p, iPoint speed)
 	// Check dispawn and change to level 2
 	if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == LVL2)
 	{
-		//App->player->lvl2 = true;
+		App->entities->lvl2 = true;
 		ret = false;
 	}
 	if (App->map->logic_layer->data->Get(vec2.x, vec2.y) == LVL2)
 	{
-		//App->player->lvl2 = true;
+		App->entities->lvl2 = true;
 		ret = false;
 	}
 	if (App->map->logic_layer->data->Get(vec3.x, vec3.y) == LVL2)
 	{
-		//App->player->lvl2 = true;
+		App->entities->lvl2 = true;
 		ret = false;
 	}
 
@@ -328,12 +329,12 @@ bool j1Collision::CheckCollisionDown(SDL_Rect p, iPoint speed)
 	// Check dispawn and change to hidden level
 	if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == HIDDEN_LEVEL)
 	{
-	//	App->player->hidden_level = true;
+		App->entities->hidden_level = true;
 		ret = false;
 	}
 	if (App->map->logic_layer->data->Get(vec2.x, vec2.y) == HIDDEN_LEVEL)
 	{
-	//	App->player->hidden_level = true;
+		App->entities->hidden_level = true;
 		ret = false;
 	}
 

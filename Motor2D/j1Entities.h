@@ -40,6 +40,10 @@ public:
 
 	bool AddEntity(ENTITY_TYPES type, int x, int y);
 
+	// Save & Load
+	bool Save(pugi::xml_node&) const;
+	bool Load(pugi::xml_node&);
+
 
 private:
 
@@ -57,6 +61,11 @@ private:
 
 public:
 	iPoint player_pos;
+	iPoint loaded_player_pos;
+	bool justloaded;
+
+	bool lvl2;
+	bool hidden_level;
 
 };
 #endif

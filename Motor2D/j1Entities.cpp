@@ -42,6 +42,11 @@ bool j1Entities::Start()
 	}
 	flyPositions.Clear();
 	walkPositions.Clear();
+	justloaded = false;
+
+	lvl2 = false;
+	hidden_level = false;
+
 	return true;
 }
 
@@ -136,8 +141,8 @@ bool j1Entities::CleanUp()
 	{
 		if (entities[i] != nullptr)
 		{
-			delete entities[i];
 			entities[i] = nullptr;
+			delete entities[i];
 		}
 	}
 
@@ -194,4 +199,30 @@ void j1Entities::SpawnEntity(const EntityInfo& info)
 void j1Entities::OnCollision(Collider* c1, Collider* c2)
 {
 
+}
+
+bool j1Entities::Load(pugi::xml_node& save) {
+
+	if (save.child("player_pos") != NULL) {
+		loaded_player_pos.x = save.child("player_pos").attribute("x").as_int();
+		loaded_player_pos.y = save.child("player_pos").attribute("y").as_int();
+		justloaded = true;
+	}
+
+	return true;
+}
+
+bool j1Entities::Save(pugi::xml_node& data) const {
+
+
+	if (data.child("player_pos") == NULL) {
+		data.append_child("player_pos").append_attribute("x") = player_pos.x;
+		data.child("player_pos").append_attribute("y") = player_pos.y;
+	}
+	else {
+		data.child("player_pos").attribute("x").set_value(player_pos.x);
+		data.child("player_pos").attribute("y").set_value(player_pos.y);
+	}
+
+	return true;
 }

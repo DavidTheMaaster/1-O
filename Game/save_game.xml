@@ -8,13 +8,14 @@
 	<scene>
 		<level level="0" />
 	</scene>
-	<player />
-	<enemies />
-	<enemies />
+	<entities>
+		<player_pos x="656" y="196" />
+	</entities>
+	<particles />
 	<collision />
 	<pathfinding />
 	<fadetoblack />
 	<renderer>
-		<camera x="0" y="0" />
+		<camera x="-352" y="0" />
 	</renderer>
 </game_state>

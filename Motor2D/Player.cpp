@@ -91,14 +91,22 @@ Player::Player(int x, int y) : Entity (x, y)
 	player_animation = &idle;
 	type = PLAYER;
 	speed.x = 2; speed.y = 2;
-	spawn.x = x; spawn.y = y;
+
+	if (App->entities->justloaded) {
+		spawn.x = App->entities->loaded_player_pos.x;
+		spawn.y = App->entities->loaded_player_pos.y;
+	}
+	else {
+		spawn.x = x; spawn.y = y;
+	}
+
 	r.x = spawn.x; r.y = spawn.y;
 	r.w = 16; r.h = 59;
+
 	flip = false;
 	jump_counter = 0;
 	flip = false;
-	lvl2 = false;
-	hidden_level = false;
+
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 	jumps = 2;
@@ -119,6 +127,11 @@ void Player::Update(float dt)
 
 
 	player_animation = &idle;
+
+	if (App->entities->justloaded) {
+		r.x = App->entities->loaded_player_pos.x;
+		r.y = App->entities->loaded_player_pos.y;
+	}
 
 	Movement();
 	CameraMovement();
@@ -142,11 +155,11 @@ void Player::Update(float dt)
 		dead = false;
 		
 	}
-App->render->DrawQuad(r,255,255,0,255);
+
+	App->render->DrawQuad(r,255,255,0,255);
 	collider->SetPos(r.x, r.y);
 
 	App->entities->player_pos.x = r.x; App->entities->player_pos.y = r.y;
-
 }
 
 void Player::Movement()
@@ -370,12 +383,12 @@ void Player::Respawn()
 
 void Player::CheckIfChange() {
 
-	if (lvl2) {
+	if (App->entities->lvl2) {
 		App->scene->level = App->scene->level_2;
 		App->scene->changeMap = true;
 	}
 
-	if (hidden_level) {
+	if (App->entities->hidden_level) {
 		App->scene->level = App->scene->hidden_level;
 		App->scene->changeMap = true;
 	}
@@ -396,7 +409,6 @@ void Player::MovePixels(uint state)
 		r.y += App->collision->pixels;
 	}
 }
-
 
 void Player::GetOffset()
 {

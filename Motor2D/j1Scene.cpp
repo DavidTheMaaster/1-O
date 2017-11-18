@@ -119,7 +119,7 @@ bool j1Scene::CleanUp()
 {
 	LOG("Freeing scene");
 	App->map->DeleteMap();
-	//App->player->CleanUp();
+	App->map->CleanUp();
 	App->collision->CleanUp();
 	App->entities->CleanUp();
 	return true;
@@ -155,12 +155,11 @@ bool j1Scene::Load(pugi::xml_node& data) {
 			App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1);
 			justloaded = true;
 		}
-		/*
+		
 		else {
-			App->player->position.x = App->player->loadposition.x;
-			App->player->position.y = App->player->loadposition.y;
+			justloaded = true;
 		}
-		*/
+		
 	}
 
 	return true;

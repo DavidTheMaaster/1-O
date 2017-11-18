@@ -35,6 +35,8 @@ public:
 	void MovePixels(uint state);
 	void UpdateSpeed();
 
+	void Load();
+	void Save() const;
 
 public:
 
@@ -48,8 +50,6 @@ public:
 	int pixels = 0;
 
 	iPoint spawn;
-	bool lvl2;
-	bool hidden_level;
 
 	bool jump;
 	bool jump2;
