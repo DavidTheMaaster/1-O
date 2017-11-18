@@ -57,7 +57,6 @@ public:
 	uint anim_speed[4];
 
 	//Animations
-	Animation* current_animation = nullptr;
 	Animation* load_anim = nullptr;
 	Animation idle;
 	Animation walk;

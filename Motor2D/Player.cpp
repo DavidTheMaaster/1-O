@@ -95,7 +95,6 @@ Player::Player(int x, int y) : Entity (x, y)
 	r.x = spawn.x; r.y = spawn.y;
 	r.w = 16; r.h = 59;
 	flip = false;
-	current_animation = &idle;
 	jump_counter = 0;
 	flip = false;
 	lvl2 = false;
@@ -119,7 +118,7 @@ void Player::Update(float dt)
 	speed.y = floor(450 * dt);
 
 
-	current_animation = &idle;
+	player_animation = &idle;
 
 	Movement();
 	CameraMovement();
@@ -187,7 +186,7 @@ void Player::Right()
 	{
 		r.x += speed.x;
 		flip = false;
-		current_animation = &walk;
+		player_animation = &walk;
 	}
 	else
 	{
@@ -203,7 +202,7 @@ void Player::Left()
 	{
 		r.x -= speed.x;
 		flip = true;
-		current_animation = &walk;
+		player_animation = &walk;
 	}
 	else
 	{
@@ -329,7 +328,7 @@ void Player::Hover()
 
 	if (App->collision->CheckCollisionDown(r, speed))
 	{
-		current_animation = &hover;
+		player_animation = &hover;
 	}
 }
 
@@ -351,16 +350,16 @@ void Player::Dead()
 	}
 	if (dead == true)
 	{
-		current_animation = &die;
+		player_animation = &die;
 	}
 }
 
 void Player::Respawn()
 {
-	if (current_animation->current_frame == 21)
+	if (player_animation->current_frame == 21)
 	{
-		current_animation->Reset();
-		current_animation = &idle;
+		player_animation->Reset();
+		player_animation = &idle;
 		r.x = spawn.x;
 		r.y = spawn.y;
 		dead = false;
@@ -400,21 +399,21 @@ void Player::MovePixels(uint state)
 
 void Player::GetOffset()
 {
-	if (current_animation == &idle) {
+	if (player_animation == &idle) {
 		offset.x = animations.child("idle").child("attributes").attribute("offset_x").as_int(0);
 		offset.y = animations.child("idle").child("attributes").attribute("offset_y").as_int(0);
 	}
 
-	if (current_animation == &walk) {
+	if (player_animation == &walk) {
 		offset.x = animations.child("walk").child("attributes").attribute("offset_x").as_int(0);
 		offset.y = animations.child("walk").child("attributes").attribute("offset_y").as_int(0);
 	}
 
-	if (current_animation == &hover) {
+	if (player_animation == &hover) {
 		offset.x = animations.child("hover").child("attributes").attribute("offset_x").as_int(0);
 		offset.y = animations.child("hover").child("attributes").attribute("offset_y").as_int(0);
 	}
-	if (current_animation == &die) {
+	if (player_animation == &die) {
 		offset.x = animations.child("dead").child("attributes").attribute("offset_x").as_int(0);
 		offset.y = animations.child("dead").child("attributes").attribute("offset_y").as_int(0);
 	}
