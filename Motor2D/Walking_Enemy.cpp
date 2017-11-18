@@ -57,19 +57,19 @@ Walking_Enemy::Walking_Enemy(int x, int y) : Entity(x, y)
 	}
 	animations = animation_file.child("animations").child("enemies");
 
-	//Collider
-	collider = App->collision->AddCollider({ (int)position.x, (int)position.y,20,40 }, COLLIDER_ENEMY, App->entities);
-
 	walking_enemy_animation = &walk;
 	//
 	speed.x = 2; speed.y = 2;
 	r.x = x; r.y = y;
-	r.w = 20; r.h = 20;
+	r.w = 20; r.h = 40;
 	flip = false;
 	found = false;
 	agro = false;
 	anim_speed = walk.speed;
 
+
+	//Collider
+	collider = App->collision->AddCollider(r, COLLIDER_ENEMY, App->entities);
 }
 
 void Walking_Enemy::Update(float dt)
@@ -95,13 +95,15 @@ void Walking_Enemy::Update(float dt)
 	if (!dead) {
 		Movement();
 	}
+
+	collider->SetPos(r.x, r.y);
 }
 
 
 void Walking_Enemy::Movement()
 {
 
-	if ((App->scene->level == 0 || App->scene->level == 1) && App->fadetoblack->IsFading() == false)
+	if ((App->scene->level == 0 || App->scene->level == 1 || App->scene->level == 2) && App->fadetoblack->IsFading() == false)
 	{
 		if (found == true && dead == false) {
 			enemy_position = App->map->WorldToMap(r.x, r.y);
@@ -144,6 +146,7 @@ void Walking_Enemy::Movement()
 	{
 		r.y += speed.y;
 	}
+
 }
 
 bool Walking_Enemy::CanStartMovement()

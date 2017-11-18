@@ -87,9 +87,6 @@ Player::Player(int x, int y) : Entity (x, y)
 	{
 		animations = animation_file.child("animations").child("player");
 	}
-
-	//Collider
-	collider = App->collision->AddCollider(r, COLLIDER_PLAYER, App->entities);
 	
 	player_animation = &idle;
 
@@ -106,6 +103,9 @@ Player::Player(int x, int y) : Entity (x, y)
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 	jumps = 2;
+
+	//Collider
+	collider = App->collision->AddCollider(r, COLLIDER_PLAYER, App->entities);
 }
 
 

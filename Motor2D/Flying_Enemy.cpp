@@ -57,9 +57,6 @@ Flying_Enemy::Flying_Enemy(int x, int y) : Entity(x, y)
 	}
 	animations = animation_file.child("animations").child("enemies");
 
-	//Collider
-	collider = App->collision->AddCollider(r, COLLIDER_ENEMY, App->entities);
-
 	flying_enemy_animation = &fly;
 	//
 	speed.x = 2; speed.y = 2;
@@ -70,7 +67,8 @@ Flying_Enemy::Flying_Enemy(int x, int y) : Entity(x, y)
 	agro = false;
 	anim_speed = fly.speed;
 
-
+	//Collider
+	collider = App->collision->AddCollider(r, COLLIDER_ENEMY, App->entities);
 }
 
 void Flying_Enemy::Update(float dt)
@@ -97,13 +95,15 @@ void Flying_Enemy::Update(float dt)
 	if (!dead) {
 		Movement();
 	}
+
+	collider->SetPos(r.x, r.y);
 }
 
 
 void Flying_Enemy::Movement()
 {
 
-	if ((App->scene->level == 0 || App->scene->level == 1) && App->fadetoblack->IsFading() == false)
+	if ((App->scene->level == 0 || App->scene->level == 1 || App->scene->level == 2) && App->fadetoblack->IsFading() == false)
 	{
 		if (found == true && dead == false) {
 			enemy_position = App->map->WorldToMap(r.x, r.y);
