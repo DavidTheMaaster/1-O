@@ -9,13 +9,13 @@
 		<level level="0" />
 	</scene>
 	<entities>
-		<player_pos x="656" y="196" />
+		<player_pos x="276" y="388" />
 	</entities>
 	<particles />
 	<collision />
 	<pathfinding />
 	<fadetoblack />
 	<renderer>
-		<camera x="-352" y="0" />
+		<camera x="0" y="0" />
 	</renderer>
 </game_state>

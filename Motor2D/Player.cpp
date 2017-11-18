@@ -157,7 +157,7 @@ void Player::Update(float dt)
 	}
 
 	App->render->DrawQuad(r,255,255,0,255);
-	collider->SetPos(r.x, r.y);
+	//collider->SetPos(r.x, r.y);
 
 	App->entities->player_pos.x = r.x; App->entities->player_pos.y = r.y;
 }
