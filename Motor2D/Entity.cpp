@@ -27,15 +27,15 @@ void Entity::Draw(SDL_Texture* sprites)
 
 
 	if (flying_enemy_animation != nullptr) {
-		App->render->Blit(sprites, r.x + offset.x, r.y + offset.y, &(flying_enemy_animation->GetCurrentFrame()),flip);
+		App->render->Blit(sprites, r.x - offset.x, r.y - offset.y, &(flying_enemy_animation->GetCurrentFrame()),flip);
 	}
 
 	if (walking_enemy_animation != nullptr) {
-		App->render->Blit(sprites, r.x + offset.x, r.y + offset.y, &(walking_enemy_animation->GetCurrentFrame()), flip);
+		App->render->Blit(sprites, r.x - offset.x, r.y - offset.y, &(walking_enemy_animation->GetCurrentFrame()), flip);
 	}
 
 	if (player_animation != nullptr) {
-		App->render->Blit(sprites, r.x + offset.x, r.y + offset.y, &(player_animation->GetCurrentFrame()), flip);
+		App->render->Blit(sprites, r.x - offset.x, r.y - offset.y, &(player_animation->GetCurrentFrame()), flip);
 	}
 
 
