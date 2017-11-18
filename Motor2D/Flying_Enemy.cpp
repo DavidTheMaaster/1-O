@@ -107,7 +107,7 @@ void Flying_Enemy::Movement()
 	{
 		if (found == true && dead == false) {
 			enemy_position = App->map->WorldToMap(r.x, r.y);
-			player_position = App->map->WorldToMap(App->entities->player_pos.x, App->entities->player_pos.y);
+			player_position = App->map->WorldToMap(App->entities->player_pos.x + 20, App->entities->player_pos.y);
 			App->pathfinding->CreatePath(enemy_position, player_position, fly_path);
 
 			if (path_index < fly_path.Count())
@@ -116,9 +116,9 @@ void Flying_Enemy::Movement()
 
 				if (enemy_position.x <= fly_path[path_index].x && r.x < nextTile.x)
 				{
-					r.x += speed.x;
-					omw = true;
-					flip = true;
+						r.x += speed.x;
+						omw = true;
+						flip = true;					
 				}
 				else if (enemy_position.x >= fly_path[path_index].x && r.x > nextTile.x)
 				{

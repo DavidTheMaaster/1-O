@@ -118,6 +118,8 @@ Player::Player(int x, int y) : Entity (x, y)
 
 void Player::Update(float dt)
 {
+	if (!App->fadetoblack->IsFading())
+	{
 	this->dt = dt;
 	GetOffset();
 	UpdateSpeed();
@@ -160,11 +162,12 @@ void Player::Update(float dt)
 	//collider->SetPos(r.x, r.y);
 
 	App->entities->player_pos.x = r.x; App->entities->player_pos.y = r.y;
+	}
 }
 
 void Player::Movement()
 {
-	if (App->fadetoblack->IsFading() == false && dead == false)
+	if (dead == false)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 			Right();
