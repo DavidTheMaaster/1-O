@@ -145,7 +145,7 @@ void Player::Update(float dt)
 
 	collider->SetPos(r.x, r.y);
 
-	player_pos.x = r.x; player_pos.y = r.y;
+	App->entities->player_pos.x = r.x; App->entities->player_pos.y = r.y;
 
 }
 

@@ -20,8 +20,6 @@ protected:
 public:
 	fPoint position;
 
-	iPoint player_pos;
-
 	float hitpoints;
 	bool death = false;
 	int life;

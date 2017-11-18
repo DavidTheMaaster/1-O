@@ -53,6 +53,8 @@ private:
 	p2DynArray<iPoint> flyPositions;
 	p2DynArray<iPoint> walkPositions;
 
+public:
+	iPoint player_pos;
 
 };
 #endif
