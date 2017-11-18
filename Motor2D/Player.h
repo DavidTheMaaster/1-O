@@ -37,6 +37,9 @@ public:
 
 
 public:
+
+	Collider* collider = nullptr;
+
 	int current;
 	iPoint originalpos;
 

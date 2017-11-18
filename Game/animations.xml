@@ -57,7 +57,7 @@
       <frame id = "1" x = "140" y = "80" w = "70" h = "80"/>
       <frame id = "2" x = "210" y = "80" w = "70" h = "80"/>
       <frame id = "3" x = "280" y = "80" w = "70" h = "80"/>
-      <attributes id = "2" speed = "26" loop = "true" offset_x = "25" offset_y = "20" size = "3"/>
+      <attributes id = "2" speed = "10" loop = "true" offset_x = "25" offset_y = "20" size = "3"/>
     </hover>
     <dead>
       <frame id = "0" x = "140" y = "400" w = "70" h = "80"/>

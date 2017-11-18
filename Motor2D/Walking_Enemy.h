@@ -41,6 +41,9 @@ public:
 	bool dead = false;
 	float dt;
 
+
+	Collider* collider = nullptr;
+
 	//Animations
 	Animation* load_anim = nullptr;
 

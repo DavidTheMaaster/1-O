@@ -29,7 +29,6 @@ public:
 	SDL_Rect r;
 	bool flip;
 
-	Collider* collider = nullptr;
 
 	uint type;
 

@@ -78,8 +78,8 @@ void Flying_Enemy::Update(float dt)
 	GetOffset();
 	UpdateSpeed();
 
-	speed.x = floor(125 * dt);
-	speed.y = floor(125 * dt);
+	speed.x = 100 * dt;
+	speed.y = 100 * dt;
 
 
 	if (canmove)
@@ -146,13 +146,11 @@ void Flying_Enemy::Movement()
 					path_index += 1;
 				}
 
-				if (fly_path[path_index].x == player_position.x && fly_path[path_index].y == player_position.y) {
-					path_index = 0;
-					dead = true;
-				}
+				
 			}
 		}
 	}
+
 }
 
 bool Flying_Enemy::CanStartMovement()
