@@ -237,12 +237,13 @@ void Player::Jump()
 	if (App->collision->CheckCollisionUp(r, speed) && jump2 == false) {
 		floor(450 * dt);
 		jumps = 1;
-		if (jump_counter < 12)
+		if (jump_counter < 0.23/dt)
 		{
 			r.y -= speed.y;
 			jump_counter++;
 		}
-		else if (jump_counter < 15)
+		
+		else if (jump_counter < 0.28/dt)
 		{
 			jump_counter++;
 		}
@@ -284,12 +285,12 @@ void Player::DoubleJump()
 	if (App->collision->CheckCollisionUp(r, speed))
 	{
 		jumps = 0;
-		if (jump_counter < 7)
+		if (jump_counter < 0.15/dt)
 		{
 			r.y -= speed.y;
 			jump_counter++;
 		}
-		else if (jump_counter < 10)
+		else if (jump_counter < 0.20 / dt)
 		{
 			jump_counter++;
 		}
