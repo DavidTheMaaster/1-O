@@ -54,7 +54,6 @@ bool j1Scene::Start()
 
 	App->map->SetMapLogic();
 	//App->player->Start();
-	App->entities->Start();
 
 	int w, h;
 	uchar* data = NULL;
@@ -62,6 +61,8 @@ bool j1Scene::Start()
 		App->pathfinding->SetMap(w, h, data);
 
 	RELEASE_ARRAY(data);
+
+	App->entities->Start();
 
 
 	return true;

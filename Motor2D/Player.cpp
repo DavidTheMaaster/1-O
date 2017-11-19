@@ -353,7 +353,7 @@ void Player::Hover()
 void Player::CameraMovement()
 {
 
-	if (r.x > App->win->width / 4 && r.x < 1760) {
+	if (r.x > App->win->width / 4 && r.x < (App->map->data.width - 15) * App->map->data.tile_width) {
 
 		App->render->camera.x = 0 - (r.x * 2 - App->win->width / 2);
 
