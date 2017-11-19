@@ -6,6 +6,8 @@
 #include "j1Entities.h"
 #include "j1Map.h"
 
+#include "Brofiler/Brofiler.h"
+
 j1Collision::j1Collision()
 {
 

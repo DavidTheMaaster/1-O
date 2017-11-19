@@ -9,6 +9,8 @@
 #include "Flying_Enemy.h"
 #include "Walking_Enemy.h"
 
+#include "Brofiler/Brofiler.h"
+
 #define SPAWN_MARGIN 140
 
 j1Entities::j1Entities()
@@ -130,7 +132,6 @@ bool j1Entities::PostUpdate()
 bool j1Entities::CleanUp()
 {
 	App->tex->UnLoad(enemies_textures);
-
 
 	// No unload for fxs
 	/*

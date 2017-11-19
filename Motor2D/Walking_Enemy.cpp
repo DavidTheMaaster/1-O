@@ -13,6 +13,7 @@
 #include "Entity.h"
 #include "j1Entities.h"
 
+
 Walking_Enemy::Walking_Enemy(int x, int y) : Entity(x, y)
 {
 	//Animations here
@@ -102,7 +103,6 @@ void Walking_Enemy::Update(float dt)
 
 void Walking_Enemy::Movement()
 {
-
 	if ((App->scene->level == 0 || App->scene->level == 1 || App->scene->level == 2) && App->fadetoblack->IsFading() == false)
 	{
 		if (found == true && dead == false) {

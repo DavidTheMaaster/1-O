@@ -81,22 +81,26 @@ int main(int argc, char* args[])
 
 			// Loop all modules until we are asked to leave ---------------------
 			case LOOP:
-			if(App->Update(App->dt) == false)
-				state = CLEAN;
+			{
+				BROFILER_FRAME("LOOP");
+				if (App->Update(App->dt) == false)
+					state = CLEAN;
+			}
 			break;
 
 			// Cleanup allocated memory -----------------------------------------
 			case CLEAN:
-			LOG("CLEANUP PHASE ===============================");
-			if(App->CleanUp() == true)
 			{
-				RELEASE(App);
-				result = EXIT_SUCCESS;
-				state = EXIT;
+				LOG("CLEANUP PHASE ===============================");
+				if (App->CleanUp() == true)
+				{
+					RELEASE(App);
+					result = EXIT_SUCCESS;
+					state = EXIT;
+				}
+				else
+					state = FAIL;
 			}
-			else
-				state = FAIL;
-
 			break;
 
 			// Exit with errors and shame ---------------------------------------
