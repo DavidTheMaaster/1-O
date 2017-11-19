@@ -9,7 +9,7 @@
 		<level level="0" />
 	</scene>
 	<entities>
-		<player_pos x="192" y="1886" />
+		<player_pos x="192" y="388" />
 	</entities>
 	<particles />
 	<collision />

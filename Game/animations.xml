@@ -99,6 +99,15 @@
       <frame id = "5" x = "253" y = "337" w = "23" h = "40"/>
       <attributes id = "0" speed = "8" loop = "true" offset_x = "2" offset_y = "3" size = "5" radius = "8" big_radius = "10"/>
     </flying_enemy>
+    <walking_enemy_idle>
+      <frame id = "0" x = "326" y = "338" w = "37" h = "55"/>
+      <frame id = "1" x = "389" y = "338" w = "37" h = "55"/>
+      <frame id = "2" x = "452" y = "338" w = "37" h = "55"/>
+      <frame id = "3" x = "11" y = "393" w = "37" h = "55"/>
+      <frame id = "4" x = "74" y = "393" w = "37" h = "55"/>
+      <frame id = "5" x = "137" y = "393" w = "37" h = "55"/>
+      <attributes id = "1" speed = "10" loop = "true" offset_x = "2" offset_y = "-18" size = "5" radius = "8" big_radius = "10"/>
+    </walking_enemy_idle>
     <walking_enemy>
       <frame id = "0" x = "1" y = "1" w = "63" h = "84"/>
       <frame id = "1" x = "64" y = "1" w = "63" h = "84"/>
@@ -132,7 +141,7 @@
       <frame id = "29" x = "316" y = "253" w = "63" h = "84"/>
       <frame id = "30" x = "379" y = "253" w = "63" h = "84"/>
       <frame id = "31" x = "442" y = "253" w = "63" h = "84"/>
-      <attributes id = "1" speed = "27" loop = "true" offset_x = "2" offset_y = "3" size = "30" radius = "8" big_radius = "10"/>
+      <attributes id = "2" speed = "27" loop = "true" offset_x = "2" offset_y = "-5" size = "30" radius = "8" big_radius = "10"/>
     </walking_enemy>
     <texture>
       <folder file = "textures/enemies.png" />

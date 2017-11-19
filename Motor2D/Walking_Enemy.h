@@ -11,6 +11,7 @@ class Walking_Enemy : public Entity
 private:
 
 	Animation walk;
+	Animation idle;
 
 public:
 	iPoint originalpos;
@@ -22,6 +23,8 @@ public:
 	void GetOffset();
 	void UpdateSpeed();
 
+	uint current;
+
 	iPoint spawn;
 
 	bool found;
@@ -30,7 +33,7 @@ public:
 
 	int radius;
 	int big_radius;
-	uint anim_speed;
+	uint anim_speed[2];
 
 	p2DynArray<iPoint> fly_path;
 	iPoint player_position;
