@@ -82,7 +82,7 @@ void j1Map::SetMapLogic() {
 						App->collision->AddCollider(col, COLLIDER_KILL);
 					}
 					if (gid == SPAWN_P) {
-						App->collision->AddCollider(col, COLLIDER_SPAWN);
+					//	App->collision->AddCollider(col, COLLIDER_SPAWN);
 					//	App->player->spawn.x = pos.x;
 					//	App->player->spawn.y = pos.y+4;
 						App->entities->AddEntity(PLAYER, pos.x, pos.y);

@@ -84,6 +84,10 @@ bool j1Scene::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		App->SaveGame();
 
+	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
+		level = hidden_level;
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
+	}
 	if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN) {
 		level = level_2;
 		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
