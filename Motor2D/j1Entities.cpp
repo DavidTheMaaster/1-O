@@ -211,7 +211,7 @@ void j1Entities::OnCollision(Collider* c1, Collider* c2)
 				}
 				if (c1->type == COLLIDER_ENEMY)
 				{
-				//	entities[i]->death = true;
+					entities[i]->death = true;
 				}
 			}
 		}
