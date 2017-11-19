@@ -112,7 +112,7 @@ Player::Player(int x, int y) : Entity (x, y)
 	jumps = 2;
 
 	//Collider
-	collider = App->collision->AddCollider(r, COLLIDER_PLAYER, App->entities);
+	collider = App->collision->AddCollider({ r.x, r.y, r.w, r.h - 7 }, COLLIDER_PLAYER, App->entities);
 }
 
 
@@ -159,8 +159,7 @@ void Player::Update(float dt)
 		
 	}
 
-	App->render->DrawQuad(r,255,255,0,255);
-	//collider->SetPos(r.x, r.y);
+	collider->SetPos(r.x, r.y);
 
 	App->entities->player_pos.x = r.x; App->entities->player_pos.y = r.y;
 	}
