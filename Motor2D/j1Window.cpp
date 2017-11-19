@@ -75,7 +75,7 @@ bool j1Window::Awake(pugi::xml_node& config)
 		{
 			//Get window surface
 			screen_surface = SDL_GetWindowSurface(window);
-			SDL_RenderSetLogicalSize(App->render->renderer, 1920, 1080);
+
 		}
 
 	}

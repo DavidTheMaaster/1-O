@@ -28,8 +28,8 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	want_to_save = want_to_load = false;
 	load_game = "save_game";
 	save_game = "save_game";
-	input = new j1Input();
 	win = new j1Window();
+	input = new j1Input();
 	render = new j1Render();
 	tex = new j1Textures();
 	audio = new j1Audio();
@@ -43,8 +43,8 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
-	AddModule(input);
 	AddModule(win);
+	AddModule(input);
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(map);
@@ -113,8 +113,8 @@ bool j1App::Awake()
 
 		while(item != NULL && ret == true)
 		{
-			ret = item->data->Awake(config.child(item->data->name.GetString()));
-			item = item->next;
+				ret = item->data->Awake(config.child(item->data->name.GetString()));
+				item = item->next;
 		}
 	}
 	PERF_PEEK(ptimer);
