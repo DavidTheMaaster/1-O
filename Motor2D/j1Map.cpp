@@ -62,41 +62,42 @@ void j1Map::SetMapLogic() {
 			LOG("Error loading logic layer");
 		}
 	}
-
-	if (logic_layer->data->logic == true) {
-		for (int x = 0; logic_layer->data->width > x; x++)
-		{
-			for (int y = 0; logic_layer->data->height > y; y++)
+	if (logic_layer != nullptr) {
+		if (logic_layer->data->logic == true) {
+			for (int x = 0; logic_layer->data->width > x; x++)
 			{
-				int gid = logic_layer->data->Get(x, y);
-				if (gid != 0) {
-					iPoint pos = MapToWorld(x, y);
-					SDL_Rect col = item_tileset->data->GetTileRect(gid);
-					col.x = pos.x;
-					col.y = pos.y;
+				for (int y = 0; logic_layer->data->height > y; y++)
+				{
+					int gid = logic_layer->data->Get(x, y);
+					if (gid != 0) {
+						iPoint pos = MapToWorld(x, y);
+						SDL_Rect col = item_tileset->data->GetTileRect(gid);
+						col.x = pos.x;
+						col.y = pos.y;
 
-					if (gid == WALL) {
-						App->collision->AddCollider(col, COLLIDER_WALL);
+						if (gid == WALL) {
+							App->collision->AddCollider(col, COLLIDER_WALL);
+						}
+						if (gid == DEAD) {
+							App->collision->AddCollider(col, COLLIDER_KILL);
+						}
+						if (gid == SPAWN_P) {
+							//	App->collision->AddCollider(col, COLLIDER_SPAWN);
+							//	App->player->spawn.x = pos.x;
+							//	App->player->spawn.y = pos.y+4;
+							App->entities->AddEntity(PLAYER, pos.x, pos.y);
+						}
+						if (gid == SPAWN_FE) {
+							App->entities->AddEntity(ENEMY_FLY, pos.x, pos.y);
+						}
+						if (gid == SPAWN_WE) {
+							App->entities->AddEntity(ENEMY_WALK, pos.x, pos.y);
+						}
+
+
 					}
-					if (gid == DEAD) {
-						App->collision->AddCollider(col, COLLIDER_KILL);
-					}
-					if (gid == SPAWN_P) {
-					//	App->collision->AddCollider(col, COLLIDER_SPAWN);
-					//	App->player->spawn.x = pos.x;
-					//	App->player->spawn.y = pos.y+4;
-						App->entities->AddEntity(PLAYER, pos.x, pos.y);
-					}
-					if (gid == SPAWN_FE) {
-						App->entities->AddEntity(ENEMY_FLY, pos.x, pos.y);
-					}
-					if (gid == SPAWN_WE) {
-						App->entities->AddEntity(ENEMY_WALK, pos.x, pos.y);
-					}
-				
 
 				}
-
 			}
 		}
 	}

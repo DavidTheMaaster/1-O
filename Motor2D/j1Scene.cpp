@@ -62,7 +62,12 @@ bool j1Scene::Start()
 
 	RELEASE_ARRAY(data);
 
-	App->entities->Start();
+	if (level == congrats) {
+		App->map->Load("levelwin.tmx");
+	}
+	else {
+		App->entities->Start();
+	}
 
 
 	return true;

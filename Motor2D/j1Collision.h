@@ -79,6 +79,7 @@ private:
 		DEAD = 4,
 		LVL2 = 9,
 		HIDDEN_LEVEL = 24,
+		FINISH = 23,
 	};
 
 	enum State

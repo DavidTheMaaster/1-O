@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 <game_state>
-	<input />
 	<window />
+	<input />
 	<textures />
 	<audio />
 	<map />
 	<scene>
-		<level level="2" />
+		<level level="0" />
 	</scene>
 	<entities>
-		<player_pos x="764" y="292" />
+		<player_pos x="192" y="1886" />
 	</entities>
 	<particles />
 	<collision />
 	<pathfinding />
 	<fadetoblack />
 	<renderer>
-		<camera x="-568" y="0" />
+		<camera x="0" y="0" />
 	</renderer>
 </game_state>

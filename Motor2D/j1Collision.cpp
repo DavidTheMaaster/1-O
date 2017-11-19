@@ -238,6 +238,23 @@ bool j1Collision::CheckCollisionRight(SDL_Rect p, iPoint speed)
 		ret = false;
 	}
 
+	// Check dispawn and change to congrats screen
+	if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == FINISH)
+	{
+		App->entities->congrats = true;
+		ret = false;
+	}
+	if (App->map->logic_layer->data->Get(vec2.x, vec2.y) == FINISH)
+	{
+		App->entities->congrats = true;
+		ret = false;
+	}
+	if (App->map->logic_layer->data->Get(vec3.x, vec3.y) == FINISH)
+	{
+		App->entities->congrats = true;
+		ret = false;
+	}
+
 	return ret;
 }
 

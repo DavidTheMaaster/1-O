@@ -48,6 +48,7 @@ public:
 		level_1,
 		level_2,
 		hidden_level,
+		congrats,
 	};
 private:
 	iPoint mouse;

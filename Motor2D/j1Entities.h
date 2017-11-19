@@ -68,6 +68,7 @@ public:
 
 	bool lvl2;
 	bool hidden_level;
+	bool congrats;
 
 };
 #endif

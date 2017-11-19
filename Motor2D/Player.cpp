@@ -374,6 +374,11 @@ void Player::CheckIfChange() {
 		App->scene->level = App->scene->hidden_level;
 		App->scene->changeMap = true;
 	}
+
+	if (App->entities->congrats) {
+		App->scene->level = App->scene->congrats;
+		App->scene->changeMap = true;
+	}
 }
 
 void Player::MovePixels(uint state)
