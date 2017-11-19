@@ -67,6 +67,7 @@ Walking_Enemy::Walking_Enemy(int x, int y) : Entity(x, y)
 	found = false;
 	agro = false;
 	anim_speed = walk.speed;
+	id = 3;
 
 
 	//Collider
@@ -81,7 +82,7 @@ void Walking_Enemy::Update(float dt)
 	UpdateSpeed();
 
 	speed.x = floor(125 * dt);
-	speed.y = floor(125 * dt);
+	speed.y = floor(250 * dt);
 
 	if (canmove)
 	{
@@ -107,7 +108,7 @@ void Walking_Enemy::Movement()
 	{
 		if (found == true && dead == false) {
 			enemy_position = App->map->WorldToMap(r.x, r.y);
-			player_position = App->map->WorldToMap(App->entities->player_pos.x, App->entities->player_pos.y);
+			player_position = App->map->WorldToMap(App->entities->player_pos.x - r.w, r.y);
 			App->pathfinding->CreatePath(enemy_position, player_position, fly_path);
 
 			if (path_index < fly_path.Count())
@@ -116,13 +117,19 @@ void Walking_Enemy::Movement()
 
 				if (enemy_position.x <= fly_path[path_index].x && r.x < nextTile.x)
 				{
-					r.x += speed.x;
+					if (App->collision->CheckCollisionRight(r, speed))
+					{
+						r.x += speed.x;
+					}
 					omw = true;
 					flip = false;
 				}
 				else if (enemy_position.x >= fly_path[path_index].x && r.x > nextTile.x)
 				{
-					r.x -= speed.x;
+					if (App->collision->CheckCollisionLeft(r, speed))
+					{
+						r.x -= speed.x;
+					}
 					omw = true;
 					flip = true;
 				}
@@ -133,11 +140,6 @@ void Walking_Enemy::Movement()
 
 				if (!omw) {
 					path_index += 1;
-				}
-
-				if (fly_path[path_index].x == player_position.x && fly_path[path_index].y == player_position.y) {
-					path_index = 0;
-					dead = true;
 				}
 			}
 		}

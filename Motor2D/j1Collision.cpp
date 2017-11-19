@@ -15,9 +15,9 @@ j1Collision::j1Collision()
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 		colliders[i] = nullptr;
 
-	matrix[COLLIDER_WALL][COLLIDER_WALL] = false;
-	matrix[COLLIDER_WALL][COLLIDER_PLAYER] = true;
-	matrix[COLLIDER_WALL][COLLIDER_KILL] = false;
+	matrix[COLLIDER_ENEMY][COLLIDER_WALL] = true;
+	matrix[COLLIDER_ENEMY][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_ENEMY][COLLIDER_KILL] = false;
 
 	matrix[COLLIDER_PLAYER][COLLIDER_WALL] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_PLAYER] = false;
@@ -341,37 +341,6 @@ bool j1Collision::CheckCollisionDown(SDL_Rect p, iPoint speed)
 	}
 
 
-
-	return ret;
-}
-
-int j1Collision::ActualTile(SDL_Rect p)
-{
-	int ret = 0;
-	iPoint vec1, vec2, vec3, vec4;
-
-	vec1.x = p.x;
-	vec1.y = p.y +p.h;
-
-	vec2.x = p.x + p.w;
-	vec2.y = p.y + p.h;
-
-	vec3.x = p.x;
-	vec3.y = p.y;
-	
-	vec4.x = p.x + p.w;
-	vec4.y = p.y;
-
-	vec1 = App->map->WorldToMap(vec1.x, vec1.y);
-	vec2 = App->map->WorldToMap(vec2.x, vec2.y);
-	vec3 = App->map->WorldToMap(vec3.x, vec3.y);
-	vec4 = App->map->WorldToMap(vec4.x, vec4.y);
-
-	if (App->map->logic_layer->data->Get(vec1.x, vec1.y) == DEAD || App->map->logic_layer->data->Get(vec2.x, vec2.y) == DEAD || App->map->logic_layer->data->Get(vec3.x, vec3.y) == DEAD || App->map->logic_layer->data->Get(vec4.x, vec4.y) == DEAD)
-	{
-		ret = DEAD;
-
-	}
 
 	return ret;
 }

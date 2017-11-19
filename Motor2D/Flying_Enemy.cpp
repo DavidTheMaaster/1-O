@@ -61,11 +61,12 @@ Flying_Enemy::Flying_Enemy(int x, int y) : Entity(x, y)
 	//
 	speed.x = 2; speed.y = 2;
 	r.x = x; r.y = y + 32;
-	r.w = 20; r.h = 20;
+	r.w = 20; r.h = 30;
 	flip = false;
 	found = false;
 	agro = false;
 	anim_speed = fly.speed;
+	id = 2;
 
 	//Collider
 	collider = App->collision->AddCollider(r, COLLIDER_ENEMY, App->entities);
@@ -106,20 +107,20 @@ void Flying_Enemy::Movement()
 	{
 		if (found == true && dead == false) {
 			enemy_position = App->map->WorldToMap(r.x, r.y);
-			player_position = App->map->WorldToMap(App->entities->player_pos.x + 20, App->entities->player_pos.y);
+			player_position = App->map->WorldToMap(App->entities->player_pos.x + r.w, App->entities->player_pos.y);
 			App->pathfinding->CreatePath(enemy_position, player_position, fly_path);
 
 			if (path_index < fly_path.Count())
 			{
 				iPoint nextTile = App->map->MapToWorld(fly_path[path_index].x, fly_path[path_index].y);
 
-				if (enemy_position.x <= fly_path[path_index].x && r.x < nextTile.x)
+				if (enemy_position.x <= fly_path[path_index].x && r.x < nextTile.x && App->collision->CheckCollisionRight(r,speed))
 				{
 						r.x += speed.x;
 						omw = true;
 						flip = true;					
 				}
-				else if (enemy_position.x >= fly_path[path_index].x && r.x > nextTile.x)
+				else if (enemy_position.x >= fly_path[path_index].x && r.x > nextTile.x && App->collision->CheckCollisionLeft(r, speed))
 				{
 					r.x -= speed.x;
 					omw = true;

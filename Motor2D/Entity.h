@@ -29,14 +29,13 @@ public:
 	SDL_Rect r;
 	bool flip;
 
+	uint id;
 
 	uint type;
 
 public:
 	Entity(int x, int y);
 	virtual ~Entity();
-
-	const Collider* GetCollider() const;
 
 	virtual void Update(float dt) {};
 	virtual void Draw(SDL_Texture* sprites);

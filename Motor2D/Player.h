@@ -51,7 +51,6 @@ public:
 
 	bool jump;
 	bool jump2;
-	bool dead;
 
 	int jumps;
 	int jump_counter;

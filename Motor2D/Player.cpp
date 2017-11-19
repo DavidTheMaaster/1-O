@@ -105,6 +105,7 @@ Player::Player(int x, int y) : Entity (x, y)
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 	jumps = 2;
+	id = 1;
 
 	//Collider
 	collider = App->collision->AddCollider({ r.x, r.y, r.w, r.h - 7 }, COLLIDER_PLAYER, App->entities);
@@ -131,7 +132,7 @@ void Player::Update(float dt)
 	Dead();
 	CheckIfChange();
 
-	if (dead == true)
+	if (death == true)
 	{
 		Respawn();
 	}
@@ -149,7 +150,7 @@ void Player::Update(float dt)
 		r.x = spawn.x;
 		r.y = spawn.y;
 		App->render->camera.x = 0;
-		dead = false;
+		death = false;
 		
 	}
 
@@ -161,7 +162,7 @@ void Player::Update(float dt)
 
 void Player::Movement()
 {
-	if (dead == false)
+	if (death == false)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 			Right();
@@ -225,7 +226,7 @@ void Player::Left()
 
 void Player::Gravity()
 {
-	if (App->collision->CheckCollisionDown(r, speed) && jump == false && jump2 == false && dead == false)
+	if (App->collision->CheckCollisionDown(r, speed) && jump == false && jump2 == false && death == false)
 	{
 		r.y += speed.y;
 	}
@@ -355,11 +356,7 @@ void Player::CameraMovement()
 
 void Player::Dead()
 {
-	if (App->collision->ActualTile(r) == DIE)
-	{
-		dead = true;
-	}
-	if (dead == true)
+	if (death == true)
 	{
 		player_animation = &die;
 	}
@@ -373,7 +370,7 @@ void Player::Respawn()
 		player_animation = &idle;
 		r.x = spawn.x;
 		r.y = spawn.y;
-		dead = false;
+		death = false;
 		App->render->camera.x = 0;
 	}
 }

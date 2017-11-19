@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "Flying_Enemy.h"
 #include "Walking_Enemy.h"
+#include "j1Collision.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -198,7 +199,23 @@ void j1Entities::SpawnEntity(const EntityInfo& info)
 
 void j1Entities::OnCollision(Collider* c1, Collider* c2)
 {
-
+	for (uint i = 0; i < MAX_ENTITIES; ++i)
+	{
+		if (entities[i] != NULL) {
+			int j = entities[i]->id;
+			if (entities[i]->id == PLAYER)
+			{
+				if (c2->type == COLLIDER_KILL)
+				{
+					entities[i]->death = true;
+				}
+				if (c1->type == COLLIDER_ENEMY)
+				{
+				//	entities[i]->death = true;
+				}
+			}
+		}
+	}
 }
 
 bool j1Entities::Load(pugi::xml_node& save) {

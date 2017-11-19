@@ -60,7 +60,6 @@ public:
 	bool CheckCollisionLeft(SDL_Rect p, iPoint speed);
 	bool CheckCollisionUp(SDL_Rect p, iPoint speed);
 	bool CheckCollisionDown(SDL_Rect p, iPoint speed);
-	int ActualTile(SDL_Rect p);
 	void GetPixels(SDL_Rect p, int state);
 
 	uint pixels = 0;
