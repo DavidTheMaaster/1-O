@@ -13,7 +13,6 @@ private:
 	Animation fly;
 
 public:
-	iPoint originalpos;
 
 	Flying_Enemy(int x, int y);
 	void Update(float dt);
@@ -22,31 +21,10 @@ public:
 	void GetOffset();
 	void UpdateSpeed();
 
-	iPoint spawn;
-
-	bool found;
-	bool canmove;
-	bool agro;
-
-	int radius;
-	int big_radius;
-	uint anim_speed; 
-
+	uint anim_speed;
 
 	p2DynArray<iPoint> fly_path;
-	iPoint player_position;
-	iPoint enemy_position;
 
-	int path_index;
-	bool omw = false;
-	bool dead = false;
-	float dt;
-
-	Collider* collider = nullptr;
-
-
-	//Animations
-	Animation* load_anim = nullptr;
 
 
 };

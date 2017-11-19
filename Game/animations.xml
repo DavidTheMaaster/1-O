@@ -106,7 +106,7 @@
       <frame id = "3" x = "11" y = "393" w = "37" h = "55"/>
       <frame id = "4" x = "74" y = "393" w = "37" h = "55"/>
       <frame id = "5" x = "137" y = "393" w = "37" h = "55"/>
-      <attributes id = "1" speed = "10" loop = "true" offset_x = "2" offset_y = "-18" size = "5" radius = "8" big_radius = "10"/>
+      <attributes id = "1" speed = "10" loop = "true" offset_x = "-10" offset_y = "-18" size = "5" radius = "8" big_radius = "10"/>
     </walking_enemy_idle>
     <walking_enemy>
       <frame id = "0" x = "1" y = "1" w = "63" h = "84"/>

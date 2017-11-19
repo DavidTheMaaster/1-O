@@ -13,25 +13,42 @@ struct Collider;
 class Entity
 {
 protected:
+	Animation* load_anim = nullptr;
 	Animation* flying_enemy_animation = nullptr;
 	Animation* walking_enemy_animation = nullptr;
 	Animation* player_animation = nullptr;
 
 public:
 	fPoint position;
-
-	float hitpoints;
 	bool death = false;
-	int life;
 	iPoint speed;
 	iPoint offset;
-
 	SDL_Rect r;
 	bool flip;
-
 	uint id;
-
 	uint type;
+	iPoint spawn;
+	uint current;	
+	float dt = 0;
+
+	Collider *collider;
+
+	// Enemies
+	int path_index;
+	bool omw = false;
+	bool dead = false;
+
+	bool found;
+	bool canmove;
+	bool agro;
+
+	int radius;
+	int big_radius;
+
+	iPoint player_position;
+	iPoint enemy_position;
+
+
 
 public:
 	Entity(int x, int y);

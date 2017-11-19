@@ -38,26 +38,18 @@ public:
 
 public:
 
-	Collider* collider = nullptr;
 
-	int current;
-	iPoint originalpos;
-
-	float dt = 0;
-
-	int pixels = 0;
-
-	iPoint spawn;
 
 	bool jump;
 	bool jump2;
 
 	int jumps;
 	int jump_counter;
+
 	uint anim_speed[4];
 
 	//Animations
-	Animation* load_anim = nullptr;
+
 	Animation idle;
 	Animation walk;
 	Animation hover;
