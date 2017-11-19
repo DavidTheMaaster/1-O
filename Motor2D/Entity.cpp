@@ -22,7 +22,7 @@ void Entity::Draw(SDL_Texture* sprites)
 	}
 
 	if (walking_enemy_animation != nullptr) {
-		App->render->Blit(sprites, r.x - offset.x, r.y - offset.y, &(walking_enemy_animation->GetCurrentFrame()), flip);
+		App->render->Blit(sprites, r.x - offset.x - 17 , r.y - offset.y - 25, &(walking_enemy_animation->GetCurrentFrame()), flip);
 	}
 
 	if (player_animation != nullptr) {

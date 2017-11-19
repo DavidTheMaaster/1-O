@@ -307,7 +307,7 @@ if (result == NULL)
 // Load general info ----------------------------------------------
 if (ret == true)
 {
-	ret = LoadMap();
+	LoadMap();
 }
 
 // Load all tilesets info ----------------------------------------------
