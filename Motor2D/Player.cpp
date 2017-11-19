@@ -92,13 +92,8 @@ Player::Player(int x, int y) : Entity (x, y)
 	type = PLAYER;
 	speed.x = 2; speed.y = 2;
 
-	if (App->entities->justloaded) {
-		spawn.x = App->entities->loaded_player_pos.x;
-		spawn.y = App->entities->loaded_player_pos.y;
-	}
-	else {
-		spawn.x = x; spawn.y = y;
-	}
+	
+	spawn.x = x; spawn.y = y;
 
 	r.x = spawn.x; r.y = spawn.y;
 	r.w = 16; r.h = 59;
@@ -130,12 +125,6 @@ void Player::Update(float dt)
 
 	player_animation = &idle;
 
-	if (App->entities->justloaded) {
-		r.x = App->entities->loaded_player_pos.x;
-		r.y = App->entities->loaded_player_pos.y;
-		App->entities->justloaded = false;
-	}
-
 	Movement();
 	CameraMovement();
 	Gravity();
@@ -145,6 +134,11 @@ void Player::Update(float dt)
 	if (dead == true)
 	{
 		Respawn();
+	}
+	if (App->entities->justloaded) {
+		r.x = App->entities->loaded_player_pos.x;
+		r.y = App->entities->loaded_player_pos.y;
+		App->entities->justloaded = false;
 	}
 
 	//DEBUG

@@ -62,7 +62,7 @@ private:
 public:
 	iPoint player_pos;
 	iPoint loaded_player_pos;
-	bool justloaded;
+	bool justloaded = false;
 
 	bool lvl2;
 	bool hidden_level;

@@ -86,14 +86,14 @@ bool j1Scene::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN) {
 		level = level_2;
-		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 0.5);
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 		level = level_1;
-		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 0.5);
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
-		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 0.5);
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
 	}
 
 
@@ -153,7 +153,7 @@ bool j1Scene::Load(pugi::xml_node& data) {
 	if (data.child("level") != NULL) {
 		if (data.child("level").attribute("level").as_int() != level) {
 			level = data.child("level").attribute("level").as_int();
-			App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 0.5);
+			App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
 			justloaded = true;
 		}
 		

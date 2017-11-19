@@ -42,7 +42,6 @@ bool j1Entities::Start()
 	}
 	flyPositions.Clear();
 	walkPositions.Clear();
-	justloaded = false;
 
 	lvl2 = false;
 	hidden_level = false;
