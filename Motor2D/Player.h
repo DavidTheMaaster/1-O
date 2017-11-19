@@ -35,8 +35,6 @@ public:
 	void MovePixels(uint state);
 	void UpdateSpeed();
 
-	void Load();
-	void Save() const;
 
 public:
 

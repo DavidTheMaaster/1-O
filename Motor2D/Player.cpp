@@ -133,6 +133,7 @@ void Player::Update(float dt)
 	if (App->entities->justloaded) {
 		r.x = App->entities->loaded_player_pos.x;
 		r.y = App->entities->loaded_player_pos.y;
+		App->entities->justloaded = false;
 	}
 
 	Movement();
