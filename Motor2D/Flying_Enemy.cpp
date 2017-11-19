@@ -59,7 +59,6 @@ Flying_Enemy::Flying_Enemy(int x, int y) : Entity(x, y)
 
 	flying_enemy_animation = &fly;
 	//
-	speed.x = 2; speed.y = 2;
 	r.x = x; r.y = y + 32;
 	r.w = 20; r.h = 30;
 	flip = false;
@@ -79,8 +78,8 @@ void Flying_Enemy::Update(float dt)
 	GetOffset();
 	UpdateSpeed();
 
-	speed.x = 100 * dt;
-	speed.y = 100 * dt;
+	speed.x = floor (125 * dt);
+	speed.y = floor (100 * dt);
 
 
 	if (canmove)

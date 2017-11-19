@@ -225,11 +225,18 @@ void j1App::FinishUpdate()
 	int frame_rate_ms = 1000 / frame_rate;
 	ptimer.Start();
 
-	if (last_frame_ms < frame_rate_ms)
+	if (App->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN)
 	{
-		SDL_Delay(frame_rate_ms - last_frame_ms);
+		frame_rate_cap = !frame_rate_cap;
 	}
 
+
+	if (frame_rate_cap) {
+		if (last_frame_ms < frame_rate_ms)
+		{
+			SDL_Delay(frame_rate_ms - last_frame_ms);
+		}
+	}
 	double real_ms = ptimer.ReadMs();
 	LOG("We waited for %i miliseconds and got back in %f", frame_rate_ms, real_ms);
 

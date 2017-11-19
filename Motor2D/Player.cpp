@@ -142,18 +142,6 @@ void Player::Update(float dt)
 		App->entities->justloaded = false;
 	}
 
-	//DEBUG
-
-
-	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_REPEAT)
-	{
-		r.x = spawn.x;
-		r.y = spawn.y;
-		App->render->camera.x = 0;
-		death = false;
-		
-	}
-
 	collider->SetPos(r.x, r.y);
 
 	App->entities->player_pos.x = r.x; App->entities->player_pos.y = r.y;

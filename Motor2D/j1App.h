@@ -97,6 +97,8 @@ public:
 	float				dt = 0;
 private:
 
+
+	bool frame_rate_cap = true;
 	p2List<j1Module*>	modules;
 	int					argc;
 	char**				args;

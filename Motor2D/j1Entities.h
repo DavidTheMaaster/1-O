@@ -49,6 +49,8 @@ private:
 
 	void SpawnEntity(const EntityInfo& info);
 
+	bool god_mode = false;
+
 private:
 	EntityInfo queue[MAX_ENTITIES];
 	Entity* entities[MAX_ENTITIES];

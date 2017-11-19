@@ -107,6 +107,11 @@ bool j1Entities::Update(float dt)
 		}
 	}
 
+	if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+	{
+		god_mode = !god_mode;
+	}
+
 	return true;
 }
 
@@ -205,13 +210,15 @@ void j1Entities::OnCollision(Collider* c1, Collider* c2)
 			int j = entities[i]->id;
 			if (entities[i]->id == PLAYER)
 			{
-				if (c2->type == COLLIDER_KILL)
-				{
-					entities[i]->death = true;
-				}
-				if (c1->type == COLLIDER_ENEMY)
-				{
-					entities[i]->death = true;
+				if (!god_mode) {
+					if (c2->type == COLLIDER_KILL)
+					{
+						entities[i]->death = true;
+					}
+					if (c1->type == COLLIDER_ENEMY)
+					{
+						entities[i]->death = true;
+					}
 				}
 			}
 		}
