@@ -64,6 +64,7 @@ bool j1Scene::Start()
 
 	if (level == congrats) {
 		App->map->Load("levelwin.tmx");
+		App->render->camera.x = 0; App->render->camera.y = 0;
 	}
 	else {
 		App->entities->Start();
