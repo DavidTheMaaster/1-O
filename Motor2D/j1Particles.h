@@ -50,7 +50,10 @@ private:
 
 
 public:
-	
+
+	Particle LeftShoot;
+	Particle RightShoot;
+
 };
 
 #endif // __MODULEPARTICLES_H__

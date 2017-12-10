@@ -11,6 +11,7 @@
 #include "j1FadetoBlack.h"
 #include "Entity.h"
 #include "j1Entities.h"
+#include "j1Particles.h"
 
 
 Player::Player(int x, int y) : Entity (x, y)
@@ -140,6 +141,10 @@ void Player::Update(float dt)
 		r.x = App->entities->loaded_player_pos.x;
 		r.y = App->entities->loaded_player_pos.y;
 		App->entities->justloaded = false;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_DOWN) {
+		Shoot();
 	}
 
 	collider->SetPos(r.x, r.y);
@@ -360,6 +365,15 @@ void Player::Respawn()
 		r.y = spawn.y;
 		death = false;
 		App->render->camera.x = 0;
+	}
+}
+
+void Player::Shoot() {
+	if (flip) {
+		//Shoot Right
+	}
+	else {
+		//Shoot Left
 	}
 }
 

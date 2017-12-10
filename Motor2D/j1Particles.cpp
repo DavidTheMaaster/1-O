@@ -15,6 +15,12 @@ j1Particles::j1Particles()
 		active[i] = nullptr;
 
 	name.create("particles");
+
+	RightShoot.speed.x = 7.5;
+	RightShoot.life = 100;
+
+	LeftShoot.speed.x = -7.5;
+	LeftShoot.life = 100;
 }
 
 j1Particles::~j1Particles()

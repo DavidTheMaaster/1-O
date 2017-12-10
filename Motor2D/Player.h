@@ -34,6 +34,7 @@ public:
 	void CheckIfChange();
 	void MovePixels(uint state);
 	void UpdateSpeed();
+	void Shoot();
 
 
 public:
