@@ -12,6 +12,8 @@
 
 class j1App;
 struct Collider; 
+class UIElement;
+enum UI_STATE;
 
 class j1Module
 {
@@ -72,6 +74,8 @@ public:
 	{
 		return true;
 	}
+
+	virtual void UIEvent(UIElement* elementTriggered, UI_STATE ui_state) {}
 
 public:
 

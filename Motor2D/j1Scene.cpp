@@ -11,6 +11,7 @@
 #include "j1FadeToBlack.h"
 #include "j1Window.h"
 #include "j1Map.h"
+#include "j1Gui.h"
 #include "j1Scene.h"
 
 j1Scene::j1Scene() : j1Module()
@@ -42,6 +43,10 @@ bool j1Scene::Start()
 	if (level == level_1) {
 		App->map->Load("level1.tmx");
 		App->audio->PlayMusic("audio/music/all_of_us.ogg");
+		App->gui->AddLabel(100, 100, "PATATA", BLACK, FREEPIXEL, 20);
+		App->gui->AddLabel(100, 200, "PATATA", BLACK, MINECRAFT, 20);
+		App->gui->AddLabel(100, 300, "PATATA", BLACK, UPHEAVAL, 20);
+
 	}
 	if (level == level_2) {
 		App->map->Load("level2.tmx");

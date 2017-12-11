@@ -15,7 +15,9 @@
 #include "j1Pathfinding.h"
 #include "j1Entities.h"
 #include "j1Particles.h"
+#include "j1Fonts.h"
 #include "j1FadeToBlack.h"
+#include "j1Gui.h"
 #include "j1App.h"
 
 #include "Brofiler/Brofiler.h"
@@ -39,6 +41,8 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	particles = new j1Particles();
 	collision = new j1Collision();
 	pathfinding = new j1PathFinding();
+	font = new j1Fonts();
+	gui = new j1Gui();
 	fadetoblack = new j1FadeToBlack();
 
 	// Ordered for awake / Start / Update
@@ -53,6 +57,8 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(particles);
 	AddModule(collision);
 	AddModule(pathfinding);
+	AddModule(font);
+	AddModule(gui);
 	AddModule(fadetoblack);
 
 
