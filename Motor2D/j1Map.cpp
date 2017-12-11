@@ -113,7 +113,6 @@ void j1Map::Draw()
 
 	p2List_item<TileSet*>* item_tileset = data.tilesets.end;
 
-	// TODO 5: Prepare the loop to draw all tilesets + Blit
 	while (item_tileset != NULL) {
 		p2List_item<MapLayer*>* item_layer = data.layers.start;
 		while (item_layer != NULL) {
@@ -160,7 +159,6 @@ void j1Map::Draw()
 		item_tileset = item_tileset->prev;
 
 	}
-	// TODO 9: Complete the draw function
 
 }
 

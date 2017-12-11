@@ -12,10 +12,6 @@ class Label;
 class Image;
 class Button;
 
-// TODO 1: Create your structure of classes
-
-// ---------------------------------------------------
-
 enum COLOURS
 {
 	BLACK,
