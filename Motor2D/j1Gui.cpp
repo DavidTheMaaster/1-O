@@ -122,6 +122,7 @@ Button* j1Gui::AddButton(int x, int y, SDL_Texture* texture, j1Module* callback,
 }
 
 
+
 SDL_Color j1Gui::GetColor(int color)
 {
 	SDL_Color ret;

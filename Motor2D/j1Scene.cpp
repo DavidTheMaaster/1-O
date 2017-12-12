@@ -33,19 +33,30 @@ bool j1Scene::Awake(pugi::xml_node& config)
 
 	
 
+
 	return ret;
 }
 
 // Called before the first frame
 bool j1Scene::Start()
-{
+{	
+	Button* play, *options, *exit;
+	menu_texture = App->tex->Load("maps/menu.png");
+	buttons = App->tex->Load("maps/menu_button.png");
+
+
+	if (level == menu)
+	{
+		App->gui->AddImage(0, 0, menu_texture);
+		play = App->gui->AddButton(542, 436, buttons,this);
+		options = App->gui->AddButton(656, 436, buttons, this);
+		exit = App->gui->AddButton(770, 436, buttons, this);
+		
+	}
 
 	if (level == level_1) {
 		App->map->Load("level1.tmx");
 		App->audio->PlayMusic("audio/music/all_of_us.ogg");
-		App->gui->AddLabel(100, 100, "PATATA", BLACK, FREEPIXEL, 20);
-		App->gui->AddLabel(100, 200, "PATATA", BLACK, MINECRAFT, 20);
-		App->gui->AddLabel(100, 300, "PATATA", BLACK, UPHEAVAL, 20);
 
 	}
 	if (level == level_2) {
@@ -54,6 +65,7 @@ bool j1Scene::Start()
 	if (level == hidden_level) {
 		App->map->Load("hidden_level.tmx");
 	}
+	
 
 	changeMap = false;
 
@@ -138,6 +150,7 @@ bool j1Scene::CleanUp()
 	App->map->CleanUp();
 	App->collision->CleanUp();
 	App->entities->CleanUp();
+	App->gui->CleanUp();
 	return true;
 }
 

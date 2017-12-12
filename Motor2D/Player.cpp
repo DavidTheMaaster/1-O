@@ -380,7 +380,7 @@ void Player::Shoot() {
 void Player::CheckIfChange() {
 
 	if (App->entities->lvl2) {
-		App->scene->level = App->scene->level_2;
+		App->scene->level++;
 		App->scene->changeMap = true;
 	}
 

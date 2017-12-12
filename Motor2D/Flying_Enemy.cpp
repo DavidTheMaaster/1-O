@@ -102,7 +102,7 @@ void Flying_Enemy::Update(float dt)
 
 void Flying_Enemy::Movement()
 {
-	if ((App->scene->level == 0 || App->scene->level == 1 || App->scene->level == 2) && App->fadetoblack->IsFading() == false)
+	if (App->fadetoblack->IsFading() == false)
 	{
 		if (found == true && dead == false) {
 			enemy_position = App->map->WorldToMap(r.x, r.y);

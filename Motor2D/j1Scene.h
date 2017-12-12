@@ -39,20 +39,25 @@ public:
 	void CheckChange();
 
 public:
-	int level;
+	int level = 0;
 	bool justloaded = false;
 	bool changeMap;
+	SDL_Texture* menu_texture, *buttons;
 
 	enum Levels
 	{
+		menu,
 		level_1,
 		level_2,
 		hidden_level,
 		congrats,
 	};
+
 private:
 	iPoint mouse;
 	pugi::xml_node level_name;
+
+	//UI ELEMENTS
 
 };
 
