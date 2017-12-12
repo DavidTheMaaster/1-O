@@ -1,0 +1,278 @@
+{ "frames": [
+   {
+    "filename": "menu_button 0.png",
+    "frame": { "x": 1, "y": 1, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 1.png",
+    "frame": { "x": 57, "y": 1, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 2.png",
+    "frame": { "x": 113, "y": 1, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 3.png",
+    "frame": { "x": 169, "y": 1, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 4.png",
+    "frame": { "x": 225, "y": 1, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 5.png",
+    "frame": { "x": 281, "y": 1, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 6.png",
+    "frame": { "x": 337, "y": 1, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 7.png",
+    "frame": { "x": 393, "y": 1, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 8.png",
+    "frame": { "x": 449, "y": 1, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 9.png",
+    "frame": { "x": 1, "y": 60, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 10.png",
+    "frame": { "x": 57, "y": 60, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 11.png",
+    "frame": { "x": 113, "y": 60, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 12.png",
+    "frame": { "x": 169, "y": 60, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 13.png",
+    "frame": { "x": 225, "y": 60, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 14.png",
+    "frame": { "x": 281, "y": 60, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 15.png",
+    "frame": { "x": 337, "y": 60, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 16.png",
+    "frame": { "x": 393, "y": 60, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 17.png",
+    "frame": { "x": 449, "y": 60, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 18.png",
+    "frame": { "x": 1, "y": 119, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 19.png",
+    "frame": { "x": 57, "y": 119, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 20.png",
+    "frame": { "x": 113, "y": 119, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 21.png",
+    "frame": { "x": 169, "y": 119, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 22.png",
+    "frame": { "x": 225, "y": 119, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 23.png",
+    "frame": { "x": 281, "y": 119, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 24.png",
+    "frame": { "x": 337, "y": 119, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 25.png",
+    "frame": { "x": 393, "y": 119, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 26.png",
+    "frame": { "x": 449, "y": 119, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 27.png",
+    "frame": { "x": 1, "y": 178, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   },
+   {
+    "filename": "menu_button 28.png",
+    "frame": { "x": 57, "y": 178, "w": 56, "h": 59 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 56, "h": 59 },
+    "sourceSize": { "w": 56, "h": 59 },
+    "duration": 30
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.1.9-dev",
+  "image": "C:\\Users\\Usuario\\Documents\\GitHub\\1-O\\Game\\maps\\menu_button-sheet.png",
+  "format": "RGBA8888",
+  "size": { "w": 512, "h": 256 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Layer", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ]
+ }
+}

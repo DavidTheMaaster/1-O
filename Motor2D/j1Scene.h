@@ -2,6 +2,7 @@
 #define __j1SCENE_H__
 
 #include "j1Module.h"
+#include "Button.h"
 
 struct SDL_Texture;
 
@@ -43,6 +44,7 @@ public:
 	bool justloaded = false;
 	bool changeMap;
 	SDL_Texture* menu_texture, *buttons;
+	Button* play, *options, *exit;
 
 	enum Levels
 	{

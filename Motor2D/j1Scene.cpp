@@ -40,7 +40,6 @@ bool j1Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool j1Scene::Start()
 {	
-	Button* play, *options, *exit;
 	menu_texture = App->tex->Load("maps/menu.png");
 	buttons = App->tex->Load("maps/menu_button.png");
 
@@ -57,7 +56,6 @@ bool j1Scene::Start()
 		App->gui->AddLabel(738, 370, "D'OPCIONS", BLACK, UPHEAVAL, 24);
 		App->gui->AddLabel(687, 416, "EXIT", BLACK, UPHEAVAL, 24);
 		App->gui->AddLabel(675, 456, "SORTIR", BLACK, UPHEAVAL, 24);		
-		
 	}
 
 	if (level == level_1) {

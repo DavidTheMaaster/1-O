@@ -13,8 +13,6 @@ Entity::~Entity()
 
 }
 
-
-
 void Entity::Draw(SDL_Texture* sprites)
 {
 	if (flying_enemy_animation != nullptr) {

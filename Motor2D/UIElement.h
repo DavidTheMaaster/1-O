@@ -5,16 +5,9 @@
 #include "p2Defs.h"
 #include "p2Point.h"
 #include "j1Textures.h"
+#include "Animation.h"
 
 
-enum UI_STATE {
-	NO_STATE,
-	MOUSE_ENTER,
-	MOUSE_LEAVE,
-	L_MOUSE_PRESSED,
-	R_MOUSE_PRESSED,
-	FOCUSED,
-};
 
 enum UI_TYPE
 {
@@ -34,6 +27,7 @@ public:
 	uint w;
 	uint h;
 
+
 	j1Module* callback = nullptr;
 	UIElement* parent = nullptr;
 
@@ -42,7 +36,7 @@ public:
 
 	uint type;
 
-	UI_STATE state;
+	
 
 	const SDL_Texture *texture = nullptr;
 
@@ -50,9 +44,12 @@ public:
 
 	UIElement(int x, int y, uint type, const SDL_Texture* texture, UIElement* parent = nullptr);
 	virtual ~UIElement() { };
-
+	UI_STATE state;
 	virtual void Draw(float dt);
 	virtual void Update(float dt);
+
+public:
+	Animation anim;
 
 };
 

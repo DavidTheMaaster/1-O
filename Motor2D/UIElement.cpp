@@ -15,7 +15,7 @@ UIElement::UIElement(int x, int y, uint type, const SDL_Texture* texture, UIElem
 	pos.x = x;
 	pos.y = y;
 
-	rect = {x, y, (int)w, (int)h};
+	rect = { x, y, (int)w, (int)h };
 }
 
 void UIElement::Draw(float dt)
@@ -49,6 +49,8 @@ void UIElement::Update(float dt)
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && state == MOUSE_ENTER) {
 			state = L_MOUSE_PRESSED;
 			this->callback->UIEvent(this, state);
+			SDL_Texture* cross; 
+			cross = App->tex->Load("maps/cross.png");
 			LOG("Mouse Left Click");
 		}
 		else if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP && state == L_MOUSE_PRESSED) {
@@ -69,3 +71,4 @@ void UIElement::Update(float dt)
 		}
 	}
 }
+

@@ -22,6 +22,15 @@ enum COLOURS
 	YELLOW
 };
 
+enum UI_STATE {
+	NO_STATE,
+	MOUSE_ENTER,
+	MOUSE_LEAVE,
+	L_MOUSE_PRESSED,
+	R_MOUSE_PRESSED,
+	FOCUSED,
+};
+
 enum FONTS
 {
 	NO_FONT,
@@ -61,18 +70,21 @@ public:
 	bool Update(float dt);
 
 	Label* AddLabel(int x, int y, char* text, uint color, uint font, int size, UIElement* parent = nullptr);
-	Image* AddImage(int x, int y, SDL_Texture* texture, UIElement* parent = nullptr);
+	Image* AddImage(int x, int y, SDL_Texture* texture, Animation* anim = nullptr, UIElement* parent = nullptr);
 	Button* AddButton(int x, int y, SDL_Texture* texture, j1Module* callback = nullptr, UIElement* parent = nullptr);
 
+	bool GetState(UIElement* element);
 
-	SDL_Color GetColor(int color);
-	char* GetFont(uint font);
+
 
 private:
 
 	SDL_Texture* atlas;
 	p2SString atlas_file_name;
 	p2List<UIElement*> elements;
+
+	SDL_Color GetColor(int color);
+	char* GetFont(uint font);
 
 };
 
