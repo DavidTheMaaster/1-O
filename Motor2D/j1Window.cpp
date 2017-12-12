@@ -108,6 +108,8 @@ void j1Window::SetTitle(const char* new_title)
 
 bool j1Window::Update(float dt)
 {
+	SDL_RenderSetLogicalSize(App->render->renderer, 1920, 1080);
+
 	return true;
 }
 
