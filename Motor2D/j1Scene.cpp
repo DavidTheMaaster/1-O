@@ -48,9 +48,12 @@ bool j1Scene::Start()
 	if (level == menu)
 	{
 		App->gui->AddImage(0, 0, menu_texture);
-		play = App->gui->AddButton(542, 436, buttons,this);
-		options = App->gui->AddButton(656, 436, buttons, this);
-		exit = App->gui->AddButton(770, 436, buttons, this);
+		//play = App->gui->AddButton(542, 436, buttons,this);
+		//options = App->gui->AddButton(656, 436, buttons, this);
+		//exit = App->gui->AddButton(770, 436, buttons, this);
+		//App->gui->AddLabel(530, 335,"PLAY",BLACK, UPHEAVAL,30);
+		//App->gui->AddLabel(520, 370, "JOGAR", BLACK, UPHEAVAL, 30);
+		
 		
 	}
 
