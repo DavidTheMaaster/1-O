@@ -158,9 +158,33 @@ bool j1Scene::Update(float dt)
 	exit_game = true;
 	UpdateSpeed(dt);
 
+<<<<<<< HEAD
 
 	GetKeys();
 	SetUI();
+=======
+	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
+		level = hidden_level;
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN) {
+		level = level_2;
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
+		level = level_1;
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
+	}
+	/*
+	if (player_lifes == 0){
+		level = GameOverScreen;
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
+	}
+	*/
+>>>>>>> origin/master
 	
 	App->map->Draw();
 	CheckChange();

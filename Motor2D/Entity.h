@@ -30,7 +30,6 @@ public:
 	iPoint spawn;
 	uint current;	
 	float dt = 0;
-
 	Collider *collider;
 
 	// Enemies

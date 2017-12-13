@@ -54,9 +54,16 @@ public:
 	int level = 0;
 	bool justloaded = false;
 	bool changeMap;
+<<<<<<< HEAD
 	SDL_Texture* menu_texture, *buttons, *cross_texture, *hand_texture, *sheet_text, *option_sheet_text, *exit_options_text;
 	Button* play, *options, *exit, *exit_options, *morevolume, *lessvolume;
 	Image* sheet, *option_sheet, *hand, *cross; 
+=======
+	uint player_lifes = 5;
+	SDL_Texture* menu_texture, *buttons, *cross_texture, *hand_texture;
+	Button* play, *options, *exit;
+	Image* hand; 
+>>>>>>> origin/master
 
 
 	enum Levels

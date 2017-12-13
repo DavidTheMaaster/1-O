@@ -13,6 +13,7 @@ enum ENTITY_TYPES
 	PLAYER,
 	ENEMY_FLY,
 	ENEMY_WALK,
+	URN,
 };
 
 class Entity;

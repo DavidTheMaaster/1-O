@@ -93,7 +93,9 @@ void j1Map::SetMapLogic() {
 						if (gid == SPAWN_WE) {
 							App->entities->AddEntity(ENEMY_WALK, pos.x, pos.y);
 						}
-
+						if (gid == URNS) {
+							App->entities->AddEntity(URN, pos.x, pos.y);
+						}
 
 					}
 
