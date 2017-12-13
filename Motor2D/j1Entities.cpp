@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "Flying_Enemy.h"
 #include "Walking_Enemy.h"
+#include "Collectable_Urn.h"
 #include "j1Collision.h"
 
 #include "Brofiler/Brofiler.h"
@@ -197,6 +198,9 @@ void j1Entities::SpawnEntity(const EntityInfo& info)
 		case ENTITY_TYPES::ENEMY_WALK:
 			entities[i] = new Walking_Enemy(info.x, info.y);
 			break;
+		case ENTITY_TYPES::URN:
+			entities[i] = new Collectable_Urn(info.x, info.y);
+			break;
 		}
 
 	}
@@ -206,8 +210,7 @@ void j1Entities::OnCollision(Collider* c1, Collider* c2)
 {
 	for (uint i = 0; i < MAX_ENTITIES; ++i)
 	{
-		if (entities[i] != NULL) {
-			int j = entities[i]->id;
+		if (entities[i] != NULL && entities[i]->collider == c1) {
 			if (entities[i]->id == PLAYER)
 			{
 				if (!god_mode) {
@@ -221,13 +224,12 @@ void j1Entities::OnCollision(Collider* c1, Collider* c2)
 					}
 				}
 			}
-			if (entities[i]->id == ENEMY_FLY || entities[i]->id == ENEMY_WALK)
+			if ((entities[i]->collider->type == ENEMY_WALK || entities[i]->collider->type == ENEMY_FLY) && c2->type == COLLIDER_PLAYERSHOOT)
 			{
-				if (c2->type == COLLIDER_PLAYERSHOOT) {
-					delete entities[i];
-					entities[i] = nullptr;
-					break;
-				}
+				App->collision->EraseCollider(entities[i]->collider);
+				delete entities[i];
+				entities[i] = nullptr;
+				break;
 			}
 		}
 	}

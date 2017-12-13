@@ -173,6 +173,7 @@ private:
 		SPAWN_WE = 27,
 		LEVEL_2 = 9,
 		HIDDEN_LEVEL = 24,
+		URNS = 16,
 		
 	};
 
