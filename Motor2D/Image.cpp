@@ -8,6 +8,7 @@ Image::Image(int x, int y, uint type, SDL_Texture * texture, Animation* anim, UI
 	pos.y = y;
 
 	this->parent = parent;
+
 	if (anim != nullptr)
 		this->anim = *anim;
 }

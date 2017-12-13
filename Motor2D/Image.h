@@ -10,7 +10,7 @@
 class Image : public UIElement
 {
 public:
-	Image(int pos_x, int pos_y, uint type, SDL_Texture* texture, Animation* anim = NULL, UIElement* parent = nullptr);
+	Image(int pos_x, int pos_y, uint type, SDL_Texture* texture, Animation* anim = nullptr, UIElement* parent = nullptr);
 };
 
 

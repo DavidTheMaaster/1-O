@@ -104,9 +104,10 @@ Label* j1Gui::AddLabel(int x, int y, char* text, uint colors, uint fonts, int si
 }
 
 
-Image* j1Gui::AddImage(int x, int y, SDL_Texture* texture, Animation* anim, UIElement* parent)
+Image* j1Gui::AddImage(int x, int y, SDL_Texture* texture, Animation anim, UIElement* parent)
 {
-	Image* image = new Image(x, y, IMAGE, texture, anim, parent);
+	Animation* animation = &anim;
+	Image* image = new Image(x, y, IMAGE, texture, animation, parent);
 	elements.add((UIElement*)image);
 
 	return image;

@@ -31,8 +31,38 @@ bool j1Scene::Awake(pugi::xml_node& config)
 
 	level_name = config.child("levels");
 
-	
+	cross.PushBack({1,1,56,59});
+	cross.PushBack({ 57,1,56,59 });
+	cross.PushBack({ 113,1,56,59 });
+	cross.PushBack({ 169,1,56,59 });
+	cross.PushBack({ 225,1,56,59 });
+	cross.PushBack({ 281,1,56,59 });
+	cross.PushBack({ 337,1,56,59 });
+	cross.PushBack({ 393,1,56,59 });
+	cross.PushBack({ 449,1,56,59 });
+	cross.PushBack({ 1,60,56,59 });
+	cross.PushBack({ 57,60,56,59 });
+	cross.PushBack({ 113,60,56,59 });
+	cross.PushBack({ 169,60,56,59 });
+	cross.PushBack({ 225,60,56,59 });
+	cross.PushBack({ 281,60,56,59 });
+	cross.PushBack({ 337,60,56,59 });
+	cross.PushBack({ 393,60,56,59 });
+	cross.PushBack({ 449,60,56,59 });
+	cross.PushBack({ 1,119,56,59 });
+	cross.PushBack({ 57,119,56,59 });
+	cross.PushBack({ 113,119,56,59 });
+	cross.PushBack({ 169,119,56,59 });
+	cross.PushBack({ 225,119,56,59 });
+	cross.PushBack({ 281,119,56,59 });
+	cross.PushBack({ 337,119,56,59 });
+	cross.PushBack({ 393,119,56,59 });
+	cross.PushBack({ 449,119,56,59 });
+	cross.PushBack({ 1,178,56,59 });
+	cross.PushBack({ 57,178,56,59 });
 
+	cross.speed = 0.5f;
+	cross.loop = true;
 
 	return ret;
 }
@@ -42,20 +72,22 @@ bool j1Scene::Start()
 {	
 	menu_texture = App->tex->Load("maps/menu.png");
 	buttons = App->tex->Load("maps/menu_button.png");
-
+	cross_texture = App->tex->Load("maps/cross.png");
+	hand_texture = App->tex->Load("maps/hand.png");
 
 	if (level == menu)
 	{
 		App->gui->AddImage(0, 0, menu_texture);
-		play = App->gui->AddButton(515, 333, buttons,this);
-		options = App->gui->AddButton(675, 333, buttons, this);
-		exit = App->gui->AddButton(607, 416, buttons, this);
-		App->gui->AddLabel(593, 330,"PLAY",BLACK, UPHEAVAL,24);
-		App->gui->AddLabel(585, 370, "JOGAR", BLACK, UPHEAVAL, 24);
-		App->gui->AddLabel(745, 330, "OPTIONS", BLACK, UPHEAVAL, 24);
-		App->gui->AddLabel(738, 370, "D'OPCIONS", BLACK, UPHEAVAL, 24);
-		App->gui->AddLabel(687, 416, "EXIT", BLACK, UPHEAVAL, 24);
-		App->gui->AddLabel(675, 456, "SORTIR", BLACK, UPHEAVAL, 24);		
+		play = App->gui->AddButton(537, 368, buttons,this);
+		options = App->gui->AddButton(650, 368, buttons, this);
+		exit = App->gui->AddButton(764, 368, buttons, this);
+		App->gui->AddLabel(537, 305,"PLAY",BLACK, UPHEAVAL,20);
+		App->gui->AddLabel(530, 335, "JOGAR", BLACK, UPHEAVAL, 20);
+		App->gui->AddLabel(635, 305, "OPTIONS", BLACK, UPHEAVAL, 20);
+		App->gui->AddLabel(630, 335, "D'OPCIONS", BLACK, UPHEAVAL, 20);
+		App->gui->AddLabel(768, 305, "EXIT", BLACK, UPHEAVAL, 20);
+		App->gui->AddLabel(758, 335, "SORTIR", BLACK, UPHEAVAL, 20);
+		hand = App->gui->AddImage(337, 420, hand_texture, {});
 	}
 
 	if (level == level_1) {
@@ -127,6 +159,46 @@ bool j1Scene::Update(float dt)
 		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
 	}
 
+	if (change == false)
+	{
+		switch (level)
+		{
+		case menu:
+			if (play->state == MOUSE_ENTER)
+				hand->pos.x = 337;
+			if (options->state == MOUSE_ENTER)
+				hand->pos.x = 450;
+			if (exit->state == MOUSE_ENTER)
+				hand->pos.x = 563;
+
+
+			if (play->state == L_MOUSE_PRESSED)
+			{
+				App->gui->AddImage(0, 0, cross_texture, cross, play);
+				change = true;
+			}
+			if (options->state == MOUSE_ENTER)
+				hand->pos.x = 450;
+			if (exit->state == MOUSE_ENTER)
+				hand->pos.x = 563;
+
+
+			break;
+		default:
+			break;
+		}
+	}
+
+	if (change == true)
+	{
+		if (hand->anim.Finished())
+		{
+			level = level_1;
+			change = false;
+			App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
+			
+		}
+	}
 
 	//App->render->Blit(img, 0, 0);
 	App->map->Draw();

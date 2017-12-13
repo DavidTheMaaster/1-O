@@ -3,6 +3,8 @@
 
 #include "j1Module.h"
 #include "Button.h"
+#include "Image.h"
+#include "Animation.h"
 
 struct SDL_Texture;
 
@@ -37,14 +39,18 @@ public:
 	bool Save(pugi::xml_node&) const;
 	bool Load(pugi::xml_node&);
 
+	bool test;
+
 	void CheckChange();
 
 public:
 	int level = 0;
 	bool justloaded = false;
 	bool changeMap;
-	SDL_Texture* menu_texture, *buttons;
+	SDL_Texture* menu_texture, *buttons, *cross_texture, *hand_texture;
 	Button* play, *options, *exit;
+	Image* hand;
+
 
 	enum Levels
 	{
@@ -58,6 +64,8 @@ public:
 private:
 	iPoint mouse;
 	pugi::xml_node level_name;
+	Animation cross;
+	bool change; 
 
 	//UI ELEMENTS
 

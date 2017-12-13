@@ -20,10 +20,19 @@ UIElement::UIElement(int x, int y, uint type, const SDL_Texture* texture, UIElem
 
 void UIElement::Draw(float dt)
 {
-	if (parent != nullptr)
-		App->render->Blit(texture, parent->pos.x + pos.x, parent->pos.y + pos.y, &rect, false, 0.0);
+
+	if (anim.GetCurrentFrame().w == 0)
+		current_animation = rect;
 	else
-		App->render->Blit(texture, pos.x, pos.y, &rect, false, 0.0);
+		current_animation = anim.GetCurrentFrame();
+
+	
+	if (parent != nullptr)
+		App->render->Blit(texture, parent->pos.x + pos.x, parent->pos.y + pos.y, &(current_animation), false, 0.0);
+
+	else
+		App->render->Blit(texture, pos.x, pos.y, &(current_animation), false, 0.0);
+
 }
 
 void UIElement::Update(float dt)
@@ -47,27 +56,14 @@ void UIElement::Update(float dt)
 			state = NO_STATE;
 
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && state == MOUSE_ENTER) {
-			state = L_MOUSE_PRESSED;
+			state = UI_STATE::L_MOUSE_PRESSED;
 			this->callback->UIEvent(this, state);
-			SDL_Texture* cross; 
-			cross = App->tex->Load("maps/cross.png");
 			LOG("Mouse Left Click");
 		}
 		else if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP && state == L_MOUSE_PRESSED) {
 			state = NO_STATE;
 			this->callback->UIEvent(this, state);
 			LOG("Mouse Stop Left Click");
-		}
-
-		if (state == L_MOUSE_PRESSED)
-		{
-			if (mouse_x != mouse2.x || mouse_y != mouse2.y) {
-				App->input->GetMouseMotion(mouse_movement.x, mouse_movement.y);
-				pos.x += mouse_movement.x;
-				pos.y += mouse_movement.y;
-				mouse2.x = mouse_x;
-				mouse2.y = mouse_y;
-			}
 		}
 	}
 }
