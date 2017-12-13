@@ -168,6 +168,7 @@ bool j1App::Update(float dt)
 		ret = PostUpdate();
 
 	FinishUpdate();
+
 	return ret;
 }
 
@@ -193,7 +194,10 @@ void j1App::PrepareUpdate()
 
 	frame_count++;
 	last_sec_frame_count++;
-	dt = frame_time.ReadSec();
+	if (pause)
+		dt = 0;
+	else
+		dt = frame_time.ReadSec();
 	frame_time.Start();
 }
 
@@ -294,6 +298,9 @@ bool j1App::DoUpdate()
 
 		ret = item->data->Update(dt);
 	}
+
+	if (pause)
+		App->render->DrawQuad({ 0,0,1000,1000 }, 0, 0, 0, 100);
 
 	return ret;
 }

@@ -19,7 +19,6 @@ Player::Player(int x, int y) : Entity (x, y)
 
 	LOG("Loading animations");
 
-	bool ret = true;
 
 	animation_file.load_file("animations.xml");
 	animations = animation_file.child("animations").child("player").first_child();
@@ -27,7 +26,6 @@ Player::Player(int x, int y) : Entity (x, y)
 	if (animations == NULL)
 	{
 		LOG("Could not load animations");
-		ret = false;
 	}
 
 	int k = 0;

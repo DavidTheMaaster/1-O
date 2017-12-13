@@ -122,6 +122,22 @@ Button* j1Gui::AddButton(int x, int y, SDL_Texture* texture, j1Module* callback,
 	return button;
 }
 
+void j1Gui::DeleteUI(UIElement * element)
+{
+	p2List_item<UIElement*>* item = elements.start;
+
+	while (item != nullptr)
+	{
+		if (item->data == element)
+		{
+			delete element;
+			elements.del(item);
+		}
+		item = item->next;
+	}
+
+}
+
 
 
 SDL_Color j1Gui::GetColor(int color)
@@ -185,9 +201,4 @@ char * j1Gui::GetFont(uint font)
 		break;
 	}
 	return path;
-}
-
-bool j1Gui::GetState(UIElement * element)
-{
-	return element->state;
 }

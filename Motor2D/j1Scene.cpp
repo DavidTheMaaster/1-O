@@ -31,38 +31,52 @@ bool j1Scene::Awake(pugi::xml_node& config)
 
 	level_name = config.child("levels");
 
-	cross.PushBack({1,1,56,59});
-	cross.PushBack({ 57,1,56,59 });
-	cross.PushBack({ 113,1,56,59 });
-	cross.PushBack({ 169,1,56,59 });
-	cross.PushBack({ 225,1,56,59 });
-	cross.PushBack({ 281,1,56,59 });
-	cross.PushBack({ 337,1,56,59 });
-	cross.PushBack({ 393,1,56,59 });
-	cross.PushBack({ 449,1,56,59 });
-	cross.PushBack({ 1,60,56,59 });
-	cross.PushBack({ 57,60,56,59 });
-	cross.PushBack({ 113,60,56,59 });
-	cross.PushBack({ 169,60,56,59 });
-	cross.PushBack({ 225,60,56,59 });
-	cross.PushBack({ 281,60,56,59 });
-	cross.PushBack({ 337,60,56,59 });
-	cross.PushBack({ 393,60,56,59 });
-	cross.PushBack({ 449,60,56,59 });
-	cross.PushBack({ 1,119,56,59 });
-	cross.PushBack({ 57,119,56,59 });
-	cross.PushBack({ 113,119,56,59 });
-	cross.PushBack({ 169,119,56,59 });
-	cross.PushBack({ 225,119,56,59 });
-	cross.PushBack({ 281,119,56,59 });
-	cross.PushBack({ 337,119,56,59 });
-	cross.PushBack({ 393,119,56,59 });
-	cross.PushBack({ 449,119,56,59 });
-	cross.PushBack({ 1,178,56,59 });
-	cross.PushBack({ 57,178,56,59 });
 
-	cross.speed = 0.5f;
-	cross.loop = false;
+	animation_file.load_file("animations.xml");
+	animations = animation_file.child("animations").child("ui").first_child();
+
+	if (animations == NULL)
+	{
+		LOG("Could not load animations");
+	}
+
+	while (animations != NULL) {
+		attributes = animations.child("attributes");
+		rect = animations.first_child();
+
+		current = attributes.attribute("id").as_int();
+
+		if (current == CROSS)
+		{
+			load_anim = &cross;
+		}
+
+		int i = rect.attribute("id").as_int();
+		int j = attributes.attribute("size").as_int();
+
+		while (i < j)
+		{
+			SDL_Rect r;
+			r.x = rect.attribute("x").as_int();
+			r.y = rect.attribute("y").as_int();
+			r.w = rect.attribute("w").as_int();
+			r.h = rect.attribute("h").as_int();
+
+			load_anim->PushBack({ r.x,r.y,r.w,r.h });
+
+			rect = rect.next_sibling();
+			i = rect.attribute("id").as_int();
+			load_anim->loop = attributes.attribute("loop").as_bool();
+			load_anim->speed = attributes.attribute("speed").as_float();
+
+		}
+
+		anim_speed = load_anim->speed;
+
+		animations = animations.next_sibling();
+
+	}
+
 
 	return ret;
 }
@@ -74,19 +88,22 @@ bool j1Scene::Start()
 	buttons = App->tex->Load("maps/menu_button.png");
 	cross_texture = App->tex->Load("maps/cross.png");
 	hand_texture = App->tex->Load("maps/hand.png");
+	sheet_text = App->tex->Load("maps/sheet.png");
+	option_sheet_text = App->tex->Load("maps/option_sheet.png");
 
 	if (level == menu)
 	{
 		App->gui->AddImage(0, 0, menu_texture);
-		play = App->gui->AddButton(537, 368, buttons,this);
-		options = App->gui->AddButton(650, 368, buttons, this);
-		exit = App->gui->AddButton(764, 368, buttons, this);
-		App->gui->AddLabel(537, 305,"PLAY",BLACK, UPHEAVAL,20);
-		App->gui->AddLabel(530, 335, "JOGAR", BLACK, UPHEAVAL, 20);
-		App->gui->AddLabel(635, 305, "OPTIONS", BLACK, UPHEAVAL, 20);
-		App->gui->AddLabel(630, 335, "D'OPCIONS", BLACK, UPHEAVAL, 20);
-		App->gui->AddLabel(768, 305, "EXIT", BLACK, UPHEAVAL, 20);
-		App->gui->AddLabel(758, 335, "SORTIR", BLACK, UPHEAVAL, 20);
+		sheet = App->gui->AddImage(490,35,sheet_text);
+		play = App->gui->AddButton(47, 333, buttons,this, sheet);
+		options = App->gui->AddButton(160, 333, buttons, this, sheet);
+		exit = App->gui->AddButton(274, 333, buttons, this, sheet);
+		App->gui->AddLabel(47, 275,"PLAY",BLACK, UPHEAVAL,20, sheet);
+		App->gui->AddLabel(40, 305, "JOGAR", BLACK, UPHEAVAL, 20, sheet);
+		App->gui->AddLabel(145, 275, "OPTIONS", BLACK, UPHEAVAL, 20, sheet);
+		App->gui->AddLabel(140, 305, "D'OPCIONS", BLACK, UPHEAVAL, 20, sheet);
+		App->gui->AddLabel(278, 275, "EXIT", BLACK, UPHEAVAL, 20, sheet);
+		App->gui->AddLabel(268, 305, "SORTIR", BLACK, UPHEAVAL, 20, sheet);
 		hand = App->gui->AddImage(337, 420, hand_texture, {});
 	}
 
@@ -136,92 +153,17 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
-	bool ret = true;
-	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
-		App->LoadGame();
-
-	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
-		App->SaveGame();
-
-	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
-		level = hidden_level;
-		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
-	}
-	if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN) {
-		level = level_2;
-		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
-	}
-	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
-		level = level_1;
-		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
-	}
-	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
-		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
-	}
-
-	
-	switch (level)
-	{
-	case menu:
-		if (change == false)
-		{
-			if (play->state == MOUSE_ENTER)
-				hand->pos.x = 337;
-			if (options->state == MOUSE_ENTER)
-				hand->pos.x = 450;
-			if (exit->state == MOUSE_ENTER)
-				hand->pos.x = 563;
+	exit_game = true;
+	UpdateSpeed(dt);
 
 
-			if (play->state == L_MOUSE_PRESSED)
-			{
-				App->gui->AddImage(0, 0, cross_texture, cross, play);
-				hand->pos.x = 1000;
-				hand = App->gui->AddImage(337, 420, hand_texture, {});
-				play_ui = true;
-				change = true;
-			}
-			if (options->state == L_MOUSE_PRESSED)
-			{
-				App->gui->AddImage(0, 0, cross_texture, cross, options);
-				hand->pos.x = 1000;
-				hand = App->gui->AddImage(450, 420, hand_texture, {});
-			}
-
-
-			if (exit->state == L_MOUSE_PRESSED)
-			{
-				App->gui->AddImage(0, 0, cross_texture, cross, exit);
-				hand->pos.x = 1000;
-				hand = App->gui->AddImage(563, 420, hand_texture, {});
-				exit_ui = true;
-				change = true;
-			}
-		}
-
-		if (Animations())
-		{
-			if (play_ui)
-			{
-				level = level_1;
-				App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
-			}
-			if (exit_ui)
-				ret = false;
-		}
-
-		break;
-	default:
-		break;
-	}
-
-	
-	
+	GetKeys();
+	SetUI();
 	
 	App->map->Draw();
 	CheckChange();
 
-	return ret;
+	return exit_game;
 }
 
 // Called each loop iteration
@@ -229,8 +171,10 @@ bool j1Scene::PostUpdate()
 {
 	bool ret = true;
 
-	if(App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		ret = false;
+	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	{
+		App->pause = !App->pause;
+	}
 
 	return ret;
 }
@@ -287,13 +231,99 @@ bool j1Scene::Load(pugi::xml_node& data) {
 	return true;
 }
 
+void j1Scene::GetKeys()
+{
+	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
+		App->LoadGame();
+
+	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
+		App->SaveGame();
+
+	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
+		level = hidden_level;
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN) {
+		level = level_2;
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
+		level = level_1;
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
+	}
+}
+
+void j1Scene::SetUI()
+{
+	switch (level)
+	{
+	case menu:
+		if (change == false)
+		{
+			if (play->state == MOUSE_ENTER)
+				hand->pos.x = 337;
+			if (options->state == MOUSE_ENTER)
+				hand->pos.x = 450;
+			if (exit->state == MOUSE_ENTER)
+				hand->pos.x = 563;
+
+
+			if (play->state == L_MOUSE_PRESSED)
+			{
+				App->gui->AddImage(0, 0, cross_texture, cross, play);
+				App->gui->DeleteUI(options);
+				hand = App->gui->AddImage(337, 420, hand_texture, {});
+				play_ui = true;
+				change = true;
+			}
+			if (options->state == L_MOUSE_PRESSED)
+			{
+				App->gui->AddImage(0, 0, cross_texture, cross, options);
+				App->gui->DeleteUI(hand);
+				hand = App->gui->AddImage(450, 420, hand_texture, {});
+				options_ui = true;
+				change = true;
+			}
+
+			if (exit->state == L_MOUSE_PRESSED)
+			{
+				App->gui->AddImage(0, 0, cross_texture, cross, exit);
+				App->gui->DeleteUI(hand);
+				hand = App->gui->AddImage(563, 420, hand_texture);
+				exit_ui = true;
+				change = true;
+			}
+		}
+
+		if (Animations())
+		{
+			if (play_ui)
+			{
+				level = level_1;
+				App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
+			}
+			if (options_ui)
+				option_sheet = App->gui->AddImage(490, 35, option_sheet_text);
+			if (exit_ui)
+				exit_game = false;
+		}
+
+		break;
+	default:
+		break;
+	}
+}
+
 bool j1Scene::Animations()
 {
 	bool ret = false;
 	if (change == true)
 	{
 		HandAnimation();
-		if (i == 30)
+		if (i >= 30)
 		{
 			change = false;
 			ret = true;
@@ -349,3 +379,7 @@ void j1Scene::HandAnimation()
 }
 
 
+void j1Scene::UpdateSpeed(float dt)
+{
+	cross.speed = anim_speed * dt;
+}

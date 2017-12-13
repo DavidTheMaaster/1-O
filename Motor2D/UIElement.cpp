@@ -26,12 +26,7 @@ void UIElement::Draw(float dt)
 	else
 		current_animation = anim.GetCurrentFrame();
 
-	
-	if (parent != nullptr)
-		App->render->Blit(texture, parent->pos.x + pos.x, parent->pos.y + pos.y, &(current_animation), false, 0.0);
-
-	else
-		App->render->Blit(texture, pos.x, pos.y, &(current_animation), false, 0.0);
+	App->render->Blit(texture, pos.x, pos.y, &(current_animation), false, 0.0);
 
 }
 

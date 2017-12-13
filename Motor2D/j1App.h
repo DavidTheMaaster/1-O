@@ -99,6 +99,8 @@ public:
 	j1PathFinding*		pathfinding;
 	j1FadeToBlack*		fadetoblack;
 	float				dt = 0;
+	bool				pause;
+
 private:
 
 

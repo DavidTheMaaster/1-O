@@ -1,4 +1,38 @@
 <animations>
+  <ui>
+    <cross>
+      <frame id = "0" x = "1" y = "1" w = "56" h = "59"/>
+      <frame id = "1" x = "57" y = "1" w = "56" h = "59"/>
+      <frame id = "2" x = "113" y = "1" w = "56" h = "59"/>
+      <frame id = "3" x = "169" y = "1" w = "56" h = "59"/>
+      <frame id = "4" x = "225" y = "1" w = "56" h = "59"/>
+      <frame id = "5" x = "281" y = "1" w = "56" h = "59"/>
+      <frame id = "6" x = "337" y = "1" w = "56" h = "59"/>
+      <frame id = "7" x = "393" y = "1" w = "56" h = "59"/>
+      <frame id = "8" x = "449" y = "1" w = "56" h = "59"/>
+      <frame id = "9" x = "1" y = "60" w = "56" h = "59"/>
+      <frame id = "10" x = "57" y = "60" w = "56" h = "59"/>
+      <frame id = "11" x = "113" y = "60" w = "56" h = "59"/>
+      <frame id = "12" x = "169" y = "60" w = "56" h = "59"/>
+      <frame id = "13" x = "225" y = "60" w = "56" h = "59"/>
+      <frame id = "14" x = "281" y = "60" w = "56" h = "59"/>
+      <frame id = "15" x = "337" y = "60" w = "56" h = "59"/>
+      <frame id = "16" x = "393" y = "60" w = "56" h = "59"/>
+      <frame id = "17" x = "449" y = "60" w = "56" h = "59"/>
+      <frame id = "18" x = "1" y = "119" w = "56" h = "59"/>
+      <frame id = "19" x = "57" y = "119" w = "56" h = "59"/>
+      <frame id = "20" x = "113" y = "119" w = "56" h = "59"/>
+      <frame id = "21" x = "169" y = "119" w = "56" h = "59"/>
+      <frame id = "22" x = "225" y = "119" w = "56" h = "59"/>
+      <frame id = "23" x = "281" y = "119" w = "56" h = "59"/>
+      <frame id = "24" x = "337" y = "119" w = "56" h = "59"/>
+      <frame id = "25" x = "393" y = "119" w = "56" h = "59"/>
+      <frame id = "26" x = "449" y = "119" w = "56" h = "59"/>
+      <frame id = "27" x = "1" y = "178" w = "56" h = "59"/>
+      <frame id = "28" x = "57" y = "178" w = "56" h = "59"/>
+      <attributes id = "0" speed = "15" loop = "false" offset_x = "0" offset_y = "0" size = "28"/>
+    </cross>
+  </ui>
   <player>
     <idle>
       <frame id = "0" x = "0" y = "0" w = "70" h = "80"/>

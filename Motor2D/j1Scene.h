@@ -39,6 +39,10 @@ public:
 	bool Save(pugi::xml_node&) const;
 	bool Load(pugi::xml_node&);
 
+
+	void GetKeys();
+	void SetUI();
+
 	bool Animations();
 	void HandAnimation();
 
@@ -49,9 +53,9 @@ public:
 	int level = 0;
 	bool justloaded = false;
 	bool changeMap;
-	SDL_Texture* menu_texture, *buttons, *cross_texture, *hand_texture;
+	SDL_Texture* menu_texture, *buttons, *cross_texture, *hand_texture, *sheet_text, *option_sheet_text;
 	Button* play, *options, *exit;
-	Image* hand; 
+	Image* sheet, *option_sheet, *hand; 
 
 
 	enum Levels
@@ -61,6 +65,11 @@ public:
 		level_2,
 		hidden_level,
 		congrats,
+	};
+
+	enum UiAnimations
+	{
+		CROSS
 	};
 
 private:
@@ -76,7 +85,21 @@ private:
 	bool move3 = false;
 	bool move4 = false;
 	//UI ELEMENTS
+	bool exit_game;
 
+private: 
+	pugi::xml_document	animation_file;
+	pugi::xml_node animations;
+	pugi::xml_node attributes;
+
+	pugi::xml_node rect;
+
+	uint current;
+	Animation * load_anim;
+
+	uint anim_speed;
+
+	void UpdateSpeed(float dt);
 };
 
 #endif // __j1SCENE_H__

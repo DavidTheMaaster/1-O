@@ -73,9 +73,7 @@ public:
 	Image* AddImage(int x, int y, SDL_Texture* texture, Animation anim = {}, UIElement* parent = nullptr);
 	Button* AddButton(int x, int y, SDL_Texture* texture, j1Module* callback = nullptr, UIElement* parent = nullptr);
 
-	bool GetState(UIElement* element);
-
-
+	void DeleteUI(UIElement* element);
 
 private:
 
