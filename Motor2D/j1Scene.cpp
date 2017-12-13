@@ -158,7 +158,12 @@ bool j1Scene::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
 		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
 	}
-
+	/*
+	if (player_lifes == 0){
+		level = GameOverScreen;
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
+	}
+	*/
 	
 	switch (level)
 	{

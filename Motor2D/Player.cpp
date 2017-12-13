@@ -133,7 +133,7 @@ void Player::Update(float dt)
 	Dead();
 	CheckIfChange();
 
-	if (death == true)
+	if (death == true && App->scene->player_lifes != 0)
 	{
 		Respawn();
 	}
@@ -352,6 +352,7 @@ void Player::Dead()
 	if (death == true)
 	{
 		player_animation = &die;
+		App->scene->player_lifes -= 1;
 	}
 }
 

@@ -49,6 +49,7 @@ public:
 	int level = 0;
 	bool justloaded = false;
 	bool changeMap;
+	uint player_lifes = 5;
 	SDL_Texture* menu_texture, *buttons, *cross_texture, *hand_texture;
 	Button* play, *options, *exit;
 	Image* hand; 
