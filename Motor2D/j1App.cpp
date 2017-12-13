@@ -299,8 +299,7 @@ bool j1App::DoUpdate()
 		ret = item->data->Update(dt);
 	}
 
-	if (pause)
-		App->render->DrawQuad({ 0,0,1000,1000 }, 0, 0, 0, 100);
+	
 
 	return ret;
 }

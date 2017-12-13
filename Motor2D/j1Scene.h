@@ -46,6 +46,7 @@ public:
 	bool Animations();
 	void HandAnimation();
 
+	void ResetMenu();
 
 	void CheckChange();
 
@@ -53,14 +54,15 @@ public:
 	int level = 0;
 	bool justloaded = false;
 	bool changeMap;
-	SDL_Texture* menu_texture, *buttons, *cross_texture, *hand_texture, *sheet_text, *option_sheet_text;
-	Button* play, *options, *exit;
-	Image* sheet, *option_sheet, *hand; 
+	SDL_Texture* menu_texture, *buttons, *cross_texture, *hand_texture, *sheet_text, *option_sheet_text, *exit_options_text;
+	Button* play, *options, *exit, *exit_options, *morevolume, *lessvolume;
+	Image* sheet, *option_sheet, *hand, *cross; 
 
 
 	enum Levels
 	{
-		menu,
+		MENU,
+		OPTIONS,
 		level_1,
 		level_2,
 		hidden_level,
@@ -75,7 +77,7 @@ public:
 private:
 	iPoint mouse;
 	pugi::xml_node level_name;
-	Animation cross;
+	Animation cross_anim;
 	bool change; 
 	int i = 0;
 

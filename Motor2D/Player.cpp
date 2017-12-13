@@ -153,7 +153,7 @@ void Player::Update(float dt)
 
 void Player::Movement()
 {
-	if (death == false)
+	if (death == false && App->pause == false)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 			Right();

@@ -13,6 +13,7 @@
 #include "j1Map.h"
 #include "j1Gui.h"
 #include "j1Scene.h"
+#include "j1Window.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -48,7 +49,7 @@ bool j1Scene::Awake(pugi::xml_node& config)
 
 		if (current == CROSS)
 		{
-			load_anim = &cross;
+			load_anim = &cross_anim;
 		}
 
 		int i = rect.attribute("id").as_int();
@@ -90,8 +91,9 @@ bool j1Scene::Start()
 	hand_texture = App->tex->Load("maps/hand.png");
 	sheet_text = App->tex->Load("maps/sheet.png");
 	option_sheet_text = App->tex->Load("maps/option_sheet.png");
+	exit_options_text = App->tex->Load("maps/exit_button.png");
 
-	if (level == menu)
+	if (level == MENU)
 	{
 		App->gui->AddImage(0, 0, menu_texture);
 		sheet = App->gui->AddImage(490,35,sheet_text);
@@ -163,6 +165,13 @@ bool j1Scene::Update(float dt)
 	App->map->Draw();
 	CheckChange();
 
+
+	if (App->pause)
+	{
+		
+			App->render->DrawQuad({ 0,0,1920,1080}, 0, 0, 0, 100,true,false);
+	}
+
 	return exit_game;
 }
 
@@ -171,9 +180,20 @@ bool j1Scene::PostUpdate()
 {
 	bool ret = true;
 
-	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	if (level != MENU && level != OPTIONS)
 	{
-		App->pause = !App->pause;
+		if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+		{
+			App->pause = !App->pause;
+			if (App->pause == true)
+			{
+				sheet = App->gui->AddImage(490, 35, sheet_text);
+			}
+			if (App->pause == false && sheet != nullptr)
+			{
+				App->gui->DeleteUI(sheet);
+			}
+		}
 	}
 
 	return ret;
@@ -260,7 +280,7 @@ void j1Scene::SetUI()
 {
 	switch (level)
 	{
-	case menu:
+	case MENU:
 		if (change == false)
 		{
 			if (play->state == MOUSE_ENTER)
@@ -273,15 +293,15 @@ void j1Scene::SetUI()
 
 			if (play->state == L_MOUSE_PRESSED)
 			{
-				App->gui->AddImage(0, 0, cross_texture, cross, play);
-				App->gui->DeleteUI(options);
+				cross = App->gui->AddImage(0, 0, cross_texture, cross_anim, play);
+				App->gui->DeleteUI(hand);
 				hand = App->gui->AddImage(337, 420, hand_texture, {});
 				play_ui = true;
 				change = true;
 			}
 			if (options->state == L_MOUSE_PRESSED)
 			{
-				App->gui->AddImage(0, 0, cross_texture, cross, options);
+				cross = App->gui->AddImage(0, 0, cross_texture, cross_anim, options);
 				App->gui->DeleteUI(hand);
 				hand = App->gui->AddImage(450, 420, hand_texture, {});
 				options_ui = true;
@@ -290,7 +310,7 @@ void j1Scene::SetUI()
 
 			if (exit->state == L_MOUSE_PRESSED)
 			{
-				App->gui->AddImage(0, 0, cross_texture, cross, exit);
+				cross = App->gui->AddImage(0, 0, cross_texture, cross_anim, exit);
 				App->gui->DeleteUI(hand);
 				hand = App->gui->AddImage(563, 420, hand_texture);
 				exit_ui = true;
@@ -306,11 +326,36 @@ void j1Scene::SetUI()
 				App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
 			}
 			if (options_ui)
-				option_sheet = App->gui->AddImage(490, 35, option_sheet_text);
+			{
+				option_sheet = App->gui->AddImage(490, 25, option_sheet_text);
+				exit_options = App->gui->AddButton(275,50,exit_options_text, this, option_sheet);
+				morevolume = App->gui->AddButton(100, 200, buttons, this, option_sheet);
+				lessvolume = App->gui->AddButton(200, 200, buttons, this, option_sheet);
+
+				level = OPTIONS;
+			}
 			if (exit_ui)
 				exit_game = false;
 		}
 
+		break;
+	case OPTIONS:
+		if (exit_options->state == L_MOUSE_PRESSED)
+		{
+			App->gui->DeleteUI(exit_options);
+			App->gui->DeleteUI(option_sheet);
+			App->gui->DeleteUI(morevolume);
+			App->gui->DeleteUI(lessvolume);
+			ResetMenu();
+		}
+		if (morevolume->state == L_MOUSE_PRESSED)
+		{
+			
+		}
+		if (lessvolume->state == L_MOUSE_PRESSED)
+		{
+			
+		}
 		break;
 	default:
 		break;
@@ -378,8 +423,20 @@ void j1Scene::HandAnimation()
 	}
 }
 
+void j1Scene::ResetMenu()
+{
+	i = 0;
+	move = true;
+	cross_anim.Reset();
+	App->gui->DeleteUI(cross);
+	hand->pos.x = 337;
+	hand->pos.y = 420;
+	play_ui = options_ui = exit_ui = false;
+	level = MENU;
+}
+
 
 void j1Scene::UpdateSpeed(float dt)
 {
-	cross.speed = anim_speed * dt;
+	cross_anim.speed = anim_speed * dt;
 }
