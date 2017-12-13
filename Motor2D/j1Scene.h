@@ -54,16 +54,11 @@ public:
 	int level = 0;
 	bool justloaded = false;
 	bool changeMap;
-<<<<<<< HEAD
+
 	SDL_Texture* menu_texture, *buttons, *cross_texture, *hand_texture, *sheet_text, *option_sheet_text, *exit_options_text;
 	Button* play, *options, *exit, *exit_options, *morevolume, *lessvolume;
 	Image* sheet, *option_sheet, *hand, *cross; 
-=======
-	uint player_lifes = 5;
-	SDL_Texture* menu_texture, *buttons, *cross_texture, *hand_texture;
-	Button* play, *options, *exit;
-	Image* hand; 
->>>>>>> origin/master
+
 
 
 	enum Levels
@@ -81,6 +76,8 @@ public:
 		CROSS
 	};
 
+	int player_lifes;
+
 private:
 	iPoint mouse;
 	pugi::xml_node level_name;
@@ -95,6 +92,7 @@ private:
 	bool move4 = false;
 	//UI ELEMENTS
 	bool exit_game;
+	
 
 private: 
 	pugi::xml_document	animation_file;
@@ -107,6 +105,7 @@ private:
 	Animation * load_anim;
 
 	uint anim_speed;
+
 
 	void UpdateSpeed(float dt);
 };
