@@ -185,7 +185,7 @@ bool j1Scene::Update(float dt)
 			{
 				App->gui->AddImage(0, 0, cross_texture, cross, options);
 				hand->pos.x = 1000;
-				hand = App->gui->AddImage(337, 420, hand_texture, {});
+				hand = App->gui->AddImage(450, 420, hand_texture, {});
 			}
 
 
@@ -193,7 +193,7 @@ bool j1Scene::Update(float dt)
 			{
 				App->gui->AddImage(0, 0, cross_texture, cross, exit);
 				hand->pos.x = 1000;
-				hand = App->gui->AddImage(337, 420, hand_texture, {});
+				hand = App->gui->AddImage(563, 420, hand_texture, {});
 				exit_ui = true;
 				change = true;
 			}

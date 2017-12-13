@@ -361,8 +361,7 @@ void Player::Respawn()
 	{
 		player_animation->Reset();
 		player_animation = &idle;
-		r.x = spawn.x;
-		r.y = spawn.y;
+		App->fadetoblack->FadeToBlack(App->scene, App->scene, 0.5);
 		death = false;
 		App->render->camera.x = 0;
 	}
@@ -370,10 +369,10 @@ void Player::Respawn()
 
 void Player::Shoot() {
 	if (flip) {
-		//Shoot Right
+		App->particles->AddParticle(App->particles->LeftShoot, r.x, r.y+10, -12.5, 0, COLLIDER_PLAYERSHOOT);
 	}
 	else {
-		//Shoot Left
+		App->particles->AddParticle(App->particles->RightShoot, r.x, r.y+10, 12.5, 0, COLLIDER_PLAYERSHOOT);
 	}
 }
 

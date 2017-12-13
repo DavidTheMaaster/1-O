@@ -6,16 +6,18 @@
 	<audio />
 	<map />
 	<scene>
-		<level level="0" />
+		<level level="1" />
 	</scene>
 	<entities>
-		<player_pos x="192" y="388" />
+		<player_pos x="425" y="324" />
 	</entities>
 	<particles />
 	<collision />
 	<pathfinding />
+	<fonts />
+	<gui />
 	<fadetoblack />
 	<renderer>
-		<camera x="0" y="0" />
+		<camera x="-40" y="0" />
 	</renderer>
 </game_state>

@@ -221,6 +221,14 @@ void j1Entities::OnCollision(Collider* c1, Collider* c2)
 					}
 				}
 			}
+			if (entities[i]->id == ENEMY_FLY || entities[i]->id == ENEMY_WALK)
+			{
+				if (c2->type == COLLIDER_PLAYERSHOOT) {
+					delete entities[i];
+					entities[i] = nullptr;
+					break;
+				}
+			}
 		}
 	}
 }

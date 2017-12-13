@@ -16,11 +16,13 @@ j1Particles::j1Particles()
 
 	name.create("particles");
 
-	RightShoot.speed.x = 7.5;
-	RightShoot.life = 100;
+	RightShoot.anim.PushBack({ 1, 2, 39, 21 });
+	RightShoot.anim.PushBack({ 52, 2, 39, 21 });
+	RightShoot.life = 1000;
 
-	LeftShoot.speed.x = -7.5;
-	LeftShoot.life = 100;
+	LeftShoot.anim.PushBack({ 1, 2, 39, 21 });
+	LeftShoot.anim.PushBack({ 52, 2, 39, 21 });
+	LeftShoot.life = 1000;
 }
 
 j1Particles::~j1Particles()
@@ -31,7 +33,7 @@ bool j1Particles::Start()
 {
 	LOG("Loading particles");
 
-
+	particles_graphics = App->tex->Load("textures/player.png");
 	return true;
 }
 
@@ -39,6 +41,7 @@ bool j1Particles::Start()
 bool j1Particles::CleanUp()
 {
 	LOG("Unloading particles");
+	App->tex->UnLoad(particles_graphics);
 
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
@@ -116,6 +119,7 @@ void j1Particles::OnCollision(Collider* c1, Collider* c2)
 }
 
 // -------------------------------------------------------------
+
 // -------------------------------------------------------------
 
 Particle::Particle()
