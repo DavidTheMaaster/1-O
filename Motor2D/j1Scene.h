@@ -39,7 +39,9 @@ public:
 	bool Save(pugi::xml_node&) const;
 	bool Load(pugi::xml_node&);
 
-	bool test;
+	bool Animations();
+	void HandAnimation();
+
 
 	void CheckChange();
 
@@ -49,7 +51,7 @@ public:
 	bool changeMap;
 	SDL_Texture* menu_texture, *buttons, *cross_texture, *hand_texture;
 	Button* play, *options, *exit;
-	Image* hand;
+	Image* hand; 
 
 
 	enum Levels
@@ -66,7 +68,13 @@ private:
 	pugi::xml_node level_name;
 	Animation cross;
 	bool change; 
+	int i = 0;
 
+	bool play_ui, options_ui, exit_ui;
+	bool move = true;
+	bool move2 = false;
+	bool move3 = false;
+	bool move4 = false;
 	//UI ELEMENTS
 
 };

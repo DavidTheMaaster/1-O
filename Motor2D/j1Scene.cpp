@@ -62,7 +62,7 @@ bool j1Scene::Awake(pugi::xml_node& config)
 	cross.PushBack({ 57,178,56,59 });
 
 	cross.speed = 0.5f;
-	cross.loop = true;
+	cross.loop = false;
 
 	return ret;
 }
@@ -159,11 +159,12 @@ bool j1Scene::Update(float dt)
 		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
 	}
 
-	if (change == false)
+	
+	switch (level)
 	{
-		switch (level)
+	case menu:
+		if (change == false)
 		{
-		case menu:
 			if (play->state == MOUSE_ENTER)
 				hand->pos.x = 337;
 			if (options->state == MOUSE_ENTER)
@@ -175,32 +176,48 @@ bool j1Scene::Update(float dt)
 			if (play->state == L_MOUSE_PRESSED)
 			{
 				App->gui->AddImage(0, 0, cross_texture, cross, play);
+				hand->pos.x = 1000;
+				hand = App->gui->AddImage(337, 420, hand_texture, {});
+				play_ui = true;
 				change = true;
 			}
-			if (options->state == MOUSE_ENTER)
-				hand->pos.x = 450;
-			if (exit->state == MOUSE_ENTER)
-				hand->pos.x = 563;
+			if (options->state == L_MOUSE_PRESSED)
+			{
+				App->gui->AddImage(0, 0, cross_texture, cross, options);
+				hand->pos.x = 1000;
+				hand = App->gui->AddImage(337, 420, hand_texture, {});
+			}
 
 
-			break;
-		default:
-			break;
+			if (exit->state == L_MOUSE_PRESSED)
+			{
+				App->gui->AddImage(0, 0, cross_texture, cross, exit);
+				hand->pos.x = 1000;
+				hand = App->gui->AddImage(337, 420, hand_texture, {});
+				exit_ui = true;
+				change = true;
+			}
 		}
-	}
 
-	if (change == true)
-	{
-		if (hand->anim.Finished())
+		if (Animations())
 		{
-			level = level_1;
-			change = false;
-			App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
-			
+			if (play_ui)
+			{
+				level = level_1;
+				App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
+			}
+			if (exit_ui)
+				ret = false;
 		}
+
+		break;
+	default:
+		break;
 	}
 
-	//App->render->Blit(img, 0, 0);
+	
+	
+	
 	App->map->Draw();
 	CheckChange();
 
@@ -268,6 +285,67 @@ bool j1Scene::Load(pugi::xml_node& data) {
 	}
 
 	return true;
+}
+
+bool j1Scene::Animations()
+{
+	bool ret = false;
+	if (change == true)
+	{
+		HandAnimation();
+		if (i == 30)
+		{
+			change = false;
+			ret = true;
+		}
+		else
+		{
+			i++;
+		}
+	}
+	return ret;
+}
+
+void j1Scene::HandAnimation()
+{
+
+	if (move == true)
+	{
+		hand->pos.y -= 10;
+		if (hand->pos.y == 350)
+		{
+			move = false;
+			move2 = true;
+		}
+	}
+	if(move2 == true)
+	{
+		hand->pos.y += 5;
+		hand->pos.x += 5;
+		if (hand->pos.y == 400)
+		{
+			move2 = false;
+			move3 = true;
+		}
+	}
+	if (move3 == true)
+	{
+		hand->pos.y -= 10;
+		if (hand->pos.y == 350)
+		{
+			move3 = false;
+			move4 = true;
+		}
+	}
+	if (move4 == true)
+	{
+		hand->pos.y += 5;
+		hand->pos.x -= 5;
+		if (hand->pos.y == 400)
+		{
+			move4 = false;
+		}
+	}
 }
 
 
