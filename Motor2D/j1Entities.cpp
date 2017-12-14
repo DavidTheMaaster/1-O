@@ -47,8 +47,9 @@ bool j1Entities::Start()
 	flyPositions.Clear();
 	walkPositions.Clear();
 
-	fly_death_fx = App->audio->LoadFx("audio/fx/death.wav");
-	walk_death_fx = App->audio->LoadFx("audio/fx/death2.wav");
+	fly_death_fx = App->audio->LoadFx("audio/fx/death3.wav");
+	walk_death_fx = App->audio->LoadFx("audio/fx/death.wav");
+	player_death_fx = App->audio->LoadFx("audio/fx/death2.wav");
 
 	lvl2 = false;
 	hidden_level = false;
@@ -145,6 +146,7 @@ bool j1Entities::CleanUp()
 
 	App->audio->UnLoadFx(fly_death_fx);
 	App->audio->UnLoadFx(walk_death_fx);
+	App->audio->UnLoadFx(player_death_fx);
 
 	for (uint i = 0; i < MAX_ENTITIES; ++i)
 	{
@@ -219,10 +221,14 @@ void j1Entities::OnCollision(Collider* c1, Collider* c2)
 					if (c2->type == COLLIDER_KILL)
 					{
 						entities[i]->death = true;
+    					App->audio->PlayFx(player_death_fx);
+						App->collision->EraseCollider(entities[i]->collider);
 					}
-					if (c1->type == COLLIDER_ENEMY)
+					if (c2->type == COLLIDER_ENEMY)
 					{
 						entities[i]->death = true;
+						App->audio->PlayFx(player_death_fx);
+						App->collision->EraseCollider(entities[i]->collider);
 					}
 				}
 			}

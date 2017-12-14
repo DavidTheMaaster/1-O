@@ -67,8 +67,10 @@ public:
 	iPoint loaded_player_pos;
 	bool justloaded = false;
 
-	uint fly_death_fx = 0u;
-	uint walk_death_fx = 0u;
+	uint fly_death_fx;
+	uint walk_death_fx;
+	uint urn_fx;
+	uint player_death_fx;
 
 	bool lvl2;
 	bool hidden_level;

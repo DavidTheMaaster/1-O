@@ -39,8 +39,6 @@ public:
 
 public:
 
-
-
 	bool jump;
 	bool jump2;
 
