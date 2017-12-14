@@ -358,10 +358,7 @@ void Player::CameraMovement()
 
 		App->render->camera.x = 0 - (r.x * 2 - App->win->width / 2);
 	}
-	if (r.y < App->win->height / 4) {
-
-		App->render->camera.y = 0 - (r.y * 2 - App->win->height / 2);
-	}
+	
 }
 
 void Player::Dead()
