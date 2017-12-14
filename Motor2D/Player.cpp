@@ -357,7 +357,10 @@ void Player::CameraMovement()
 	if (r.x > App->win->width / 4 && r.x < (App->map->data.width - 15) * App->map->data.tile_width) {
 
 		App->render->camera.x = 0 - (r.x * 2 - App->win->width / 2);
+	}
+	if (r.y < App->win->height / 4) {
 
+		App->render->camera.y = 0 - (r.y * 2 - App->win->height / 2);
 	}
 }
 

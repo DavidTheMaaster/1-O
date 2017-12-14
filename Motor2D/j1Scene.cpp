@@ -93,6 +93,8 @@ bool j1Scene::Start()
 	option_sheet_text = App->tex->Load("maps/option_sheet.png");
 	exit_options_text = App->tex->Load("maps/exit_button.png");
 	level_change_fx = App->audio->LoadFx("audio/fx/change_level.wav");
+	cross_click_fx = App->audio->LoadFx("audio/fx/pencil_lines.wav");
+	button_focused_fx = App->audio->LoadFx("audio/fx/mouse_over.wav");
 
 	if (level == MENU)
 	{
@@ -180,6 +182,8 @@ bool j1Scene::PostUpdate()
 bool j1Scene::CleanUp()
 {
 	App->audio->UnLoadFx(level_change_fx);
+	App->audio->UnLoadFx(cross_click_fx);
+	App->audio->UnLoadFx(button_focused_fx);
 	LOG("Freeing scene");
 	App->map->DeleteMap();
 	App->map->CleanUp();
@@ -404,17 +408,24 @@ void j1Scene::MenuButtons()
 {
 	if (change == false)
 	{
-		if (play->state == MOUSE_ENTER)
+		if (play->state == MOUSE_ENTER) {
 			hand->pos.x = 337;
-		if (options->state == MOUSE_ENTER)
+			App->audio->PlayFx(button_focused_fx);
+		}
+		if (options->state == MOUSE_ENTER) {
 			hand->pos.x = 450;
-		if (exit->state == MOUSE_ENTER)
+			App->audio->PlayFx(button_focused_fx);
+		}
+		if (exit->state == MOUSE_ENTER) {
 			hand->pos.x = 563;
+			App->audio->PlayFx(button_focused_fx);
+		}
 
 
 		if (play->state == L_MOUSE_PRESSED)
 		{
 			cross = App->gui->AddImage(0, 0, cross_texture, cross_anim, play);
+			App->audio->PlayFx(cross_click_fx);
 			App->gui->DeleteUI(hand);
 			hand = App->gui->AddImage(337, 420, hand_texture, {});
 			play_ui = true;
@@ -423,6 +434,7 @@ void j1Scene::MenuButtons()
 		if (options->state == L_MOUSE_PRESSED)
 		{
 			cross = App->gui->AddImage(0, 0, cross_texture, cross_anim, options);
+			App->audio->PlayFx(cross_click_fx);
 			App->gui->DeleteUI(hand);
 			hand = App->gui->AddImage(450, 420, hand_texture, {});
 			options_ui = true;
@@ -432,6 +444,7 @@ void j1Scene::MenuButtons()
 		if (exit->state == L_MOUSE_PRESSED)
 		{
 			cross = App->gui->AddImage(0, 0, cross_texture, cross_anim, exit);
+			App->audio->PlayFx(cross_click_fx);
 			App->gui->DeleteUI(hand);
 			hand = App->gui->AddImage(563, 420, hand_texture);
 			exit_ui = true;

@@ -37,21 +37,25 @@ void UIElement::Update(float dt)
 		int mouse_x = 0, mouse_y = 0;
 		App->input->GetMousePosition(mouse_x, mouse_y);
 
-		if ((mouse_x > this->pos.x && mouse_x < this->pos.x + rect.w) && (mouse_y > this->pos.y && mouse_y < this->pos.y + rect.h) && state != L_MOUSE_PRESSED) {
-			state = UI_STATE::MOUSE_ENTER;
+		if (state == MOUSE_ENTER) {
+			state = FOCUSED;
+		}
+
+		if ((mouse_x > this->pos.x && mouse_x < this->pos.x + rect.w) && (mouse_y > this->pos.y && mouse_y < this->pos.y + rect.h) && state != L_MOUSE_PRESSED && state != FOCUSED) {
+			state = MOUSE_ENTER;
 			this->callback->UIEvent(this, state);
 			LOG("Mouse Enter");
 		}
-		else if (state == UI_STATE::MOUSE_ENTER) {
-			state = UI_STATE::MOUSE_LEAVE;
+		else if (state == FOCUSED && ((mouse_x < this->pos.x || mouse_x > this->pos.x + rect.w) || (mouse_y < this->pos.y || mouse_y > this->pos.y + rect.h))) {
+			state = MOUSE_LEAVE;
 			this->callback->UIEvent(this, state);
 			LOG("Mouse Leave");
 		}
 		else if (state == MOUSE_LEAVE)
 			state = NO_STATE;
 
-		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && state == MOUSE_ENTER) {
-			state = UI_STATE::L_MOUSE_PRESSED;
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && state == FOCUSED) {
+			state = L_MOUSE_PRESSED;
 			this->callback->UIEvent(this, state);
 			LOG("Mouse Left Click");
 		}

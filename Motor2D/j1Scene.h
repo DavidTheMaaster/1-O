@@ -65,6 +65,8 @@ public:
 	bool changeMap;
 
 	uint level_change_fx;
+	uint button_focused_fx;
+	uint cross_click_fx;
 
 	SDL_Texture* menu_texture, *buttons, *cross_texture, *hand_texture, *sheet_text, *option_sheet_text, *exit_options_text;
 	Button* play, *options, *exit, *exit_options, *morevolume, *lessvolume;
