@@ -112,6 +112,8 @@ Player::Player(int x, int y) : Entity (x, y)
 
 	//Collider
 	collider = App->collision->AddCollider({ r.x, r.y, r.w, r.h - 7 }, COLLIDER_PLAYER, App->entities);
+
+	App->render->camera.y = -440;
 }
 
 Player::~Player()
@@ -354,10 +356,15 @@ void Player::Hover()
 void Player::CameraMovement()
 {
 
-	if (r.x > App->win->width / 4 && r.x < (App->map->data.width - 15) * App->map->data.tile_width) {
-
-		App->render->camera.x = 0 - (r.x * 2 - App->win->width / 2);
+	if (r.x > App->win->width / 4 && r.x < (App->map->data.width - 15) * App->map->data.tile_width) 
+	{
+		App->render->camera.x = 0 - (r.x * App->win->GetScale() - App->win->width / App->win->GetScale());
 	}
+	LOG("%i %i", App->render->camera.y, r.y);
+
+	if (r.y < 432 && r.y > 196)
+		App->render->camera.y = 0 - ((r.y - 200) *  App->win->GetScale());
+	
 	
 }
 
