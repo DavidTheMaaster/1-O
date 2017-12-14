@@ -16,13 +16,51 @@ j1Particles::j1Particles()
 
 	name.create("particles");
 
-	RightShoot.anim.PushBack({ 1, 2, 39, 21 });
-	RightShoot.anim.PushBack({ 52, 2, 39, 21 });
-	RightShoot.life = 1000;
 
-	LeftShoot.anim.PushBack({ 1, 2, 39, 21 });
-	LeftShoot.anim.PushBack({ 52, 2, 39, 21 });
-	LeftShoot.life = 1000;
+	animation_file.load_file("animations.xml");
+	animations = animation_file.child("animations").child("particles").first_child();
+
+	if (animations == NULL)
+	{
+		LOG("Could not load animations");
+	}
+
+	while (animations != NULL) {
+		attributes = animations.child("attributes");
+		rect = animations.first_child();
+
+		current = attributes.attribute("id").as_int();
+
+		if (current == SHOOT)
+		{
+			load_particle = &shoot;
+		}
+
+		int i = rect.attribute("id").as_int();
+		int j = attributes.attribute("size").as_int();
+
+		while (i < j)
+		{
+			SDL_Rect r;
+			r.x = rect.attribute("x").as_int();
+			r.y = rect.attribute("y").as_int();
+			r.w = rect.attribute("w").as_int();
+			r.h = rect.attribute("h").as_int();
+
+			load_particle->anim.PushBack({ r.x,r.y,r.w,r.h });
+
+			rect = rect.next_sibling();
+			i = rect.attribute("id").as_int();
+			load_particle->anim.loop = attributes.attribute("loop").as_bool();
+			load_particle->anim.speed = attributes.attribute("speed").as_float();
+			load_particle->life = attributes.attribute("life").as_int();
+
+		}
+
+		anim_speed = load_particle->anim.speed;
+
+		animations = animations.next_sibling();
+	}
 }
 
 j1Particles::~j1Particles()
@@ -33,7 +71,7 @@ bool j1Particles::Start()
 {
 	LOG("Loading particles");
 
-	particles_graphics = App->tex->Load("textures/player.png");
+	particles_graphics = App->tex->Load("textures/shoot.png");
 	return true;
 }
 
@@ -72,7 +110,7 @@ bool j1Particles::Update(float dt)
 		}
 		else if (SDL_GetTicks() >= p->born)
 		{
-			App->render->Blit(NULL, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
+			App->render->Blit(particles_graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
 			if (p->fx_played == false)
 			{
 				p->fx_played = true;
@@ -83,13 +121,12 @@ bool j1Particles::Update(float dt)
 	return true;
 }
 
-void j1Particles::AddParticle(const Particle& particle, int x, int y, float speed_x, float speed_y, COLLIDER_TYPE collider_type, Uint32 delay)
+void j1Particles::AddParticle(const Particle& particle, int x, int y, float speed_x, float speed_y, COLLIDER_TYPE collider_type, bool fliped, Uint32 delay)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		if (active[i] == nullptr)
 		{
-
 			Particle* p = new Particle(particle);
 			p->born = SDL_GetTicks() + delay;
 			p->position.x = x;
@@ -102,6 +139,10 @@ void j1Particles::AddParticle(const Particle& particle, int x, int y, float spee
 			break;
 		}
 	}
+}
+
+void j1Particles::UpdateSpeed(float dt)
+{
 }
 
 void j1Particles::OnCollision(Collider* c1, Collider* c2)

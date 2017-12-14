@@ -13,6 +13,11 @@ struct SDL_Texture;
 struct Collider;
 enum COLLIDER_TYPE;
 
+enum Particles
+{
+	SHOOT,
+};
+
 struct Particle
 {
 	Collider* collider = nullptr;
@@ -23,7 +28,7 @@ struct Particle
 	Uint32 born = 0;
 	Uint32 life = 0;
 	bool fx_played = false;
-
+	bool flip;
 	Particle();
 	Particle(const Particle& p);
 	~Particle();
@@ -41,7 +46,7 @@ public:
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 
-	void AddParticle(const Particle& particle, int x, int y, float speed_x, float speed_y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
+	void AddParticle(const Particle& particle, int x, int y, float speed_x, float speed_y, COLLIDER_TYPE collider_type = COLLIDER_NONE, bool fliped = false ,Uint32 delay = 0);
 
 private:
 
@@ -52,9 +57,21 @@ private:
 
 public:
 
-	Particle LeftShoot;
-	Particle RightShoot;
+	Particle shoot;
 
+private:
+	pugi::xml_document	animation_file;
+	pugi::xml_node animations;
+	pugi::xml_node attributes;
+	pugi::xml_node rect;
+
+	uint current;
+	Particle* load_particle;
+
+	uint anim_speed;
+
+
+	void UpdateSpeed(float dt);
 };
 
 #endif // __MODULEPARTICLES_H__

@@ -33,6 +33,23 @@
       <attributes id = "0" speed = "15" loop = "false" offset_x = "0" offset_y = "0" size = "28"/>
     </cross>
   </ui>
+  <particles>
+    <shoot>
+      <frame id = "0" x = "0" y = "0" w = "18" h = "13"/>
+      <frame id = "1" x = "18" y = "0" w = "18" h = "13"/>
+      <frame id = "2" x = "36" y = "0" w = "18" h = "13"/>
+      <frame id = "3" x = "54" y = "0" w = "18" h = "13"/>
+      <frame id = "4" x = "72" y = "0" w = "18" h = "13"/>
+      <frame id = "5" x = "90" y = "0" w = "18" h = "13"/>
+      <frame id = "6" x = "108" y = "0" w = "18" h = "13"/>
+      <frame id = "7" x = "126" y = "0" w = "18" h = "13"/>
+      <frame id = "8" x = "144" y = "0" w = "18" h = "13"/>
+      <frame id = "9" x = "162" y = "0" w = "18" h = "13"/>
+      <frame id = "10" x = "180" y = "0" w = "18" h = "13"/>
+      <frame id = "11" x = "198" y = "0" w = "18" h = "13"/>
+      <attributes id = "0" speed = "0.5" loop = "false" offset_x = "0" offset_y = "0" size = "11" life = "1000"/>
+    </shoot>
+  </particles>
   <player>
     <idle>
       <frame id = "0" x = "0" y = "0" w = "70" h = "80"/>
