@@ -41,7 +41,7 @@ public:
 
 
 	void GetKeys();
-	void SetUI();
+	void ButtonInteractions();
 
 	bool Animations();
 	void HandAnimation();
@@ -49,6 +49,15 @@ public:
 	void ResetMenu();
 
 	void CheckChange();
+
+	void LoadMenuUI();
+	void LoadOptionUI();
+	void LoadLevelUI();
+
+	void Pause();
+	void MenuButtons();
+	void OptionButtons();
+
 
 public:
 	int level = 0;
