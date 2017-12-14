@@ -92,6 +92,7 @@ bool j1Scene::Start()
 	sheet_text = App->tex->Load("maps/sheet.png");
 	option_sheet_text = App->tex->Load("maps/option_sheet.png");
 	exit_options_text = App->tex->Load("maps/exit_button.png");
+	level_change_fx = App->audio->LoadFx("audio/fx/change_level.wav");
 
 	if (level == MENU)
 	{
@@ -142,7 +143,7 @@ bool j1Scene::Start()
 		App->entities->Start();
 	}
 
-
+	
 	return true;
 }
 
@@ -203,6 +204,7 @@ bool j1Scene::PostUpdate()
 // Called before quitting
 bool j1Scene::CleanUp()
 {
+	App->audio->UnLoadFx(level_change_fx);
 	LOG("Freeing scene");
 	App->map->DeleteMap();
 	App->map->CleanUp();
@@ -216,6 +218,7 @@ void j1Scene::CheckChange()
 {
 	if (changeMap) {
 		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1);
+		App->audio->PlayFx(level_change_fx);
 	}
 }
 

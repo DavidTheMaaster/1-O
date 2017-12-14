@@ -15,6 +15,7 @@ class Player : public Entity
 public:
 	
 	Player(int x, int y);
+	virtual ~Player();
 
 	void Update(float dt);
 	void GetOffset();
@@ -44,6 +45,9 @@ public:
 
 	int jumps;
 	int jump_counter;
+
+	uint jump_fx;
+	uint shoot_fx;
 
 	uint anim_speed[4];
 

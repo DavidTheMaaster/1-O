@@ -67,10 +67,12 @@ bool j1Audio::Update(float dt)
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_KP_MINUS) == KEY_DOWN) {
-		if (Mix_VolumeMusic(-1) < 10)
+		if (Mix_VolumeMusic(-1) < 10) {
 			Mix_VolumeMusic(0);
-		else
+		}
+		else {
 			Mix_VolumeMusic(Mix_VolumeMusic(-1) - 10);
+		}
 	}
 
 	return true;

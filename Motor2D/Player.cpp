@@ -107,10 +107,18 @@ Player::Player(int x, int y) : Entity (x, y)
 	jumps = 2;
 	id = 1;
 
+	jump_fx = App->audio->LoadFx("audio/fx/jump.wav");
+	shoot_fx = App->audio->LoadFx("audio/fx/paper.wav");
+
 	//Collider
 	collider = App->collision->AddCollider({ r.x, r.y, r.w, r.h - 7 }, COLLIDER_PLAYER, App->entities);
 }
 
+Player::~Player()
+{
+	App->audio->UnLoadFx(jump);
+	App->audio->UnLoadFx(shoot_fx);
+}
 
 void Player::Update(float dt)
 {
@@ -144,6 +152,7 @@ void Player::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_DOWN) {
 		Shoot();
+		App->audio->PlayFx(shoot_fx);
 	}
 
 	collider->SetPos(r.x, r.y);
@@ -174,6 +183,7 @@ void Player::Movement()
 		if (jump == true)
 		{
 			Jump();
+			
 		}
 
 		if (jump2 == true)
@@ -240,6 +250,9 @@ void Player::Jump()
 	if (App->collision->CheckCollisionUp(r, speed) && jump2 == false) {
 		floor(450 * dt);
 		jumps = 1;
+		if(jump_counter == 0)
+			App->audio->PlayFx(jump_fx);
+
 		if (jump_counter < 0.23/dt)
 		{
 			r.y -= speed.y;
@@ -288,6 +301,8 @@ void Player::DoubleJump()
 	if (App->collision->CheckCollisionUp(r, speed))
 	{
 		jumps = 0;
+		if (jump_counter == 0)
+			App->audio->PlayFx(jump_fx);
 		if (jump_counter < 0.15/dt)
 		{
 			r.y -= speed.y;

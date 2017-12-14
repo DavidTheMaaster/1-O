@@ -50,7 +50,7 @@ bool j1Entities::Start()
 	fly_death_fx = App->audio->LoadFx("audio/fx/death3.wav");
 	walk_death_fx = App->audio->LoadFx("audio/fx/death.wav");
 	player_death_fx = App->audio->LoadFx("audio/fx/death2.wav");
-	urn_fx = App->audio->LoadFx("audio/fx/life.wav");
+	urn_fx = App->audio->LoadFx("audio/fx/urn.wav");
 
 	lvl2 = false;
 	hidden_level = false;
