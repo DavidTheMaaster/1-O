@@ -1,6 +1,8 @@
 #include "p2Defs.h"
 #include "p2Log.h"
+#include "j1App.h"
 #include "j1Audio.h"
+#include "j1Input.h"
 #include "p2List.h"
 
 #include "SDL/include/SDL.h"
@@ -50,7 +52,28 @@ bool j1Audio::Awake(pugi::xml_node& config)
 		ret = true;
 	}
 
+	Mix_VolumeMusic(50);
+
 	return ret;
+}
+
+bool j1Audio::Update(float dt)
+{
+	if (!active)
+		return true;
+
+	if (App->input->GetKey(SDL_SCANCODE_KP_PLUS) == KEY_DOWN) {
+		Mix_VolumeMusic(Mix_VolumeMusic(-1) + 10);
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_KP_MINUS) == KEY_DOWN) {
+		if (Mix_VolumeMusic(-1) < 10)
+			Mix_VolumeMusic(0);
+		else
+			Mix_VolumeMusic(Mix_VolumeMusic(-1) - 10);
+	}
+
+	return true;
 }
 
 // Called before quitting
@@ -66,15 +89,10 @@ bool j1Audio::CleanUp()
 		Mix_FreeMusic(music);
 	}
 
-	p2List_item<Mix_Chunk*>* item;
-	for(item = fx.start; item != NULL; item = item->next)
-		Mix_FreeChunk(item->data);
-
-	fx.clear();
-
 	Mix_CloseAudio();
 	Mix_Quit();
 	SDL_QuitSubSystem(SDL_INIT_AUDIO);
+	
 
 	return true;
 }
@@ -149,8 +167,12 @@ unsigned int j1Audio::LoadFx(const char* path)
 	}
 	else
 	{
-		fx.add(chunk);
-		ret = fx.count();
+		fx[last] = chunk;
+		ret = last++;
+		if (last == MAX_FX) {
+			last = 0;
+			ret = last;
+		}
 	}
 
 	return ret;
@@ -164,9 +186,27 @@ bool j1Audio::PlayFx(unsigned int id, int repeat)
 	if(!active)
 		return false;
 
-	if(id > 0 && id <= fx.count())
+	if(fx[id] != nullptr)
 	{
-		Mix_PlayChannel(-1, fx[id - 1], repeat);
+		Mix_PlayChannel(-1, fx[id], repeat);
+		ret = true;
+	}
+
+	return ret;
+}
+
+bool j1Audio::UnLoadFx(uint id)
+{
+	if (!active)
+		return true;
+
+	bool ret = false;
+
+	if (fx[id] != nullptr)
+	{
+		Mix_FreeChunk(fx[id]);
+		fx[id] = nullptr;
+		ret = true;
 	}
 
 	return ret;

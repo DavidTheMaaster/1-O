@@ -8,6 +8,7 @@
 #include "j1Window.h"
 #include "j1PathFinding.h"
 #include "j1Scene.h"
+#include "j1Audio.h"
 #include "j1FadetoBlack.h"
 #include "Flying_Enemy.h"
 #include "Entity.h"

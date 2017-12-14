@@ -6,7 +6,7 @@
 #include "p2List.h"
 
 #define DEFAULT_MUSIC_FADE_TIME 2.0f
-
+#define MAX_FX 50
 struct _Mix_Music;
 struct Mix_Chunk;
 
@@ -22,6 +22,9 @@ public:
 	// Called before render is available
 	bool Awake(pugi::xml_node&);
 
+
+	bool Update(float dt);
+
 	// Called before quitting
 	bool CleanUp();
 
@@ -34,10 +37,13 @@ public:
 	// Play a previously loaded WAV
 	bool PlayFx(unsigned int fx, int repeat = 0);
 
+	bool UnLoadFx(uint id);
+
 private:
 
 	_Mix_Music*			music;
-	p2List<Mix_Chunk*>	fx;
+	Mix_Chunk*			fx[MAX_FX];
+	uint				last = 1;
 };
 
 #endif // __j1AUDIO_H__

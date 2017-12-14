@@ -111,7 +111,7 @@ bool j1Scene::Start()
 
 	if (level == level_1) {
 		App->map->Load("level1.tmx");
-		App->audio->PlayMusic("audio/music/all_of_us.ogg");
+		App->audio->PlayMusic("audio/music/level_music.ogg");
 
 	}
 	if (level == level_2) {

@@ -13,6 +13,7 @@ private:
 	Animation walk;
 	Animation idle;
 
+
 public:
 
 
