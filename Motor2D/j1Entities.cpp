@@ -50,6 +50,7 @@ bool j1Entities::Start()
 	fly_death_fx = App->audio->LoadFx("audio/fx/death3.wav");
 	walk_death_fx = App->audio->LoadFx("audio/fx/death.wav");
 	player_death_fx = App->audio->LoadFx("audio/fx/death2.wav");
+	urn_fx = App->audio->LoadFx("audio/fx/life.wav");
 
 	lvl2 = false;
 	hidden_level = false;
@@ -147,6 +148,7 @@ bool j1Entities::CleanUp()
 	App->audio->UnLoadFx(fly_death_fx);
 	App->audio->UnLoadFx(walk_death_fx);
 	App->audio->UnLoadFx(player_death_fx);
+	App->audio->UnLoadFx(urn_fx);
 
 	for (uint i = 0; i < MAX_ENTITIES; ++i)
 	{
@@ -240,6 +242,14 @@ void j1Entities::OnCollision(Collider* c1, Collider* c2)
 				else if (entities[i]->collider->type == ENEMY_WALK) {
 					App->audio->PlayFx(walk_death_fx);
 				}
+				App->collision->EraseCollider(entities[i]->collider);
+				delete entities[i];
+				entities[i] = nullptr;
+				break;
+			}
+			if (entities[i]->collider->type == COLLIDER_COLLECTIBLE)
+			{
+				App->audio->PlayFx(urn_fx);
 				App->collision->EraseCollider(entities[i]->collider);
 				delete entities[i];
 				entities[i] = nullptr;
