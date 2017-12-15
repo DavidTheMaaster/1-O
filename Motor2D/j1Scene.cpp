@@ -154,6 +154,36 @@ bool j1Scene::Save(pugi::xml_node& data) const {
 	else {
 		data.append_child("level").attribute("level") = level;
 	}
+	if (data.child("score") == NULL) {
+		data.append_child("score").append_attribute("score") = score;
+	}
+	else {
+		data.append_child("score").attribute("score") = score;
+	}
+	if (data.child("ammo") == NULL) {
+		data.append_child("ammo").append_attribute("ammo") = ammo;
+	}
+	else {
+		data.append_child("ammo").attribute("ammo") = ammo;
+	}
+	if (data.child("player_lifes") == NULL) {
+		data.append_child("player_lifes").append_attribute("player_lifes") = player_lifes;
+	}
+	else {
+		data.append_child("player_lifes").attribute("player_lifes") = player_lifes;
+	}
+	if (data.child("urns") == NULL) {
+		data.append_child("urns").append_attribute("urns") = urns;
+	}
+	else {
+		data.append_child("urns").attribute("urns") = urns;
+	}
+	if (data.child("time") == NULL) {
+		data.append_child("time").append_attribute("time") = urns;
+	}
+	else {
+		data.append_child("time").attribute("time") = urns;
+	}
 
 	ret = true;
 	return ret;
@@ -165,11 +195,21 @@ bool j1Scene::Load(pugi::xml_node& data) {
 	if (data.child("level") != NULL) {
 		if (data.child("level").attribute("level").as_int() != level) {
 			level = data.child("level").attribute("level").as_int();
+			level = data.child("score").attribute("score").as_int();
+			level = data.child("ammo").attribute("ammo").as_int();
+			level = data.child("player_lifes").attribute("player_lifes").as_int();
+			level = data.child("urns").attribute("urns").as_int();
+			time = data.child("time").attribute("time").as_int();
 			App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
 			justloaded = true;
 		}
 		
 		else {
+			level = data.child("score").attribute("score").as_int();
+			level = data.child("ammo").attribute("ammo").as_int();
+			level = data.child("player_lifes").attribute("player_lifes").as_int();
+			level = data.child("urns").attribute("urns").as_int();
+			time = data.child("time").attribute("time").as_int();
 			justloaded = true;
 		}
 		
@@ -233,9 +273,11 @@ void j1Scene::LoadLevelUI()
 
 }
 
+
 void j1Scene::Pause()
 {
-	/*if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	/*
+	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 	{
 		App->pause = !App->pause;
 		if (App->pause == true)

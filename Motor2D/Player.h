@@ -45,6 +45,7 @@ public:
 
 	int jumps;
 	int jump_counter;
+	int ammo;
 
 	uint jump_fx;
 	uint shoot_fx;

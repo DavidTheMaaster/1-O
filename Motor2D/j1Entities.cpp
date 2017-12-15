@@ -6,6 +6,7 @@
 #include "j1Audio.h"
 #include "j1Map.h"
 #include "Player.h"
+#include "j1Scene.h"
 #include "Flying_Enemy.h"
 #include "Walking_Enemy.h"
 #include "Collectable_Urn.h"
@@ -243,9 +244,11 @@ void j1Entities::OnCollision(Collider* c1, Collider* c2)
 			{
 				if (entities[i]->collider->type == ENEMY_FLY) {
 					App->audio->PlayFx(fly_death_fx);
+					App->scene->score += 200;
 				}
 				else if (entities[i]->collider->type == ENEMY_WALK) {
 					App->audio->PlayFx(walk_death_fx);
+					App->scene->score += 200;
 				}
 				App->collision->EraseCollider(entities[i]->collider);
 				delete entities[i];
@@ -255,6 +258,7 @@ void j1Entities::OnCollision(Collider* c1, Collider* c2)
 			if (entities[i]->collider->type == COLLIDER_COLLECTIBLE)
 			{
 				App->audio->PlayFx(urn_fx);
+				App->scene->score += 500;
 				App->collision->EraseCollider(entities[i]->collider);
 				delete entities[i];
 				entities[i] = nullptr;

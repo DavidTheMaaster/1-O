@@ -102,6 +102,8 @@ Player::Player(int x, int y) : Entity (x, y)
 	jump_counter = 0;
 	flip = false;
 
+	ammo = 10;
+
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 	jumps = 2;
@@ -153,8 +155,14 @@ void Player::Update(float dt)
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_DOWN) {
-		Shoot();
-		App->audio->PlayFx(shoot_fx);
+		
+		if (ammo > 0) {
+			Shoot();
+			App->audio->PlayFx(shoot_fx);
+			ammo--;
+			App->scene->ammo = ammo;
+			App->scene->score -= 50;
+		}
 	}
 
 	collider->SetPos(r.x, r.y);
@@ -374,6 +382,7 @@ void Player::Dead()
 	{
 		player_animation = &die;
 		App->scene->player_lifes -= 1;
+		App->scene->score -= 250;
 	}
 }
 

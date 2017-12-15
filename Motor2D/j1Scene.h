@@ -66,7 +66,12 @@ public:
 		congrats,
 	};
 
-	int player_lifes;
+	int player_lifes = 5;
+	int ammo = 10;
+	int urns = 0;
+	float time = 0;
+	int score = 0;
+
 
 private:
 	iPoint mouse;
