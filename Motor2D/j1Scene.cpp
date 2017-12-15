@@ -195,20 +195,20 @@ bool j1Scene::Load(pugi::xml_node& data) {
 	if (data.child("level") != NULL) {
 		if (data.child("level").attribute("level").as_int() != level) {
 			level = data.child("level").attribute("level").as_int();
-			level = data.child("score").attribute("score").as_int();
-			level = data.child("ammo").attribute("ammo").as_int();
-			level = data.child("player_lifes").attribute("player_lifes").as_int();
-			level = data.child("urns").attribute("urns").as_int();
+			score = data.child("score").attribute("score").as_int();
+			ammo = data.child("ammo").attribute("ammo").as_int();
+			player_lifes = data.child("player_lifes").attribute("player_lifes").as_int();
+			urns = data.child("urns").attribute("urns").as_int();
 			time = data.child("time").attribute("time").as_int();
 			App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
 			justloaded = true;
 		}
 		
 		else {
-			level = data.child("score").attribute("score").as_int();
-			level = data.child("ammo").attribute("ammo").as_int();
-			level = data.child("player_lifes").attribute("player_lifes").as_int();
-			level = data.child("urns").attribute("urns").as_int();
+			score = data.child("score").attribute("score").as_int();
+			ammo = data.child("ammo").attribute("ammo").as_int();
+			player_lifes = data.child("player_lifes").attribute("player_lifes").as_int();
+			urns = data.child("urns").attribute("urns").as_int();
 			time = data.child("time").attribute("time").as_int();
 			justloaded = true;
 		}

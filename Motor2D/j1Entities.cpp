@@ -259,6 +259,7 @@ void j1Entities::OnCollision(Collider* c1, Collider* c2)
 			{
 				App->audio->PlayFx(urn_fx);
 				App->scene->score += 500;
+				App->scene->urns += 1;
 				App->collision->EraseCollider(entities[i]->collider);
 				delete entities[i];
 				entities[i] = nullptr;
