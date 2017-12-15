@@ -26,8 +26,9 @@ void Entity::Draw(SDL_Texture* sprites)
 	if (player_animation != nullptr) {
 		App->render->Blit(sprites, r.x - offset.x, r.y - offset.y, &(player_animation->GetCurrentFrame()), flip);
 	}
-
-
+	if (urn_animation != nullptr) {
+		App->render->Blit(sprites, r.x - offset.x, r.y - offset.y, &(flying_enemy_animation->GetCurrentFrame()), flip);
+	}
 }
 
 void Entity::OnCollision(Collider* collider)

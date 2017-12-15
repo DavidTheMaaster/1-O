@@ -17,6 +17,7 @@ protected:
 	Animation* flying_enemy_animation = nullptr;
 	Animation* walking_enemy_animation = nullptr;
 	Animation* player_animation = nullptr;
+	Animation* urn_animation = nullptr;
 
 public:
 	fPoint position;

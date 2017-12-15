@@ -230,5 +230,26 @@
       <folder file = "textures/enemies.png" />
     </texture>
   </enemies>
+  <urn>
+    <frame id = "0" x = "0" y = "0" w = "25" h = "44"/>
+    <frame id = "1" x = "25" y = "0" w = "25" h = "44"/>
+    <frame id = "2" x = "50" y = "0" w = "25" h = "44"/>
+    <frame id = "3" x = "75" y = "0" w = "25" h = "44"/>
+    <frame id = "4" x = "100" y = "0" w = "25" h = "44"/>
+    <frame id = "5" x = "125" y = "0" w = "25" h = "44"/>
+    <frame id = "6" x = "150" y = "0" w = "25" h = "44"/>
+    <frame id = "7" x = "175" y = "0" w = "25" h = "44"/>
+    <frame id = "8" x = "200" y = "0" w = "25" h = "44"/>
+    <frame id = "9" x = "225" y = "0" w = "25" h = "44"/>
+    <frame id = "10" x = "250" y = "0" w = "25" h = "44"/>
+    <frame id = "11" x = "275" y = "0" w = "25" h = "44"/>
+    <frame id = "12" x = "300" y = "0" w = "25" h = "44"/>
+    <frame id = "13" x = "325" y = "0" w = "25" h = "44"/>
+    <frame id = "14" x = "350" y = "0" w = "25" h = "44"/>
+    <attributes id = "0" speed = "8" loop = "true" offset_x = "0" offset_y = "-20" size = "14"/>
+    <texture>
+      <folder file = "textures/urn.png" />
+    </texture>
+  </urn>
 </animations>
 

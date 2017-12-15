@@ -1,0 +1,136 @@
+{ "frames": {
+   "Sprite-0003 0.": {
+    "frame": { "x": 0, "y": 0, "w": 25, "h": 44 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 44 },
+    "sourceSize": { "w": 25, "h": 44 },
+    "duration": 100
+   },
+   "Sprite-0003 1.": {
+    "frame": { "x": 25, "y": 0, "w": 25, "h": 44 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 44 },
+    "sourceSize": { "w": 25, "h": 44 },
+    "duration": 100
+   },
+   "Sprite-0003 2.": {
+    "frame": { "x": 50, "y": 0, "w": 25, "h": 44 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 44 },
+    "sourceSize": { "w": 25, "h": 44 },
+    "duration": 100
+   },
+   "Sprite-0003 3.": {
+    "frame": { "x": 75, "y": 0, "w": 25, "h": 44 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 44 },
+    "sourceSize": { "w": 25, "h": 44 },
+    "duration": 100
+   },
+   "Sprite-0003 4.": {
+    "frame": { "x": 100, "y": 0, "w": 25, "h": 44 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 44 },
+    "sourceSize": { "w": 25, "h": 44 },
+    "duration": 100
+   },
+   "Sprite-0003 5.": {
+    "frame": { "x": 125, "y": 0, "w": 25, "h": 44 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 44 },
+    "sourceSize": { "w": 25, "h": 44 },
+    "duration": 100
+   },
+   "Sprite-0003 6.": {
+    "frame": { "x": 150, "y": 0, "w": 25, "h": 44 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 44 },
+    "sourceSize": { "w": 25, "h": 44 },
+    "duration": 100
+   },
+   "Sprite-0003 7.": {
+    "frame": { "x": 175, "y": 0, "w": 25, "h": 44 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 44 },
+    "sourceSize": { "w": 25, "h": 44 },
+    "duration": 100
+   },
+   "Sprite-0003 8.": {
+    "frame": { "x": 200, "y": 0, "w": 25, "h": 44 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 44 },
+    "sourceSize": { "w": 25, "h": 44 },
+    "duration": 100
+   },
+   "Sprite-0003 9.": {
+    "frame": { "x": 225, "y": 0, "w": 25, "h": 44 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 44 },
+    "sourceSize": { "w": 25, "h": 44 },
+    "duration": 100
+   },
+   "Sprite-0003 10.": {
+    "frame": { "x": 250, "y": 0, "w": 25, "h": 44 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 44 },
+    "sourceSize": { "w": 25, "h": 44 },
+    "duration": 100
+   },
+   "Sprite-0003 11.": {
+    "frame": { "x": 275, "y": 0, "w": 25, "h": 44 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 44 },
+    "sourceSize": { "w": 25, "h": 44 },
+    "duration": 100
+   },
+   "Sprite-0003 12.": {
+    "frame": { "x": 300, "y": 0, "w": 25, "h": 44 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 44 },
+    "sourceSize": { "w": 25, "h": 44 },
+    "duration": 100
+   },
+   "Sprite-0003 13.": {
+    "frame": { "x": 325, "y": 0, "w": 25, "h": 44 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 44 },
+    "sourceSize": { "w": 25, "h": 44 },
+    "duration": 100
+   },
+   "Sprite-0003 14.": {
+    "frame": { "x": 350, "y": 0, "w": 25, "h": 44 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 25, "h": 44 },
+    "sourceSize": { "w": 25, "h": 44 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.1.9-dev",
+  "image": "C:\\Users\\davidls4\\Documents\\GitHub\\1-O\\Game\\textures\\urn.png",
+  "format": "RGBA8888",
+  "size": { "w": 375, "h": 44 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ]
+ }
+}

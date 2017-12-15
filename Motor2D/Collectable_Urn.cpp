@@ -20,7 +20,7 @@ Collectable_Urn::Collectable_Urn(int x, int y) : Entity(x, y)
 	bool ret = true;
 
 	animation_file.load_file("animations.xml");
-	animations = animation_file.child("animations").child("enemies").child("flying_enemy");
+	animations = animation_file.child("animations").child("urn");
 
 	if (animations == NULL)
 	{
@@ -50,12 +50,8 @@ Collectable_Urn::Collectable_Urn(int x, int y) : Entity(x, y)
 		i = rect.attribute("id").as_int();
 		load_anim->loop = attributes.attribute("loop").as_bool();
 		load_anim->speed = attributes.attribute("speed").as_float();
-		radius = attributes.attribute("radius").as_int();
-		big_radius = attributes.attribute("big_radius").as_int();
-
 	}
-	animations = animation_file.child("animations").child("enemies");
-
+	animations = animation_file.child("animations").child("urn");
 	flying_enemy_animation = &anim;
 	//
 
@@ -66,6 +62,7 @@ Collectable_Urn::Collectable_Urn(int x, int y) : Entity(x, y)
 
 	//Collider
 	collider = App->collision->AddCollider(r, COLLIDER_COLLECTIBLE, App->entities);
+	type = URN;
 }
 
 void Collectable_Urn::Update(float dt)
@@ -78,8 +75,8 @@ void Collectable_Urn::Update(float dt)
 
 void Collectable_Urn::GetOffset()
 {
-	offset.x = animations.child("flying_enemy").child("attributes").attribute("offset_x").as_int(0);
-	offset.y = animations.child("flying_enemy").child("attributes").attribute("offset_y").as_int(0);
+	offset.x = animations.child("urn").child("attributes").attribute("offset_x").as_int(0);
+	offset.y = animations.child("urn").child("attributes").attribute("offset_y").as_int(0);
 }
 
 void Collectable_Urn::UpdateSpeed()
