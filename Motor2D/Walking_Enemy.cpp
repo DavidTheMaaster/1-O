@@ -159,12 +159,11 @@ void Walking_Enemy::Movement()
 				}
 			}
 		}
+		if (App->collision->CheckCollisionDown(r, speed) && found == false && dead == false)
+			r.y += speed.y;
+		
 	}
-	if (App->collision->CheckCollisionDown(r, speed))
-	{
-		r.y += speed.y;
-	}
-
+	
 }
 
 bool Walking_Enemy::CanStartMovement()

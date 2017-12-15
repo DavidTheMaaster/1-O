@@ -383,7 +383,7 @@ void Player::Respawn()
 	{
 		player_animation->Reset();
 		player_animation = &idle;
-		App->fadetoblack->FadeToBlack(App->scene, App->scene, 0.5);
+		App->fadetoblack->FadeToBlack(App->scene, App->scene, 1);
 		death = false;
 		App->render->camera.x = 0;
 	}
