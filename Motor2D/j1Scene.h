@@ -42,7 +42,6 @@ public:
 	void ButtonInteractions();
 
 	void LoadLevelUI();
-	void LoadPauseUI();
 
 	void Pause();
 
@@ -60,6 +59,7 @@ public:
 	{
 		MENU,
 		OPTIONS,
+		MENU_PLAY,
 		level_1,
 		level_2,
 		hidden_level,
@@ -71,6 +71,8 @@ public:
 private:
 	iPoint mouse;
 	pugi::xml_node level_name;
+	SDL_Texture* ui_texture;
+	Animation sheet;
 };
 
 #endif // __j1SCENE_H__

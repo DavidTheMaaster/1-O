@@ -43,6 +43,7 @@ bool j1Scene::Awake(pugi::xml_node& config)
 bool j1Scene::Start()
 {	
 	level_change_fx = App->audio->LoadFx("audio/fx/change_level.wav");
+	ui_texture = App->tex->Load("maps/UI.png");
 	if (level == MENU)
 	{
 		App->menu->LoadMenuUI();
@@ -112,7 +113,7 @@ bool j1Scene::PostUpdate()
 {
 	bool ret = true;
 
-	if (level != MENU && level != OPTIONS)
+	if (level != MENU && level != OPTIONS && level != MENU_PLAY)
 	{
 		Pause();
 	}
@@ -217,6 +218,9 @@ void j1Scene::ButtonInteractions()
 	case OPTIONS:
 		App->menu->OptionButtons();
 		break;
+	case MENU_PLAY:
+		App->menu->PlayButtons();
+		break;
 	default:
 		break;
 	}
@@ -230,8 +234,8 @@ void j1Scene::LoadLevelUI()
 }
 
 void j1Scene::Pause()
-{/*
-	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+{
+	/*if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 	{
 		App->pause = !App->pause;
 		if (App->pause == true)

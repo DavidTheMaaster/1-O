@@ -144,6 +144,19 @@ void Menu::LoadOptionUI()
 	SetVolume();
 }
 
+void Menu::LoadPlayUI()
+{
+	App->gui->DeleteUI(hand);
+	sheet = App->gui->AddImage(490, 35, ui_texture, sheet_anim);
+	App->gui->AddLabel(60, 300, "NEW GAME", BLACK, UPHEAVAL, 20, sheet);
+	App->gui->AddLabel(235, 300, "CONTINUE", BLACK, UPHEAVAL, 20, sheet);
+	new_game_button = App->gui->AddButton(70, 333, ui_texture, button_anim, this, sheet);
+	continue_button = App->gui->AddButton(251, 333, ui_texture, button_anim, this, sheet);
+	exit_options = App->gui->AddButton(275, 50, ui_texture, exit_button_anim, this, sheet);
+	hand = App->gui->AddImage(-60, 420, ui_texture, hand_anim, sheet);
+
+}
+
 
 bool Menu::Animations()
 {
@@ -270,8 +283,8 @@ void Menu::MenuButtons()
 	{
 		if (play_ui)
 		{
-			App->scene->level = App->scene->level_1;
-			App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
+			App->scene->level = App->scene->MENU_PLAY;			
+			LoadPlayUI();
 		}
 		if (options_ui)
 		{
@@ -313,6 +326,10 @@ void Menu::OptionButtons()
 		if (App->audio->volume == 0)
 			Mix_VolumeMusic(0);
 	}
+}
+
+void Menu::PlayButtons()
+{
 }
 
 void Menu::SetVolume()

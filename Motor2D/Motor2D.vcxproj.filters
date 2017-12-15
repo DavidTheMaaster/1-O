@@ -91,6 +91,9 @@
     <ClCompile Include="Menu.cpp">
       <Filter>Desenvolupament  ========\Scenes\SetUI</Filter>
     </ClCompile>
+    <ClCompile Include="Pause.cpp">
+      <Filter>Desenvolupament  ========\Scenes\SetUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -202,6 +205,9 @@
       <Filter>Desenvolupament  ========\Modules\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
+      <Filter>Desenvolupament  ========\Scenes\SetUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Pause.h">
       <Filter>Desenvolupament  ========\Scenes\SetUI</Filter>
     </ClInclude>
   </ItemGroup>

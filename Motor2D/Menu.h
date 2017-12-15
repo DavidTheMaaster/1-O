@@ -41,9 +41,11 @@ public:
 
 	void LoadMenuUI();
 	void LoadOptionUI();
+	void LoadPlayUI();
 
 	void MenuButtons();
 	void OptionButtons();
+	void PlayButtons();
 
 	void SetVolume();
 	void UpdateSpeed(float dt);
@@ -69,9 +71,9 @@ private:
 	Animation cross_anim;
 
 
-	Button* play, *options, *exit, *exit_options, *morevolume, *lessvolume;
+	Button* play, *options, *exit, *exit_options, *morevolume, *lessvolume, *new_game_button, *continue_button;
 	Image* sheet, *option_sheet, *hand, *cross, *volume_bar;
-	Label* volume_char;
+	Label* volume_char, *continue_label, *new_game_label;
 
 	bool play_ui, options_ui, exit_ui;
 	bool move = true;
