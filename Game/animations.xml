@@ -32,6 +32,38 @@
       <frame id = "28" x = "57" y = "178" w = "56" h = "59"/>
       <attributes id = "0" speed = "15" loop = "false" offset_x = "0" offset_y = "0" size = "28"/>
     </cross>
+    <sheet>
+      <frame id = "0" x = "0" y = "0" w = "369" h = "479"/>
+      <attributes id = "1" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+    </sheet>
+    <button>
+      <frame id = "0" x = "370" y = "0" w = "56" h = "59"/>
+      <attributes id = "2" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+    </button>
+    <exit>
+      <frame id = "0" x = "427" y = "0" w = "44" h = "48"/>
+      <attributes id = "3" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+    </exit>
+    <hand>
+      <frame id = "0" x = "472" y = "0" w = "201" h = "315"/>
+      <attributes id = "4" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+    </hand>
+    <volume>
+      <frame id = "0" x = "370" y = "315" w = "204" h = "34"/>
+      <attributes id = "5" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+    </volume>
+    <left_arrow>
+      <frame id = "0" x = "370" y = "349" w = "28" h = "34"/>
+      <attributes id = "6" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+    </left_arrow>
+    <right_arrow>
+      <frame id = "0" x = "403" y = "349" w = "28" h = "34"/>
+      <attributes id = "6" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+    </right_arrow>
+    <line>
+      <frame id = "0" x = "376" y = "63" w = "90" h = "4"/>
+      <attributes id = "7" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+    </line>
   </ui>
   <particles>
     <shoot>

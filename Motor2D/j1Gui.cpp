@@ -113,9 +113,10 @@ Image* j1Gui::AddImage(int x, int y, SDL_Texture* texture, Animation anim, UIEle
 	return image;
 }
 
-Button* j1Gui::AddButton(int x, int y, SDL_Texture* texture, j1Module* callback, UIElement* parent)
+Button* j1Gui::AddButton(int x, int y, SDL_Texture* texture, Animation anim, j1Module* callback, UIElement* parent)
 {
-	Button* button = new Button(x, y, BUTTON, texture, callback, parent);
+	Animation* animation = &anim;
+	Button* button = new Button(x, y, BUTTON, texture, animation, callback, parent);
 	elements.add((UIElement*)button);
 
 

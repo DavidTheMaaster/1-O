@@ -68,11 +68,11 @@ public:
 	uint button_focused_fx;
 	uint cross_click_fx;
 
-	SDL_Texture* menu_texture, *buttons, *cross_texture, *hand_texture, *sheet_text, *option_sheet_text, *exit_options_text;
+	SDL_Texture *menu_texture, *ui_texture, *cross_texture;
 	Button* play, *options, *exit, *exit_options, *morevolume, *lessvolume;
 	Image* sheet, *option_sheet, *hand, *cross; 
 
-
+	Animation sheet_anim, button_anim, exit_button_anim, hand_anim, line, text_box_anim, volume_anim, left_arrow_anim, right_arrow_anim;
 
 	enum Levels
 	{
@@ -86,7 +86,15 @@ public:
 
 	enum UiAnimations
 	{
-		CROSS
+		CROSS,
+		SHEET,
+		BUTTON,
+		EXIT,
+		HAND,
+		VOLUME,
+		LEFT_ARROW,
+		RIGHT_ARROW,
+		LINE
 	};
 
 	int player_lifes;
@@ -117,7 +125,7 @@ private:
 	uint current;
 	Animation * load_anim;
 
-	uint anim_speed;
+	uint anim_speed[2];
 
 
 	void UpdateSpeed(float dt);

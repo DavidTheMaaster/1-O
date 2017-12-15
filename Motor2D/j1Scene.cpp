@@ -41,6 +41,9 @@ bool j1Scene::Awake(pugi::xml_node& config)
 		LOG("Could not load animations");
 	}
 
+
+	int k = 0;
+
 	while (animations != NULL) {
 		attributes = animations.child("attributes");
 		rect = animations.first_child();
@@ -48,9 +51,23 @@ bool j1Scene::Awake(pugi::xml_node& config)
 		current = attributes.attribute("id").as_int();
 
 		if (current == CROSS)
-		{
 			load_anim = &cross_anim;
-		}
+		if(current == SHEET)
+			load_anim = &sheet_anim;
+		if (current == BUTTON)
+			load_anim = &button_anim;
+		if (current == EXIT)
+			load_anim = &exit_button_anim;
+		if (current == HAND)
+			load_anim = &hand_anim;
+		if (current == VOLUME)
+			load_anim = &volume_anim;
+		if (current == LEFT_ARROW)
+			load_anim = &left_arrow_anim;
+		if (current == RIGHT_ARROW)
+			load_anim = &right_arrow_anim;
+		if (current == LINE)
+			load_anim = &line;
 
 		int i = rect.attribute("id").as_int();
 		int j = attributes.attribute("size").as_int();
@@ -72,8 +89,9 @@ bool j1Scene::Awake(pugi::xml_node& config)
 
 		}
 
-		anim_speed = load_anim->speed;
-
+		if (k == 0)
+			anim_speed[0] = load_anim->speed;
+		k++;
 		animations = animations.next_sibling();
 
 	}
@@ -85,13 +103,9 @@ bool j1Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool j1Scene::Start()
 {	
+	ui_texture = App->tex->Load("maps/UI.png");
 	menu_texture = App->tex->Load("maps/menu.png");
-	buttons = App->tex->Load("maps/menu_button.png");
 	cross_texture = App->tex->Load("maps/cross.png");
-	hand_texture = App->tex->Load("maps/hand.png");
-	sheet_text = App->tex->Load("maps/sheet.png");
-	option_sheet_text = App->tex->Load("maps/option_sheet.png");
-	exit_options_text = App->tex->Load("maps/exit_button.png");
 	level_change_fx = App->audio->LoadFx("audio/fx/change_level.wav");
 	cross_click_fx = App->audio->LoadFx("audio/fx/pencil_lines.wav");
 	button_focused_fx = App->audio->LoadFx("audio/fx/mouse_over.wav");
@@ -282,26 +296,26 @@ void j1Scene::ButtonInteractions()
 void j1Scene::LoadMenuUI()
 {
 	App->gui->AddImage(0, 0, menu_texture);
-	sheet = App->gui->AddImage(490, 35, sheet_text);
-	play = App->gui->AddButton(47, 333, buttons, this, sheet);
-	options = App->gui->AddButton(160, 333, buttons, this, sheet);
-	exit = App->gui->AddButton(274, 333, buttons, this, sheet);
+	sheet = App->gui->AddImage(490, 35, ui_texture, sheet_anim);
+	play = App->gui->AddButton(47, 333, ui_texture, button_anim, this, sheet);
+	options = App->gui->AddButton(160, 333, ui_texture, button_anim, this, sheet);
+	exit = App->gui->AddButton(274, 333, ui_texture, button_anim, this, sheet);
 	App->gui->AddLabel(47, 275, "PLAY", BLACK, UPHEAVAL, 20, sheet);
 	App->gui->AddLabel(40, 305, "JOGAR", BLACK, UPHEAVAL, 20, sheet);
 	App->gui->AddLabel(145, 275, "OPTIONS", BLACK, UPHEAVAL, 20, sheet);
 	App->gui->AddLabel(140, 305, "D'OPCIONS", BLACK, UPHEAVAL, 20, sheet);
 	App->gui->AddLabel(278, 275, "EXIT", BLACK, UPHEAVAL, 20, sheet);
 	App->gui->AddLabel(268, 305, "SORTIR", BLACK, UPHEAVAL, 20, sheet);
-	hand = App->gui->AddImage(337, 420, hand_texture, {});
+	hand = App->gui->AddImage(337, 420, ui_texture, hand_anim);
 }
 
 void j1Scene::LoadOptionUI()
 {
 	App->gui->DeleteUI(hand);
-	option_sheet = App->gui->AddImage(490, 35, sheet_text);
-	exit_options = App->gui->AddButton(275, 50, exit_options_text, this, option_sheet);
-	morevolume = App->gui->AddButton(100, 200, buttons, this, option_sheet);
-	lessvolume = App->gui->AddButton(200, 200, buttons, this, option_sheet);
+	option_sheet = App->gui->AddImage(490, 35, ui_texture, sheet_anim);
+	exit_options = App->gui->AddButton(275, 50, ui_texture, button_anim, this, option_sheet);
+	morevolume = App->gui->AddButton(100, 200, ui_texture, left_arrow_anim, this, option_sheet);
+	lessvolume = App->gui->AddButton(200, 200, ui_texture, right_arrow_anim, this, option_sheet);
 }
 
 void j1Scene::LoadLevelUI()
@@ -377,14 +391,14 @@ void j1Scene::ResetMenu()
 	cross_anim.Reset();
 	App->gui->DeleteUI(cross);
 	play_ui = options_ui = exit_ui = false;
-	hand = App->gui->AddImage(337, 420, hand_texture, {});
+	hand = App->gui->AddImage(337, 420, ui_texture, hand_anim);
 	level = MENU;
 }
 
 
 void j1Scene::UpdateSpeed(float dt)
 {
-	cross_anim.speed = anim_speed * dt;
+	cross_anim.speed = anim_speed[0] * dt;
 }
 
 
@@ -395,7 +409,7 @@ void j1Scene::Pause()
 		App->pause = !App->pause;
 		if (App->pause == true)
 		{
-			sheet = App->gui->AddImage(490, 35, sheet_text);
+			sheet = App->gui->AddImage(490, 35, ui_texture, sheet_anim);
 		}
 		if (App->pause == false && sheet != nullptr)
 		{
@@ -427,7 +441,7 @@ void j1Scene::MenuButtons()
 			cross = App->gui->AddImage(0, 0, cross_texture, cross_anim, play);
 			App->audio->PlayFx(cross_click_fx);
 			App->gui->DeleteUI(hand);
-			hand = App->gui->AddImage(337, 420, hand_texture, {});
+			hand = App->gui->AddImage(337, 420, ui_texture, hand_anim);
 			play_ui = true;
 			change = true;
 		}
@@ -436,7 +450,7 @@ void j1Scene::MenuButtons()
 			cross = App->gui->AddImage(0, 0, cross_texture, cross_anim, options);
 			App->audio->PlayFx(cross_click_fx);
 			App->gui->DeleteUI(hand);
-			hand = App->gui->AddImage(450, 420, hand_texture, {});
+			hand = App->gui->AddImage(337, 420, ui_texture, hand_anim);
 			options_ui = true;
 			change = true;
 		}
@@ -446,7 +460,7 @@ void j1Scene::MenuButtons()
 			cross = App->gui->AddImage(0, 0, cross_texture, cross_anim, exit);
 			App->audio->PlayFx(cross_click_fx);
 			App->gui->DeleteUI(hand);
-			hand = App->gui->AddImage(563, 420, hand_texture);
+			hand = App->gui->AddImage(337, 420, ui_texture, hand_anim);
 			exit_ui = true;
 			change = true;
 		}

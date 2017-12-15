@@ -23,6 +23,7 @@ class UIElement
 public:
 
 	SDL_Rect rect;
+	SDL_Rect current_animation;
 	iPoint pos;
 	uint w;
 	uint h;
@@ -50,9 +51,7 @@ public:
 
 public:
 	Animation anim;
-
-private:
-	SDL_Rect current_animation;
+	
 
 
 };

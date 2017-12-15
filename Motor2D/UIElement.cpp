@@ -32,6 +32,13 @@ void UIElement::Draw(float dt)
 
 void UIElement::Update(float dt)
 {
+	SDL_Rect button_rect;
+
+	if (current_animation.w == 0)
+		button_rect = rect;
+	else
+		button_rect = current_animation;
+
 	if (type == BUTTON) {
 
 		int mouse_x = 0, mouse_y = 0;
@@ -41,12 +48,12 @@ void UIElement::Update(float dt)
 			state = FOCUSED;
 		}
 
-		if ((mouse_x > this->pos.x && mouse_x < this->pos.x + rect.w) && (mouse_y > this->pos.y && mouse_y < this->pos.y + rect.h) && state != L_MOUSE_PRESSED && state != FOCUSED) {
+		if ((mouse_x > this->pos.x && mouse_x < this->pos.x + button_rect.w) && (mouse_y > this->pos.y && mouse_y < this->pos.y + button_rect.h) && state != L_MOUSE_PRESSED && state != FOCUSED) {
 			state = MOUSE_ENTER;
 			this->callback->UIEvent(this, state);
 			LOG("Mouse Enter");
 		}
-		else if (state == FOCUSED && ((mouse_x < this->pos.x || mouse_x > this->pos.x + rect.w) || (mouse_y < this->pos.y || mouse_y > this->pos.y + rect.h))) {
+		else if (state == FOCUSED && ((mouse_x < this->pos.x || mouse_x > this->pos.x + button_rect.w) || (mouse_y < this->pos.y || mouse_y > this->pos.y + button_rect.h))) {
 			state = MOUSE_LEAVE;
 			this->callback->UIEvent(this, state);
 			LOG("Mouse Leave");
