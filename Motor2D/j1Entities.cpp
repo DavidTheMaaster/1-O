@@ -32,6 +32,7 @@ bool j1Entities::Start()
 
 	enemies_textures = App->tex->Load("textures/enemies.png");
 	player_textures = App->tex->Load("textures/player.png");
+	urn_textures = App->tex->Load("textures/urn.png");
 
 
 
@@ -105,6 +106,10 @@ bool j1Entities::Update(float dt)
 			if (entities[i]->type == PLAYER)
 			{
 				entities[i]->Draw(player_textures);
+			}
+			else if (entities[i]->type == URN)
+			{
+				entities[i]->Draw(urn_textures);
 			}
 			else
 			{
