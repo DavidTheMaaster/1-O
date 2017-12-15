@@ -144,8 +144,9 @@ void j1Gui::DeleteUI(UIElement * element)
 	{
 		if (item->data == element)
 		{
-			delete element;
 			elements.del(item);
+			item->data = nullptr;
+
 		}
 		item = item->next;
 	}
