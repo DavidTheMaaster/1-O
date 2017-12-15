@@ -88,6 +88,9 @@
     <ClCompile Include="Collectable_Urn.cpp">
       <Filter>Desenvolupament  ========\Modules\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Desenvolupament  ========\Scenes\SetUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -198,6 +201,9 @@
     <ClInclude Include="Collectable_Urn.h">
       <Filter>Desenvolupament  ========\Modules\Entities</Filter>
     </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Desenvolupament  ========\Scenes\SetUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">
@@ -226,6 +232,9 @@
     </Filter>
     <Filter Include="Desenvolupament  ========\Modules\UI">
       <UniqueIdentifier>{ef0db2e4-47d4-4cc3-800d-a41106069f18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\Scenes\SetUI">
+      <UniqueIdentifier>{3cf92b83-6660-40f2-8eb5-cb848c7cf040}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

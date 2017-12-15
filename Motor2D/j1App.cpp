@@ -18,6 +18,7 @@
 #include "j1Fonts.h"
 #include "j1FadeToBlack.h"
 #include "j1Gui.h"
+#include "Menu.h"
 #include "j1App.h"
 
 #include "Brofiler/Brofiler.h"
@@ -43,6 +44,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	pathfinding = new j1PathFinding();
 	font = new j1Fonts();
 	gui = new j1Gui();
+	menu = new Menu();
 	fadetoblack = new j1FadeToBlack();
 
 	// Ordered for awake / Start / Update
@@ -59,6 +61,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(pathfinding);
 	AddModule(font);
 	AddModule(gui);
+	AddModule(menu);
 	AddModule(fadetoblack);
 
 

@@ -22,6 +22,7 @@ class j1Fonts;
 class j1FadeToBlack;
 class j1Particles;
 class j1Gui;
+class Menu;
 class j1App
 {
 public:
@@ -97,6 +98,7 @@ public:
 	j1Fonts*			font;
 	j1Gui*				gui;
 	j1PathFinding*		pathfinding;
+	Menu*				menu;
 	j1FadeToBlack*		fadetoblack;
 	float				dt = 0;
 	bool				pause;

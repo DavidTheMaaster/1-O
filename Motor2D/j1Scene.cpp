@@ -14,6 +14,7 @@
 #include "j1Gui.h"
 #include "j1Scene.h"
 #include "j1Window.h"
+#include "Menu.h"
 
 #include <stdio.h> 
  
@@ -106,16 +107,10 @@ bool j1Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool j1Scene::Start()
 {	
-	ui_texture = App->tex->Load("maps/UI.png");
-	menu_texture = App->tex->Load("maps/menu.png");
-	cross_texture = App->tex->Load("maps/cross.png");
 	level_change_fx = App->audio->LoadFx("audio/fx/change_level.wav");
-	cross_click_fx = App->audio->LoadFx("audio/fx/pencil_lines.wav");
-	button_focused_fx = App->audio->LoadFx("audio/fx/mouse_over.wav");
-
 	if (level == MENU)
 	{
-		LoadMenuUI();
+		App->menu->LoadMenuUI();
 	}
 
 	if (level == level_1) {

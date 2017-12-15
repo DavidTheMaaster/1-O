@@ -2,10 +2,7 @@
 #define __j1SCENE_H__
 
 #include "j1Module.h"
-#include "Button.h"
-#include "Image.h"
 #include "Animation.h"
-#include "Label.h"
 
 
 struct SDL_Texture;
@@ -41,28 +38,7 @@ public:
 	bool Save(pugi::xml_node&) const;
 	bool Load(pugi::xml_node&);
 
-
-	void GetKeys();
-	void ButtonInteractions();
-
-	bool Animations();
-	void HandAnimation();
-
-	void ResetMenu();
-
 	void CheckChange();
-
-	void LoadMenuUI();
-	void LoadOptionUI();
-	void LoadLevelUI();
-	void LoadPauseUI();
-
-	void Pause();
-	void MenuButtons();
-	void OptionButtons();
-
-	void SetVolume();
-
 
 public:
 	int level = 0;
@@ -70,10 +46,8 @@ public:
 	bool changeMap;
 
 	uint level_change_fx;
-	uint button_focused_fx;
-	uint cross_click_fx;
-
-	SDL_Texture *menu_texture, *ui_texture, *cross_texture;
+	
+	
 	Button* play, *options, *exit, *exit_options, *morevolume, *lessvolume;
 	Image* sheet, *option_sheet, *hand, *cross, *volume_bar; 
 	Label* volume_char;
