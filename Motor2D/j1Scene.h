@@ -55,6 +55,7 @@ public:
 	void LoadMenuUI();
 	void LoadOptionUI();
 	void LoadLevelUI();
+	void LoadPauseUI();
 
 	void Pause();
 	void MenuButtons();

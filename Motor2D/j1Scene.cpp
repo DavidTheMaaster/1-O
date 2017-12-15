@@ -311,6 +311,9 @@ void j1Scene::LoadMenuUI()
 	App->gui->AddLabel(140, 305, "D'OPCIONS", BLACK, UPHEAVAL, 20, sheet);
 	App->gui->AddLabel(278, 275, "EXIT", BLACK, UPHEAVAL, 20, sheet);
 	App->gui->AddLabel(268, 305, "SORTIR", BLACK, UPHEAVAL, 20, sheet);
+	App->gui->AddImage(27, 297, ui_texture, line, sheet);
+	App->gui->AddImage(143, 297, ui_texture, line, sheet);
+	App->gui->AddImage(257, 297, ui_texture, line, sheet);
 	hand = App->gui->AddImage(337, 420, ui_texture, hand_anim);
 }
 
