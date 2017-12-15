@@ -5,6 +5,8 @@
 #include "Button.h"
 #include "Image.h"
 #include "Animation.h"
+#include "Label.h"
+
 
 struct SDL_Texture;
 
@@ -58,6 +60,8 @@ public:
 	void MenuButtons();
 	void OptionButtons();
 
+	void SetVolume();
+
 
 public:
 	int level = 0;
@@ -70,7 +74,8 @@ public:
 
 	SDL_Texture *menu_texture, *ui_texture, *cross_texture;
 	Button* play, *options, *exit, *exit_options, *morevolume, *lessvolume;
-	Image* sheet, *option_sheet, *hand, *cross; 
+	Image* sheet, *option_sheet, *hand, *cross, *volume_bar; 
+	Label* volume_char;
 
 	Animation sheet_anim, button_anim, exit_button_anim, hand_anim, line, text_box_anim, volume_anim, left_arrow_anim, right_arrow_anim;
 
@@ -127,6 +132,7 @@ private:
 
 	uint anim_speed[2];
 
+	char* volume;
 
 	void UpdateSpeed(float dt);
 };

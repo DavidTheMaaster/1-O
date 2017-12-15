@@ -39,6 +39,8 @@ public:
 
 	bool UnLoadFx(uint id);
 
+	int volume = 50;
+
 private:
 
 	_Mix_Music*			music;

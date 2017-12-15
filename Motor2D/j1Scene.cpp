@@ -15,6 +15,9 @@
 #include "j1Scene.h"
 #include "j1Window.h"
 
+#include <stdio.h> 
+ 
+
 j1Scene::j1Scene() : j1Module()
 {
 	name.create("scene");
@@ -186,9 +189,11 @@ bool j1Scene::PostUpdate()
 	if (level != MENU && level != OPTIONS)
 	{
 		Pause();
-
 	}
-
+	if (level == OPTIONS)
+	{
+		App->render->DrawQuad({ 575 + App->audio->volume*2, 235, 2, 34 }, 255, 100, 100, 255);
+	}
 	return ret;
 }
 
@@ -313,9 +318,11 @@ void j1Scene::LoadOptionUI()
 {
 	App->gui->DeleteUI(hand);
 	option_sheet = App->gui->AddImage(490, 35, ui_texture, sheet_anim);
-	exit_options = App->gui->AddButton(275, 50, ui_texture, button_anim, this, option_sheet);
-	morevolume = App->gui->AddButton(100, 200, ui_texture, left_arrow_anim, this, option_sheet);
-	lessvolume = App->gui->AddButton(200, 200, ui_texture, right_arrow_anim, this, option_sheet);
+	exit_options = App->gui->AddButton(275, 50, ui_texture, exit_button_anim, this, option_sheet);
+	morevolume = App->gui->AddButton(306, 200, ui_texture, right_arrow_anim, this, option_sheet);
+	lessvolume = App->gui->AddButton(40, 200, ui_texture, left_arrow_anim, this, option_sheet);
+	volume_bar = App->gui->AddImage(85, 200, ui_texture, volume_anim, option_sheet);
+	SetVolume();
 }
 
 void j1Scene::LoadLevelUI()
@@ -450,7 +457,7 @@ void j1Scene::MenuButtons()
 			cross = App->gui->AddImage(0, 0, cross_texture, cross_anim, options);
 			App->audio->PlayFx(cross_click_fx);
 			App->gui->DeleteUI(hand);
-			hand = App->gui->AddImage(337, 420, ui_texture, hand_anim);
+			hand = App->gui->AddImage(450, 420, ui_texture, hand_anim);
 			options_ui = true;
 			change = true;
 		}
@@ -460,7 +467,7 @@ void j1Scene::MenuButtons()
 			cross = App->gui->AddImage(0, 0, cross_texture, cross_anim, exit);
 			App->audio->PlayFx(cross_click_fx);
 			App->gui->DeleteUI(hand);
-			hand = App->gui->AddImage(337, 420, ui_texture, hand_anim);
+			hand = App->gui->AddImage(563, 420, ui_texture, hand_anim);
 			exit_ui = true;
 			change = true;
 		}
@@ -490,15 +497,37 @@ void j1Scene::OptionButtons()
 		App->gui->DeleteUI(exit_options);
 		App->gui->DeleteUI(option_sheet);
 		App->gui->DeleteUI(morevolume);
+		App->gui->DeleteUI(volume_char);
 		App->gui->DeleteUI(lessvolume);
+		App->gui->DeleteUI(volume_bar);
 		ResetMenu();
 	}
 	if (morevolume->state == L_MOUSE_PRESSED)
 	{
-
+		if (App->audio->volume < 100) 
+		{
+			Mix_VolumeMusic(App->audio->volume++);
+			SetVolume();
+		}
 	}
 	if (lessvolume->state == L_MOUSE_PRESSED)
 	{
-
+		if (App->audio->volume > 0)
+		{
+			Mix_VolumeMusic(App->audio->volume--);
+			SetVolume();
+		}
+		if (App->audio->volume == 0)
+			Mix_VolumeMusic(0);
 	}
 }
+
+void j1Scene::SetVolume()
+{
+	std::string s = std::to_string(App->audio->volume);
+	volume = (char *)alloca(s.size() + 1);
+	memcpy(volume, s.c_str(), s.size() + 1);
+	App->gui->DeleteUI(volume_char);
+	volume_char = App->gui->AddLabel(158, 191, volume, BLACK, UPHEAVAL, 50, option_sheet);
+}
+

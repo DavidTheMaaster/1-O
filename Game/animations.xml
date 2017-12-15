@@ -58,11 +58,11 @@
     </left_arrow>
     <right_arrow>
       <frame id = "0" x = "403" y = "349" w = "28" h = "34"/>
-      <attributes id = "6" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+      <attributes id = "7" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
     </right_arrow>
     <line>
       <frame id = "0" x = "376" y = "63" w = "90" h = "4"/>
-      <attributes id = "7" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+      <attributes id = "8" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
     </line>
   </ui>
   <particles>
