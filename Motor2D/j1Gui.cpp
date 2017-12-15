@@ -10,6 +10,8 @@
 #include "Image.h"
 #include "Label.h"
 
+#include "Brofiler/Brofiler.h"
+
 
 j1Gui::j1Gui() : j1Module()
 {
@@ -47,6 +49,7 @@ bool j1Gui::PreUpdate()
 
 bool j1Gui::Update(float dt)
 {
+	BROFILER_CATEGORY("GUI Update", Profiler::Color::CornflowerBlue);
 	if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
 		debug = !debug;
 	}
