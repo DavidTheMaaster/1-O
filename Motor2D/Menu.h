@@ -19,7 +19,8 @@ enum UiAnimations
 	VOLUME,
 	LEFT_ARROW,
 	RIGHT_ARROW,
-	LINE
+	LINE,
+	LOGO,
 };
 
 class Menu : public j1Module
@@ -69,13 +70,14 @@ private:
 	Animation left_arrow_anim;
 	Animation right_arrow_anim;
 	Animation cross_anim;
+	Animation logo_anim;
 
 
 	Button* play, *options, *exit, *exit_options, *morevolume, *lessvolume, *new_game_button, *continue_button;
-	Image* sheet, *option_sheet, *hand, *cross, *volume_bar;
+	Image* sheet, *option_sheet, *hand, *cross, *volume_bar, *logo;
 	Label* volume_char, *continue_label, *new_game_label;
 
-	bool play_ui, options_ui, exit_ui;
+	bool play_ui, options_ui, exit_ui, new_game_ui, continue_ui;
 	bool move = true;
 	bool move2 = false;
 	bool move3 = false;

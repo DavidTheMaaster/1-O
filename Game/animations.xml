@@ -64,6 +64,10 @@
       <frame id = "0" x = "376" y = "63" w = "90" h = "4"/>
       <attributes id = "8" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
     </line>
+    <logo>
+      <frame id = "0" x = "431" y = "349" w = "232" h = "119"/>
+      <attributes id = "9" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+    </logo>
   </ui>
   <particles>
     <shoot>

@@ -57,6 +57,9 @@ bool Menu::Awake(pugi::xml_node& node)
 			load_anim = &right_arrow_anim;
 		if (current == LINE)
 			load_anim = &line;
+		if (current == LOGO)
+			load_anim = &logo_anim;
+		;
 
 		int i = rect.attribute("id").as_int();
 		int j = attributes.attribute("size").as_int();
@@ -147,87 +150,14 @@ void Menu::LoadOptionUI()
 void Menu::LoadPlayUI()
 {
 	App->gui->DeleteUI(hand);
-	sheet = App->gui->AddImage(490, 35, ui_texture, sheet_anim);
-	App->gui->AddLabel(60, 300, "NEW GAME", BLACK, UPHEAVAL, 20, sheet);
-	App->gui->AddLabel(235, 300, "CONTINUE", BLACK, UPHEAVAL, 20, sheet);
+	option_sheet = App->gui->AddImage(490, 35, ui_texture, sheet_anim);
+	new_game_label = App->gui->AddLabel(60, 300, "NEW GAME", BLACK, UPHEAVAL, 20, sheet);
+	continue_label = App->gui->AddLabel(235, 300, "CONTINUE", BLACK, UPHEAVAL, 20, sheet);
 	new_game_button = App->gui->AddButton(70, 333, ui_texture, button_anim, this, sheet);
 	continue_button = App->gui->AddButton(251, 333, ui_texture, button_anim, this, sheet);
 	exit_options = App->gui->AddButton(275, 50, ui_texture, exit_button_anim, this, sheet);
-	hand = App->gui->AddImage(-60, 420, ui_texture, hand_anim, sheet);
+	hand = App->gui->AddImage(360, 420, ui_texture, hand_anim);
 
-}
-
-
-bool Menu::Animations()
-{
-	bool ret = false;
-	if (change == true)
-	{
-		HandAnimation();
-		if (i >= 30)
-		{
-			change = false;
-			ret = true;
-		}
-		else
-		{
-			i++;
-		}
-	}
-	return ret;
-}
-
-void Menu::HandAnimation()
-{
-
-	if (move == true)
-	{
-		hand->pos.y -= 10;
-		if (hand->pos.y == 350)
-		{
-			move = false;
-			move2 = true;
-		}
-	}
-	if (move2 == true)
-	{
-		hand->pos.y += 5;
-		hand->pos.x += 5;
-		if (hand->pos.y == 400)
-		{
-			move2 = false;
-			move3 = true;
-		}
-	}
-	if (move3 == true)
-	{
-		hand->pos.y -= 10;
-		if (hand->pos.y == 350)
-		{
-			move3 = false;
-			move4 = true;
-		}
-	}
-	if (move4 == true)
-	{
-		hand->pos.y += 5;
-		hand->pos.x -= 5;
-		if (hand->pos.y == 400)
-		{
-			move4 = false;
-		}
-	}
-}
-
-void Menu::ResetMenu()
-{
-	i = 0;
-	move = true;
-	cross_anim.Reset();
-	App->gui->DeleteUI(cross);
-	play_ui = options_ui = exit_ui = false;
-	hand = App->gui->AddImage(337, 420, ui_texture, hand_anim);
-	App->scene->level = App->scene->MENU;
 }
 
 
@@ -330,7 +260,151 @@ void Menu::OptionButtons()
 
 void Menu::PlayButtons()
 {
+	if (new_game_button->state == MOUSE_ENTER) {
+		hand->pos.x = 357;
+		App->audio->PlayFx(button_focused_fx);
+		
+	}
+	if (continue_button->state == MOUSE_ENTER) {
+		hand->pos.x = 545;
+		App->audio->PlayFx(button_focused_fx);
+		
+	}
+
+	if (exit_options->state == L_MOUSE_PRESSED)
+	
+	{
+		App->gui->DeleteUI(option_sheet);
+		App->gui->DeleteUI(new_game_label);
+		App->gui->DeleteUI(continue_label);
+		App->gui->DeleteUI(new_game_button);
+		App->gui->DeleteUI(continue_button);
+		App->gui->DeleteUI(exit_options);
+		App->gui->DeleteUI(hand);
+		ResetMenu();
+	}
+
+	if (new_game_button->state == L_MOUSE_PRESSED)
+	{
+		cross = App->gui->AddImage(0, 0, cross_texture, cross_anim, new_game_button);
+		App->audio->PlayFx(cross_click_fx);
+		App->gui->DeleteUI(hand);
+		hand = App->gui->AddImage(357, 420, ui_texture, hand_anim);
+		new_game_ui = true;
+		change = true;
+	}
+	if (continue_button->state == L_MOUSE_PRESSED)
+	{
+		cross = App->gui->AddImage(0, 0, cross_texture, cross_anim, continue_button);
+		App->audio->PlayFx(cross_click_fx);
+		App->gui->DeleteUI(hand);
+		hand = App->gui->AddImage(545, 420, ui_texture, hand_anim);
+		continue_ui = true;
+		change = true;
+	}
+
+	if (Animations())
+	{
+		if (continue_ui)
+		{
+			App->gui->DeleteUI(option_sheet);
+			App->gui->DeleteUI(new_game_label);
+			App->gui->DeleteUI(continue_label);
+			App->gui->DeleteUI(new_game_button);
+			App->gui->DeleteUI(continue_button);
+			App->gui->DeleteUI(exit_options);
+			App->gui->DeleteUI(cross);
+			App->gui->DeleteUI(hand);
+			ResetMenu();
+			App->LoadGame();
+		}
+
+		if (new_game_ui)
+		{
+			App->scene->level = App->scene->level_1;
+			App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
+		}
+	}
 }
+
+bool Menu::Animations()
+{
+	bool ret = false;
+
+	if (change == true)
+	{
+		HandAnimation();
+		if (i >= 30)
+		{
+			change = false;
+			ret = true;
+		}
+		else
+		{
+			i++;
+		}
+	}
+	else
+	{
+		i = 0;
+		move = true;
+	}
+	return ret;
+}
+
+void Menu::HandAnimation()
+{
+
+	if (move == true)
+	{
+		hand->pos.y -= 10;
+		if (hand->pos.y == 350)
+		{
+			move = false;
+			move2 = true;
+		}
+	}
+	if (move2 == true)
+	{
+		hand->pos.y += 5;
+		hand->pos.x += 5;
+		if (hand->pos.y == 400)
+		{
+			move2 = false;
+			move3 = true;
+		}
+	}
+	if (move3 == true)
+	{
+		hand->pos.y -= 10;
+		if (hand->pos.y == 350)
+		{
+			move3 = false;
+			move4 = true;
+		}
+	}
+	if (move4 == true)
+	{
+		hand->pos.y += 5;
+		hand->pos.x -= 5;
+		if (hand->pos.y == 400)
+		{
+			move4 = false;
+		}
+	}
+}
+
+void Menu::ResetMenu()
+{
+	i = 0;
+	move = true;
+	cross_anim.Reset();
+	App->gui->DeleteUI(cross);
+	play_ui = options_ui = exit_ui = continue_ui = new_game_ui = false;
+	hand = App->gui->AddImage(337, 420, ui_texture, hand_anim);
+	App->scene->level = App->scene->MENU;
+}
+
 
 void Menu::SetVolume()
 {
@@ -340,9 +414,6 @@ void Menu::SetVolume()
 	App->gui->DeleteUI(volume_char);
 	volume_char = App->gui->AddLabel(158, 191, volume, BLACK, UPHEAVAL, 50, option_sheet);
 }
-
-
-
 
 void Menu::UpdateSpeed(float dt)
 {
