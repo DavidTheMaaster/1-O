@@ -8,9 +8,14 @@
 	<menu />
 	<scene>
 		<level level="3" />
+		<score score="-250" />
+		<ammo ammo="10" />
+		<player_lifes player_lifes="4" />
+		<urns urns="0" />
+		<time time="0" />
 	</scene>
 	<entities>
-		<player_pos x="192" y="644" />
+		<player_pos x="312" y="644" />
 	</entities>
 	<particles />
 	<collision />

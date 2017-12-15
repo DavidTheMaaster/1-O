@@ -381,8 +381,6 @@ void Player::Dead()
 	if (death == true)
 	{
 		player_animation = &die;
-		App->scene->player_lifes -= 1;
-		App->scene->score -= 250;
 	}
 }
 
@@ -390,6 +388,8 @@ void Player::Respawn()
 {
 	if (player_animation->current_frame == 21)
 	{
+		App->scene->player_lifes -= 1;
+		App->scene->score -= 250;
 		player_animation->Reset();
 		player_animation = &idle;
 		App->fadetoblack->FadeToBlack(App->scene, App->scene, 1);
