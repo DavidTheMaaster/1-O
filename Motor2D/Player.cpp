@@ -401,9 +401,9 @@ void Player::Respawn()
 void Player::Shoot() 
 {
 	if (flip)
-		App->particles->AddParticle(App->particles->shoot, r.x, r.y + 10, -12.5, 0, COLLIDER_PLAYERSHOOT, flip);
+		App->particles->AddParticle(App->particles->shoot, r.x, r.y + r.h/2, -12.5, 0, COLLIDER_PLAYERSHOOT, flip);
 	else
-		App->particles->AddParticle(App->particles->shoot, r.x, r.y + 10, 12.5, 0, COLLIDER_PLAYERSHOOT, flip);
+		App->particles->AddParticle(App->particles->shoot, r.x, r.y + r.h / 2, 12.5, 0, COLLIDER_PLAYERSHOOT, flip);
 }
 
 void Player::CheckIfChange() {

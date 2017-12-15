@@ -133,6 +133,7 @@ void Menu::LoadMenuUI()
 	App->gui->AddImage(27, 297, ui_texture, line, sheet);
 	App->gui->AddImage(143, 297, ui_texture, line, sheet);
 	App->gui->AddImage(257, 297, ui_texture, line, sheet);
+	logo = App->gui->AddImage(60,20,ui_texture, logo_anim, sheet);
 	hand = App->gui->AddImage(337, 420, ui_texture, hand_anim);
 }
 

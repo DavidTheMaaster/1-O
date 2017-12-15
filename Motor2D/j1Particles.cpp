@@ -24,7 +24,7 @@ j1Particles::j1Particles()
 	{
 		LOG("Could not load animations");
 	}
-
+	int k = 0;
 	while (animations != NULL) {
 		attributes = animations.child("attributes");
 		rect = animations.first_child();
@@ -34,6 +34,10 @@ j1Particles::j1Particles()
 		if (current == SHOOT)
 		{
 			load_particle = &shoot;
+		}
+		if (current == EXPLOSION)
+		{
+			load_particle = &explosion;
 		}
 
 		int i = rect.attribute("id").as_int();
@@ -57,8 +61,8 @@ j1Particles::j1Particles()
 
 		}
 
-		anim_speed = load_particle->anim.speed;
-
+		anim_speed[k] = load_particle->anim.speed;
+		k++;
 		animations = animations.next_sibling();
 	}
 }
@@ -99,7 +103,7 @@ bool j1Particles::Update(float dt)
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		Particle* p = active[i];
-
+		UpdateSpeed(dt);
 		if (p == nullptr)
 			continue;
 
@@ -143,6 +147,8 @@ void j1Particles::AddParticle(const Particle& particle, int x, int y, float spee
 
 void j1Particles::UpdateSpeed(float dt)
 {
+	shoot.anim.speed = anim_speed[0] * dt;
+	explosion.anim.speed = anim_speed[1] * dt;
 }
 
 void j1Particles::OnCollision(Collider* c1, Collider* c2)

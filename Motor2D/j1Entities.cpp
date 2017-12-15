@@ -6,6 +6,7 @@
 #include "j1Audio.h"
 #include "j1Map.h"
 #include "Player.h"
+#include "j1Particles.h"
 #include "j1Scene.h"
 #include "Flying_Enemy.h"
 #include "Walking_Enemy.h"
@@ -245,6 +246,7 @@ void j1Entities::OnCollision(Collider* c1, Collider* c2)
 				if (entities[i]->collider->type == ENEMY_FLY) {
 					App->audio->PlayFx(fly_death_fx);
 					App->scene->score += 200;
+					App->particles->AddParticle(App->particles->explosion, entities[i]->r.x, entities[i]->r.y, 0 , 0);
 				}
 				else if (entities[i]->collider->type == ENEMY_WALK) {
 					App->audio->PlayFx(walk_death_fx);

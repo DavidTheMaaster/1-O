@@ -16,6 +16,7 @@ enum COLLIDER_TYPE;
 enum Particles
 {
 	SHOOT,
+	EXPLOSION,
 };
 
 struct Particle
@@ -58,6 +59,7 @@ private:
 public:
 
 	Particle shoot;
+	Particle explosion;
 
 private:
 	pugi::xml_document	animation_file;
@@ -68,7 +70,7 @@ private:
 	uint current;
 	Particle* load_particle;
 
-	uint anim_speed;
+	uint anim_speed[2];
 
 
 	void UpdateSpeed(float dt);
