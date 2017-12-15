@@ -69,6 +69,8 @@ public:
 	// Gui creation functions
 	bool Update(float dt);
 
+	void DebugDraw(UIElement* element);
+
 	Label* AddLabel(int x, int y, char* text, uint color, uint font, int size, UIElement* parent = nullptr);
 	Image* AddImage(int x, int y, SDL_Texture* texture, Animation anim = {}, UIElement* parent = nullptr);
 	Button* AddButton(int x, int y, SDL_Texture* texture, Animation anim = {}, j1Module* callback = nullptr, UIElement* parent = nullptr);
@@ -76,7 +78,7 @@ public:
 	void DeleteUI(UIElement* element);
 
 private:
-
+	bool debug;
 	SDL_Texture* atlas;
 	p2SString atlas_file_name;
 	p2List<UIElement*> elements;

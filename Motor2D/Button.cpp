@@ -8,8 +8,6 @@ Button::Button(int x, int y, uint type, SDL_Texture * texture, Animation* anim, 
 
 	this->parent = parent;
 
-	this->parent = parent;
-
 	if (this->parent != nullptr)
 	{
 		pos.x = this->parent->pos.x + x;

@@ -35,7 +35,7 @@ bool j1Gui::Awake(pugi::xml_node& conf)
 bool j1Gui::Start()
 {
 	atlas = App->tex->Load(atlas_file_name.GetString());
-
+	debug = false;
 	return true;
 }
 
@@ -47,19 +47,29 @@ bool j1Gui::PreUpdate()
 
 bool j1Gui::Update(float dt)
 {
-
+	if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
+		debug = !debug;
+	}
 	p2List_item<UIElement*> *it = elements.start;
 
 	while (it != nullptr)
 	{
 		it->data->Draw(dt);
 		it->data->Update(dt);
+		if (debug) {
+			DebugDraw(it->data);
+		}
 		it = it->next;
 	}
 
 
 	return true;
 
+}
+
+void j1Gui::DebugDraw(UIElement * element)
+{
+	App->render->DrawQuad({ element->pos.x, element->pos.y, element->current_animation.w,element->current_animation.h}, 0, 255, 0, 255, false);
 }
 
 // Called after all Updates
