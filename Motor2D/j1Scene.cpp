@@ -209,6 +209,9 @@ bool j1Scene::CleanUp()
 	App->collision->CleanUp();
 	App->entities->CleanUp();
 	App->gui->CleanUp();
+	App->tex->UnLoad(ui_texture);
+	App->tex->UnLoad(menu_texture);
+	App->tex->UnLoad(cross_texture);
 	return true;
 }
 
