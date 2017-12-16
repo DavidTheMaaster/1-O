@@ -110,8 +110,15 @@ void UIElement::Update(float dt)
 				mouse2.x = mouse_x;
 				mouse2.y = mouse_y;
 			}
+			
+			slider_value = GetSliderValue(this, parent);
 		}
 
 	}
 	
+}
+
+int UIElement::GetSliderValue(UIElement* zap, UIElement* slider)
+{
+	return zap->pos.x * 100 / slider->rect.w - zap->rect.w;
 }

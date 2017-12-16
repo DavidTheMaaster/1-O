@@ -28,7 +28,7 @@ public:
 	iPoint pos;
 	uint w;
 	uint h;
-
+	int slider_value;
 
 	j1Module* callback = nullptr;
 	UIElement* parent = nullptr;
@@ -49,6 +49,8 @@ public:
 	
 	virtual void Draw(float dt);
 	virtual void Update(float dt);
+
+	int GetSliderValue(UIElement* zap, UIElement* slider);
 
 public:
 	Animation anim;
