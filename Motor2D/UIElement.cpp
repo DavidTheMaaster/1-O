@@ -76,7 +76,7 @@ void UIElement::Update(float dt)
 		{
 			App->input->GetMouseMotion(mouse_x, mouse_y);
 
-			if (parent != nullptr && parent->type == SLIDER)
+			if (parent != nullptr)
 			{
 				if (mouse_x != mouse2.x)
 				{
