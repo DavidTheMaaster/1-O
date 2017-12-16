@@ -9,6 +9,7 @@
 #include "Button.h"
 #include "Image.h"
 #include "Label.h"
+#include "Slider.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -134,6 +135,15 @@ Button* j1Gui::AddButton(int x, int y, SDL_Texture* texture, Animation anim, j1M
 
 
 	return button;
+}
+
+Slider* j1Gui::AddSlider(int x, int y, SDL_Texture* texture, j1Module* callback, UIElement* parent)
+{
+	Slider* slider = new Slider(x, y, SLIDER, texture, callback, parent);
+	elements.add((UIElement*)slider);
+
+
+	return slider;
 }
 
 void j1Gui::DeleteUI(UIElement * element)

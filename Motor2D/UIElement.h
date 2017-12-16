@@ -14,7 +14,8 @@ enum UI_TYPE
 	NO_UI_TYPE,
 	LABEL,
 	BUTTON,
-	IMAGE
+	IMAGE,
+	SLIDER
 };
 
 class UIElement

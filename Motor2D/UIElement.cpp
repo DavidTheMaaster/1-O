@@ -71,6 +71,47 @@ void UIElement::Update(float dt)
 			this->callback->UIEvent(this, state);
 			LOG("Mouse Stop Left Click");
 		}
-	}
-}
 
+		if (state == L_MOUSE_PRESSED)
+		{
+			App->input->GetMouseMotion(mouse_x, mouse_y);
+
+			if (parent != nullptr && parent->type == SLIDER)
+			{
+				if (mouse_x != mouse2.x)
+				{
+					int xRight = pos.x + rect.w + mouse_x;
+					int xLeft = pos.x + mouse_x;
+
+					if (xRight <= parent->pos.x + parent->rect.w
+						&& xLeft >= parent->pos.x)
+					{
+						pos.x += mouse_x;
+					}
+					else
+					{
+						if (xRight > parent->pos.x + parent->rect.w)
+						{
+							pos.x = parent->rect.w - rect.w;
+						}
+						else
+						{
+							pos.x = parent->pos.x;
+						}
+					}
+					mouse2.x = mouse_x;
+					mouse2.y = mouse_y;
+				}
+			}
+			else if (mouse_x != mouse2.x || mouse_y != mouse2.y)
+			{
+				pos.x += mouse_x;
+				pos.y += mouse_y;
+				mouse2.x = mouse_x;
+				mouse2.y = mouse_y;
+			}
+		}
+
+	}
+	
+}
