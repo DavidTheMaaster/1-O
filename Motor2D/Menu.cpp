@@ -97,6 +97,9 @@ bool Menu::Start()
 	cross_texture = App->tex->Load("maps/cross.png");
 	cross_click_fx = App->audio->LoadFx("audio/fx/pencil_lines.wav");
 	button_focused_fx = App->audio->LoadFx("audio/fx/mouse_over.wav");
+	back_fx = App->audio->LoadFx("audio/fx/menu_back.wav");
+
+	App->audio->PlayMusic("audio/music/menu_music.ogg");
 	return true;
 }
 
@@ -110,6 +113,7 @@ bool Menu::CleanUp()
 {
 	App->audio->UnLoadFx(cross_click_fx);
 	App->audio->UnLoadFx(button_focused_fx);
+	App->audio->UnLoadFx(back_fx);
 	App->tex->UnLoad(ui_texture);
 	App->tex->UnLoad(menu_texture);
 	App->tex->UnLoad(cross_texture);
@@ -231,6 +235,7 @@ void Menu::OptionButtons()
 {
 	if (exit_options->state == L_MOUSE_PRESSED)
 	{
+		App->audio->PlayFx(back_fx);
 		App->gui->DeleteUI(exit_options);
 		App->gui->DeleteUI(option_sheet);
 		App->gui->DeleteUI(morevolume);
@@ -243,6 +248,7 @@ void Menu::OptionButtons()
 	{
 		if (App->audio->volume < 100)
 		{
+			App->audio->PlayFx(back_fx);
 			Mix_VolumeMusic(App->audio->volume++);
 			SetVolume();
 		}
@@ -251,6 +257,7 @@ void Menu::OptionButtons()
 	{
 		if (App->audio->volume > 0)
 		{
+			App->audio->PlayFx(back_fx);
 			Mix_VolumeMusic(App->audio->volume--);
 			SetVolume();
 		}

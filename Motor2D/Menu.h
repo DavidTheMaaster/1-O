@@ -60,6 +60,7 @@ private:
 	SDL_Texture *menu_texture, *ui_texture, *cross_texture;
 	uint button_focused_fx;
 	uint cross_click_fx;
+	uint back_fx;
 
 	Animation sheet_anim, line;
 	Animation button_anim;
