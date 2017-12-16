@@ -153,6 +153,15 @@ bool j1Audio::PlayMusic(const char* path, float fade_time)
 	return ret;
 }
 
+bool j1Audio::StopMusic() {
+
+	Mix_FreeMusic(music);
+	music = nullptr;
+	Mix_HaltMusic();
+
+	return true;
+}
+
 // Load WAV
 unsigned int j1Audio::LoadFx(const char* path)
 {

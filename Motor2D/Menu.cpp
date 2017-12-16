@@ -92,6 +92,7 @@ bool Menu::Awake(pugi::xml_node& node)
 
 bool Menu::Start()
 {
+
 	ui_texture = App->tex->Load("maps/UI.png");
 	menu_texture = App->tex->Load("maps/menu.png");
 	cross_texture = App->tex->Load("maps/cross.png");
@@ -99,7 +100,6 @@ bool Menu::Start()
 	button_focused_fx = App->audio->LoadFx("audio/fx/mouse_over.wav");
 	back_fx = App->audio->LoadFx("audio/fx/menu_back.wav");
 
-	App->audio->PlayMusic("audio/music/menu_music.ogg");
 	return true;
 }
 
@@ -123,6 +123,8 @@ bool Menu::CleanUp()
 
 void Menu::LoadMenuUI()
 {
+	App->audio->StopMusic();
+	App->audio->PlayMusic("audio/music/menu_music.ogg");
 	App->gui->AddImage(0, 0, menu_texture);
 	sheet = App->gui->AddImage(490, 35, ui_texture, sheet_anim);
 	play = App->gui->AddButton(47, 333, ui_texture, button_anim, this, sheet);

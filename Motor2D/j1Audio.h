@@ -37,6 +37,8 @@ public:
 	// Play a previously loaded WAV
 	bool PlayFx(unsigned int fx, int repeat = 0);
 
+	bool StopMusic();
+
 	bool UnLoadFx(uint id);
 
 	int volume = 50;
