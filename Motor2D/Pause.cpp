@@ -104,8 +104,6 @@ return true;
 bool Pause::CleanUp()
 {
 	App->tex->UnLoad(ui_texture);
-	App->audio->UnLoadFx(back_fx);
-	App->audio->UnLoadFx(button_focused_fx);
 	return true;
 }
 
@@ -126,6 +124,8 @@ void Pause::LoadPause()
 
 void Pause::UnloadPause()
 {
+	App->audio->UnLoadFx(back_fx);
+	App->audio->UnLoadFx(button_focused_fx);
 	App->gui->DeleteUI(sheet);
 	App->gui->DeleteUI(resume_button);
 	App->gui->DeleteUI(save_button);
@@ -205,11 +205,15 @@ void Pause::MouseClick()
 
 void Pause::LoadOptions()
 {
+	button_focused_fx = App->audio->LoadFx("audio/fx/mouse_over.wav");
+	back_fx = App->audio->LoadFx("audio/fx/menu_back.wav");
 	sheet = App->gui->AddImage(490, 35, ui_texture, sheet_anim);
 }
 
 void Pause::UnLoadOptions()
 {
+	App->audio->UnLoadFx(back_fx);
+	App->audio->UnLoadFx(button_focused_fx);
 }
 
 void Pause::OptionsButtons()
