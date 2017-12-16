@@ -80,14 +80,16 @@ public:
 
 	void DeleteUI(UIElement* element);
 
+
+	SDL_Color GetColor(int color);
+	char* GetFont(uint font);
+
 private:
 	bool debug;
 	SDL_Texture* atlas;
 	p2SString atlas_file_name;
 	p2List<UIElement*> elements;
 
-	SDL_Color GetColor(int color);
-	char* GetFont(uint font);
 
 };
 

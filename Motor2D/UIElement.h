@@ -51,7 +51,7 @@ public:
 	virtual void Draw(float dt);
 	virtual void Update(float dt);
 
-	void ChangeTexture(const SDL_Texture* new_texture);
+	void ChangeLabel(char* text, uint colors, uint fonts, int size);
 
 	int GetSliderValue(UIElement* zap, UIElement* slider);
 public:

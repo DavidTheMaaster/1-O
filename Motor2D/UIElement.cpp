@@ -118,9 +118,17 @@ void UIElement::Update(float dt)
 	
 }
 
-void UIElement::ChangeTexture(const SDL_Texture * new_texture)
+void UIElement::ChangeLabel(char* text, uint colors, uint fonts, int size)
 {
-	texture = new_texture;
+	SDL_Color color;
+
+	color = App->gui->GetColor(colors);
+	char* path = App->gui->GetFont(fonts);
+	_TTF_Font* font = App->font->Load(path, size);
+
+	const SDL_Texture* tex = App->font->Print(text, color, font);
+
+	texture = tex;
 }
 
 int UIElement::GetSliderValue(UIElement* zap, UIElement* slider)

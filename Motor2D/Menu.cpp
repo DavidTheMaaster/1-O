@@ -107,11 +107,6 @@ bool Menu::Start()
 bool Menu::Update(float dt)
 {
 	UpdateSpeed(dt);
-
-	if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
-	{
-		volume_char->ChangeTexture(menu_texture);
-	}
 	return true;
 }
 
@@ -157,7 +152,7 @@ void Menu::LoadOptionUI()
 	morevolume = App->gui->AddButton(306, 200, ui_texture, right_arrow_anim, this, option_sheet);
 	lessvolume = App->gui->AddButton(40, 200, ui_texture, left_arrow_anim, this, option_sheet);
 	volume_bar = App->gui->AddImage(85, 200, ui_texture, volume_anim, option_sheet);
-	SetVolume();
+	volume_char = App->gui->AddLabel(158, 191, "50", BLACK, UPHEAVAL, 50, option_sheet);
 }
 
 void Menu::LoadPlayUI()
@@ -427,8 +422,10 @@ void Menu::SetVolume()
 	std::string s = std::to_string(App->audio->volume);
 	volume = (char *)alloca(s.size() + 1);
 	memcpy(volume, s.c_str(), s.size() + 1);
-	App->gui->DeleteUI(volume_char);
-	volume_char = App->gui->AddLabel(158, 191, volume, BLACK, UPHEAVAL, 50, option_sheet);
+	//App->gui->DeleteUI(volume_char);
+	_TTF_Font* font = App->font->Load("fonts/Upheaval.ttf", 15);
+	
+	volume_char->ChangeLabel(volume, BLACK, UPHEAVAL, 50);
 }
 
 void Menu::UpdateSpeed(float dt)
