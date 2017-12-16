@@ -60,6 +60,8 @@ bool Menu::Awake(pugi::xml_node& node)
 			load_anim = &line;
 		if (current == LOGO)
 			load_anim = &logo_anim;
+		if (current == ZAP)
+			load_anim = &zap;
 		;
 
 		int i = rect.attribute("id").as_int();
@@ -152,7 +154,7 @@ void Menu::LoadOptionUI()
 	morevolume = App->gui->AddButton(306, 200, ui_texture, right_arrow_anim, this, option_sheet);
 	lessvolume = App->gui->AddButton(40, 200, ui_texture, left_arrow_anim, this, option_sheet);
 	volume_bar = App->gui->AddSlider(85, 200, ui_texture, volume_anim, this, option_sheet);
-	slider_btn = App->gui->AddButton (88, 0, ui_texture, left_arrow_anim, this, volume_bar);
+	slider_btn = App->gui->AddButton (88, 3, ui_texture, zap, this, volume_bar);
 	volume_char = App->gui->AddLabel(158, 150, "100", BLACK, UPHEAVAL, 50, option_sheet);
 	SetVolume();
 }

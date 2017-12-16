@@ -22,6 +22,7 @@ enum UiAnimations
 	RIGHT_ARROW,
 	LINE,
 	LOGO,
+	ZAP,
 };
 
 class Menu : public j1Module
@@ -72,6 +73,7 @@ private:
 	Animation right_arrow_anim;
 	Animation cross_anim;
 	Animation logo_anim;
+	Animation zap;
 
 
 	Button* play, *options, *exit, *exit_options, *morevolume, *lessvolume, *new_game_button, *continue_button, *slider_btn;
