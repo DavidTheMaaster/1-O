@@ -42,9 +42,7 @@ public:
 	void ButtonInteractions();
 
 	void LoadLevelUI();
-
-	void Pause();
-
+	
 	void CheckChange();
 
 public:
@@ -74,7 +72,6 @@ public:
 
 
 private:
-	iPoint mouse;
 	pugi::xml_node level_name;
 	SDL_Texture* ui_texture;
 	Animation sheet;

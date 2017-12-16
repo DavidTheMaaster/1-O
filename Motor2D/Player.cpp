@@ -173,7 +173,7 @@ void Player::Update(float dt)
 
 void Player::Movement()
 {
-	if (death == false && App->pause == false)
+	if (death == false && App->paused == false)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 			Right();
@@ -364,7 +364,7 @@ void Player::Hover()
 void Player::CameraMovement()
 {
 
-	if (r.x > App->win->width / 4 && r.x < (App->map->data.width - 15) * App->map->data.tile_width) 
+	if (r.x > App->win->width / 4 && r.x < (App->map->data.width - 15) * App->map->data.tile_width - 72) 
 	{
 		App->render->camera.x = 0 - (r.x * App->win->GetScale() - App->win->width / App->win->GetScale());
 	}

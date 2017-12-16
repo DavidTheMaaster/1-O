@@ -19,6 +19,7 @@
 #include "j1FadeToBlack.h"
 #include "j1Gui.h"
 #include "Menu.h"
+#include "Pause.h"
 #include "j1App.h"
 
 #include "Brofiler/Brofiler.h"
@@ -45,6 +46,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	font = new j1Fonts();
 	gui = new j1Gui();
 	menu = new Menu();
+	pause = new Pause();
 	fadetoblack = new j1FadeToBlack();
 
 	// Ordered for awake / Start / Update
@@ -55,6 +57,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(map);
 	AddModule(menu);
+	AddModule(pause);
 	AddModule(scene);
 	AddModule(entities);
 	AddModule(particles);
@@ -197,7 +200,7 @@ void j1App::PrepareUpdate()
 
 	frame_count++;
 	last_sec_frame_count++;
-	if (pause)
+	if (paused)
 		dt = 0;
 	else
 		dt = frame_time.ReadSec();

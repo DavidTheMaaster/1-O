@@ -23,6 +23,7 @@ class j1FadeToBlack;
 class j1Particles;
 class j1Gui;
 class Menu;
+class Pause;
 class j1App
 {
 public:
@@ -99,9 +100,10 @@ public:
 	j1Gui*				gui;
 	j1PathFinding*		pathfinding;
 	Menu*				menu;
+	Pause*				pause;
 	j1FadeToBlack*		fadetoblack;
 	float				dt = 0;
-	bool				pause;
+	bool				paused = false;
 
 private:
 

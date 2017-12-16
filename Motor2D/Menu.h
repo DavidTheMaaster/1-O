@@ -33,7 +33,6 @@ public:
 	bool Update(float dt);
 	bool CleanUp();
 
-	
 
 	bool Animations();
 	void HandAnimation();

@@ -102,7 +102,7 @@ bool j1Scene::Update(float dt)
 	CheckChange();
 	ButtonInteractions();
 
-	if (App->pause)
+	if (App->paused)
 		App->render->DrawQuad({ 0,0,1920,1080 }, 0, 0, 0, 175, true, false);
 
 	return ret;
@@ -113,10 +113,6 @@ bool j1Scene::PostUpdate()
 {
 	bool ret = true;
 
-	if (level != MENU && level != OPTIONS && level != MENU_PLAY)
-	{
-		Pause();
-	}
 	if (level == OPTIONS)
 	{
 		App->render->DrawQuad({ 575 + App->audio->volume*2, 235, 2, 34 }, 255, 100, 100, 255);
@@ -271,22 +267,4 @@ void j1Scene::ButtonInteractions()
 void j1Scene::LoadLevelUI()
 {
 
-}
-
-
-void j1Scene::Pause()
-{
-	/*
-	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-	{
-		App->pause = !App->pause;
-		if (App->pause == true)
-		{
-			sheet = App->gui->AddImage(490, 35, ui_texture, sheet_anim);
-		}
-		if (App->pause == false && sheet != nullptr)
-		{
-			App->gui->DeleteUI(sheet);
-		}
-	}*/
 }
