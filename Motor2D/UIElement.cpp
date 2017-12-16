@@ -74,31 +74,14 @@ void UIElement::Update(float dt)
 
 		if (state == L_MOUSE_PRESSED && parent->type == SLIDER)
 		{
-			App->input->GetMouseMotion(mouse_x, mouse_y);
-
 			if (parent != nullptr)
 			{
-				if (mouse_x != mouse2.x)
-				{
-					int xRight = pos.x + rect.w + mouse_x;
-					int xLeft = pos.x + mouse_x;
-
-					if (xRight <= parent->pos.x + parent->rect.w && xLeft >= parent->pos.x)
-					{
-						pos.x += mouse_x;
+				if (mouse_x != mouse2.x || mouse_y != mouse2.y) {
+					App->input->GetMouseMotion(mouse_movement.x, mouse_movement.y);
+					if (mouse_x > parent->pos.x && mouse_x < parent->rect.w) {
+						pos.x += mouse_movement.x;
+						mouse2.x = mouse_x;
 					}
-					else
-					{
-						if (xRight > parent->pos.x + parent->rect.w)
-						{
-							pos.x = parent->rect.w - rect.w;
-						}
-						else
-						{
-							pos.x = parent->pos.x;
-						}
-					}
-					mouse2.x = mouse_x;
 				}
 			}
 			
