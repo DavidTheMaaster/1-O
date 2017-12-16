@@ -102,7 +102,7 @@ Player::Player(int x, int y) : Entity (x, y)
 	jump_counter = 0;
 	flip = false;
 
-	ammo = 10;
+	ammo = App->scene->ammo;
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -436,6 +436,7 @@ void Player::Respawn()
 	{
 		App->scene->player_lifes -= 1;
 		App->scene->score -= 250;
+		App->scene->ammo = 10;
 		player_animation->Reset();
 		player_animation = &idle;
 		App->fadetoblack->FadeToBlack(App->scene, App->scene, 1);

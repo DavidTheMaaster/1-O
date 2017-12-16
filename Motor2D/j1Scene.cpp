@@ -100,7 +100,6 @@ bool j1Scene::Start()
 
 	if (level == level_1) {
 		urns = 0;
-		ammo = 10;
 		LoadLevelUI();
 		start_time = SDL_GetTicks();
 		App->map->Load("level1.tmx");
@@ -109,14 +108,12 @@ bool j1Scene::Start()
 	}
 	if (level == level_2) {
 		urns = 0;
-		ammo = 10;
 		LoadLevelUI();
 		start_time = SDL_GetTicks();
 		App->map->Load("level2.tmx");
 	}
 	if (level == hidden_level) {
 		urns = 0;
-		ammo = 10;
 		LoadLevelUI();
 		start_time = SDL_GetTicks();
 		App->map->Load("hidden_level.tmx");
