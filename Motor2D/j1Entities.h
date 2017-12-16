@@ -45,12 +45,13 @@ public:
 	bool Save(pugi::xml_node&) const;
 	bool Load(pugi::xml_node&);
 
+	bool god_mode = false;
 
 private:
 
 	void SpawnEntity(const EntityInfo& info);
 
-	bool god_mode = false;
+	
 
 private:
 	EntityInfo queue[MAX_ENTITIES];

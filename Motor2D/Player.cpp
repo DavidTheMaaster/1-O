@@ -140,7 +140,10 @@ void Player::Update(float dt)
 
 	Movement();
 	CameraMovement();
-	Gravity();
+
+	if (App->entities->god_mode == false)
+		Gravity();
+
 	Dead();
 	CheckIfChange();
 
@@ -183,22 +186,36 @@ void Player::Movement()
 			Left();
 		}
 
-		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && CanJump()) {
-			jump = true;
-		}
-
-		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) {
-			Hover();
-		}
-		if (jump == true)
+		if (App->entities->god_mode == false)
 		{
-			Jump();
-			
-		}
+			if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && CanJump()) {
+				jump = true;
+			}
 
-		if (jump2 == true)
+			if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) {
+				Hover();
+			}
+			if (jump == true)
+			{
+				Jump();
+
+			}
+
+			if (jump2 == true)
+			{
+				DoubleJump();
+			}
+		}
+		else
 		{
-			DoubleJump();
+			if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
+				Up();
+			}
+
+			if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
+				Down();
+			}
+
 		}
 	}
 }
@@ -230,6 +247,35 @@ void Player::Left()
 	else
 	{
 		MovePixels(left);
+		App->collision->pixels = 0;
+	}
+}
+
+void Player::Up()
+{
+	if (App->collision->CheckCollisionUp(r, speed))
+	{
+		r.y -= speed.y;
+		player_animation = &walk;
+	}
+	else
+	{
+		MovePixels(up);
+		App->collision->pixels = 0;
+	}
+}
+
+
+void Player::Down()
+{
+	if (App->collision->CheckCollisionDown(r, speed))
+	{
+		r.y += speed.y;
+		player_animation = &walk;
+	}
+	else
+	{
+		MovePixels(down);
 		App->collision->pixels = 0;
 	}
 }

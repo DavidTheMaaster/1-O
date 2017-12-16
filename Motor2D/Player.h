@@ -23,6 +23,8 @@ public:
 	void Movement();
 	void Right();
 	void Left();
+	void Up();
+	void Down();
 	void Gravity();
 	void Jump();
 	bool CanJump();
