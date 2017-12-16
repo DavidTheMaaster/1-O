@@ -133,9 +133,10 @@ Button* j1Gui::AddButton(int x, int y, SDL_Texture* texture, Animation anim, j1M
 	return button;
 }
 
-Slider* j1Gui::AddSlider(int x, int y, SDL_Texture* texture, j1Module* callback, UIElement* parent)
+Slider* j1Gui::AddSlider(int x, int y, SDL_Texture* texture, Animation anim, j1Module* callback, UIElement* parent)
 {
-	Slider* slider = new Slider(x, y, SLIDER, texture, callback, parent);
+	Animation* animation = &anim;
+	Slider* slider = new Slider(x, y, SLIDER, texture, animation, callback, parent);
 	elements.add((UIElement*)slider);
 
 

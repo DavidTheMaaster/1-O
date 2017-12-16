@@ -5,6 +5,7 @@
 #include "Button.h"
 #include "Image.h"
 #include "Label.h"
+#include "Slider.h"
 #include "Animation.h"
 
 struct SDL_Texture;
@@ -73,9 +74,10 @@ private:
 	Animation logo_anim;
 
 
-	Button* play, *options, *exit, *exit_options, *morevolume, *lessvolume, *new_game_button, *continue_button;
-	Image* sheet, *option_sheet, *hand, *cross, *volume_bar, *logo;
+	Button* play, *options, *exit, *exit_options, *morevolume, *lessvolume, *new_game_button, *continue_button, *slider_btn;
+	Image* sheet, *option_sheet, *hand, *cross, *logo;
 	Label* volume_char, *continue_label, *new_game_label;
+	Slider* volume_bar;
 
 	bool play_ui, options_ui, exit_ui, new_game_ui, continue_ui;
 	bool move = true;

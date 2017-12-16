@@ -2,7 +2,7 @@
 #include "j1App.h"
 #include "j1Gui.h"
 
-Slider::Slider(int x, int y, uint type, SDL_Texture * texture, j1Module* callback, UIElement* parent) : UIElement(pos.x, pos.y, type, texture, parent)
+Slider::Slider(int x, int y, uint type, SDL_Texture * texture, Animation* anim, j1Module* callback, UIElement* parent) : UIElement(pos.x, pos.y, type, texture, parent)
 {
 	this->callback = callback;
 
@@ -19,5 +19,7 @@ Slider::Slider(int x, int y, uint type, SDL_Texture * texture, j1Module* callbac
 		pos.y = y;
 	}
 
+	if (anim != nullptr)
+		this->anim = *anim;
 
 }

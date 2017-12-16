@@ -151,8 +151,9 @@ void Menu::LoadOptionUI()
 	exit_options = App->gui->AddButton(275, 50, ui_texture, exit_button_anim, this, option_sheet);
 	morevolume = App->gui->AddButton(306, 200, ui_texture, right_arrow_anim, this, option_sheet);
 	lessvolume = App->gui->AddButton(40, 200, ui_texture, left_arrow_anim, this, option_sheet);
-	volume_bar = App->gui->AddImage(85, 200, ui_texture, volume_anim, option_sheet);
-	volume_char = App->gui->AddLabel(158, 191, "100", BLACK, UPHEAVAL, 50, option_sheet);
+	volume_bar = App->gui->AddSlider(85, 200, ui_texture, volume_anim, this, option_sheet);
+	slider_btn = App->gui->AddButton (88, 0, ui_texture, left_arrow_anim, this, volume_bar);
+	volume_char = App->gui->AddLabel(158, 150, "100", BLACK, UPHEAVAL, 50, option_sheet);
 	SetVolume();
 }
 
@@ -246,6 +247,7 @@ void Menu::OptionButtons()
 		App->gui->DeleteUI(volume_char);
 		App->gui->DeleteUI(lessvolume);
 		App->gui->DeleteUI(volume_bar);
+		App->gui->DeleteUI(slider_btn);
 		ResetMenu();
 	}
 	if (morevolume->state == L_MOUSE_PRESSED)

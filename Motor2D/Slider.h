@@ -9,7 +9,7 @@
 class Slider : public UIElement
 {
 public:
-	Slider(int pos_x, int pos_y, uint type, SDL_Texture* texture, j1Module* callback, UIElement* parent = nullptr);
+	Slider(int pos_x, int pos_y, uint type, SDL_Texture* texture, Animation* anim, j1Module* callback, UIElement* parent = nullptr);
 };
 
 

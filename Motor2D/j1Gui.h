@@ -75,7 +75,7 @@ public:
 	Label* AddLabel(int x, int y, char* text, uint color, uint font, int size, UIElement* parent = nullptr);
 	Image* AddImage(int x, int y, SDL_Texture* texture, Animation anim = {}, UIElement* parent = nullptr);
 	Button* AddButton(int x, int y, SDL_Texture* texture, Animation anim = {}, j1Module* callback = nullptr, UIElement* parent = nullptr);
-	Slider* AddSlider(int x, int y, SDL_Texture* texture, j1Module* callback = nullptr, UIElement* parent = nullptr);
+	Slider* AddSlider(int x, int y, SDL_Texture* texture, Animation anim = {}, j1Module* callback = nullptr, UIElement* parent = nullptr);
 
 	void DeleteUI(UIElement* element);
 

@@ -83,8 +83,7 @@ void UIElement::Update(float dt)
 					int xRight = pos.x + rect.w + mouse_x;
 					int xLeft = pos.x + mouse_x;
 
-					if (xRight <= parent->pos.x + parent->rect.w
-						&& xLeft >= parent->pos.x)
+					if (xRight <= parent->pos.x + parent->rect.w && xLeft >= parent->pos.x)
 					{
 						pos.x += mouse_x;
 					}
@@ -100,15 +99,7 @@ void UIElement::Update(float dt)
 						}
 					}
 					mouse2.x = mouse_x;
-					mouse2.y = mouse_y;
 				}
-			}
-			else if (mouse_x != mouse2.x || mouse_y != mouse2.y)
-			{
-				pos.x += mouse_x;
-				pos.y += mouse_y;
-				mouse2.x = mouse_x;
-				mouse2.y = mouse_y;
 			}
 			
 			slider_value = GetSliderValue(this, parent);
