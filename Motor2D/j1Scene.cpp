@@ -175,10 +175,6 @@ bool j1Scene::PostUpdate()
 {
 	bool ret = true;
 
-	if (level == OPTIONS)
-	{
-		App->render->DrawQuad({ 575 + App->audio->volume*2, 235, 2, 34 }, 255, 100, 100, 255);
-	}
 	return ret;
 }
 

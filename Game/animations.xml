@@ -69,6 +69,10 @@
         <frame id = "0" x = "431" y = "349" w = "232" h = "119"/>
         <attributes id = "9" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
       </logo>
+      <zap>
+        <frame id = "0" x = "399" y = "107" w = "22" h = "33"/>
+        <attributes id = "10" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+      </zap>
     </menu>
 
     <pause>
