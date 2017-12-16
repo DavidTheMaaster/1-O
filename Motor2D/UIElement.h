@@ -42,6 +42,7 @@ public:
 
 	const SDL_Texture *texture = nullptr;
 
+
 public:
 
 	UIElement(int x, int y, uint type, const SDL_Texture* texture, UIElement* parent = nullptr);
@@ -50,8 +51,9 @@ public:
 	virtual void Draw(float dt);
 	virtual void Update(float dt);
 
-	int GetSliderValue(UIElement* zap, UIElement* slider);
+	void ChangeTexture(const SDL_Texture* new_texture);
 
+	int GetSliderValue(UIElement* zap, UIElement* slider);
 public:
 	Animation anim;
 	

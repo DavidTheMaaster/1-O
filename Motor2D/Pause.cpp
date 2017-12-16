@@ -91,10 +91,7 @@ bool Pause::Update(float dt)
 				UnloadPause();
 		}
 	}
-	if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN) {
-		App->scene->level = MENU;
-		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
-	}
+
 	if (App->paused)
 		PauseButtons();
 

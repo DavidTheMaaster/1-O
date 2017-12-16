@@ -104,10 +104,12 @@ bool j1Scene::Start()
 	}
 	if (level == level_2) {
 		LoadLevelUI();
+		start_time = SDL_GetTicks();
 		App->map->Load("level2.tmx");
 	}
 	if (level == hidden_level) {
 		LoadLevelUI();
+		start_time = SDL_GetTicks();
 		App->map->Load("hidden_level.tmx");
 	}
 	

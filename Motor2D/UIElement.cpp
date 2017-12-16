@@ -118,6 +118,11 @@ void UIElement::Update(float dt)
 	
 }
 
+void UIElement::ChangeTexture(const SDL_Texture * new_texture)
+{
+	texture = new_texture;
+}
+
 int UIElement::GetSliderValue(UIElement* zap, UIElement* slider)
 {
 	return zap->pos.x * 100 / slider->rect.w - zap->rect.w;

@@ -5,6 +5,7 @@
 #include "j1Gui.h"
 #include "j1Scene.h"
 #include "p2Log.h"
+#include "j1Input.h"
 #include "j1FadeToBlack.h"
 
 
@@ -106,6 +107,11 @@ bool Menu::Start()
 bool Menu::Update(float dt)
 {
 	UpdateSpeed(dt);
+
+	if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
+	{
+		volume_char->ChangeTexture(menu_texture);
+	}
 	return true;
 }
 
