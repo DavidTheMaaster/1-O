@@ -61,7 +61,7 @@ bool j1Gui::Update(float dt)
 		it->data->Draw(dt);
 		it->data->Update(dt);
 		if (debug) {
-			DebugDraw(it->data);
+			it->data->DebugDraw(dt);
 		}
 		it = it->next;
 	}
@@ -69,11 +69,6 @@ bool j1Gui::Update(float dt)
 
 	return true;
 
-}
-
-void j1Gui::DebugDraw(UIElement * element)
-{
-	App->render->DrawQuad({ element->pos.x, element->pos.y, element->current_animation.w,element->current_animation.h}, 0, 255, 0, 255, false);
 }
 
 // Called after all Updates

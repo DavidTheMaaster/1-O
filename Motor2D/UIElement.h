@@ -51,6 +51,7 @@ public:
 	
 	virtual void Draw(float dt);
 	virtual void Update(float dt);
+	virtual void DebugDraw(float dt);
 
 	void ChangeLabel(const char* text, uint colors);
 

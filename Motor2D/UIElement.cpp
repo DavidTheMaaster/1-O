@@ -118,6 +118,11 @@ void UIElement::Update(float dt)
 	
 }
 
+void UIElement::DebugDraw(float dt)
+{
+	App->render->DrawQuad({ pos.x, pos.y, current_animation.w, current_animation.h }, 0, 255, 0, 255, false);
+}
+
 void UIElement::ChangeLabel(const char* text, uint colors)
 {
 	SDL_Color color;
