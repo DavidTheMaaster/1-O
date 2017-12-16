@@ -192,6 +192,7 @@ void Pause::MouseClick()
 
 void Pause::LoadOptions()
 {
+	sheet = App->gui->AddImage(490, 35, ui_texture, sheet_anim);
 }
 
 void Pause::UnLoadOptions()
