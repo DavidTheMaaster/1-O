@@ -72,7 +72,7 @@ void UIElement::Update(float dt)
 			LOG("Mouse Stop Left Click");
 		}
 
-		if (state == L_MOUSE_PRESSED)
+		if (state == L_MOUSE_PRESSED && parent->type == SLIDER)
 		{
 			App->input->GetMouseMotion(mouse_x, mouse_y);
 
