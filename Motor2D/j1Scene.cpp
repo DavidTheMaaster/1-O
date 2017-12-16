@@ -185,8 +185,9 @@ bool j1Scene::PostUpdate()
 // Called before quitting
 bool j1Scene::CleanUp()
 {
-	App->audio->UnLoadFx(level_change_fx);
 	LOG("Freeing scene");
+	App->audio->UnLoadFx(level_change_fx);
+	App->tex->UnLoad(ui_texture);
 	App->map->DeleteMap();
 	App->map->CleanUp();
 	App->collision->CleanUp();

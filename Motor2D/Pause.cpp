@@ -101,6 +101,8 @@ return true;
 bool Pause::CleanUp()
 {
 	App->tex->UnLoad(ui_texture);
+	App->audio->UnLoadFx(button_focused_fx);
+	App->audio->UnLoadFx(back_fx);
 	return true;
 }
 
