@@ -32,11 +32,56 @@ j1Scene::~j1Scene()
 bool j1Scene::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Scene");
-	bool ret = true;
 
 	level_name = config.child("levels");
 
-	return ret;
+
+	animation_file.load_file("animations.xml");
+	animations = animation_file.child("animations").child("ui").child("ingame").first_child();
+
+	if (animations == NULL)
+	{
+		LOG("Could not load animations");
+	}
+
+
+	while (animations != NULL) {
+		attributes = animations.child("attributes");
+		rect = animations.first_child();
+
+		current = attributes.attribute("id").as_int();
+
+		if (current == LIFES)
+			load_anim = &lifes_anim;
+		if (current == URN_UI)
+			load_anim = &urn_anim;
+		if (current == AMMO)
+			load_anim = &ammo_anim;
+
+		int i = rect.attribute("id").as_int();
+		int j = attributes.attribute("size").as_int();
+
+		while (i < j)
+		{
+			SDL_Rect r;
+			r.x = rect.attribute("x").as_int();
+			r.y = rect.attribute("y").as_int();
+			r.w = rect.attribute("w").as_int();
+			r.h = rect.attribute("h").as_int();
+
+			load_anim->PushBack({ r.x,r.y,r.w,r.h });
+
+			rect = rect.next_sibling();
+			i = rect.attribute("id").as_int();
+			load_anim->loop = attributes.attribute("loop").as_bool();
+			load_anim->speed = attributes.attribute("speed").as_float();
+
+		}
+
+		animations = animations.next_sibling();
+
+	}
+	return true;
 }
 
 // Called before the first frame
@@ -44,20 +89,25 @@ bool j1Scene::Start()
 {	
 	level_change_fx = App->audio->LoadFx("audio/fx/change_level.wav");
 	ui_texture = App->tex->Load("maps/UI.png");
+
 	if (level == MENU)
 	{
 		App->menu->LoadMenuUI();
 	}
 
 	if (level == level_1) {
+		LoadLevelUI();
+		start_time = SDL_GetTicks();
 		App->map->Load("level1.tmx");
 		App->audio->PlayMusic("audio/music/level_music.ogg");
 
 	}
 	if (level == level_2) {
+		LoadLevelUI();
 		App->map->Load("level2.tmx");
 	}
 	if (level == hidden_level) {
+		LoadLevelUI();
 		App->map->Load("hidden_level.tmx");
 	}
 	
@@ -101,6 +151,7 @@ bool j1Scene::Update(float dt)
 	App->map->Draw();
 	CheckChange();
 	ButtonInteractions();
+	Timer();
 
 	if (App->paused)
 		App->render->DrawQuad({ 0,0,1920,1080 }, 0, 0, 0, 175, true, false);
@@ -266,5 +317,26 @@ void j1Scene::ButtonInteractions()
 
 void j1Scene::LoadLevelUI()
 {
+	App->gui->AddImage(900, 10, ui_texture, lifes_anim);
+	App->gui->AddImage(50, 10, ui_texture, urn_anim);
+	App->gui->AddImage(900, 490, ui_texture, ammo_anim);
+	App->gui->AddLabel(865, 28, "x3", BLACK, MINECRAFT, 25);
+}
 
+void j1Scene::Timer()
+{
+	total_time = 300;
+	uint currentTime = SDL_GetTicks();
+
+	currentTime = currentTime - start_time;
+
+	total_time = 300 - MiliToSeconds(currentTime);
+
+	LOG("%i %i %i", start_time, currentTime, total_time);
+
+}
+
+uint j1Scene::MiliToSeconds(uint time)
+{
+	return time / 1000;
 }

@@ -1,88 +1,112 @@
 <animations>
   <ui>
-    <cross>
-      <frame id = "0" x = "1" y = "1" w = "56" h = "59"/>
-      <frame id = "1" x = "57" y = "1" w = "56" h = "59"/>
-      <frame id = "2" x = "113" y = "1" w = "56" h = "59"/>
-      <frame id = "3" x = "169" y = "1" w = "56" h = "59"/>
-      <frame id = "4" x = "225" y = "1" w = "56" h = "59"/>
-      <frame id = "5" x = "281" y = "1" w = "56" h = "59"/>
-      <frame id = "6" x = "337" y = "1" w = "56" h = "59"/>
-      <frame id = "7" x = "393" y = "1" w = "56" h = "59"/>
-      <frame id = "8" x = "449" y = "1" w = "56" h = "59"/>
-      <frame id = "9" x = "1" y = "60" w = "56" h = "59"/>
-      <frame id = "10" x = "57" y = "60" w = "56" h = "59"/>
-      <frame id = "11" x = "113" y = "60" w = "56" h = "59"/>
-      <frame id = "12" x = "169" y = "60" w = "56" h = "59"/>
-      <frame id = "13" x = "225" y = "60" w = "56" h = "59"/>
-      <frame id = "14" x = "281" y = "60" w = "56" h = "59"/>
-      <frame id = "15" x = "337" y = "60" w = "56" h = "59"/>
-      <frame id = "16" x = "393" y = "60" w = "56" h = "59"/>
-      <frame id = "17" x = "449" y = "60" w = "56" h = "59"/>
-      <frame id = "18" x = "1" y = "119" w = "56" h = "59"/>
-      <frame id = "19" x = "57" y = "119" w = "56" h = "59"/>
-      <frame id = "20" x = "113" y = "119" w = "56" h = "59"/>
-      <frame id = "21" x = "169" y = "119" w = "56" h = "59"/>
-      <frame id = "22" x = "225" y = "119" w = "56" h = "59"/>
-      <frame id = "23" x = "281" y = "119" w = "56" h = "59"/>
-      <frame id = "24" x = "337" y = "119" w = "56" h = "59"/>
-      <frame id = "25" x = "393" y = "119" w = "56" h = "59"/>
-      <frame id = "26" x = "449" y = "119" w = "56" h = "59"/>
-      <frame id = "27" x = "1" y = "178" w = "56" h = "59"/>
-      <frame id = "28" x = "57" y = "178" w = "56" h = "59"/>
-      <attributes id = "0" speed = "15" loop = "false" offset_x = "0" offset_y = "0" size = "28"/>
-    </cross>
-    <sheet>
-      <frame id = "0" x = "0" y = "0" w = "369" h = "479"/>
-      <attributes id = "1" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
-    </sheet>
-    <button>
-      <frame id = "0" x = "370" y = "0" w = "56" h = "59"/>
-      <attributes id = "2" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
-    </button>
-    <exit>
-      <frame id = "0" x = "427" y = "0" w = "44" h = "48"/>
-      <attributes id = "3" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
-    </exit>
-    <hand>
-      <frame id = "0" x = "472" y = "0" w = "201" h = "315"/>
-      <attributes id = "4" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
-    </hand>
-    <volume>
-      <frame id = "0" x = "370" y = "315" w = "204" h = "34"/>
-      <attributes id = "5" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
-    </volume>
-    <left_arrow>
-      <frame id = "0" x = "370" y = "349" w = "28" h = "34"/>
-      <attributes id = "6" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
-    </left_arrow>
-    <right_arrow>
-      <frame id = "0" x = "403" y = "349" w = "28" h = "34"/>
-      <attributes id = "7" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
-    </right_arrow>
-    <line>
-      <frame id = "0" x = "376" y = "63" w = "90" h = "4"/>
-      <attributes id = "8" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
-    </line>
-    <logo>
-      <frame id = "0" x = "431" y = "349" w = "232" h = "119"/>
-      <attributes id = "9" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
-    </logo>
+    <menu>
+      <cross>
+        <frame id = "0" x = "1" y = "1" w = "56" h = "59"/>
+        <frame id = "1" x = "57" y = "1" w = "56" h = "59"/>
+        <frame id = "2" x = "113" y = "1" w = "56" h = "59"/>
+        <frame id = "3" x = "169" y = "1" w = "56" h = "59"/>
+        <frame id = "4" x = "225" y = "1" w = "56" h = "59"/>
+        <frame id = "5" x = "281" y = "1" w = "56" h = "59"/>
+        <frame id = "6" x = "337" y = "1" w = "56" h = "59"/>
+        <frame id = "7" x = "393" y = "1" w = "56" h = "59"/>
+        <frame id = "8" x = "449" y = "1" w = "56" h = "59"/>
+        <frame id = "9" x = "1" y = "60" w = "56" h = "59"/>
+        <frame id = "10" x = "57" y = "60" w = "56" h = "59"/>
+        <frame id = "11" x = "113" y = "60" w = "56" h = "59"/>
+        <frame id = "12" x = "169" y = "60" w = "56" h = "59"/>
+        <frame id = "13" x = "225" y = "60" w = "56" h = "59"/>
+        <frame id = "14" x = "281" y = "60" w = "56" h = "59"/>
+        <frame id = "15" x = "337" y = "60" w = "56" h = "59"/>
+        <frame id = "16" x = "393" y = "60" w = "56" h = "59"/>
+        <frame id = "17" x = "449" y = "60" w = "56" h = "59"/>
+        <frame id = "18" x = "1" y = "119" w = "56" h = "59"/>
+        <frame id = "19" x = "57" y = "119" w = "56" h = "59"/>
+        <frame id = "20" x = "113" y = "119" w = "56" h = "59"/>
+        <frame id = "21" x = "169" y = "119" w = "56" h = "59"/>
+        <frame id = "22" x = "225" y = "119" w = "56" h = "59"/>
+        <frame id = "23" x = "281" y = "119" w = "56" h = "59"/>
+        <frame id = "24" x = "337" y = "119" w = "56" h = "59"/>
+        <frame id = "25" x = "393" y = "119" w = "56" h = "59"/>
+        <frame id = "26" x = "449" y = "119" w = "56" h = "59"/>
+        <frame id = "27" x = "1" y = "178" w = "56" h = "59"/>
+        <frame id = "28" x = "57" y = "178" w = "56" h = "59"/>
+        <attributes id = "0" speed = "15" loop = "false" offset_x = "0" offset_y = "0" size = "28"/>
+      </cross>
+      <sheet>
+        <frame id = "0" x = "0" y = "0" w = "369" h = "479"/>
+        <attributes id = "1" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+      </sheet>
+      <button>
+        <frame id = "0" x = "370" y = "0" w = "56" h = "59"/>
+        <attributes id = "2" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+      </button>
+      <exit>
+        <frame id = "0" x = "427" y = "0" w = "44" h = "48"/>
+        <attributes id = "3" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+      </exit>
+      <hand>
+        <frame id = "0" x = "472" y = "0" w = "201" h = "315"/>
+        <attributes id = "4" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+      </hand>
+      <volume>
+        <frame id = "0" x = "370" y = "315" w = "204" h = "34"/>
+        <attributes id = "5" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+      </volume>
+      <left_arrow>
+        <frame id = "0" x = "370" y = "349" w = "28" h = "34"/>
+        <attributes id = "6" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+      </left_arrow>
+      <right_arrow>
+        <frame id = "0" x = "403" y = "349" w = "28" h = "34"/>
+        <attributes id = "7" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+      </right_arrow>
+      <line>
+        <frame id = "0" x = "376" y = "63" w = "90" h = "4"/>
+        <attributes id = "8" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+      </line>
+      <logo>
+        <frame id = "0" x = "431" y = "349" w = "232" h = "119"/>
+        <attributes id = "9" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+      </logo>
+    </menu>
+
+    <pause>
+      <button>
+        <frame id = "0" x = "0" y = "479" w = "340" h = "54"/>
+        <attributes id = "1" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+      </button>
+      <button_focused>
+        <frame id = "0" x = "341" y = "479" w = "340" h = "54"/>
+        <attributes id = "2" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+      </button_focused>
+      <sheet>
+        <frame id = "0" x = "0" y = "0" w = "369" h = "479"/>
+        <attributes id = "3" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+      </sheet>
+    </pause>
+
+    <ingame>
+      <life>
+        <frame id = "0" x = "370" y = "67" w = "40" h = "40"/>
+        <attributes id = "1" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+      </life>
+
+      <urn>
+        <frame id = "0" x = "410" y = "67" w = "42" h = "40"/>
+        <attributes id = "2" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+      </urn>
+
+      <ammo>
+        <frame id = "0" x = "370" y = "107" w = "29" h = "40"/>
+        <attributes id = "3" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+      </ammo>
+    
+    </ingame>
+    
   </ui>
-  <pause>
-    <button>
-      <frame id = "0" x = "0" y = "479" w = "340" h = "54"/>
-      <attributes id = "1" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
-    </button>
-    <button_focused>
-      <frame id = "0" x = "341" y = "479" w = "340" h = "54"/>
-      <attributes id = "2" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
-    </button_focused>
-    <sheet>
-      <frame id = "0" x = "0" y = "0" w = "369" h = "479"/>
-      <attributes id = "3" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
-    </sheet>
-  </pause>
+  
+ 
   <particles>
     <shoot>
       <frame id = "0" x = "0" y = "0" w = "18" h = "13"/>
@@ -110,6 +134,8 @@
       <attributes id = "1" speed = "20" loop = "false" offset_x = "0" offset_y = "0" size = "6" life = "500"/>
     </explosion>
   </particles>
+  
+  
   <player>
     <idle>
       <frame id = "0" x = "0" y = "0" w = "70" h = "80"/>
@@ -200,6 +226,8 @@
       <folder file = "textures/animations.png" />
     </texture>
   </player>
+  
+  
   <enemies>
     <flying_enemy>
       <frame id = "0" x = "442" y = "253" w = "23" h = "40"/>
@@ -258,6 +286,8 @@
       <folder file = "textures/enemies.png" />
     </texture>
   </enemies>
+  
+  
   <urn>
     <frame id = "0" x = "0" y = "0" w = "25" h = "44"/>
     <frame id = "1" x = "25" y = "0" w = "25" h = "44"/>
@@ -279,5 +309,7 @@
       <folder file = "textures/urn.png" />
     </texture>
   </urn>
+  
+  
 </animations>
 

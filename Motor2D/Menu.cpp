@@ -23,7 +23,7 @@ bool Menu::Awake(pugi::xml_node& node)
 {
 
 	animation_file.load_file("animations.xml");
-	animations = animation_file.child("animations").child("ui").first_child();
+	animations = animation_file.child("animations").child("ui").child("menu").first_child();
 
 	if (animations == NULL)
 	{

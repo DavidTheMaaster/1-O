@@ -5,6 +5,7 @@
 #include "Animation.h"
 
 
+
 enum Levels
 {
 	MENU,
@@ -14,6 +15,14 @@ enum Levels
 	level_2,
 	hidden_level,
 	congrats,
+};
+
+enum InGameUI
+{
+	NO_UI,
+	LIFES,
+	URN_UI,
+	AMMO,
 };
 
 struct SDL_Texture;
@@ -53,7 +62,12 @@ public:
 	void ButtonInteractions();
 
 	void LoadLevelUI();
-	
+	void UnLoadLevelUI();
+
+	void Timer();
+
+	uint MiliToSeconds(uint time);
+
 	void CheckChange();
 
 public:
@@ -73,7 +87,18 @@ public:
 private:
 	pugi::xml_node level_name;
 	SDL_Texture* ui_texture;
-	Animation sheet;
+	Animation lifes_anim, urn_anim, ammo_anim;
+
+	pugi::xml_document	animation_file;
+	pugi::xml_node animations;
+	pugi::xml_node attributes;
+	pugi::xml_node rect;
+
+	uint current;
+	Animation * load_anim;
+	uint total_time;
+	uint start_time;
+
 };
 
 #endif // __j1SCENE_H__
