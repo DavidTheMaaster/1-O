@@ -409,17 +409,17 @@ void Player::Shoot()
 void Player::CheckIfChange() {
 
 	if (App->entities->lvl2) {
-		App->scene->level = App->scene->level_2;
+		App->scene->level = level_2;
 		App->scene->changeMap = true;
 	}
 
 	if (App->entities->hidden_level) {
-		App->scene->level = App->scene->hidden_level;
+		App->scene->level = hidden_level;
 		App->scene->changeMap = true;
 	}
 
 	if (App->entities->congrats) {
-		App->scene->level = App->scene->congrats;
+		App->scene->level = congrats;
 		App->scene->changeMap = true;
 	}
 }

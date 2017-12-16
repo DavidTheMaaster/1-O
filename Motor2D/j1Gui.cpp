@@ -206,6 +206,9 @@ char * j1Gui::GetFont(uint font)
 	case FREEPIXEL:
 		path = "fonts/FreePixel.ttf";
 		break;
+	case FIPPS:
+		path = "fonts/Fipps.ttf";
+		break;
 	case MINECRAFT:
 		path = "fonts/Minecraft.ttf";
 		break;

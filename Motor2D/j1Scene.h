@@ -5,6 +5,17 @@
 #include "Animation.h"
 
 
+enum Levels
+{
+	MENU,
+	OPTIONS,
+	MENU_PLAY,
+	level_1,
+	level_2,
+	hidden_level,
+	congrats,
+};
+
 struct SDL_Texture;
 
 class j1Scene : public j1Module
@@ -51,18 +62,6 @@ public:
 	bool changeMap;
 
 	uint level_change_fx;
-	
-
-	enum Levels
-	{
-		MENU,
-		OPTIONS,
-		MENU_PLAY,
-		level_1,
-		level_2,
-		hidden_level,
-		congrats,
-	};
 
 	int player_lifes = 5;
 	int ammo = 10;

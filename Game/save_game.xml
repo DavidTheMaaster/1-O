@@ -6,16 +6,17 @@
 	<audio />
 	<map />
 	<menu />
+	<pause />
 	<scene>
 		<level level="3" />
-		<score score="500" />
+		<score score="0" />
 		<ammo ammo="10" />
-		<player_lifes player_lifes="3" />
-		<urns urns="1" />
-		<time time="1" />
+		<player_lifes player_lifes="5" />
+		<urns urns="0" />
+		<time time="0" />
 	</scene>
 	<entities>
-		<player_pos x="1476" y="260" />
+		<player_pos x="400" y="580" />
 	</entities>
 	<particles />
 	<collision />
@@ -24,6 +25,6 @@
 	<gui />
 	<fadetoblack />
 	<renderer>
-		<camera x="-2142" y="-120" />
+		<camera x="0" y="-440" />
 	</renderer>
 </game_state>

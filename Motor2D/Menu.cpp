@@ -218,12 +218,12 @@ void Menu::MenuButtons()
 	{
 		if (play_ui)
 		{
-			App->scene->level = App->scene->MENU_PLAY;			
+			App->scene->level = MENU_PLAY;			
 			LoadPlayUI();
 		}
 		if (options_ui)
 		{
-			App->scene->level = App->scene->OPTIONS;
+			App->scene->level = OPTIONS;
 			LoadOptionUI();
 		}
 		if (exit_ui)
@@ -323,13 +323,13 @@ void Menu::PlayButtons()
 			App->gui->DeleteUI(exit_options);
 			App->gui->DeleteUI(cross);
 			App->gui->DeleteUI(hand);
-			ResetMenu();
 			App->LoadGame();
 		}
 
 		if (new_game_ui)
 		{
-			App->scene->level = App->scene->level_1;
+			ResetMenu();
+			App->scene->level =level_1;
 			App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
 		}
 	}
@@ -410,7 +410,7 @@ void Menu::ResetMenu()
 	App->gui->DeleteUI(cross);
 	play_ui = options_ui = exit_ui = continue_ui = new_game_ui = false;
 	hand = App->gui->AddImage(337, 420, ui_texture, hand_anim);
-	App->scene->level = App->scene->MENU;
+	App->scene->level = MENU;
 }
 
 
