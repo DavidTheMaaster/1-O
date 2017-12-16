@@ -152,7 +152,8 @@ void Menu::LoadOptionUI()
 	morevolume = App->gui->AddButton(306, 200, ui_texture, right_arrow_anim, this, option_sheet);
 	lessvolume = App->gui->AddButton(40, 200, ui_texture, left_arrow_anim, this, option_sheet);
 	volume_bar = App->gui->AddImage(85, 200, ui_texture, volume_anim, option_sheet);
-	volume_char = App->gui->AddLabel(158, 191, "50", BLACK, UPHEAVAL, 50, option_sheet);
+	volume_char = App->gui->AddLabel(158, 191, "100", BLACK, UPHEAVAL, 50, option_sheet);
+	SetVolume();
 }
 
 void Menu::LoadPlayUI()
@@ -417,12 +418,10 @@ void Menu::ResetMenu()
 
 
 void Menu::SetVolume()
-{
+{	
 	std::string s = std::to_string(App->audio->volume);
-	volume = (char *)alloca(s.size() + 1);
-	memcpy(volume, s.c_str(), s.size() + 1);
-	
-	volume_char->ChangeLabel(volume, BLACK, UPHEAVAL, 50);
+	p2SString volume = s.c_str();
+	volume_char->ChangeLabel(volume.GetString(), BLACK);
 }
 
 void Menu::UpdateSpeed(float dt)

@@ -118,16 +118,14 @@ void UIElement::Update(float dt)
 	
 }
 
-void UIElement::ChangeLabel(char* text, uint colors, uint fonts, int size)
+void UIElement::ChangeLabel(const char* text, uint colors)
 {
 	SDL_Color color;
-
 	color = App->gui->GetColor(colors);
-	char* path = App->gui->GetFont(fonts);
-	_TTF_Font* font = App->font->Load(path, size);
-
-	const SDL_Texture* tex = App->font->Print(text, color, font);
-
+	_TTF_Font* fonts;
+	fonts = this->font;
+	App->tex->UnLoad((SDL_Texture*)texture);
+	const SDL_Texture* tex = App->font->Print(text, color, fonts);
 	texture = tex;
 }
 

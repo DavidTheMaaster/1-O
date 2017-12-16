@@ -334,6 +334,8 @@ void j1Scene::LoadLevelUI()
 	lifes_ui = App->gui->AddLabel(880, 20, "0", BLACK, MINECRAFT, 30);
 	urn_ui = App->gui->AddLabel(100, 20, "0", BLACK, MINECRAFT, 30);
 	ammo_ui = App->gui->AddLabel(860, 500, "10", BLACK, MINECRAFT, 30);
+	timer_ui = App->gui->AddLabel(450, 20, "100", BLACK, UPHEAVAL, 50);
+	score_ui = App->gui->AddLabel(900, 60, "200", BLACK, UPHEAVAL, 30);
 	UpdateLevelUI();
 }
 
@@ -342,21 +344,28 @@ void j1Scene::UpdateLevelUI()
 	if (lifes_ui != nullptr)
 	{
 		std::string s = std::to_string(player_lifes);
-		char* lifes_label = (char *)alloca(s.size() + 1);
-		memcpy(lifes_label, s.c_str(), s.size() + 1);
-		lifes_ui->ChangeLabel(lifes_label, BLACK, MINECRAFT, 30);
+		p2SString lifes_label = s.c_str();
+		lifes_ui->ChangeLabel(lifes_label.GetString(), BLACK);
 
 		std::string s2 = std::to_string(urns);
-		char* urn_label = (char *)alloca(s2.size() + 1);
-		memcpy(urn_label, s2.c_str(), s2.size() + 1);
-		urn_ui->ChangeLabel(urn_label, BLACK, MINECRAFT, 30);
+		p2SString urn_label = s2.c_str();
+		urn_ui->ChangeLabel(urn_label.GetString(), BLACK);
 
 		std::string s3 = std::to_string(ammo);
-		char* ammo_label= (char *)alloca(s3.size() + 1);
-		memcpy(ammo_label, s3.c_str(), s3.size() + 1);
-		ammo_ui->ChangeLabel(ammo_label, BLACK, MINECRAFT, 30);
-	}
+		p2SString ammo_label = s3.c_str();
+		ammo_ui->ChangeLabel(ammo_label.GetString(), BLACK);
 
+		std::string s4 = std::to_string(total_time);
+		p2SString time_label = s4.c_str();
+		timer_ui->ChangeLabel(time_label.GetString(), BLACK);
+
+		if (score < 0)
+			score = 0;
+		std::string s5 = std::to_string(score);
+		p2SString score_label = s5.c_str();
+		score_ui->ChangeLabel(score_label.GetString(), BLACK);
+
+	}
 }
 
 void j1Scene::Timer()

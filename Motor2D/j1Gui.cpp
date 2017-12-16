@@ -113,6 +113,7 @@ Label* j1Gui::AddLabel(int x, int y, char* text, uint colors, uint fonts, int si
 
 	Label* label = new Label(x, y, LABEL, tex, parent);
 	elements.add((UIElement*)label);
+	label->font = font;
 
 	return label;
 }
@@ -173,9 +174,9 @@ SDL_Color j1Gui::GetColor(int color)
 	switch (color)
 	{
 	case BLACK:
-		ret.r = 0;
-		ret.g = 0;
-		ret.b = 0;
+		ret.r = 30;
+		ret.g = 30;
+		ret.b = 30;
 		break;
 	case WHITE:
 		ret.r = 255;

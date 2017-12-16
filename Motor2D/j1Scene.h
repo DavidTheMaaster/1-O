@@ -71,7 +71,7 @@ public:
 
 	void CheckChange();
 
-	Label* lifes_ui, *urn_ui, *ammo_ui;
+	Label* lifes_ui, *urn_ui, *ammo_ui, *timer_ui, *score_ui;
 
 public:
 	int level = 0;

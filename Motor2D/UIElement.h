@@ -7,7 +7,7 @@
 #include "j1Textures.h"
 #include "Animation.h"
 
-
+struct _TTF_Font;
 
 enum UI_TYPE
 {
@@ -39,6 +39,7 @@ public:
 	uint type;
 
 	UI_STATE state;
+	_TTF_Font* font;
 
 	const SDL_Texture *texture = nullptr;
 
@@ -51,7 +52,7 @@ public:
 	virtual void Draw(float dt);
 	virtual void Update(float dt);
 
-	void ChangeLabel(char* text, uint colors, uint fonts, int size);
+	void ChangeLabel(const char* text, uint colors);
 
 	int GetSliderValue(UIElement* zap, UIElement* slider);
 public:
