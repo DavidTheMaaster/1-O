@@ -87,15 +87,20 @@ bool j1Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool j1Scene::Start()
 {	
+	
 	level_change_fx = App->audio->LoadFx("audio/fx/change_level.wav");
 	ui_texture = App->tex->Load("maps/UI.png");
+	
 
 	if (level == MENU)
 	{
+		App->menu->ResetMenu();
 		App->menu->LoadMenuUI();
 	}
 
 	if (level == level_1) {
+		urns = 0;
+		ammo = 10;
 		LoadLevelUI();
 		start_time = SDL_GetTicks();
 		App->map->Load("level1.tmx");
@@ -103,11 +108,15 @@ bool j1Scene::Start()
 
 	}
 	if (level == level_2) {
+		urns = 0;
+		ammo = 10;
 		LoadLevelUI();
 		start_time = SDL_GetTicks();
 		App->map->Load("level2.tmx");
 	}
 	if (level == hidden_level) {
+		urns = 0;
+		ammo = 10;
 		LoadLevelUI();
 		start_time = SDL_GetTicks();
 		App->map->Load("hidden_level.tmx");
@@ -154,6 +163,9 @@ bool j1Scene::Update(float dt)
 	CheckChange();
 	ButtonInteractions();
 	Timer();
+	
+	if(level == level_1 || level == level_2 || level == hidden_level)
+		UpdateLevelUI();
 
 	if (App->paused)
 		App->render->DrawQuad({ 0,0,1920,1080 }, 0, 0, 0, 175, true, false);
@@ -322,7 +334,32 @@ void j1Scene::LoadLevelUI()
 	App->gui->AddImage(900, 10, ui_texture, lifes_anim);
 	App->gui->AddImage(50, 10, ui_texture, urn_anim);
 	App->gui->AddImage(900, 490, ui_texture, ammo_anim);
-	App->gui->AddLabel(865, 28, "x3", BLACK, MINECRAFT, 25);
+	lifes_ui = App->gui->AddLabel(880, 20, "0", BLACK, MINECRAFT, 30);
+	urn_ui = App->gui->AddLabel(100, 20, "0", BLACK, MINECRAFT, 30);
+	ammo_ui = App->gui->AddLabel(860, 500, "10", BLACK, MINECRAFT, 30);
+	UpdateLevelUI();
+}
+
+void j1Scene::UpdateLevelUI()
+{
+	if (lifes_ui != nullptr)
+	{
+		std::string s = std::to_string(player_lifes);
+		char* lifes_label = (char *)alloca(s.size() + 1);
+		memcpy(lifes_label, s.c_str(), s.size() + 1);
+		lifes_ui->ChangeLabel(lifes_label, BLACK, MINECRAFT, 30);
+
+		std::string s2 = std::to_string(urns);
+		char* urn_label = (char *)alloca(s2.size() + 1);
+		memcpy(urn_label, s2.c_str(), s2.size() + 1);
+		urn_ui->ChangeLabel(urn_label, BLACK, MINECRAFT, 30);
+
+		std::string s3 = std::to_string(ammo);
+		char* ammo_label= (char *)alloca(s3.size() + 1);
+		memcpy(ammo_label, s3.c_str(), s3.size() + 1);
+		ammo_ui->ChangeLabel(ammo_label, BLACK, MINECRAFT, 30);
+	}
+
 }
 
 void j1Scene::Timer()

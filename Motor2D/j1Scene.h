@@ -3,6 +3,7 @@
 
 #include "j1Module.h"
 #include "Animation.h"
+#include "Label.h"
 
 
 
@@ -62,13 +63,15 @@ public:
 	void ButtonInteractions();
 
 	void LoadLevelUI();
-	void UnLoadLevelUI();
+	void UpdateLevelUI();
 
 	void Timer();
 
 	uint MiliToSeconds(uint time);
 
 	void CheckChange();
+
+	Label* lifes_ui, *urn_ui, *ammo_ui;
 
 public:
 	int level = 0;

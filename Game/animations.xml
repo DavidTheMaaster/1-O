@@ -121,7 +121,7 @@
       <frame id = "9" x = "162" y = "0" w = "18" h = "13"/>
       <frame id = "10" x = "180" y = "0" w = "18" h = "13"/>
       <frame id = "11" x = "198" y = "0" w = "18" h = "13"/>
-      <attributes id = "0" speed = "30" loop = "false" offset_x = "0" offset_y = "0" size = "11" life = "1000"/>
+      <attributes id = "0" speed = "30" loop = "true" offset_x = "0" offset_y = "0" size = "11" life = "1000"/>
     </shoot>
     <explosion>
       <frame id = "0" x = "1" y = "14" w = "42" h = "44"/>

@@ -331,7 +331,6 @@ void Menu::PlayButtons()
 
 		if (new_game_ui)
 		{
-			ResetMenu();
 			App->scene->level =level_1;
 			App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
 		}
@@ -422,8 +421,6 @@ void Menu::SetVolume()
 	std::string s = std::to_string(App->audio->volume);
 	volume = (char *)alloca(s.size() + 1);
 	memcpy(volume, s.c_str(), s.size() + 1);
-	//App->gui->DeleteUI(volume_char);
-	_TTF_Font* font = App->font->Load("fonts/Upheaval.ttf", 15);
 	
 	volume_char->ChangeLabel(volume, BLACK, UPHEAVAL, 50);
 }
