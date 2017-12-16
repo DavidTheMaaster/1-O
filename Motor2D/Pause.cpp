@@ -72,6 +72,8 @@ bool Pause::Awake(pugi::xml_node & node)
 bool Pause::Start()
 {
 	ui_texture = App->tex->Load("maps/UI.png");
+	button_focused_fx = App->audio->LoadFx("audio/fx/mouse_over.wav");
+	back_fx = App->audio->LoadFx("audio/fx/menu_back.wav");
 	//17
 	return true;
 }
@@ -102,6 +104,8 @@ return true;
 bool Pause::CleanUp()
 {
 	App->tex->UnLoad(ui_texture);
+	App->audio->UnLoadFx(back_fx);
+	App->audio->UnLoadFx(button_focused_fx);
 	return true;
 }
 
@@ -157,32 +161,41 @@ void Pause::MouseEnter(UIElement* element)
 	{
 		element->anim = button_anim;
 	}
+	if (element->state == MOUSE_ENTER)
+	{
+		App->audio->PlayFx(button_focused_fx);
+	}
 }
 
 void Pause::MouseClick()
 {
 	if (resume_button->state == L_MOUSE_PRESSED)
 	{
+		App->audio->PlayFx(back_fx);
 		App->paused = false;
 		UnloadPause();
 	}
 	if (save_button->state == L_MOUSE_PRESSED)
 	{
+		App->audio->PlayFx(back_fx);
 		App->SaveGame();
 	}
 	if (load_button->state == L_MOUSE_PRESSED)
 	{
+		App->audio->PlayFx(back_fx);
 		UnloadPause();
 		App->paused = false;
 		App->LoadGame();
 	}
 	if (options_button->state == L_MOUSE_PRESSED)
 	{
+		App->audio->PlayFx(back_fx);
 		UnloadPause();
 		LoadOptions();
 	}
 	if (exit_game_button->state == L_MOUSE_PRESSED)
 	{
+		App->audio->PlayFx(back_fx);
 		App->scene->level = MENU;
 		UnloadPause();
 		App->paused = false;

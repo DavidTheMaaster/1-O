@@ -50,6 +50,9 @@ private:
 	Animation * load_anim;
 	SDL_Texture* 	ui_texture = nullptr;
 
+	uint button_focused_fx;
+	uint back_fx;
+
 	Image* sheet;
 	Button* resume_button;
 	Button* save_button;
