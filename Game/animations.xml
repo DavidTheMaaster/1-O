@@ -69,6 +69,20 @@
       <attributes id = "9" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
     </logo>
   </ui>
+  <pause>
+    <button>
+      <frame id = "0" x = "0" y = "479" w = "340" h = "54"/>
+      <attributes id = "1" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+    </button>
+    <button_focused>
+      <frame id = "0" x = "341" y = "479" w = "340" h = "54"/>
+      <attributes id = "2" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+    </button_focused>
+    <sheet>
+      <frame id = "0" x = "0" y = "0" w = "369" h = "479"/>
+      <attributes id = "3" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+    </sheet>
+  </pause>
   <particles>
     <shoot>
       <frame id = "0" x = "0" y = "0" w = "18" h = "13"/>
@@ -92,7 +106,8 @@
       <frame id = "3" x = "1" y = "58" w = "42" h = "44"/>
       <frame id = "4" x = "43" y = "58" w = "42" h = "44"/>
       <frame id = "5" x = "0" y = "0" w = "0" h = "0"/>
-      <attributes id = "1" speed = "20" loop = "false" offset_x = "0" offset_y = "0" size = "5" life = "500"/>
+      <frame id = "6" x = "0" y = "0" w = "0" h = "0"/>
+      <attributes id = "1" speed = "20" loop = "false" offset_x = "0" offset_y = "0" size = "6" life = "500"/>
     </explosion>
   </particles>
   <player>
