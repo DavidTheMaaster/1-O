@@ -11,6 +11,7 @@
 class Label;
 class Image;
 class Button;
+class Slider;
 
 enum COLOURS
 {
