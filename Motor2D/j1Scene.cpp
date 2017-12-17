@@ -100,7 +100,7 @@ bool j1Scene::Start()
 	}
 
 	if (level == level_1) {
-		highscore = 0;
+		last_lvl_score = 0;
 		score = last_lvl_score;
 		urns = 0;
 		LoadLevelUI();
@@ -115,7 +115,6 @@ bool j1Scene::Start()
 
 	}
 	if (level == level_2) {
-		highscore += score;
 		score = last_lvl_score;
 		urns = 0;
 		LoadLevelUI();
@@ -128,7 +127,6 @@ bool j1Scene::Start()
 		App->map->Load("level2.tmx");
 	}
 	if (level == hidden_level) {
-		highscore += score;
 		score = last_lvl_score;
 		urns = 0;
 		LoadLevelUI();
@@ -139,11 +137,6 @@ bool j1Scene::Start()
 			tmp_time = 0;
 		}
 		App->map->Load("hidden_level.tmx");
-	}
-	if (level == LOSE) 
-	{
-		LoadLoseScreen();
-		App->audio->PlayMusic("audio/music/lose_music.ogg");
 	}
 
 
@@ -159,13 +152,21 @@ bool j1Scene::Start()
 
 	RELEASE_ARRAY(data);
 
-	if (level == congrats) {
-		highscore += score;
-		LoadHighScore();
-		App->audio->PlayMusic("audio/music/win_music.ogg");
-		App->map->Load("levelwin.tmx");
-		App->render->camera.x = 0; App->render->camera.y = 0;
-		App->entities->congrats = false;
+	if (level == congrats || level == LOSE) {
+		if (level == LOSE)
+		{
+			highscore = score;
+			LoadLoseScreen();
+			App->audio->PlayMusic("audio/music/lose_music.ogg");
+		}
+		else if (level == congrats) {
+			highscore = score;
+			LoadHighScore();
+			App->audio->PlayMusic("audio/music/win_music.ogg");
+			App->map->Load("levelwin.tmx");
+			App->render->camera.x = 0; App->render->camera.y = 0;
+			App->entities->congrats = false;
+		}
 	}
 	else {
 		App->entities->Start();

@@ -435,7 +435,6 @@ void Player::Respawn()
 	if (player_animation->current_frame == 21)
 	{
 		App->scene->player_lifes -= 1;
-		App->scene->score -= 250;
 		App->scene->ammo = 10;
 		player_animation->Reset();
 		player_animation = &idle;
@@ -463,6 +462,7 @@ void Player::CheckIfChange() {
 	}
 
 	if (App->entities->hidden_level) {
+		App->scene->last_lvl_score = App->scene->score;
 		App->scene->level = hidden_level;
 		App->scene->timer_start = true;
 		App->scene->changeMap = true;
