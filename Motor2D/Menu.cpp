@@ -401,6 +401,7 @@ void Menu::PlayButtons()
 
 	if (new_game_button->state == L_MOUSE_PRESSED)
 	{
+		new_game_button->state = FOCUSED;
 		cross = App->gui->AddImage(0, 0, cross_texture, cross_anim, new_game_button);
 		App->audio->PlayFx(cross_click_fx);
 		App->gui->DeleteUI(hand);
@@ -410,6 +411,7 @@ void Menu::PlayButtons()
 	}
 	if (continue_button->state == L_MOUSE_PRESSED)
 	{
+		continue_button->state = FOCUSED;
 		cross = App->gui->AddImage(0, 0, cross_texture, cross_anim, continue_button);
 		App->audio->PlayFx(cross_click_fx);
 		App->gui->DeleteUI(hand);

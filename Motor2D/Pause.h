@@ -55,32 +55,30 @@ private:
 	pugi::xml_node animations;
 	pugi::xml_node attributes;
 	pugi::xml_node rect;
-	uint current;
-	Animation * load_anim;
+	uint current = 0;
+	Animation * load_anim = nullptr;
 	SDL_Texture* 	ui_texture = nullptr;
 
 	uint button_focused_fx;
 	uint back_fx;
 
-	Image* sheet;
-	Image* option_sheet;
+	Image* sheet = nullptr;
+	Image* option_sheet = nullptr;
 
-	Button* resume_button;
-	Button* save_button;
-	Button* load_button;
-	Button* options_button;
-	Button* exit_game_button;
-	Button* exit_options_button;
-	Button* morevolume;
-	Button* lessvolume;
-	Button* morefps;
-	Button* lessfps;
-	Button* zap;
-	Button* frame_rate_cap;
+	Button* resume_button = nullptr;
+	Button* save_button = nullptr;
+	Button* load_button = nullptr;
+	Button* options_button = nullptr;
+	Button* exit_game_button = nullptr;
+	Button* exit_options_button = nullptr;
+	Button* morevolume = nullptr;
+	Button* lessvolume = nullptr;
+	Button* morefps = nullptr;
+	Button* lessfps = nullptr;
+	Button* zap = nullptr;
+	Button* frame_rate_cap = nullptr;
 		
-
-	Slider* volume_bar;
-
+	Slider* volume_bar = nullptr;
 
 	Label* resume_label;
 	Label* save_label;
@@ -94,7 +92,7 @@ private:
 
 
 	bool options_opened = false;
-	bool options_loaded; 
+	bool options_loaded = false; 
 
 	Animation button_anim, button_focused_anim, sheet_anim;
 

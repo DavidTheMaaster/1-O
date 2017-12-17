@@ -86,8 +86,8 @@ public:
 	char* GetFont(uint font);
 
 private:
-	bool debug;
-	SDL_Texture* atlas;
+	bool debug = false;
+	SDL_Texture* atlas = nullptr;
 	p2SString atlas_file_name;
 	p2List<UIElement*> elements;
 

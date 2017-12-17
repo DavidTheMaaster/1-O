@@ -74,9 +74,9 @@ public:
 	uint urn_fx;
 	uint player_death_fx;
 
-	bool lvl2;
-	bool hidden_level;
-	bool congrats;
+	bool lvl2 = false;
+	bool hidden_level = false;
+	bool congrats = false;
 
 };
 #endif

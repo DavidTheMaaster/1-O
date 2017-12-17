@@ -25,25 +25,25 @@ public:
 	iPoint speed;
 	iPoint offset;
 	SDL_Rect r;
-	bool flip;
-	uint id;
-	uint type;
+	bool flip = false;
+	uint id = 0;
+	uint type = 0;
 	iPoint spawn;
-	uint current;	
+	uint current = 0;	
 	float dt = 0;
-	Collider *collider;
+	Collider *collider = nullptr;
 
 	// Enemies
-	int path_index;
+	int path_index = 0;
 	bool omw = false;
 	bool dead = false;
 
-	bool found;
-	bool canmove;
-	bool agro;
+	bool found = false;
+	bool canmove = false;
+	bool agro = false;
 
-	int radius;
-	int big_radius;
+	int radius = 0;
+	int big_radius = 0;
 
 	iPoint player_position;
 	iPoint enemy_position;
@@ -62,7 +62,6 @@ protected:
 	pugi::xml_document	animation_file;
 	pugi::xml_node animations;
 	pugi::xml_node attributes;
-
 	pugi::xml_node rect;
 };
 

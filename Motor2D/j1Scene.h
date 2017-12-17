@@ -80,16 +80,16 @@ public:
 	void LoadHighScore();
 
 
-	Label* lifes_ui, *urn_ui, *ammo_ui, *timer_ui, *score_ui, *highscore_label, *highscore_number;
-	Image* lose_image, *ammo_image, *life_image, *urn_image;
+	Label* lifes_ui = nullptr, *urn_ui = nullptr, *ammo_ui = nullptr, *timer_ui = nullptr, *score_ui = nullptr, *highscore_label = nullptr, *highscore_number = nullptr;
+	Image* lose_image = nullptr, *ammo_image = nullptr, *life_image = nullptr, *urn_image = nullptr;
 
 
 public:
 	int level = 0;
 	bool justloaded = false;
-	bool changeMap;
+	bool changeMap = false;
 
-	uint level_change_fx;
+	uint level_change_fx = 0;
 
 	int player_lifes = 5;
 	int ammo = 10;
@@ -103,7 +103,7 @@ public:
 
 private:
 	pugi::xml_node level_name;
-	SDL_Texture* ui_texture,* lose_texture;
+	SDL_Texture* ui_texture = nullptr,* lose_texture = nullptr;
 	Animation lifes_anim, urn_anim, ammo_anim;
 
 	pugi::xml_document	animation_file;
@@ -111,11 +111,11 @@ private:
 	pugi::xml_node attributes;
 	pugi::xml_node rect;
 
-	uint current;
-	Animation * load_anim;
-	uint total_time;
-	uint start_time;
-	uint tmp_time;
+	uint current = 0;
+	Animation * load_anim = nullptr;
+	uint total_time = 0;
+	uint start_time = 0;
+	uint tmp_time = 0;
 	
 
 };

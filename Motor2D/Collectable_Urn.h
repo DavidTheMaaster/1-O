@@ -18,7 +18,7 @@ public:
 	void GetOffset();
 	void UpdateSpeed();
 
-	uint anim_speed;
+	uint anim_speed = 0;
 
 };
 #endif

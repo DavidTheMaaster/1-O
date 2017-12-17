@@ -45,7 +45,7 @@ public:
 
 public:
 
-	SDL_Renderer*	renderer;
+	SDL_Renderer*	renderer = nullptr;
 	SDL_Rect		camera;
 	iPoint			player_pos;
 	SDL_Rect		viewport;

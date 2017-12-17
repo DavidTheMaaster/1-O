@@ -42,15 +42,15 @@ public:
 
 public:
 
-	bool jump;
-	bool jump2;
+	bool jump = false;
+	bool jump2 = false;
 
-	int jumps;
-	int jump_counter;
-	int ammo;
+	int jumps = 2;
+	int jump_counter = 2;
+	int ammo = 10;
 
-	uint jump_fx;
-	uint shoot_fx;
+	uint jump_fx = 0;
+	uint shoot_fx = 0;
 
 	uint anim_speed[4];
 

@@ -106,6 +106,7 @@ bool j1Scene::Start()
 		score = last_lvl_score;
 		urns = 0;
 		LoadLevelUI();
+		App->pause->Start();
 		if (timer_start)
 		{
 			start_time = SDL_GetTicks();
@@ -113,7 +114,7 @@ bool j1Scene::Start()
 			tmp_time = 0;
 		}
 		App->map->Load("level1.tmx");
-		App->audio->PlayMusic("audio/music/level_music.ogg");
+	//	App->audio->PlayMusic("audio/music/level_music.ogg");
 
 	}
 	if (level == level_2) {
@@ -239,7 +240,7 @@ bool j1Scene::CleanUp()
 void j1Scene::CheckChange()
 {
 	if (changeMap) {
-		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1);
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 2);
 		App->audio->PlayFx(level_change_fx);
 	}
 }
@@ -299,7 +300,7 @@ bool j1Scene::Load(pugi::xml_node& data) {
 			player_lifes = data.child("player_lifes").attribute("player_lifes").as_int();
 			urns = data.child("urns").attribute("urns").as_int();
 			time = data.child("time").attribute("time").as_int();
-			App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
+			App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 2);
 			justloaded = true;
 		}
 		
@@ -335,16 +336,16 @@ void j1Scene::GetKeys()
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 		level = level_1;
-		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 4);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN) {
+		Start();
+	}
+	if (App->input->GetKey(SDL_SCANCODE_O) == KEY_DOWN) {
+		CleanUp();
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
 		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
-	}
-	if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN) {
-		App->menu->CleanUp();
-	}
-	if (App->input->GetKey(SDL_SCANCODE_O) == KEY_DOWN) {
-		App->menu->Start();
 	}
 	if (level == LOSE || level == congrats)
 	{
@@ -410,6 +411,7 @@ void j1Scene::UnLoadLevelUI()
 
 void j1Scene::UpdateLevelUI()
 {
+	/*
 	if (lifes_ui != nullptr)
 	{
 		std::string s = std::to_string(player_lifes);
@@ -450,7 +452,7 @@ void j1Scene::UpdateLevelUI()
 		p2SString score_label = s5.c_str();
 		score_ui->ChangeLabel(score_label.GetString(), BLACK);
 
-	}
+	}*/
 }
 
 void j1Scene::LoadLoseScreen()

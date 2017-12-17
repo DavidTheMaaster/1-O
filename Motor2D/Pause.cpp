@@ -114,7 +114,6 @@ bool Pause::Update(float dt)
 	
 	if (options_opened)
 		OptionsButtons();
-
 return true;
 }
 
@@ -123,7 +122,6 @@ bool Pause::CleanUp()
 	App->tex->UnLoad(ui_texture);
 	App->audio->UnLoadFx(back_fx);
 	App->audio->UnLoadFx(button_focused_fx);
-	App->gui->CleanUp();
 	return true;
 }
 

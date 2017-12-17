@@ -29,7 +29,7 @@ struct Particle
 	Uint32 born = 0;
 	Uint32 life = 0;
 	bool fx_played = false;
-	bool flip;
+	bool flip = false;
 	Particle();
 	Particle(const Particle& p);
 	~Particle();
@@ -54,7 +54,7 @@ private:
 	Particle* active[MAX_ACTIVE_PARTICLES];
 	uint last_particle = 0;
 
-	SDL_Texture* particles_graphics;
+	SDL_Texture* particles_graphics = nullptr;
 
 public:
 
@@ -67,8 +67,8 @@ private:
 	pugi::xml_node attributes;
 	pugi::xml_node rect;
 
-	uint current;
-	Particle* load_particle;
+	uint current = 0;
+	Particle* load_particle = nullptr;
 
 	uint anim_speed[2];
 

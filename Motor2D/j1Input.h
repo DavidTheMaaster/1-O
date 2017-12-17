@@ -68,7 +68,7 @@ public:
 	void GetMousePosition(int &x, int &y);
 	void GetMouseMotion(int& x, int& y);
 
-	j1KeyState*	keyboard;
+	j1KeyState*	keyboard = nullptr;
 
 private:
 	bool		windowEvents[WE_COUNT];

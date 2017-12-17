@@ -21,7 +21,7 @@ public:
 	void GetOffset();
 	void UpdateSpeed();
 
-	uint anim_speed;
+	uint anim_speed = 0;
 
 	p2DynArray<iPoint> fly_path;
 

@@ -39,7 +39,7 @@ public:
 	uint type;
 
 	UI_STATE state;
-	_TTF_Font* font;
+	_TTF_Font* font = nullptr;
 
 	const SDL_Texture *texture = nullptr;
 

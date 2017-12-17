@@ -69,7 +69,7 @@ public:
 	bool exit_game = true;
 
 public:
-	SDL_Texture *menu_texture, *ui_texture, *cross_texture;
+	SDL_Texture *menu_texture = nullptr, *ui_texture = nullptr, *cross_texture = nullptr;
 	uint button_focused_fx;
 	uint cross_click_fx;
 	uint back_fx;
@@ -88,12 +88,41 @@ public:
 	Animation credit_anim;
 
 
-	Button* play, *options, *exit, *exit_options, *morevolume, *lessvolume, *new_game_button, *continue_button, *zap, *morefps, *lessfps, *credits;
-	Image* sheet, *option_sheet, *hand, *cross, *logo, *frame_rate_cap, *textbox;
-	Label* volume_char, *continue_label, *new_game_label, *volume_label, *fps_label, *fps_cap_label, *disclaimer, *license, *authors;
-	Slider* volume_bar;
+	Button* play = nullptr;
+	Button* credits = nullptr;
+	Button* options = nullptr;
+	Button* exit  = nullptr;
+	Button* exit_options = nullptr;
+	Button* morevolume = nullptr;
+	Button* lessvolume = nullptr;
+	Button* new_game_button = nullptr;
+	Button* continue_button = nullptr;
+	Button* zap = nullptr;
+	Button* morefps = nullptr;
+	Button* lessfps = nullptr;
 
-	bool play_ui, options_ui, exit_ui, new_game_ui, continue_ui;
+	Image* sheet = nullptr;
+	Image*option_sheet = nullptr;
+	Image* hand = nullptr;
+	Image* cross = nullptr;
+	Image* logo = nullptr;
+	Image* frame_rate_cap = nullptr;
+	Image* textbox = nullptr;
+
+	Label* volume_char = nullptr;
+	Label*continue_label = nullptr;
+	Label*new_game_label = nullptr;
+	Label*volume_label = nullptr;
+	Label* fps_label = nullptr;
+	Label* fps_cap_label = nullptr;
+	Label* disclaimer = nullptr;
+	Label*license = nullptr;
+	Label* authors = nullptr;
+
+
+	Slider* volume_bar = nullptr;
+
+	bool play_ui =false, options_ui = false, exit_ui = false, new_game_ui = false, continue_ui = false;
 	bool move = true;
 	bool move2 = false;
 	bool move3 = false;
@@ -109,10 +138,10 @@ public:
 
 	int i = 0;
 	uint current;
-	Animation * load_anim;
+	Animation * load_anim = nullptr;
 	uint anim_speed[2];
-	bool change;
-	char* volume;
+	bool change = false;
+	char* volume = nullptr;
 };
 
 
