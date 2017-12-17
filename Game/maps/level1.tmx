@@ -4989,8 +4989,8 @@
    <tile gid="6"/>
    <tile gid="6"/>
    <tile gid="1"/>
-   <tile gid="24"/>
-   <tile gid="24"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -6747,8 +6747,8 @@
    <tile gid="19"/>
    <tile gid="19"/>
    <tile gid="19"/>
-   <tile gid="4"/>
-   <tile gid="4"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>

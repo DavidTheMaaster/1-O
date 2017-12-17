@@ -108,6 +108,7 @@ bool j1Scene::Start()
 		{
 			start_time = SDL_GetTicks();
 			timer_start = false;
+			tmp_time = 0;
 		}
 		App->map->Load("level1.tmx");
 		App->audio->PlayMusic("audio/music/level_music.ogg");
@@ -122,6 +123,7 @@ bool j1Scene::Start()
 		{
 			start_time = SDL_GetTicks();
 			timer_start = false;
+			tmp_time = 0;
 		}
 		App->map->Load("level2.tmx");
 	}
@@ -134,6 +136,7 @@ bool j1Scene::Start()
 		{
 			start_time = SDL_GetTicks();
 			timer_start = false;
+			tmp_time = 0;
 		}
 		App->map->Load("hidden_level.tmx");
 	}
@@ -167,7 +170,8 @@ bool j1Scene::Start()
 	else {
 		App->entities->Start();
 	}
-	
+	ammo = 10;
+
 	return true;
 
 }
@@ -457,12 +461,20 @@ void j1Scene::LoadHighScore()
 
 void j1Scene::Timer()
 {
-	total_time = 300;
+	total_time = 0;
 	uint currentTime = SDL_GetTicks();
 
 	currentTime = currentTime - start_time;
 
 	total_time = MiliToSeconds(currentTime);
+
+	if (total_time >= 180) {
+		if (tmp_time != total_time) {
+			score -= 5;
+		}
+		tmp_time = total_time;
+	}
+
 
 	LOG("%i %i %i", start_time, currentTime, total_time);
 

@@ -113,7 +113,7 @@ private:
 	Animation * load_anim;
 	uint total_time;
 	uint start_time;
-
+	uint tmp_time;
 	
 
 };
