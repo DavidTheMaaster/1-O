@@ -33,6 +33,8 @@ public:
 	j1Module* callback = nullptr;
 	UIElement* parent = nullptr;
 
+	bool debug;
+
 	iPoint mouse_movement;
 	iPoint mouse2;
 
@@ -51,7 +53,6 @@ public:
 	
 	virtual void Draw(float dt);
 	virtual void Update(float dt);
-	virtual void DebugDraw(float dt);
 
 	void ChangeLabel(const char* text, uint colors);
 

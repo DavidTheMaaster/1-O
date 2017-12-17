@@ -32,11 +32,16 @@ void UIElement::Draw(float dt)
 		rect = current_animation;
 	}
 	App->render->Blit(texture, pos.x, pos.y, &(current_animation), false, 0.0);
+	if (App->gui->debug) {
+		SDL_Rect rect2 = { pos.x, pos.y, current_animation.w, current_animation.h };
+		App->render->DrawQuad(rect2, 0, 255, 0, 255, false);
+	}
 
 }
 
 void UIElement::Update(float dt)
 {
+
 	SDL_Rect button_rect;
 
 	if (current_animation.w == 0)
@@ -98,11 +103,6 @@ void UIElement::Update(float dt)
 
 	}
 	
-}
-
-void UIElement::DebugDraw(float dt)
-{
-	App->render->DrawQuad({ pos.x, pos.y, current_animation.w, current_animation.h }, 0, 255, 0, 255, false);
 }
 
 void UIElement::ChangeLabel(const char* text, uint colors)
