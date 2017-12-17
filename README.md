@@ -27,6 +27,13 @@ Thanks for playing and have fun!
 
 
 
+## Gameplay
+
+<iframe width="560" height="315" src="https://youtu.be/N-wAJuzhUjg
+" frameborder="0" allowfullscreen></iframe>
+
+
+
 ## Members
 ### David Lozano, Code and Pixel Art ###
 ![](Captura3.PNG)
