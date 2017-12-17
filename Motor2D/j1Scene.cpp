@@ -101,7 +101,7 @@ bool j1Scene::Start()
 
 	if (level == level_1) {
 		highscore = 0;
-		score = 0;
+		score = last_lvl_score;
 		urns = 0;
 		LoadLevelUI();
 		if (timer_start)
@@ -116,7 +116,7 @@ bool j1Scene::Start()
 	}
 	if (level == level_2) {
 		highscore += score;
-		score = 0;
+		score = last_lvl_score;
 		urns = 0;
 		LoadLevelUI();
 		if (timer_start)
@@ -129,7 +129,7 @@ bool j1Scene::Start()
 	}
 	if (level == hidden_level) {
 		highscore += score;
-		score = 0;
+		score = last_lvl_score;
 		urns = 0;
 		LoadLevelUI();
 		if (timer_start)

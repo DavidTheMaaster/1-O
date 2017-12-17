@@ -95,6 +95,7 @@ public:
 	int urns = 0;
 	float time = 0;
 	int score = 0;
+	int last_lvl_score = 0;
 	int highscore = 0;
 	int highscore2 = 0;
 	bool timer_start = true;

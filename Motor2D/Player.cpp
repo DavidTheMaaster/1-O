@@ -456,6 +456,7 @@ void Player::Shoot()
 void Player::CheckIfChange() {
 
 	if (App->entities->lvl2) {
+		App->scene->last_lvl_score = App->scene->score;
 		App->scene->level = level_2;
 		App->scene->timer_start = true;
 		App->scene->changeMap = true;
