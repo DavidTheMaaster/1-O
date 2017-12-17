@@ -440,7 +440,7 @@ void j1Scene::UpdateLevelUI()
 
 		std::string s4 = std::to_string(total_time);
 		p2SString time_label = s4.c_str();
-		if (total_time >= 180) {
+		if (total_time >= 120) {
 			timer_ui->ChangeLabel(time_label.GetString(), RED);
 		}
 		else 
@@ -493,7 +493,7 @@ void j1Scene::Timer()
 
 	total_time = MiliToSeconds(currentTime);
 
-	if (total_time >= 180) {
+	if (total_time >= 120) {
 		if (tmp_time != total_time) {
 			score -= 5;
 		}
