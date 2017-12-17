@@ -5,6 +5,8 @@
 #include "j1Input.h"
 #include "p2Log.h"
 #include "Menu.h"
+#include "Pause.h"
+
 
 UIElement::UIElement(int x, int y, uint type, const SDL_Texture* texture, UIElement* parent)
 {
@@ -69,7 +71,7 @@ void UIElement::Update(float dt)
 			this->callback->UIEvent(this, state);
 			LOG("Mouse Left Click");
 		}
-		else if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP && state == L_MOUSE_PRESSED) {
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP && state == L_MOUSE_PRESSED) {
 			state = NO_STATE;
 			this->callback->UIEvent(this, state);
 			LOG("Mouse Stop Left Click");
@@ -87,6 +89,7 @@ void UIElement::Update(float dt)
 					}
 					mouse2.x = mouse_x;
 					App->menu->SetVolume();
+					App->pause->SetVolume();
 			}
 			
 		}
@@ -110,10 +113,12 @@ void UIElement::ChangeLabel(const char* text, uint colors)
 	fonts = this->font;
 	App->tex->UnLoad((SDL_Texture*)texture);
 	const SDL_Texture* tex = App->font->Print(text, color, fonts);
+	App->font->CalcSize(text, rect.w, rect.h, fonts);
 	texture = tex;
 }
 
 int UIElement::GetSliderValue(UIElement* zap, UIElement* slider)
 {
+
 	return ((zap->pos.x - slider->pos.x) * 100) / (slider->rect.w - zap->rect.w);
 }

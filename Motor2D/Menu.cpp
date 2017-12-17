@@ -69,24 +69,30 @@ bool Menu::Awake(pugi::xml_node& node)
 
 		while (i < j)
 		{
-			SDL_Rect r;
-			r.x = rect.attribute("x").as_int();
-			r.y = rect.attribute("y").as_int();
-			r.w = rect.attribute("w").as_int();
-			r.h = rect.attribute("h").as_int();
+			if (load_anim != nullptr)
+			{
+				SDL_Rect r;
+				r.x = rect.attribute("x").as_int();
+				r.y = rect.attribute("y").as_int();
+				r.w = rect.attribute("w").as_int();
+				r.h = rect.attribute("h").as_int();
 
-			load_anim->PushBack({ r.x,r.y,r.w,r.h });
+				load_anim->PushBack({ r.x,r.y,r.w,r.h });
 
-			rect = rect.next_sibling();
-			i = rect.attribute("id").as_int();
-			load_anim->loop = attributes.attribute("loop").as_bool();
-			load_anim->speed = attributes.attribute("speed").as_float();
+				rect = rect.next_sibling();
+				i = rect.attribute("id").as_int();
+				load_anim->loop = attributes.attribute("loop").as_bool();
+				load_anim->speed = attributes.attribute("speed").as_float();
+			}
+			else
+				i = j;
 
 		}
 
 		if (k == 0)
 			anim_speed[0] = load_anim->speed;
 		k++;
+		load_anim = nullptr;
 		animations = animations.next_sibling();
 
 	}
@@ -144,7 +150,6 @@ void Menu::LoadMenuUI()
 	App->gui->AddImage(257, 297, ui_texture, line, sheet);
 	logo = App->gui->AddImage(60,20,ui_texture, logo_anim, sheet);
 	hand = App->gui->AddImage(337, 420, ui_texture, hand_anim);
-
 }
 
 void Menu::LoadOptionUI()
@@ -160,11 +165,12 @@ void Menu::LoadOptionUI()
 	volume_bar = App->gui->AddSlider(85, 200, ui_texture, volume_anim, this, option_sheet);
 	volume_label = App->gui->AddLabel(50, -30, "VOLUME", BLACK, UPHEAVAL, 30, volume_bar);
 	volume_char = App->gui->AddLabel(80, 0, "100", BLACK, UPHEAVAL, 30, volume_bar);
-	fps_label = App->gui->AddLabel(80, 0, "30", BLACK, UPHEAVAL, 30, frame_rate_cap);
-	zap = App->gui->AddButton(91, 2, ui_texture, zap_anim, this, volume_bar);
+	std::string s = std::to_string(App->frame_rate);
+	p2SString frame_rate = s.c_str();
+	fps_label = App->gui->AddLabel(80, 0, (char*)frame_rate.GetString(), BLACK, UPHEAVAL, 30, frame_rate_cap);
+	zap = App->gui->AddButton(App->audio->volume * 2 - 11, 2, ui_texture, zap_anim, this, volume_bar);
 	fps_cap_label = App->gui->AddLabel(75, -30, "FPS", BLACK, UPHEAVAL, 30, frame_rate_cap);
-
-	zap->slider_value = 50;
+	zap->slider_value = App->audio->volume;
 	SetVolume();
 }
 
@@ -273,7 +279,6 @@ void Menu::OptionButtons()
 		{
 			zap->pos.x += 2;
 			App->audio->PlayFx(back_fx);
-			Mix_VolumeMusic(App->audio->volume++);
 			SetVolume();
 		}
 	}
@@ -283,7 +288,6 @@ void Menu::OptionButtons()
 		{
 			zap->pos.x -= 2;
 			App->audio->PlayFx(back_fx);
-			Mix_VolumeMusic(App->audio->volume--);
 			SetVolume();
 		}
 		if (App->audio->volume == 0)
@@ -458,16 +462,20 @@ void Menu::ResetMenu()
 
 void Menu::SetVolume()
 {	
-	if (zap->slider_value < 0)
-		App->audio->volume = 0;
-	else if (zap->slider_value > 100)
-		App->audio->volume = 100;
-	else
-		App->audio->volume = zap->slider_value;
+	if (zap != nullptr)
+	{
+		if (zap->slider_value < 0)
+			App->audio->volume = 0;
+		else if (zap->slider_value > 100)
+			App->audio->volume = 100;
+		else
+			App->audio->volume = zap->slider_value;
 
-	std::string s = std::to_string(App->audio->volume);
-	p2SString volume = s.c_str();
-	volume_char->ChangeLabel(volume.GetString(), BLACK);
+		std::string s = std::to_string(App->audio->volume);
+		p2SString volume = s.c_str();
+		volume_char->ChangeLabel(volume.GetString(), BLACK);
+		Mix_VolumeMusic(App->audio->volume);
+	}
 }
 
 void Menu::UpdateSpeed(float dt)

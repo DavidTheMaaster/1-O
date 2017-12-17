@@ -6,15 +6,22 @@
 #include "Button.h"
 #include "Image.h"
 #include "Label.h"
+#include "Slider.h"
 
 struct SDL_Tecture;
 
 enum Animations_Pause
 {
 	NO_ANIM,
-	BUTTON_PAUSE,
-	BUTTON_PAUSE_FOCUSED,
-	SHEET_PAUSE,
+	SHEET_PAUSE = 1,
+	EXIT_PAUSE = 3,
+	VOLUME_PAUSE = 5,
+	LEFT_ARROW_PAUSE = 6,
+	RIGHT_ARROW_PAUSE = 7,
+	ZAP_PAUSE = 10,
+	BUTTON_PAUSE = 11,
+	BUTTON_PAUSE_FOCUSED = 12,
+
 };
 
 class Pause : public j1Module
@@ -41,6 +48,8 @@ public:
 	void UnLoadOptions();
 	void OptionsButtons();
 
+	void SetVolume();
+
 private:
 	pugi::xml_document	animation_file;
 	pugi::xml_node animations;
@@ -54,11 +63,23 @@ private:
 	uint back_fx;
 
 	Image* sheet;
+	Image* option_sheet;
+
 	Button* resume_button;
 	Button* save_button;
 	Button* load_button;
 	Button* options_button;
 	Button* exit_game_button;
+	Button* exit_options_button;
+	Button* morevolume;
+	Button* lessvolume;
+	Button* morefps;
+	Button* lessfps;
+	Button* zap;
+	Button* frame_rate_cap;
+		
+
+	Slider* volume_bar;
 
 
 	Label* resume_label;
@@ -66,9 +87,22 @@ private:
 	Label* load_label;
 	Label* options_label;
 	Label* exit_game_label;
+	Label* volume_label;
+	Label* volume_char;
+	Label* fps_label;
+	Label* fps_cap_label;
 
+
+	bool options_opened = false;
+	bool options_loaded; 
 
 	Animation button_anim, button_focused_anim, sheet_anim;
+
+	Animation exit_button_anim;
+	Animation volume_anim;
+	Animation left_arrow_anim;
+	Animation right_arrow_anim;
+	Animation zap_anim;
 };
 
 

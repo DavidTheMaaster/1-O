@@ -73,23 +73,15 @@
         <frame id = "0" x = "399" y = "107" w = "22" h = "33"/>
         <attributes id = "10" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
       </zap>
-    </menu>
-
-    <pause>
       <button>
         <frame id = "0" x = "0" y = "479" w = "340" h = "54"/>
-        <attributes id = "1" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+        <attributes id = "11" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
       </button>
       <button_focused>
         <frame id = "0" x = "341" y = "479" w = "340" h = "54"/>
-        <attributes id = "2" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+        <attributes id = "12" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
       </button_focused>
-      <sheet>
-        <frame id = "0" x = "0" y = "0" w = "369" h = "479"/>
-        <attributes id = "3" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
-      </sheet>
-    </pause>
-
+    </menu>
     <ingame>
       <life>
         <frame id = "0" x = "370" y = "67" w = "40" h = "40"/>
