@@ -25,16 +25,20 @@ UIElement::UIElement(int x, int y, uint type, const SDL_Texture* texture, UIElem
 void UIElement::Draw(float dt)
 {
 
-	if (anim.GetCurrentFrame().w == 0)
-		current_animation = rect;
-	else
+	if (anim.GetCurrentFrame().w != 0)
+		rect = anim.GetCurrentFrame();
+
+
+	if (type == LABEL)
 	{
-		current_animation = anim.GetCurrentFrame();
-		rect = current_animation;
+		App->render->Blit(texture, pos.x, pos.y, {}, false, 0.0);
 	}
-	App->render->Blit(texture, pos.x, pos.y, &(current_animation), false, 0.0);
+	else
+		App->render->Blit(texture, pos.x, pos.y, &(rect), false, 0.0);
+
+
 	if (App->gui->debug) {
-		SDL_Rect rect2 = { pos.x, pos.y, current_animation.w, current_animation.h };
+		SDL_Rect rect2 = { pos.x, pos.y, rect.w, rect.h };
 		App->render->DrawQuad(rect2, 0, 255, 0, 255, false);
 	}
 

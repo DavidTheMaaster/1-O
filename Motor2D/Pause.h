@@ -101,6 +101,18 @@ private:
 	Animation left_arrow_anim;
 	Animation right_arrow_anim;
 	Animation zap_anim;
+
+
+	int	q;
+	int	w;
+	int	e;
+	int	r;
+	int	t;
+	int	y;
+	int	u;
+	int	i;
+
+	
 };
 
 

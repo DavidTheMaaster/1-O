@@ -143,6 +143,16 @@ void Pause::LoadPause()
 	options_label = App->gui->AddLabel(10, 5, "OPTION", BLACK, FREEPIXEL, 50, options_button);
 	exit_game_label = App->gui->AddLabel(10, 5, "EXIT GAME", BLACK, FREEPIXEL, 50, exit_game_button,500);
 
+	q = resume_label->pos.x;
+	w = resume_label->pos.y;
+	e = save_button->pos.y;
+	r = save_button->pos.y;
+	t = load_button->pos.y;
+	y = load_button->pos.y;
+	u = options_button->pos.y;
+	i = options_button->pos.y;
+
+
 
 }
 
