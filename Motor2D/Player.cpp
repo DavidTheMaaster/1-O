@@ -157,7 +157,7 @@ void Player::Update(float dt)
 		App->entities->justloaded = false;
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_DOWN) {
+	if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_RCTRL) == KEY_DOWN) {
 		
 		if (ammo > 0) {
 			Shoot();

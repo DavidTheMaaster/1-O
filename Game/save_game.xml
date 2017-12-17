@@ -9,14 +9,14 @@
 	<pause />
 	<scene>
 		<level level="0" />
-		<score score="3000" />
-		<ammo ammo="8" />
-		<player_lifes player_lifes="1" />
-		<urns urns="1" />
-		<time time="1" />
+		<score score="1260" />
+		<ammo ammo="4" />
+		<player_lifes player_lifes="5" />
+		<urns urns="2" />
+		<time time="2" />
 	</scene>
 	<entities>
-		<player_pos x="796" y="687" />
+		<player_pos x="595" y="516" />
 	</entities>
 	<particles />
 	<collision />
@@ -25,6 +25,6 @@
 	<gui />
 	<fadetoblack />
 	<renderer>
-		<camera x="-782" y="-454" />
+		<camera x="-380" y="-452" />
 	</renderer>
 </game_state>
