@@ -157,6 +157,7 @@ void Menu::LoadMenuUI()
 	hand = App->gui->AddImage(337, 420, ui_texture, hand_anim);
 	disclaimer = App->gui->AddLabel(30, 175, "DISCLAIMER: This is a work of fiction. Names, characters, places and incidents either are products of the author's imagination or are used fictitiously. Any resemblance to actual events or persons, living or dead, is entirely coincidental.", VERY_BLACK, MINECRAFT, 13, sheet, 325); textbox = App->gui->AddImage(17, 165, ui_texture, text_box_anim, sheet);
 	textbox = App->gui->AddImage(17, 165, ui_texture, text_box_anim, sheet);
+	App->scene->LoadHighScore();
 }
 
 void Menu::LoadOptionUI()

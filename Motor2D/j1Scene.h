@@ -76,7 +76,10 @@ public:
 
 	void LoadLoseScreen();
 
-	Label* lifes_ui, *urn_ui, *ammo_ui, *timer_ui, *score_ui;
+	void LoadHighScore();
+
+
+	Label* lifes_ui, *urn_ui, *ammo_ui, *timer_ui, *score_ui, *highscore_label, *highscore_number;
 	Image* lose_image;
 
 
@@ -92,6 +95,8 @@ public:
 	int urns = 0;
 	float time = 0;
 	int score = 0;
+	int highscore = 0;
+	int highscore2 = 0;
 	bool timer_start = true;
 
 private:

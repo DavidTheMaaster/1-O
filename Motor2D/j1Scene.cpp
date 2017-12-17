@@ -100,6 +100,7 @@ bool j1Scene::Start()
 	}
 
 	if (level == level_1) {
+		highscore = 0;
 		score = 0;
 		urns = 0;
 		LoadLevelUI();
@@ -113,6 +114,7 @@ bool j1Scene::Start()
 
 	}
 	if (level == level_2) {
+		highscore += score;
 		score = 0;
 		urns = 0;
 		LoadLevelUI();
@@ -124,6 +126,7 @@ bool j1Scene::Start()
 		App->map->Load("level2.tmx");
 	}
 	if (level == hidden_level) {
+		highscore += score;
 		score = 0;
 		urns = 0;
 		LoadLevelUI();
@@ -154,15 +157,19 @@ bool j1Scene::Start()
 	RELEASE_ARRAY(data);
 
 	if (level == congrats) {
+		highscore += score;
+		LoadHighScore();
 		App->audio->PlayMusic("audio/music/win_music.ogg");
 		App->map->Load("levelwin.tmx");
 		App->render->camera.x = 0; App->render->camera.y = 0;
+		App->entities->congrats = false;
 	}
 	else {
 		App->entities->Start();
 	}
 	
 	return true;
+
 }
 
 // Called each loop iteration
@@ -422,6 +429,29 @@ void j1Scene::UpdateLevelUI()
 void j1Scene::LoadLoseScreen()
 {
 	lose_image = App->gui->AddImage(0,0,lose_texture);
+}
+
+void j1Scene::LoadHighScore()
+{
+	if (highscore > highscore2)
+	{
+		highscore2 = highscore;
+	}
+	if (level == congrats)
+	{
+		std::string s = std::to_string(highscore2);
+		p2SString highscore_string = s.c_str();
+		highscore_label = App->gui->AddLabel(75, 320,"HIGHSCORE:", BLACK,FREEPIXEL,50);
+		highscore_number = App->gui->AddLabel(335, 320, (char*)highscore_string.GetString(), BLACK, FREEPIXEL, 50);
+	}
+
+	if (level == MENU && highscore2 > 0)
+	{
+		std::string s = std::to_string(highscore2);
+		p2SString highscore_string = s.c_str();
+		highscore_label = App->gui->AddLabel(240,200, "HIGHSCORE:", WHITE, FREEPIXEL, 40);
+		highscore_number = App->gui->AddLabel(320,250, (char*)highscore_string.GetString(), WHITE, FREEPIXEL, 50);
+	}
 }
 
 
