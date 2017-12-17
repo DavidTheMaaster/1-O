@@ -9,28 +9,33 @@
 Thanks for checking out our game. We are David Lozano and Joan Valiente from CITM.
 
 1-O is a platformer game made for the Game Development 1 subject from UPC-CITM. The main goal of this assignment is
-to create a simple platformer with two levels created with Tiled.
+to create a simple platformer with some levels created with Tiled, enemies with a pathfinding algorithm that follows the player, and UI.
 
 
+For the enemies, player, rewards, etc, we have created system that allows to spawn any kind of entity from Tiled.
+For the UI, we have done a similar system, that allows to create buttons, labels, sliders and images with it's basic functionalities.
 
+
+# 1-0
 In 1-O you're a guy from Catalonia and your objective is to arrive to the end of the levels to vote.
 
 
-Make it as fast as you can, collecting every urn and finishing with all your enemies to make more points!.
+Make it as fast as you can, collecting every urn and finishing with all your enemies to make more points!
+Thanks for playing and have fun!
 
 
 
 
 
 ## Members
-### David Lozano ###
+### David Lozano, Code and Pixel Art ###
 ![](Captura3.PNG)
 
 [GitHub](https://github.com/DavidTheMaaster)
 
 
 
-### Joan Valiente ###
+### Joan Valiente, Code and Game Design ###
 ![](Captura2.PNG)
 
 [GitHub](https://github.com/JoanValiente)
