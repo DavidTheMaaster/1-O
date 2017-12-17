@@ -139,7 +139,7 @@ void Pause::LoadPause()
 	save_label = App->gui->AddLabel(10, 5, "SAVE", BLACK, FREEPIXEL, 50, save_button);
 	load_label = App->gui->AddLabel(10, 5, "LOAD", BLACK, FREEPIXEL, 50, load_button);
 	options_label = App->gui->AddLabel(10, 5, "OPTION", BLACK, FREEPIXEL, 50, options_button);
-	exit_game_label = App->gui->AddLabel(10, 5, "EXIT GAME", BLACK, FREEPIXEL, 50, exit_game_button);
+	exit_game_label = App->gui->AddLabel(10, 5, "EXITGAME", BLACK, FREEPIXEL, 50, exit_game_button);
 
 }
 

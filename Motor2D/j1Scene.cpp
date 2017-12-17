@@ -360,19 +360,35 @@ void j1Scene::UpdateLevelUI()
 	{
 		std::string s = std::to_string(player_lifes);
 		p2SString lifes_label = s.c_str();
-		lifes_ui->ChangeLabel(lifes_label.GetString(), BLACK);
+		if (player_lifes < 2) {
+			lifes_ui->ChangeLabel(lifes_label.GetString(), RED);
+		}
+		else
+			lifes_ui->ChangeLabel(lifes_label.GetString(), BLACK);
 
 		std::string s2 = std::to_string(urns);
 		p2SString urn_label = s2.c_str();
-		urn_ui->ChangeLabel(urn_label.GetString(), BLACK);
+		if (urns == 3) {
+			urn_ui->ChangeLabel(urn_label.GetString(), YELLOW);
+		}
+		else
+			urn_ui->ChangeLabel(urn_label.GetString(), BLACK);
 
 		std::string s3 = std::to_string(ammo);
 		p2SString ammo_label = s3.c_str();
-		ammo_ui->ChangeLabel(ammo_label.GetString(), BLACK);
+		if (ammo <= 3) {
+			ammo_ui->ChangeLabel(ammo_label.GetString(), RED);
+		}
+		else 
+			ammo_ui->ChangeLabel(ammo_label.GetString(), BLACK);
 
 		std::string s4 = std::to_string(total_time);
 		p2SString time_label = s4.c_str();
-		timer_ui->ChangeLabel(time_label.GetString(), BLACK);
+		if (time >= 180) {
+			timer_ui->ChangeLabel(time_label.GetString(), RED);
+		}
+		else 
+			timer_ui->ChangeLabel(time_label.GetString(), BLACK);
 
 		if (score < 0)
 			score = 0;
