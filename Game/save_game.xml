@@ -8,7 +8,7 @@
 	<menu />
 	<pause />
 	<scene>
-		<level level="3" />
+		<level level="4" />
 		<score score="0" />
 		<ammo ammo="10" />
 		<player_lifes player_lifes="5" />

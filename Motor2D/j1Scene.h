@@ -92,7 +92,7 @@ public:
 	int urns = 0;
 	float time = 0;
 	int score = 0;
-
+	bool timer_start = true;
 
 private:
 	pugi::xml_node level_name;
@@ -108,6 +108,8 @@ private:
 	Animation * load_anim;
 	uint total_time;
 	uint start_time;
+
+	
 
 };
 

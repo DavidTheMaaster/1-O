@@ -6,7 +6,7 @@
 #include "p2List.h"
 
 #define DEFAULT_MUSIC_FADE_TIME 2.0f
-#define MAX_FX 50
+#define MAX_FX 100
 struct _Mix_Music;
 struct Mix_Chunk;
 
@@ -43,10 +43,11 @@ public:
 
 	int volume = 50;
 
+	Mix_Chunk*			fx[MAX_FX];
+
 private:
 
 	_Mix_Music*			music;
-	Mix_Chunk*			fx[MAX_FX];
 	uint				last = 1;
 };
 

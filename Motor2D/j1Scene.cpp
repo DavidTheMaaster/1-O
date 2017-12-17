@@ -103,7 +103,11 @@ bool j1Scene::Start()
 		score = 0;
 		urns = 0;
 		LoadLevelUI();
-		start_time = SDL_GetTicks();
+		if (timer_start)
+		{
+			start_time = SDL_GetTicks();
+			timer_start = false;
+		}
 		App->map->Load("level1.tmx");
 		App->audio->PlayMusic("audio/music/level_music.ogg");
 
@@ -112,14 +116,22 @@ bool j1Scene::Start()
 		score = 0;
 		urns = 0;
 		LoadLevelUI();
-		start_time = SDL_GetTicks();
+		if (timer_start)
+		{
+			start_time = SDL_GetTicks();
+			timer_start = false;
+		}
 		App->map->Load("level2.tmx");
 	}
 	if (level == hidden_level) {
 		score = 0;
 		urns = 0;
 		LoadLevelUI();
-		start_time = SDL_GetTicks();
+		if (timer_start)
+		{
+			start_time = SDL_GetTicks();
+			timer_start = false;
+		}
 		App->map->Load("hidden_level.tmx");
 	}
 	if (level == LOSE) 
@@ -148,7 +160,6 @@ bool j1Scene::Start()
 	else {
 		App->entities->Start();
 	}
-
 	
 	return true;
 }
@@ -311,11 +322,19 @@ void j1Scene::GetKeys()
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
 		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
 	}
-	/*
-	if (player_lifes == 0){
-	level = GameOverScreen;
-	App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
-	}*/
+	if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN) {
+		player_lifes = 0;
+	}
+	if (level == LOSE)
+	{
+		if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) {
+			level = MENU;
+			App->menu->ResetMenu();
+			App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
+		}
+	}
+
+	
 }
 
 void j1Scene::ButtonInteractions()
@@ -350,7 +369,7 @@ void j1Scene::LoadLevelUI()
 	urn_ui = App->gui->AddLabel(100, 20, "0", BLACK, MINECRAFT, 30);
 	ammo_ui = App->gui->AddLabel(860, 500, "10", BLACK, MINECRAFT, 30);
 	timer_ui = App->gui->AddLabel(450, 20, "100", BLACK, UPHEAVAL, 50);
-	score_ui = App->gui->AddLabel(900, 60, "200", BLACK, UPHEAVAL, 30);
+	score_ui = App->gui->AddLabel(880, 60, "200", BLACK, UPHEAVAL, 30);
 	UpdateLevelUI();
 }
 
@@ -384,7 +403,7 @@ void j1Scene::UpdateLevelUI()
 
 		std::string s4 = std::to_string(total_time);
 		p2SString time_label = s4.c_str();
-		if (time >= 180) {
+		if (total_time >= 180) {
 			timer_ui->ChangeLabel(time_label.GetString(), RED);
 		}
 		else 
@@ -412,7 +431,7 @@ void j1Scene::Timer()
 
 	currentTime = currentTime - start_time;
 
-	total_time = 300 - MiliToSeconds(currentTime);
+	total_time = MiliToSeconds(currentTime);
 
 	LOG("%i %i %i", start_time, currentTime, total_time);
 
