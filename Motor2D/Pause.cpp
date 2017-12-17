@@ -92,13 +92,12 @@ bool Pause::Start()
 	ui_texture = App->tex->Load("maps/UI.png");
 	button_focused_fx = App->audio->LoadFx("audio/fx/mouse_over.wav");
 	back_fx = App->audio->LoadFx("audio/fx/menu_back.wav");
-	//17
 	return true;
 }
 
 bool Pause::Update(float dt)
 {
-	if (App->scene->level != MENU && App->scene->level != OPTIONS && App->scene->level != MENU_PLAY)
+	if (App->scene->level == level_1 || App->scene->level == level_2 || App->scene->level == hidden_level)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		{
@@ -139,7 +138,7 @@ void Pause::LoadPause()
 	save_label = App->gui->AddLabel(10, 5, "SAVE", BLACK, FREEPIXEL, 50, save_button);
 	load_label = App->gui->AddLabel(10, 5, "LOAD", BLACK, FREEPIXEL, 50, load_button);
 	options_label = App->gui->AddLabel(10, 5, "OPTION", BLACK, FREEPIXEL, 50, options_button);
-	exit_game_label = App->gui->AddLabel(10, 5, "EXIT GAME", BLACK, FREEPIXEL, 50, exit_game_button);
+	exit_game_label = App->gui->AddLabel(10, 5, "EXIT GAME", BLACK, FREEPIXEL, 50, exit_game_button,500);
 
 }
 
