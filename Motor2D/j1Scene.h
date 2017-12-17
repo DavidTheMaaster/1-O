@@ -13,7 +13,6 @@ enum Levels
 	MENU,
 	OPTIONS,
 	MENU_PLAY,
-	MENU_CREDIT,
 	level_1,
 	level_2,
 	hidden_level,
@@ -75,8 +74,6 @@ public:
 	void CheckChange();
 
 	void LoadLoseScreen();
-
-	void OpeningAnimation();
 
 	Label* lifes_ui, *urn_ui, *ammo_ui, *timer_ui, *score_ui;
 	Image* lose_image;

@@ -40,7 +40,7 @@ enum FONTS
 	FREEPIXEL,
 	MINECRAFT,
 	UPHEAVAL,
-	ARIAL,
+	RNTG,
 };
 
 class j1Gui : public j1Module
