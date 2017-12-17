@@ -31,7 +31,7 @@
         <frame id = "26" x = "449" y = "119" w = "56" h = "59"/>
         <frame id = "27" x = "1" y = "178" w = "56" h = "59"/>
         <frame id = "28" x = "57" y = "178" w = "56" h = "59"/>
-        <attributes id = "0" speed = "15" loop = "false" offset_x = "0" offset_y = "0" size = "28"/>
+        <attributes id = "0" speed = "20" loop = "false" offset_x = "0" offset_y = "0" size = "28"/>
       </cross>
       <sheet>
         <frame id = "0" x = "0" y = "0" w = "369" h = "479"/>

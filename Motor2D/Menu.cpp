@@ -60,7 +60,9 @@ bool Menu::Awake(pugi::xml_node& node)
 			load_anim = &line;
 		if (current == LOGO)
 			load_anim = &logo_anim;
-		;
+		if (current == ZAP)
+			load_anim = &zap_anim;
+	
 
 		int i = rect.attribute("id").as_int();
 		int j = attributes.attribute("size").as_int();
@@ -151,9 +153,17 @@ void Menu::LoadOptionUI()
 	exit_options = App->gui->AddButton(275, 50, ui_texture, exit_button_anim, this, option_sheet);
 	morevolume = App->gui->AddButton(306, 200, ui_texture, right_arrow_anim, this, option_sheet);
 	lessvolume = App->gui->AddButton(40, 200, ui_texture, left_arrow_anim, this, option_sheet);
+	morefps = App->gui->AddButton(306, 300, ui_texture, right_arrow_anim, this, option_sheet);
+	lessfps = App->gui->AddButton(40, 300, ui_texture, left_arrow_anim, this, option_sheet);
+	frame_rate_cap = App->gui->AddImage(85, 300, ui_texture, volume_anim, option_sheet);
 	volume_bar = App->gui->AddSlider(85, 200, ui_texture, volume_anim, this, option_sheet);
-	slider_btn = App->gui->AddButton (88, 0, ui_texture, left_arrow_anim, this, volume_bar);
-	volume_char = App->gui->AddLabel(158, 150, "100", BLACK, UPHEAVAL, 50, option_sheet);
+	volume_label = App->gui->AddLabel(50, -30, "VOLUME", BLACK, UPHEAVAL, 30, volume_bar);
+	volume_char = App->gui->AddLabel(80, 0, "100", BLACK, UPHEAVAL, 30, volume_bar);
+	fps_label = App->gui->AddLabel(80, 0, "30", BLACK, UPHEAVAL, 30, frame_rate_cap);
+	zap = App->gui->AddButton(91, 2, ui_texture, zap_anim, this, volume_bar);
+	fps_cap_label = App->gui->AddLabel(75, -30, "FPS", BLACK, UPHEAVAL, 30, frame_rate_cap);
+
+	zap->slider_value = 50;
 	SetVolume();
 }
 
@@ -247,13 +257,20 @@ void Menu::OptionButtons()
 		App->gui->DeleteUI(volume_char);
 		App->gui->DeleteUI(lessvolume);
 		App->gui->DeleteUI(volume_bar);
-		App->gui->DeleteUI(slider_btn);
+		App->gui->DeleteUI(zap);
+		App->gui->DeleteUI(morefps);
+		App->gui->DeleteUI(lessfps);
+		App->gui->DeleteUI(fps_label);
+		App->gui->DeleteUI(frame_rate_cap);
+		App->gui->DeleteUI(volume_label);
+		App->gui->DeleteUI(fps_cap_label);
 		ResetMenu();
 	}
 	if (morevolume->state == L_MOUSE_PRESSED)
 	{
 		if (App->audio->volume < 100)
 		{
+			zap->pos.x += 2;
 			App->audio->PlayFx(back_fx);
 			Mix_VolumeMusic(App->audio->volume++);
 			SetVolume();
@@ -263,12 +280,31 @@ void Menu::OptionButtons()
 	{
 		if (App->audio->volume > 0)
 		{
+			zap->pos.x -= 2;
 			App->audio->PlayFx(back_fx);
 			Mix_VolumeMusic(App->audio->volume--);
 			SetVolume();
 		}
 		if (App->audio->volume == 0)
 			Mix_VolumeMusic(0);
+	}
+
+	if (morefps->state == L_MOUSE_PRESSED)
+	{
+		if (App->frame_rate == 30)
+		{
+			App->frame_rate = 60;
+			fps_label->ChangeLabel("60", BLACK);
+		}
+	}
+	if (lessfps->state == L_MOUSE_PRESSED)
+	{
+		if (App->frame_rate == 60)
+		{
+			App->frame_rate = 30;
+			fps_label->ChangeLabel("30", BLACK);
+		}
+
 	}
 }
 
@@ -421,6 +457,13 @@ void Menu::ResetMenu()
 
 void Menu::SetVolume()
 {	
+	if (zap->slider_value < 0)
+		App->audio->volume = 0;
+	else if (zap->slider_value > 100)
+		App->audio->volume = 100;
+	else
+		App->audio->volume = zap->slider_value;
+
 	std::string s = std::to_string(App->audio->volume);
 	p2SString volume = s.c_str();
 	volume_char->ChangeLabel(volume.GetString(), BLACK);

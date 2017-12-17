@@ -198,7 +198,7 @@ void j1App::PrepareUpdate()
 {
 	BROFILER_CATEGORY("PrepareUpdate", Profiler::Color::SkyBlue);
 
-	frame_count++;
+
 	last_sec_frame_count++;
 	if (paused)
 		dt = 0;
@@ -211,7 +211,7 @@ void j1App::PrepareUpdate()
 void j1App::FinishUpdate()
 {
 	BROFILER_CATEGORY("FinishUpdate", Profiler::Color::Crimson);
-
+	frame_count++;
 	if (want_to_save == true)
 		SavegameNow();
 

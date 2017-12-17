@@ -4,6 +4,7 @@
 #include "UIElement.h"
 #include "j1Input.h"
 #include "p2Log.h"
+#include "Menu.h"
 
 UIElement::UIElement(int x, int y, uint type, const SDL_Texture* texture, UIElement* parent)
 {
@@ -24,8 +25,10 @@ void UIElement::Draw(float dt)
 	if (anim.GetCurrentFrame().w == 0)
 		current_animation = rect;
 	else
+	{
 		current_animation = anim.GetCurrentFrame();
-
+		rect = current_animation;
+	}
 	App->render->Blit(texture, pos.x, pos.y, &(current_animation), false, 0.0);
 
 }
@@ -76,17 +79,19 @@ void UIElement::Update(float dt)
 		{
 			if (parent != nullptr)
 			{
-				if (mouse_x != mouse2.x || mouse_y != mouse2.y) {
-					App->input->GetMouseMotion(mouse_movement.x, mouse_movement.y);
-					if (mouse_x > parent->pos.x && mouse_x < parent->rect.w) {
+				App->input->GetMouseMotion(mouse_movement.x, mouse_movement.y);
+					int nextposition = pos.x + mouse_movement.x;
+					if (mouse_x != mouse2.x && (nextposition >= parent->pos.x - 2 && nextposition <= (parent->pos.x - 20 + parent->current_animation.w)))
+					{
 						pos.x += mouse_movement.x;
-						mouse2.x = mouse_x;
 					}
-				}
+					mouse2.x = mouse_x;
+					App->menu->SetVolume();
 			}
 			
-			slider_value = GetSliderValue(this, parent);
 		}
+		if(parent->type == SLIDER)
+			slider_value = GetSliderValue(this, parent);
 
 	}
 	
@@ -110,5 +115,5 @@ void UIElement::ChangeLabel(const char* text, uint colors)
 
 int UIElement::GetSliderValue(UIElement* zap, UIElement* slider)
 {
-	return zap->pos.x * 100 / slider->rect.w - zap->rect.w;
+	return ((zap->pos.x - slider->pos.x) * 100) / (slider->rect.w - zap->rect.w);
 }

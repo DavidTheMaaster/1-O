@@ -22,6 +22,7 @@ enum UiAnimations
 	RIGHT_ARROW,
 	LINE,
 	LOGO,
+	ZAP,
 };
 
 class Menu : public j1Module
@@ -72,11 +73,12 @@ private:
 	Animation right_arrow_anim;
 	Animation cross_anim;
 	Animation logo_anim;
+	Animation zap_anim;
 
 
-	Button* play, *options, *exit, *exit_options, *morevolume, *lessvolume, *new_game_button, *continue_button, *slider_btn;
-	Image* sheet, *option_sheet, *hand, *cross, *logo;
-	Label* volume_char, *continue_label, *new_game_label;
+	Button* play, *options, *exit, *exit_options, *morevolume, *lessvolume, *new_game_button, *continue_button, *zap, *morefps, *lessfps;
+	Image* sheet, *option_sheet, *hand, *cross, *logo, *frame_rate_cap;
+	Label* volume_char, *continue_label, *new_game_label, *volume_label, *fps_label, *fps_cap_label;
 	Slider* volume_bar;
 
 	bool play_ui, options_ui, exit_ui, new_game_ui, continue_ui;
