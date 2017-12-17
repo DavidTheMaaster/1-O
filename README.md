@@ -54,7 +54,9 @@ Make it as fast as you can, collecting every urn and finishing with all your ene
 #### Space (hold): Plane
 
 
-#### ESC: Pause Options
+#### Left Ctrl: Shoot
+
+ #### ESC: Pause Options
 
 
 #### Mouse: Navigate
@@ -63,9 +65,9 @@ Make it as fast as you can, collecting every urn and finishing with all your ene
 ## Download the latest version of 1-0 [here](https://github.com/Acaree/WatermelonSquad/releases/download/1.0/Gunbird.1.0.zip)
 
 
-## Link to our repository https://github.com/DavidTheMaaster/1-0
+## Link to our repository [here](https://github.com/DavidTheMaaster/1-0
 
-!
+)
 
 
 
