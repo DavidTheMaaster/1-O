@@ -15,6 +15,7 @@ class Slider;
 
 enum COLOURS
 {
+	VERY_BLACK,
 	BLACK,
 	WHITE,
 	RED,
@@ -38,7 +39,8 @@ enum FONTS
 	FIPPS,
 	FREEPIXEL,
 	MINECRAFT,
-	UPHEAVAL
+	UPHEAVAL,
+	RNTG,
 };
 
 class j1Gui : public j1Module
@@ -72,7 +74,7 @@ public:
 	bool Update(float dt);
 
 
-	Label* AddLabel(int x, int y, char* text, uint color, uint font, int size, UIElement* parent = nullptr);
+	Label* AddLabel(int x, int y, char* text, uint color, uint font, int size, UIElement* parent = nullptr, Uint32 wrap = 100);
 	Image* AddImage(int x, int y, SDL_Texture* texture, Animation anim = {}, UIElement* parent = nullptr);
 	Button* AddButton(int x, int y, SDL_Texture* texture, Animation anim = {}, j1Module* callback = nullptr, UIElement* parent = nullptr);
 	Slider* AddSlider(int x, int y, SDL_Texture* texture, Animation anim = {}, j1Module* callback = nullptr, UIElement* parent = nullptr);

@@ -62,6 +62,8 @@ bool Menu::Awake(pugi::xml_node& node)
 			load_anim = &logo_anim;
 		if (current == ZAP)
 			load_anim = &zap_anim;
+		if (current == TEXT_BOX)
+			load_anim = &text_box_anim;
 	
 
 		int i = rect.attribute("id").as_int();
@@ -150,6 +152,9 @@ void Menu::LoadMenuUI()
 	App->gui->AddImage(257, 297, ui_texture, line, sheet);
 	logo = App->gui->AddImage(60,20,ui_texture, logo_anim, sheet);
 	hand = App->gui->AddImage(337, 420, ui_texture, hand_anim);
+	disclaimer = App->gui->AddLabel(30, 175, "DISCLAIMER: This is a work of fiction. Names, characters, places and incidents either are products of the author's imagination or are used fictitiously. Any resemblance to actual events or persons, living or dead, is entirely coincidental.", VERY_BLACK, FREEPIXEL, 13, sheet, 325);
+	textbox = App->gui->AddImage(17, 165, ui_texture, text_box_anim, sheet);
+
 }
 
 void Menu::LoadOptionUI()

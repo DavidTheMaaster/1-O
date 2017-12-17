@@ -4,6 +4,7 @@
 #include "j1Module.h"
 #include "Animation.h"
 #include "Label.h"
+#include "Image.h"
 
 
 
@@ -16,6 +17,7 @@ enum Levels
 	level_2,
 	hidden_level,
 	congrats,
+	LOSE,
 };
 
 enum InGameUI
@@ -71,7 +73,11 @@ public:
 
 	void CheckChange();
 
+	void LoadLoseScreen();
+
 	Label* lifes_ui, *urn_ui, *ammo_ui, *timer_ui, *score_ui;
+	Image* lose_image;
+
 
 public:
 	int level = 0;
@@ -89,7 +95,7 @@ public:
 
 private:
 	pugi::xml_node level_name;
-	SDL_Texture* ui_texture;
+	SDL_Texture* ui_texture,* lose_texture;
 	Animation lifes_anim, urn_anim, ammo_anim;
 
 	pugi::xml_document	animation_file;

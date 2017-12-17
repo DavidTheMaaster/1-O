@@ -23,6 +23,7 @@ enum UiAnimations
 	LINE,
 	LOGO,
 	ZAP,
+	TEXT_BOX = 13,
 };
 
 class Menu : public j1Module
@@ -77,8 +78,8 @@ public:
 
 
 	Button* play, *options, *exit, *exit_options, *morevolume, *lessvolume, *new_game_button, *continue_button, *zap, *morefps, *lessfps;
-	Image* sheet, *option_sheet, *hand, *cross, *logo, *frame_rate_cap;
-	Label* volume_char, *continue_label, *new_game_label, *volume_label, *fps_label, *fps_cap_label;
+	Image* sheet, *option_sheet, *hand, *cross, *logo, *frame_rate_cap, *textbox;
+	Label* volume_char, *continue_label, *new_game_label, *volume_label, *fps_label, *fps_cap_label, *disclaimer;
 	Slider* volume_bar;
 
 	bool play_ui, options_ui, exit_ui, new_game_ui, continue_ui;

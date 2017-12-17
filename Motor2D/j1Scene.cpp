@@ -90,6 +90,7 @@ bool j1Scene::Start()
 	
 	level_change_fx = App->audio->LoadFx("audio/fx/change_level.wav");
 	ui_texture = App->tex->Load("maps/UI.png");
+	lose_texture = App->tex->Load("maps/lose_screen.png");
 	
 
 	if (level == MENU)
@@ -118,7 +119,12 @@ bool j1Scene::Start()
 		start_time = SDL_GetTicks();
 		App->map->Load("hidden_level.tmx");
 	}
-	
+	if (level == LOSE) 
+	{
+		LoadLoseScreen();
+		App->audio->PlayMusic("audio/music/lose_music.ogg");
+	}
+
 
 	changeMap = false;
 
@@ -167,6 +173,12 @@ bool j1Scene::Update(float dt)
 	if (App->paused)
 		App->render->DrawQuad({ 0,0,1920,1080 }, 0, 0, 0, 175, true, false);
 
+	if (player_lifes == 0)
+	{
+		level = LOSE;
+		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1);
+		player_lifes = 5;
+	}
 	return ret;
 }
 
@@ -364,6 +376,12 @@ void j1Scene::UpdateLevelUI()
 
 	}
 }
+
+void j1Scene::LoadLoseScreen()
+{
+	lose_image = App->gui->AddImage(0,0,lose_texture);
+}
+
 
 void j1Scene::Timer()
 {

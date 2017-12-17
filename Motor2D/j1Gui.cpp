@@ -96,7 +96,7 @@ const SDL_Texture* j1Gui::GetAtlas() const
 
 // class Gui ---------------------------------------------------
 
-Label* j1Gui::AddLabel(int x, int y, char* text, uint colors, uint fonts, int size, UIElement* parent)
+Label* j1Gui::AddLabel(int x, int y, char* text, uint colors, uint fonts, int size, UIElement* parent, Uint32 wrap)
 {
 	SDL_Color color;
 
@@ -104,7 +104,7 @@ Label* j1Gui::AddLabel(int x, int y, char* text, uint colors, uint fonts, int si
 	char* path = GetFont(fonts);
 	_TTF_Font* font = App->font->Load(path, size);
 
-	const SDL_Texture* tex = App->font->Print(text, color, font);
+	const SDL_Texture* tex = App->font->Print(text, color, font, wrap);
 
 	Label* label = new Label(x, y, LABEL, tex, parent);
 	elements.add((UIElement*)label);
@@ -169,6 +169,11 @@ SDL_Color j1Gui::GetColor(int color)
 
 	switch (color)
 	{
+	case VERY_BLACK:
+		ret.r = 0;
+		ret.g = 0;
+		ret.b = 0;
+		break;
 	case BLACK:
 		ret.r = 30;
 		ret.g = 30;
@@ -221,6 +226,9 @@ char * j1Gui::GetFont(uint font)
 		break;
 	case UPHEAVAL:
 		path = "fonts/Upheaval.ttf";
+		break;
+	case RNTG:
+		path = "fonts/RNTG.ttf";
 		break;
 	default:
 		break;
