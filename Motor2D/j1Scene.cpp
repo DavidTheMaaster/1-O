@@ -154,6 +154,7 @@ bool j1Scene::Start()
 	RELEASE_ARRAY(data);
 
 	if (level == congrats) {
+		App->audio->PlayMusic("audio/music/win_music.ogg");
 		App->map->Load("levelwin.tmx");
 		App->render->camera.x = 0; App->render->camera.y = 0;
 	}
@@ -325,7 +326,7 @@ void j1Scene::GetKeys()
 	if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN) {
 		player_lifes = 0;
 	}
-	if (level == LOSE)
+	if (level == LOSE || level == congrats)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) {
 			level = MENU;
