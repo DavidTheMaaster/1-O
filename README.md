@@ -73,17 +73,15 @@ Make it as fast as you can, collecting every urn and finishing with all your ene
 
 ![]
 
-![]
-
-![]
-
-![]
 
 
 
 
 
-# LICENCE
+
+
+
+![]# LICENCE
 Copyright JS Foundation and other contributors, https://js.foundation/
 
 This software consists of voluntary contributions made by many
