@@ -105,6 +105,7 @@ bool j1Scene::Start()
 		last_lvl_score = 0;
 		score = last_lvl_score;
 		urns = 0;
+		player_lifes = 0;
 		LoadLevelUI();
 		App->pause->Start();
 		if (timer_start)
@@ -114,7 +115,7 @@ bool j1Scene::Start()
 			tmp_time = 0;
 		}
 		App->map->Load("level1.tmx");
-	//	App->audio->PlayMusic("audio/music/level_music.ogg");
+		App->audio->PlayMusic("audio/music/level_music.ogg");
 
 	}
 	if (level == level_2) {
