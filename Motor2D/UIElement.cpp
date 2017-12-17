@@ -38,8 +38,11 @@ void UIElement::Draw(float dt)
 
 
 	if (App->gui->debug) {
+
 		SDL_Rect rect2 = { pos.x, pos.y, rect.w, rect.h };
-		App->render->DrawQuad(rect2, 0, 255, 0, 255, false);
+
+		App->render->DrawQuad({ rect2 }, 0, 255, 0, 255, false);
+
 	}
 
 }
@@ -93,7 +96,7 @@ void UIElement::Update(float dt)
 			{
 				App->input->GetMouseMotion(mouse_movement.x, mouse_movement.y);
 					int nextposition = pos.x + mouse_movement.x;
-					if (mouse_x != mouse2.x && (nextposition >= parent->pos.x - 2 && nextposition <= (parent->pos.x - 20 + parent->current_animation.w)))
+					if (mouse_x != mouse2.x && (nextposition >= parent->pos.x - 2 && nextposition <= (parent->pos.x - 20 + parent->rect.w)))
 					{
 						pos.x += mouse_movement.x;
 					}
