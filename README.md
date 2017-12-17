@@ -29,8 +29,7 @@ Thanks for playing and have fun!
 
 ## Gameplay
 
-<iframe width="560" height="315" src="https://youtu.be/N-wAJuzhUjg
-" frameborder="0" allowfullscreen></iframe>
+<iframe width="854" height="480" src="https://www.youtube.com/embed/N-wAJuzhUjg" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
 
 
 
