@@ -33,7 +33,7 @@ Make it as fast as you can, collecting every urn and finishing with all your ene
 ### Joan Valiente ###
 ![](Captura2.PNG)
 
-[GitHub](https://github.com/JoanValiente) # Game Controls
+[GitHub](https://github.com/JoanValiente)# Game Controls
 
 
 
