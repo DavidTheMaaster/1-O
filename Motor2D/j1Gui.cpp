@@ -38,7 +38,6 @@ bool j1Gui::Awake(pugi::xml_node& conf)
 bool j1Gui::Start()
 {
 	atlas = App->tex->Load(atlas_file_name.GetString());
-	debug = false;
 	return true;
 }
 
@@ -51,19 +50,16 @@ bool j1Gui::PreUpdate()
 bool j1Gui::Update(float dt)
 {
 	BROFILER_CATEGORY("GUI Update", Profiler::Color::CornflowerBlue);
+	p2List_item<UIElement*> *it = elements.start;
 	if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
 		debug = !debug;
 	}
-	p2List_item<UIElement*> *it = elements.start;
 
 
 	while (it != nullptr)
 	{
 		it->data->Draw(dt);
 		it->data->Update(dt);
-		if (debug) {
-			it->data->DebugDraw(dt);
-		}
 		it = it->next;
 	}
 

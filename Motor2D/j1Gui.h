@@ -84,9 +84,8 @@ public:
 
 	SDL_Color GetColor(int color);
 	char* GetFont(uint font);
-
+	bool debug = false;
 private:
-	bool debug;
 	SDL_Texture* atlas;
 	p2SString atlas_file_name;
 	p2List<UIElement*> elements;
