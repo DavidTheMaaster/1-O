@@ -105,7 +105,7 @@ bool j1Scene::Start()
 		last_lvl_score = 0;
 		score = last_lvl_score;
 		urns = 0;
-		player_lifes = 0;
+		player_lifes = 5;
 		LoadLevelUI();
 		App->pause->Start();
 		if (timer_start)
