@@ -24,6 +24,7 @@ enum UiAnimations
 	LOGO,
 	ZAP,
 	TEXT_BOX = 13,
+	CREDITS,
 };
 
 class Menu : public j1Module
@@ -45,10 +46,13 @@ public:
 	void LoadMenuUI();
 	void LoadOptionUI();
 	void LoadPlayUI();
+	void LoadCredits();
+	void UnLoadCredits();
 
 	void MenuButtons();
 	void OptionButtons();
 	void PlayButtons();
+	void CreditButton();
 
 	void SetVolume();
 	void UpdateSpeed(float dt);
@@ -75,11 +79,12 @@ public:
 	Animation cross_anim;
 	Animation logo_anim;
 	Animation zap_anim;
+	Animation credit_anim;
 
 
-	Button* play, *options, *exit, *exit_options, *morevolume, *lessvolume, *new_game_button, *continue_button, *zap, *morefps, *lessfps;
+	Button* play, *options, *exit, *exit_options, *morevolume, *lessvolume, *new_game_button, *continue_button, *zap, *morefps, *lessfps, *credits;
 	Image* sheet, *option_sheet, *hand, *cross, *logo, *frame_rate_cap, *textbox;
-	Label* volume_char, *continue_label, *new_game_label, *volume_label, *fps_label, *fps_cap_label, *disclaimer;
+	Label* volume_char, *continue_label, *new_game_label, *volume_label, *fps_label, *fps_cap_label, *disclaimer, *license, *authors;
 	Slider* volume_bar;
 
 	bool play_ui, options_ui, exit_ui, new_game_ui, continue_ui;

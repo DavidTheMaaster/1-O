@@ -227,8 +227,8 @@ char * j1Gui::GetFont(uint font)
 	case UPHEAVAL:
 		path = "fonts/Upheaval.ttf";
 		break;
-	case RNTG:
-		path = "fonts/RNTG.ttf";
+	case ARIAL:
+		path = "fonts/Arial.ttf";
 		break;
 	default:
 		break;

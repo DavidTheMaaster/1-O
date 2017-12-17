@@ -13,6 +13,7 @@ enum Levels
 	MENU,
 	OPTIONS,
 	MENU_PLAY,
+	MENU_CREDIT,
 	level_1,
 	level_2,
 	hidden_level,

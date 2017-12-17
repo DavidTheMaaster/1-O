@@ -100,6 +100,7 @@ bool j1Scene::Start()
 	}
 
 	if (level == level_1) {
+		score = 0;
 		urns = 0;
 		LoadLevelUI();
 		start_time = SDL_GetTicks();
@@ -108,12 +109,14 @@ bool j1Scene::Start()
 
 	}
 	if (level == level_2) {
+		score = 0;
 		urns = 0;
 		LoadLevelUI();
 		start_time = SDL_GetTicks();
 		App->map->Load("level2.tmx");
 	}
 	if (level == hidden_level) {
+		score = 0;
 		urns = 0;
 		LoadLevelUI();
 		start_time = SDL_GetTicks();
@@ -327,6 +330,9 @@ void j1Scene::ButtonInteractions()
 		break;
 	case MENU_PLAY:
 		App->menu->PlayButtons();
+		break;
+	case MENU_CREDIT:
+		App->menu->CreditButton();
 		break;
 	default:
 		break;
