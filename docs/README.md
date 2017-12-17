@@ -11,30 +11,29 @@ Thanks for checking out our game. We are David Lozano and Joan Valiente from CIT
 1-O is a platformer game made for the Game Development 1 subject from UPC-CITM. The main goal of this assignment is
 to create a simple platformer with two levels created with Tiled.
 
-![]
+
 
 In 1-O you're a guy from Catalonia and your objective is to arrive to the end of the levels to vote.
 
-![]
-Make it as fast as you can, collecting every urn and finishing with all your enemies to make more points!.![]
+
+Make it as fast as you can, collecting every urn and finishing with all your enemies to make more points!.
 
 
 
 
 
 ## Members
-![]
-### David Lozano ###
+ ### David Lozano ###
 ![](Captura3.PNG)
 
-[GitHub Link](https://github.com/DavidTheMaaster)
+[GitHub](https://github.com/DavidTheMaaster)
 
 
 
 ### Joan Valiente ###
 ![](Captura2.PNG)
 
-[GitHub](https://github.com/JoanValiente)## Game Controls
+[GitHub](https://github.com/JoanValiente) ##Game Controls
 
 #### A: Move Left 
 
@@ -42,13 +41,11 @@ Make it as fast as you can, collecting every urn and finishing with all your ene
 
 #### Space (hold): Plane #### ESC: Pause Options
  #### Mouse: Navigate
- ##Download the latest version of 1-0 [here](https://github.com/Acaree/WatermelonSquad/releases/download/1.0/Gunbird.1.0.zip)
-## Look for more repositorie [wiki](https://github.com/Acaree/WatermelonSquad/wiki)
-## Link to our repository (https://github.com/DavidTheMaaster/1-0)![]![]
+ ## Download the latest version of 1-0 [here](https://github.com/Acaree/WatermelonSquad/releases/download/1.0/Gunbird.1.0.zip)## Link to our repository https://github.com/DavidTheMaaster/1-0
 
 
 
-#LICENCE
+# LICENCE
 Copyright JS Foundation and other contributors, https://js.foundation/
 
 This software consists of voluntary contributions made by many
