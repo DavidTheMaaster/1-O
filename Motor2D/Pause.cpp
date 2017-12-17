@@ -104,8 +104,12 @@ bool Pause::Update(float dt)
 			App->paused = !App->paused;
 			if (App->paused)
 				LoadPause();
+			
 			else
+			{
 				UnloadPause();
+				UnLoadOptions();
+			}
 		}
 	}
 

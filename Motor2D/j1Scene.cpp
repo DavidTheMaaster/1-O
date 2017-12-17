@@ -411,7 +411,7 @@ void j1Scene::UnLoadLevelUI()
 
 void j1Scene::UpdateLevelUI()
 {
-	/*
+	
 	if (lifes_ui != nullptr)
 	{
 		std::string s = std::to_string(player_lifes);
@@ -452,7 +452,7 @@ void j1Scene::UpdateLevelUI()
 		p2SString score_label = s5.c_str();
 		score_ui->ChangeLabel(score_label.GetString(), BLACK);
 
-	}*/
+	}
 }
 
 void j1Scene::LoadLoseScreen()

@@ -67,9 +67,6 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-
-	const SDL_Texture* GetAtlas() const;
-
 	// Gui creation functions
 	bool Update(float dt);
 
@@ -86,9 +83,6 @@ public:
 	char* GetFont(uint font);
 	bool debug = false;
 
-	SDL_Texture* atlas = nullptr;
-
-	p2SString atlas_file_name;
 	p2List<UIElement*> elements;
 
 

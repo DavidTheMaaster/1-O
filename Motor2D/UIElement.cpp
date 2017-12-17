@@ -8,6 +8,7 @@
 #include "Pause.h"
 
 
+
 UIElement::UIElement(int x, int y, uint type, const SDL_Texture* texture, UIElement* parent)
 {
 	this->texture = texture;

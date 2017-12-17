@@ -26,10 +26,7 @@ j1Gui::~j1Gui()
 // Called before render is available
 bool j1Gui::Awake(pugi::xml_node& conf)
 {
-	LOG("Loading GUI atlas");
 	bool ret = true;
-
-	atlas_file_name = conf.child("atlas").attribute("file").as_string("");
 
 	return ret;
 }
@@ -37,7 +34,6 @@ bool j1Gui::Awake(pugi::xml_node& conf)
 // Called before the first frame
 bool j1Gui::Start()
 {
-	atlas = App->tex->Load(atlas_file_name.GetString());
 	return true;
 }
 
@@ -89,15 +85,9 @@ bool j1Gui::CleanUp()
 	}
 	elements.clear();
 
-	App->tex->UnLoad(atlas);
-
 	return true;
 }
-// const getter for atlas
-const SDL_Texture* j1Gui::GetAtlas() const
-{
-	return atlas;
-}
+
 
 // class Gui ---------------------------------------------------
 
