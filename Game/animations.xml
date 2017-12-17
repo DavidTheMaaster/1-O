@@ -85,6 +85,10 @@
         <frame id = "0" x = "0" y = "533" w = "340" h = "103"/>
         <attributes id = "13" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
       </text_box>
+      <credits>
+        <frame id = "0" x = "340" y = "533" w = "67" h = "13"/>
+        <attributes id = "14" speed = "0" loop = "false" offset_x = "0" offset_y = "0" size = "1"/>
+      </credits>
     </menu>
     <ingame>
       <life>
@@ -104,8 +108,7 @@
     
     </ingame>
     
-  </ui>
-  
+  </ui>  
  
   <particles>
     <shoot>
@@ -133,6 +136,13 @@
       <frame id = "6" x = "0" y = "0" w = "0" h = "0"/>
       <attributes id = "1" speed = "20" loop = "false" offset_x = "0" offset_y = "0" size = "6" life = "500"/>
     </explosion>
+    <smoke>
+      <frame id = "0" x = "1" y = "1" w = "156" h = "128"/>
+      <frame id = "1" x = "157" y = "1" w = "156" h = "128"/>
+      <frame id = "2" x = "313" y = "1" w = "156" h = "128"/>
+      <frame id = "3" x = "469" y = "1" w = "156" h = "128"/>
+      <attributes id = "1" speed = "20" loop = "true" offset_x = "0" offset_y = "0" size = "3" life = "1000"/>
+    </smoke>
   </particles>
   
   

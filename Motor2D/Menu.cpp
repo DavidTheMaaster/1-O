@@ -16,6 +16,7 @@ Menu::Menu()
 	name.create("menu");
 }
 
+
 Menu::~Menu()
 {
 }
@@ -64,7 +65,8 @@ bool Menu::Awake(pugi::xml_node& node)
 			load_anim = &zap_anim;
 		if (current == TEXT_BOX)
 			load_anim = &text_box_anim;
-	
+		if (current == CREDITS)
+			load_anim = &credit_anim;
 
 		int i = rect.attribute("id").as_int();
 		int j = attributes.attribute("size").as_int();
@@ -150,9 +152,10 @@ void Menu::LoadMenuUI()
 	App->gui->AddImage(27, 297, ui_texture, line, sheet);
 	App->gui->AddImage(143, 297, ui_texture, line, sheet);
 	App->gui->AddImage(257, 297, ui_texture, line, sheet);
-	logo = App->gui->AddImage(60,20,ui_texture, logo_anim, sheet);
+	logo = App->gui->AddImage(60, 20, ui_texture, logo_anim, sheet);
+	credits = App->gui->AddButton(290, 440, ui_texture, credit_anim, this, sheet);
 	hand = App->gui->AddImage(337, 420, ui_texture, hand_anim);
-	disclaimer = App->gui->AddLabel(30, 175, "DISCLAIMER: This is a work of fiction. Names, characters, places and incidents either are products of the author's imagination or are used fictitiously. Any resemblance to actual events or persons, living or dead, is entirely coincidental.", VERY_BLACK, FREEPIXEL, 13, sheet, 325);
+	disclaimer = App->gui->AddLabel(30, 175, "DISCLAIMER: This is a work of fiction. Names, characters, places and incidents either are products of the author's imagination or are used fictitiously. Any resemblance to actual events or persons, living or dead, is entirely coincidental.", VERY_BLACK, MINECRAFT, 13, sheet, 325);
 	textbox = App->gui->AddImage(17, 165, ui_texture, text_box_anim, sheet);
 
 }
@@ -192,6 +195,24 @@ void Menu::LoadPlayUI()
 
 }
 
+void Menu::LoadCredits()
+{
+	sheet = App->gui->AddImage(490, 35, ui_texture, sheet_anim);
+	exit_options = App->gui->AddButton(275, 10, ui_texture, exit_button_anim, this, sheet);
+	authors = App->gui->AddLabel(20, 70, "AUTHORS: DAVID LOZANO & JOAN VALIENTE", BLACK, ARIAL, 18, sheet, 300);
+	license = App->gui->AddLabel(20, 90, "ACopyright JS Foundation and other contributors, https://js.foundation/This software consists of voluntary contributions made by many individuals.For exact contribution history, see the revision history available at https ://github.com/DavidTheMaaster/1-O The following license applies to all parts of this software except as documented below : Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files(the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions : The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. All files located in the node_modules and external directories are externally maintained libraries used by this software which have their own licenses; we recommend you read them, as their terms may differ from the terms above.", BLACK, ARIAL, 12, sheet, 300);
+
+}
+
+void Menu::UnLoadCredits()
+{
+	App->gui->DeleteUI(sheet);
+	App->gui->DeleteUI(exit_options);
+	App->gui->DeleteUI(authors);
+	App->gui->DeleteUI(license);
+
+}
+
 
 void Menu::MenuButtons()
 {
@@ -210,6 +231,12 @@ void Menu::MenuButtons()
 			App->audio->PlayFx(button_focused_fx);
 		}
 
+		if (credits->state == L_MOUSE_PRESSED)
+		{
+			LoadCredits();
+			App->scene->level = MENU_CREDIT;
+			credits->state = FOCUSED;
+		}
 
 		if (play->state == L_MOUSE_PRESSED)
 		{
@@ -245,7 +272,7 @@ void Menu::MenuButtons()
 	{
 		if (play_ui)
 		{
-			App->scene->level = MENU_PLAY;			
+			App->scene->level = MENU_PLAY;
 			LoadPlayUI();
 		}
 		if (options_ui)
@@ -323,16 +350,17 @@ void Menu::PlayButtons()
 	if (new_game_button->state == MOUSE_ENTER) {
 		hand->pos.x = 357;
 		App->audio->PlayFx(button_focused_fx);
-		
+
 	}
 	if (continue_button->state == MOUSE_ENTER) {
 		hand->pos.x = 545;
 		App->audio->PlayFx(button_focused_fx);
-		
+
 	}
 
+
 	if (exit_options->state == L_MOUSE_PRESSED)
-	
+
 	{
 		App->gui->DeleteUI(option_sheet);
 		App->gui->DeleteUI(new_game_label);
@@ -380,9 +408,18 @@ void Menu::PlayButtons()
 
 		if (new_game_ui)
 		{
-			App->scene->level =level_1;
+			App->scene->level = level_1;
 			App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
 		}
+	}
+}
+
+void Menu::CreditButton()
+{
+	if (exit_options->state == L_MOUSE_PRESSED)
+	{
+		UnLoadCredits();
+		App->scene->level = MENU;
 	}
 }
 
@@ -466,7 +503,7 @@ void Menu::ResetMenu()
 
 
 void Menu::SetVolume()
-{	
+{
 	if (zap != nullptr)
 	{
 		if (zap->slider_value < 0)

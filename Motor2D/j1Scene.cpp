@@ -101,6 +101,7 @@ bool j1Scene::Start()
 
 	if (level == level_1) {
 		urns = 0;
+		score = 0;
 		LoadLevelUI();
 		start_time = SDL_GetTicks();
 		App->map->Load("level1.tmx");
@@ -109,12 +110,14 @@ bool j1Scene::Start()
 	}
 	if (level == level_2) {
 		urns = 0;
+		score = 0;
 		LoadLevelUI();
 		start_time = SDL_GetTicks();
 		App->map->Load("level2.tmx");
 	}
 	if (level == hidden_level) {
 		urns = 0;
+		score = 0;
 		LoadLevelUI();
 		start_time = SDL_GetTicks();
 		App->map->Load("hidden_level.tmx");
@@ -328,6 +331,9 @@ void j1Scene::ButtonInteractions()
 	case MENU_PLAY:
 		App->menu->PlayButtons();
 		break;
+	case MENU_CREDIT:
+		App->menu->CreditButton();
+		break;
 	default:
 		break;
 	}
@@ -380,6 +386,10 @@ void j1Scene::UpdateLevelUI()
 void j1Scene::LoadLoseScreen()
 {
 	lose_image = App->gui->AddImage(0,0,lose_texture);
+}
+
+void j1Scene::OpeningAnimation()
+{
 }
 
 
