@@ -64,7 +64,7 @@ Thanks for playing and have fun!
 
 #### Space (hold): Plane
 
-#### Left Ctrl: Shoot
+#### Left Ctrl or Right Ctrl: Shoot
 
 #### ESC: Pause Options
 
