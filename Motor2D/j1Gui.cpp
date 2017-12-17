@@ -155,21 +155,9 @@ Slider* j1Gui::AddSlider(int x, int y, SDL_Texture* texture, Animation anim, j1M
 
 void j1Gui::DeleteUI(UIElement * element)
 {
-	p2List_item<UIElement*>* item = elements.start;
-
-	while (item != nullptr)
-	{
-		if (item->data == element)
-		{
-			elements.del(item);
-			RELEASE(item->data);
-			element = item->data;
-			item->data = nullptr;
-
-		}
-		item = item->next;
-	}
-
+	int index = elements.find(element);
+	if (index > -1)
+		elements.del(elements.At(index));
 }
 
 

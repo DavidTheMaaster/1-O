@@ -134,6 +134,7 @@ bool Menu::CleanUp()
 	UnLoadCredits();
 	UnLoadOptionUI();
 	UnLoadPlayUI();
+	App->gui->CleanUp();
 	return true;
 }
 
@@ -304,6 +305,7 @@ void Menu::MenuButtons()
 
 		if (exit->state == L_MOUSE_PRESSED)
 		{
+			exit->state = FOCUSED;
 			cross = App->gui->AddImage(0, 0, cross_texture, cross_anim, exit);
 			App->audio->PlayFx(cross_click_fx);
 			App->gui->DeleteUI(hand);

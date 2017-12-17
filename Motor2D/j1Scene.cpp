@@ -15,6 +15,7 @@
 #include "j1Scene.h"
 #include "j1Window.h"
 #include "Menu.h"
+#include "Pause.h"
 
 #include <stdio.h> 
  
@@ -230,6 +231,7 @@ bool j1Scene::CleanUp()
 	App->collision->CleanUp();
 	App->entities->CleanUp();
 	App->menu->CleanUp();
+	App->pause->CleanUp();
 	App->gui->CleanUp();
 	return true;
 }
@@ -339,7 +341,10 @@ void j1Scene::GetKeys()
 		App->fadetoblack->FadeToBlack((j1Module*)App->scene, (j1Module*)App->scene, 1.5);
 	}
 	if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN) {
-		player_lifes = 0;
+		App->menu->CleanUp();
+	}
+	if (App->input->GetKey(SDL_SCANCODE_O) == KEY_DOWN) {
+		App->menu->Start();
 	}
 	if (level == LOSE || level == congrats)
 	{
