@@ -56,6 +56,7 @@ bool j1Gui::Update(float dt)
 	}
 	p2List_item<UIElement*> *it = elements.start;
 
+
 	while (it != nullptr)
 	{
 		it->data->Draw(dt);
@@ -65,7 +66,6 @@ bool j1Gui::Update(float dt)
 		}
 		it = it->next;
 	}
-
 
 	return true;
 
@@ -82,6 +82,15 @@ bool j1Gui::CleanUp()
 {
 	LOG("Freeing GUI");
 
+	p2List_item<UIElement*>* item;
+	item =elements.start;
+
+	while (item != NULL)
+	{
+		App->tex->UnLoad((SDL_Texture*)item->data->texture);
+		RELEASE(item->data);
+		item = item->next;
+	}
 	elements.clear();
 
 	App->tex->UnLoad(atlas);
@@ -103,6 +112,7 @@ Label* j1Gui::AddLabel(int x, int y, char* text, uint colors, uint fonts, int si
 	color = GetColor(colors);
 	char* path = GetFont(fonts);
 	_TTF_Font* font = App->font->Load(path, size);
+
 
 	const SDL_Texture* tex = App->font->Print(text, color, font, wrap);
 
@@ -152,6 +162,8 @@ void j1Gui::DeleteUI(UIElement * element)
 		if (item->data == element)
 		{
 			elements.del(item);
+			RELEASE(item->data);
+			element = item->data;
 			item->data = nullptr;
 
 		}

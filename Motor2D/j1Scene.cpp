@@ -95,6 +95,7 @@ bool j1Scene::Start()
 
 	if (level == MENU)
 	{
+		App->menu->Start();
 		App->menu->ResetMenu();
 		App->menu->LoadMenuUI();
 	}
@@ -143,7 +144,6 @@ bool j1Scene::Start()
 	changeMap = false;
 
 	App->map->SetMapLogic();
-	//App->player->Start();
 
 	int w, h;
 	uchar* data = NULL;
@@ -168,7 +168,7 @@ bool j1Scene::Start()
 			App->entities->congrats = false;
 		}
 	}
-	else {
+	else if(level != level_1 && level != level_2 || level != hidden_level) {
 		App->entities->Start();
 	}
 	ammo = 10;
@@ -221,12 +221,15 @@ bool j1Scene::PostUpdate()
 bool j1Scene::CleanUp()
 {
 	LOG("Freeing scene");
+	UnLoadLevelUI();
 	App->audio->UnLoadFx(level_change_fx);
 	App->tex->UnLoad(ui_texture);
+	App->tex->UnLoad(lose_texture);
 	App->map->DeleteMap();
 	App->map->CleanUp();
 	App->collision->CleanUp();
 	App->entities->CleanUp();
+	App->menu->CleanUp();
 	App->gui->CleanUp();
 	return true;
 }
@@ -375,15 +378,29 @@ void j1Scene::ButtonInteractions()
 
 void j1Scene::LoadLevelUI()
 {
-	App->gui->AddImage(900, 10, ui_texture, lifes_anim);
-	App->gui->AddImage(50, 10, ui_texture, urn_anim);
-	App->gui->AddImage(900, 490, ui_texture, ammo_anim);
+	life_image = App->gui->AddImage(900, 10, ui_texture, lifes_anim);
+	urn_image = App->gui->AddImage(50, 10, ui_texture, urn_anim);
+	ammo_image = App->gui->AddImage(900, 490, ui_texture, ammo_anim);
 	lifes_ui = App->gui->AddLabel(880, 20, "0", BLACK, MINECRAFT, 30);
 	urn_ui = App->gui->AddLabel(100, 20, "0", BLACK, MINECRAFT, 30);
 	ammo_ui = App->gui->AddLabel(860, 500, "10", BLACK, MINECRAFT, 30);
 	timer_ui = App->gui->AddLabel(450, 20, "100", BLACK, UPHEAVAL, 50);
 	score_ui = App->gui->AddLabel(880, 60, "200", BLACK, UPHEAVAL, 30);
 	UpdateLevelUI();
+}
+
+void j1Scene::UnLoadLevelUI()
+{
+	App->gui->DeleteUI(urn_ui);
+	App->gui->DeleteUI(lifes_ui);
+	App->gui->DeleteUI(ammo_ui);
+	App->gui->DeleteUI(timer_ui);
+	App->gui->DeleteUI(score_ui);
+	App->gui->DeleteUI(ammo_image);
+	App->gui->DeleteUI(urn_image);
+	App->gui->DeleteUI(life_image);
+
+
 }
 
 void j1Scene::UpdateLevelUI()

@@ -112,9 +112,8 @@ void UIElement::ChangeLabel(const char* text, uint colors)
 	_TTF_Font* fonts;
 	fonts = this->font;
 	App->tex->UnLoad((SDL_Texture*)texture);
-	const SDL_Texture* tex = App->font->Print(text, color, fonts);
 	App->font->CalcSize(text, rect.w, rect.h, fonts);
-	texture = tex;
+	texture = App->font->Print(text, color, fonts);
 }
 
 int UIElement::GetSliderValue(UIElement* zap, UIElement* slider)

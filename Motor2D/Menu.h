@@ -44,8 +44,14 @@ public:
 	void ResetMenu();
 
 	void LoadMenuUI();
+	void UnLoadMenuUI();
+
 	void LoadOptionUI();
+	void UnLoadOptionUI();
+
 	void LoadPlayUI();
+	void UnLoadPlayUI();
+
 	void LoadCredits();
 	void UnLoadCredits();
 

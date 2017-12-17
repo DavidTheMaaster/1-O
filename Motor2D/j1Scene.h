@@ -66,6 +66,7 @@ public:
 	void ButtonInteractions();
 
 	void LoadLevelUI();
+	void UnLoadLevelUI();
 	void UpdateLevelUI();
 
 	void Timer();
@@ -80,7 +81,7 @@ public:
 
 
 	Label* lifes_ui, *urn_ui, *ammo_ui, *timer_ui, *score_ui, *highscore_label, *highscore_number;
-	Image* lose_image;
+	Image* lose_image, *ammo_image, *life_image, *urn_image;
 
 
 public:

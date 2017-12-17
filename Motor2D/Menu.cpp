@@ -130,6 +130,10 @@ bool Menu::CleanUp()
 	App->tex->UnLoad(ui_texture);
 	App->tex->UnLoad(menu_texture);
 	App->tex->UnLoad(cross_texture);
+	UnLoadMenuUI();
+	UnLoadCredits();
+	UnLoadOptionUI();
+	UnLoadPlayUI();
 	return true;
 }
 
@@ -160,6 +164,21 @@ void Menu::LoadMenuUI()
 	App->scene->LoadHighScore();
 }
 
+void Menu::UnLoadMenuUI()
+{
+	App->gui->DeleteUI(sheet);
+	App->gui->DeleteUI(play);
+	App->gui->DeleteUI(options);
+	App->gui->DeleteUI(exit);
+	App->gui->DeleteUI(logo);
+	App->gui->DeleteUI(credits);
+	App->gui->DeleteUI(hand);
+	App->gui->DeleteUI(disclaimer);
+	App->gui->DeleteUI(textbox);
+
+}
+
+
 void Menu::LoadOptionUI()
 {
 	App->gui->DeleteUI(hand);
@@ -182,6 +201,24 @@ void Menu::LoadOptionUI()
 	SetVolume();
 }
 
+void Menu::UnLoadOptionUI()
+{
+	App->gui->DeleteUI(option_sheet);
+	App->gui->DeleteUI(exit_options);
+	App->gui->DeleteUI(morevolume);
+	App->gui->DeleteUI(lessvolume);
+	App->gui->DeleteUI(frame_rate_cap);
+	App->gui->DeleteUI(volume_bar);
+	App->gui->DeleteUI(volume_label);
+	App->gui->DeleteUI(volume_char);
+	App->gui->DeleteUI(fps_label);
+	App->gui->DeleteUI(zap);
+	App->gui->DeleteUI(fps_cap_label);
+	App->gui->DeleteUI(morefps);
+	App->gui->DeleteUI(lessfps);
+	
+}
+
 void Menu::LoadPlayUI()
 {
 	App->gui->DeleteUI(hand);
@@ -193,6 +230,17 @@ void Menu::LoadPlayUI()
 	exit_options = App->gui->AddButton(275, 50, ui_texture, exit_button_anim, this, sheet);
 	hand = App->gui->AddImage(360, 420, ui_texture, hand_anim);
 
+}
+
+void Menu::UnLoadPlayUI()
+{
+	App->gui->DeleteUI(option_sheet);
+	App->gui->DeleteUI(new_game_label);
+	App->gui->DeleteUI(continue_label);
+	App->gui->DeleteUI(new_game_button);
+	App->gui->DeleteUI(continue_button);
+	App->gui->DeleteUI(exit_options);
+	App->gui->DeleteUI(hand);
 }
 
 void Menu::LoadCredits()
@@ -286,20 +334,7 @@ void Menu::OptionButtons()
 {
 	if (exit_options->state == L_MOUSE_PRESSED)
 	{
-		App->audio->PlayFx(back_fx);
-		App->gui->DeleteUI(exit_options);
-		App->gui->DeleteUI(option_sheet);
-		App->gui->DeleteUI(morevolume);
-		App->gui->DeleteUI(volume_char);
-		App->gui->DeleteUI(lessvolume);
-		App->gui->DeleteUI(volume_bar);
-		App->gui->DeleteUI(zap);
-		App->gui->DeleteUI(morefps);
-		App->gui->DeleteUI(lessfps);
-		App->gui->DeleteUI(fps_label);
-		App->gui->DeleteUI(frame_rate_cap);
-		App->gui->DeleteUI(volume_label);
-		App->gui->DeleteUI(fps_cap_label);
+		UnLoadOptionUI();
 		ResetMenu();
 	}
 	if (morevolume->state == L_MOUSE_PRESSED)
@@ -358,13 +393,7 @@ void Menu::PlayButtons()
 	if (exit_options->state == L_MOUSE_PRESSED)
 	
 	{
-		App->gui->DeleteUI(option_sheet);
-		App->gui->DeleteUI(new_game_label);
-		App->gui->DeleteUI(continue_label);
-		App->gui->DeleteUI(new_game_button);
-		App->gui->DeleteUI(continue_button);
-		App->gui->DeleteUI(exit_options);
-		App->gui->DeleteUI(hand);
+		UnLoadPlayUI();
 		ResetMenu();
 	}
 
@@ -493,7 +522,12 @@ void Menu::ResetMenu()
 	cross_anim.Reset();
 	App->gui->DeleteUI(cross);
 	play_ui = options_ui = exit_ui = continue_ui = new_game_ui = false;
+
+	if (hand != nullptr)
+		App->gui->DeleteUI(hand);
+
 	hand = App->gui->AddImage(337, 420, ui_texture, hand_anim);
+
 	App->scene->level = MENU;
 }
 
