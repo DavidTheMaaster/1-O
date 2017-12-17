@@ -33,29 +33,25 @@ Make it as fast as you can, collecting every urn and finishing with all your ene
 ### Joan Valiente ###
 ![](Captura2.PNG)
 
-[GitHub](https://github.com/JoanValiente) 
+[GitHub](https://github.com/JoanValiente)## Game Controls
 
-##Game Controls
 
- 
 
 #### A: Move Left
 
- 
-
 #### D: Move Right
 
- #### W: Jump & Double Jump
+#### W: Jump & Double Jump
 
- 
+
 
 #### Space (hold): Plane
 
- #### Left Ctrl: Shoot
+#### Left Ctrl: Shoot
 
- #### ESC: Pause Options
+#### ESC: Pause Options
 
- #### Mouse: Navigate
+#### Mouse: Navigate
 
 
 ## Download the latest version of 1-0 [here](https://github.com/Acaree/WatermelonSquad/releases/download/1.0/Gunbird.1.0.zip)
